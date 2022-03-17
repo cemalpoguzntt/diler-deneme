@@ -1,0 +1,139 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout">
+    <Dialog  contentWidth = "100%" draggable="true">
+        <content>
+            <form:SimpleForm editable="true">
+                <l:VerticalLayout class="sapUiContentPadding">
+                    <l:content>
+
+                        <Table renderWhitespace="true" width="99%" noDataText="No data" id="notificationTable" items="{path: '/'}"  showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin">
+                            <infoToolbar>
+                                <Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+                                    <content>
+                                        <Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                    </content>
+                                </Toolbar>
+                            </infoToolbar>
+                            <headerToolbar/>
+                            <columns>
+            
+                                <Column id="dokumnocolumn" width="10%" hAlign="Center" visible="false" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                    <header>
+                                        <Text text="Döküm No" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                    </header>
+                                    <footer/>
+                                </Column>
+            
+                                <Column width="10%" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                    <header>
+                                        <Text text="Bildirim Türü" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                    </header>
+                                    <footer/>
+                                </Column>
+            
+                                <Column width="10%" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                    <header>
+                                        <Text text="Bildirim Numarası" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                    </header>
+                                    <footer/>
+                                </Column>
+            
+                               
+                                <Column width="19%" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                    <header>
+                                        <Text text="Teknik Birim" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                    </header>
+                                    <footer/>
+                                </Column>
+                               
+                                <Column width="15%" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                    <header>
+                                        <Text text="Sorumlu işyeri" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                    </header>
+                                    <footer/>
+                                </Column>
+            
+                                <Column width="12%" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                    <header>
+                                        <Text text="Başlangıç Zamanı" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                    </header>
+                                    <footer/>
+                                </Column>
+            
+                                <Column width="12%" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                    <header>
+                                        <Text text=" Bitiş Zamanı" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                    </header>
+                                    <footer/>
+                                </Column>
+            
+                                <Column width="9%" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                    <header>
+                                        <Text text="Arıza Süresi" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                    </header>
+                                    <footer/>
+                                </Column>
+            
+                                <Column width="9%" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                    <header>
+            
+                                        <Text text="Vardiya" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                    </header>
+                                    <footer/>
+                                </Column>
+            
+                                <Column width="9%" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                    <header>
+            
+                                        <Text text="OTO" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                    </header>
+                                    <footer/>
+                                </Column>
+            
+                               
+            
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+            
+                                    <customData>
+            
+                                        <core:CustomData key="NOTTYPE" value="{NOTTYPE2}" writeToDom="true"/>
+            
+                                    </customData>
+            
+                                    <cells>
+                                        <Text text="{DOKUM_NO}" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        <Text text="{NOTTYPE2}" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        <Text text="{NOTNUM}" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        <Text text="{TECHUNIT}" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        <Text text="{PM_WORKCTR}" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        <Text text="{FACSTRTDATE2}" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        <Text text="{FACENDDATE2}" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        <Text text="{FACM2}" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        <Text text="{VARDIYA}" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                         <Text text="{OTO}" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        
+            
+            
+            
+            
+                                    </cells>
+                                </ColumnListItem>
+            
+                            </items>
+                        </Table>
+                       
+                    </l:content>
+                </l:VerticalLayout>
+            </form:SimpleForm>
+        </content>
+        <buttons>
+            <Button id="RefNotificationConfirm" width="125px" type="Reject" visible = "true"  text="Kapat" press="closeShowDeleted"></Button>
+           
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

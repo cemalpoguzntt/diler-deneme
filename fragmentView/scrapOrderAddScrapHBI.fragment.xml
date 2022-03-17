@@ -1,0 +1,33 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_SO_ADD_SCRAP_HBI}" id="scrapOrderAddScrapHBI">
+        <content>
+            <FlexBox height="40px" alignItems="Center" justifyContent="Start">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_LAYER_NO} :" width="80px" />
+                    <Text id="nextLayerHBI" />
+                </items>
+            </FlexBox>
+            <FlexBox height="40px" alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_SCRAP_TYPE} :" width="80px" />
+                    <ComboBox id="scrapTypeHBI" width="250px" items="{scrapTypeJargon>/Row}" selectedKey="HBI" enabled="false" placeholder="{i18n>OEE_LABEL_SCRAP_TYPE}">
+                        <core:Item text="{scrapTypeJargon>JARGON}" key="{scrapTypeJargon>JARGON}" />
+                    </ComboBox>
+                </items>
+            </FlexBox>
+            <FlexBox height="40px" alignItems="Center" justifyContent="Start">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_SCRAP_QUANTITY} :" width="80px" />
+                    <Input id="scrapQuantityHBI" type="Number" width="250px" placeholder="{i18n>OEE_LABEL_CHANGE_LOG_BMENGE}" />
+                </items>
+            </FlexBox>
+        </content>
+        <OverflowToolbar>
+<Button text = "Getir" press = "onPressGetTagValues" visible="true" icon="sap-icon://cause"/>
+            <ToolbarSpacer />
+            <Button text="{i18n>OEE_BTN_POST}" press="onPressAddEntryHBI" type="Accept"></Button>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancel" type="Reject"></Button>
+            <ToolbarSpacer />
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

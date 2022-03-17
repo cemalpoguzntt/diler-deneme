@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_COMMENTS}" id="orderDetailsDialog">
+        <content>
+            <Table id="orderDetailsTable" mode="SingleSelectMaster" editable="true" items="{orderDetailsModel>/}">
+                <columns>
+                    <Column width="3rem" hAlign="Center">
+                    </Column>	
+                </columns>
+                <items>
+                    <ColumnListItem hAlign="Center">
+                        <cells>
+                           <Text text="{orderDetailsModel>TDLINE}" />           
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+        </content>
+        <endButton>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancelOrderDetails" type="Reject"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

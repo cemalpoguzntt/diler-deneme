@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+    <Dialog id="deleteData" draggable="true">
+        <content>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <Label text="Silmek istediğinize emin misiniz?" design="Bold"/>
+            </FlexBox>
+        </content>
+        <beginButton>
+            <Button text="Onayla" type="Accept" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onPressDelete"/>
+        </beginButton>
+        <endButton>
+            <Button text="İptal" type="Reject" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onCancelFrag01"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

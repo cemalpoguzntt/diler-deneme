@@ -1,0 +1,53 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" controllerName="com.sap.build.standard.untitledPrototype.controller.Dialog1">
+    <Dialog horizontalScrolling="true"  showHeader="true" id="Fragment4" escapeHandler="handleEscape" state="None" stretch="false" title="HATALAR" type="Standard" verticalScrolling="true">
+        <content>
+            <Table width="auto" noDataText="No data" items="{path: '/'}"  id="errors" mode="None" showSeparators="All" growing="true" 
+ growingThreshold="20" growingScrollToLoad="true" class="labelFontSizeChemical">
+                <infoToolbar>
+                    <Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+                        <content>
+                            <Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </content>
+                    </Toolbar>
+                </infoToolbar>
+                <headerToolbar/>
+                <columns>
+                    <Column width="50px" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="SIRA" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="690px" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="MESAJ" width="auto"  wrapping="false" textAlign="Begin" textDirection="Center" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="100px" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="TARIH" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Active">
+                    	 <Label text="{SIRA}" width="auto" class="cycleBtnContent cycleBtnInner" />
+                    	 <Label text="{MESAJ}" width="700px" class="cycleBtnContent cycleBtnInner" />
+                    	 <Label text="{TARIH}" width="auto" class="cycleBtnContent cycleBtnInner" />
+                    	
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <beginButton/>
+        <buttons>
+<Button text="TAMAM" type="Accept" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onCancelFrag2"/>
+            <Button text="KAPAT" type="Reject" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onCancelFrag2"/>
+        </buttons>
+        <customHeader/>
+        <endButton/>
+        <subHeader/>
+    </Dialog>
+</core:FragmentDefinition>

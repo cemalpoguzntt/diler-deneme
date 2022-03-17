@@ -1,0 +1,90 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc">
+
+    <layout:Grid id="orderCardGrid" defaultSpan="L12 M12 S12">
+        <layout:content>
+            <ObjectStatus class="messageTextSize" text="{i18n>OEE_LABEL_NO_ACTIVE_ORDER}" state="Warning" visible="{path:'appData>/selected/runID', formatter : 'sap.oee.ui.Formatter.showIfRunDoesntExist'}" />
+            <ObjectHeader id="orderCardHeader" class="oeeOrderCard" showTitleSelector="true" visible="{path:'appData>/selected/runID', formatter : 'sap.oee.ui.Formatter.showIfRunExists'}" title="{parts : [{path: 'appData>/selected/order/orderNo'},{path:'appData>/selected/operationNo'},{path: 'appData>/selected/operationDesc'},{path: 'appData>/selected/parentOperationDesc'}], formatter : 'sap.oee.ui.Formatter.formatOrderAndOperationForOrderCard'}" backgroundDesign="Solid" number="{parts : [{path: 'i18n>OEE_HEADING_TOTAL_REMAINING'},{path:'appData>/selected/quantityRemaining'},{path: 'appData>/decimalPrecision'}], formatter : 'sap.oee.ui.Formatter.formatRemainingQuantityWithoutUom'}" numberUnit="{appData>/selected/quantityReleasedUOMText}">
+                <layoutData>
+                    <layout:GridData span="L6 M12 S12"></layout:GridData>
+                </layoutData>
+                <attributes>
+                    <ObjectAttribute class="oeeTextBlack" text="{path:'appData>/selected/material/id', formatter : 'sap.oee.ui.Formatter.formatMaterialID'}" />
+                    <ObjectAttribute class="oeeTextBlack" text="{appData>/selected/material/description}" />
+                    <ObjectAttribute class="oeeTextBlack" visible="{parts : [{path: 'appData>/selected/material/batchNumber'}], formatter : 'sap.oee.ui.Formatter.hideIfEmpty'}" text="{parts:[{path:'i18n>OEE_LABEL_BATCH_NUM'},{path:'appData>/selected/material/batchNumber'}],formatter:'sap.oee.ui.Formatter.formatBatchNumberDetails'}" />
+                    <ObjectAttribute visible="{parts : [{path: 'appData>/selected/productionVersion'}], formatter : 'sap.oee.ui.Formatter.hideIfEmpty'}" class="oeeTextBlack" text="{parts : [{path: 'i18n>OEE_LABEL_PRODUCTION_VERSION'}, {path: 'appData>/selected/productionVersion'}], formatter:'sap.oee.ui.Formatter.formatProductionVersion'}" />
+                    <ObjectAttribute visible="{path:'appData>/node/crewSize',formatter:'sap.oee.ui.Formatter.formatCrewSizeVisibility'}" class="oeeTextBlack" text="{parts : [{path: 'i18n>OEE_LABEL_CREWSIZE'},{path: 'appData>/selected/order/crewSize'}],formatter : 'sap.oee.ui.Formatter.formatCrewSize'}" />
+                    <ObjectAttribute class="oeeTextBlack" text="{parts : [{path: 'i18n>OEE_LABEL_STARTED_AT'}, {path: 'appData>/selected/orderStartTimestamp'},{path: 'appData>/plantTimezoneOffset'},{path: 'appData>/plantTimezoneKey'}], formatter : 'sap.oee.ui.Formatter.formatTimeStampWithLabel'}" />
+                    <ObjectAttribute class="oeeTextBlack" visible="{parts : [{path: 'appData>/selected/order/orderStatus'}], formatter : 'sap.oee.ui.Formatter.formatEndedAtVisibility'}" text="{parts : [{path: 'i18n>OEE_LABEL_ENDED_AT'}, {path: 'appData>/selected/orderEndTimestamp'},{path: 'appData>/plantTimezoneOffset'},{path: 'appData>/plantTimezoneKey'}], formatter : 'sap.oee.ui.Formatter.formatTimeStampWithLabel'}" />
+                    <ObjectAttribute class="oeeTextBlack" visible="{parts : [{path: 'appData>/selected/order/capacityNodes'}], formatter : 'sap.oee.ui.Formatter.formatCapacityNodesVisibilityInOrderCard'}" text="{parts : [{path: 'i18n>OEE_LABEL_WORK_UNIT_CAPACITIES'}, {path: 'appData>/selected/order/capacityNodes'}], formatter : 'sap.oee.ui.Formatter.formatCapacityNodesInOrderCardWithLabel'}" />
+                </attributes>
+                <statuses>
+                    <ObjectStatus text="{parts : [{path: 'appData>/selected/order/statusText'},{path: 'appData>/selected/productionActivity'}], formatter : 'sap.oee.ui.Formatter.formatStatusTextAndActivity'}" class="orderCardStatusActive" />
+                    <ObjectStatus class="orderCardStatus" text="{parts : [{path: 'i18n>OEE_HEADING_PLANNED_QUANTITY_NEW'},{path: 'appData>/selected/quantityReleased'} , {path:'appData>/selected/quantityReleasedUOMText'},{path: 'appData>/decimalPrecision'}], formatter : 'sap.oee.ui.Formatter.formatQuantity'}" />
+                    <ObjectStatus class="orderCardStatus" text="{parts : [{path: 'i18n>OEE_HEADING_TOTAL_PROD_NEW'},{path: 'appData>/selected/quantityReported'} , {path:'appData>/selected/quantityReleasedUOMText'},{path: 'appData>/decimalPrecision'}], formatter : 'sap.oee.ui.Formatter.formatQuantity'}" />
+                    <ObjectStatus class="orderCardStatus" text="{parts : [{path: 'i18n>OEE_HEADING_TOTAL_IN_SHIFT'},{path: 'appData>/selected/totalQuantityProducedInRun'} , {path:'appData>/selected/quantityReleasedUOMText'},{path: 'appData>/decimalPrecision'}], formatter : 'sap.oee.ui.Formatter.formatQuantity'}" />
+                    <ObjectStatus class="orderCardStatus" text="{parts : [{path: 'i18n>OEE_LABEL_STANDARD_RATE'},{path: 'appData>/selected/standardRateQty'} ,{path: 'appData>/selected/timeQty'}, {path:'appData>/selected/stdRateUOMText'},{path:'appData>/selected/timeUom'},{path: 'appData>/decimalPrecision'}], formatter : 'sap.oee.ui.Formatter.formatTextQuantityAndDuration'}" />
+                    <ObjectStatus />
+                    <ObjectStatus />
+                    <ObjectStatus />
+                </statuses>
+            </ObjectHeader>
+            <ObjectHeader height="1000px" class="oeeOrderCard" title="{i18n>OEE_LABEL_AUFNR_DETAILS} ; " backgroundDesign="Solid" fullScreenOptimized="true">
+                <layoutData>
+                    <layout:GridData span="L6 M12 S12"></layout:GridData>
+                </layoutData>
+                <attributes>
+                    <ObjectAttribute class="oeeTextBlack" text="{i18n>OEE_LABEL_Z_BATCH_NO} : {appData>/allCharacteristic/BatchNumb}" visible="{= ${appData>/visibleJSON/SIRA_NO} === 'SIRA_NO' ? true : false}" />
+                    <ObjectAttribute class="oeeTextBlack" text="{i18n>OEE_LABEL_MC_SN} : {appData>/allCharacteristic/MC_SN}" visible="{= ${appData>/visibleJSON/MC_SN} === 'MC_SN' ? true : false}" />
+                    <ObjectAttribute class="oeeTextBlack" text="{i18n>OEE_LABEL_MC_METERAGE} : {appData>/weldMeterages/METERAGE}{appData>/allCharacteristic/MC_METERAGE}" visible="{= ${appData>/visibleJSON/MC METRAJ} === 'MC METRAJ' ? true : false}" />
+                    <ObjectAttribute class="oeeTextBlack" text="{i18n>OEE_LABEL_MC_WIRE_METERAGE} : {appData>/weldMeterages/weldMeterages}" visible="{= ${appData>/visibleJSON/MC KAYNAK METRAJ} === 'MC KAYNAK METRAJ' ? true : false}" tooltip="{appData>/weldMeterages/weldMeterages}" />
+                    <ObjectAttribute class="oeeTextBlack" text="{i18n>OEE_LABEL_COIL_SEQUENCE_NO} : {appData>/lastBobin/MAXBOBINNUMBER}" visible="{= ${appData>/visibleJSON/BOBIN SN (SON)} === 'BOBIN SN (SON)' ? true : false}" />
+                    <ObjectAttribute class="oeeTextBlack" text="{i18n>OEE_LABEL_TOTATLY_TONNAGE} : {appData>/tonnage/SUMTONNAGE}" visible="{= ${appData>/visibleJSON/TOPLAM TONAJ} === 'TOPLAM TONAJ' ? true : false}" />
+                    <ObjectAttribute class="oeeTextBlack" text="{i18n>OEE_LABEL_CENTRAL_AROUND_STRAND} : {appData>/allCharacteristic/Y_MERKEZ_CEVRE}" visible="{= ${appData>/visibleJSON/Y_MERKEZ_CEVRE} === 'Y_MERKEZ_CEVRE' ? true : false}" />
+                    <ObjectAttribute class="oeeTextBlack" text="{i18n>OEE_LABEL_DIAMETER} : {appData>/allCharacteristic/Y_TEL_CAP_MM_SC}" visible="{= ${appData>/visibleJSON/Y_TEL_CAP_MM_SC} === 'Y_TEL_CAP_MM_SC' ? true : false}" />
+                    <ObjectAttribute class="oeeTextBlack" text="{i18n>OEE_LABEL_RODA_SIZE} : {appData>/allCharacteristic/Y_RODA_BOYU}" visible="{= ${appData>/visibleJSON/Y_RODA_BOYU} === 'Y_RODA_BOYU' ? true : false}" />
+                    <ObjectAttribute class="oeeTextBlack" text="{i18n>OEE_LABEL_DIAMETER} : {appData>/allCharacteristic/Y_CAP_PCS_MM}" visible="{= ${appData>/visibleJSON/Y_CAP_PCS_MM} === 'Y_CAP_PCS_MM' ? true : false}" />
+                    <ObjectAttribute class="oeeTextBlack" text="{i18n>OEE_LABEL_Z_STANDART_PCW} : {appData>/allCharacteristic/Y_STANDART_PCW}" visible="{= ${appData>/visibleJSON/Y_STANDART_PCW} === 'Y_STANDART_PCW' ? true : false}" />
+                    <ObjectAttribute class="oeeTextBlack" text="{i18n>OEE_LABEL_Z_KALITE_PCW} : {appData>/allCharacteristic/Y_KALITE_PCW}" visible="{= ${appData>/visibleJSON/Y_KALITE_PCW} === 'Y_KALITE_PCW' ? true : false}" />
+                    <ObjectAttribute class="oeeTextBlack" text="{i18n>OEE_LABEL_Z_CAP_PCW_MM} : {appData>/allCharacteristic/Y_CAP_PCW_MM}" visible="{= ${appData>/visibleJSON/Y_CAP_PCW_MM} === 'Y_CAP_PCW_MM' ? true : false}" />
+                    <ObjectAttribute class="oeeTextBlack" text="{i18n>OEE_LABEL_Z_TEL_CAP_MM_SC} : {appData>/allCharacteristic/Y_TEL_CAP_MM_SC}" visible="{= ${appData>/visibleJSON/Y_TEL_CAP_MM_SC} === 'Y_TEL_CAP_MM_SC' ? true : false}" />
+                    <ObjectAttribute class="oeeTextBlack" text="{i18n>OEE_LABEL_Z_METRAJ} : {appData>/allCharacteristic/Y_METRAJ}" visible="{= ${appData>/visibleJSON/Y_METRAJ} === 'Y_METRAJ' ? true : false}" />
+                </attributes>
+                <statuses>
+                    <ObjectStatus text="{i18n>OEE_LABEL_COIL_QUANTITY} : {appData>/allCharacteristic/Y_BOBIN_ADET}" class="orderCardStatus" width="500px" visible="{= ${appData>/visibleJSON/Y_BOBIN_ADET} === 'Y_BOBIN_ADET' ? true : false}" />
+                    <ObjectStatus text="{i18n>OEE_LABEL_COIL_METERAGEREP} : {appData>/allCharacteristic/Y_METRAJ}" class="orderCardStatus" width="500px" visible="{= ${appData>/visibleJSON/Y_METRAJ} === 'Y_METRAJ' ? true : false}" />
+                    <ObjectStatus class="orderCardStatus" text="{i18n>OEE_LABEL_QUALITY_QUALITY} : {appData>/allCharacteristic/Y_KALITE_PCS}" visible="{= ${appData>/visibleJSON/Y_KALITE_PCS} === 'Y_KALITE_PCS' ? true : false}" />
+                    <ObjectStatus class="orderCardStatus" text="{i18n>OEE_LABEL_STANDARD} : {appData>/allCharacteristic/Y_STANDART_PCS}" visible="{= ${appData>/visibleJSON/Y_STANDART_PCS} === 'Y_STANDART_PCS' ? true : false}" />
+                    <ObjectStatus class="orderCardStatus" text="{i18n>OEE_LABEL_KANGAL_WEIGHT_MIN} : {appData>/allCharacteristic/Y_KANGAL_AGIRLIK_MIN}" visible="{= ${appData>/visibleJSON/Y_KANGAL_AGIRLIK_MIN} === 'Y_KANGAL_AGIRLIK_MIN' ? true : false}" />
+                    <ObjectStatus class="orderCardStatus" text="{i18n>OEE_LABEL_KANGAL_WEIGHT_MAX} : {appData>/allCharacteristic/Y_KANGAL_AGIRLIK_MAX}" visible="{= ${appData>/visibleJSON/Y_KANGAL_AGIRLIK_MAX} === 'Y_KANGAL_AGIRLIK_MAX' ? true : false}" />
+                    <ObjectStatus class="orderCardStatus" text="{i18n>OEE_LABEL_KANGAL_METERAGE_MIN} : {appData>/allCharacteristic/Y_KANGAL_METRAJ_MIN}" visible="{= ${appData>/visibleJSON/Y_KANGAL_METRAJ_MIN} === 'Y_KANGAL_METRAJ_MIN' ? true : false}" />
+                    <ObjectStatus class="orderCardStatus" text="{i18n>OEE_LABEL_KANGAL_METERAGE_MAX} : {appData>/allCharacteristic/Y_KANGAL_METRAJ_MAX}" visible="{= ${appData>/visibleJSON/Y_KANGAL_METRAJ_MAX} === 'Y_KANGAL_METRAJ_MAX' ? true : false}" />
+                    <ObjectStatus class="orderCardStatus" text="{i18n>OEE_LABEL_QUALITY_QUALITY} : {appData>/allCharacteristic/Y_KALITE_SC}" visible="{= ${appData>/visibleJSON/Y_KALITE_SC} === 'Y_KALITE_SC' ? true : false}" />
+                    <ObjectStatus class="orderCardStatus" text="{i18n>OEE_LABEL_WINDING_DIRECTION} : {appData>/allCharacteristic/Y_SARIM_YONU}" visible="{= ${appData>/visibleJSON/Y_SARIM_YONU} === 'Y_SARIM_YONU' ? true : false}" />
+                    <ObjectStatus class="orderCardStatus" text="{i18n>OEE_LABEL_CENTRAL_WIRE_METER} : {appData>/allCharacteristic/Y_MERKEZ_TEL_METRAJ}" visible="{= ${appData>/visibleJSON/Y_CEVRE_TEL_METRAJ} === 'Y_CEVRE_TEL_METRAJ' ? true : false}" />
+                    <ObjectStatus class="orderCardStatus" text="{i18n>OEE_LABEL_ENVIRONMENTAL_WIRE_METER} : {appData>/allCharacteristic/Y_CEVRE_TEL_METRAJ}" visible="{= ${appData>/visibleJSON/Y_CEVRE_TEL_METRAJ} === 'Y_CEVRE_TEL_METRAJ' ? true : false}" />
+                    <ObjectStatus class="orderCardStatus" text="{i18n>OEE_LABEL_STANDARD} : {appData>/allCharacteristic/Y_STANDART_SC}" visible="{= ${appData>/visibleJSON/Y_STANDART_SC} === 'Y_STANDART_SC' ? true : false}" />
+                    <ObjectStatus class="orderCardStatus" text="{i18n>OEE_LABEL_Z_YUZEY_PCW} : {appData>/allCharacteristic/Y_YUZEY_PCW}" visible="{= ${appData>/visibleJSON/Y_YUZEY_PCW} === 'Y_YUZEY_PCW' ? true : false}" />
+                    <ObjectStatus class="orderCardStatus" text="{i18n>OEE_LABEL_Z_CENTIK_TIPI} : {appData>/allCharacteristic/Y_CENTIK_TIPI}" visible="{= ${appData>/visibleJSON/Y_CENTIK_TIPI} === 'Y_CENTIK_TIPI' ? true : false}" />
+                    <ObjectStatus class="orderCardStatus" text="{i18n>OEE_LABEL_Z_METRAJ_PCW} : {appData>/allCharacteristic/Y_METRAJ_PCW}" visible="{= ${appData>/visibleJSON/Y_METRAJ_PCW} === 'Y_METRAJ_PCW' ? true : false}" />
+                    <ObjectStatus class="orderCardStatus" text="{i18n>OEE_LABEL_Z_PCW_CBK_UZN} : {appData>/allCharacteristic/Y_PCW_CBK_UZN}" visible="{= ${appData>/visibleJSON/Y_PCW_CBK_UZN} === 'Y_PCW_CBK_UZN' ? true : false}" />
+                    <ObjectStatus class="orderCardStatus" text="{i18n>OEE_LABEL_Z_KANGAL_AGIRLIK} : {appData>/allCharacteristic/Y_KANGAL_AGIRLIK}" visible="{= ${appData>/visibleJSON/Y_KANGAL_AGIRLIK} === 'Y_KANGAL_AGIRLIK' ? true : false}" />
+                    <ObjectStatus class="orderCardStatus" text="{i18n>OEE_LABEL_Z_MIKTAR_TON} : {appData>/allCharacteristic/Y_MIKTAR_TON}" visible="{= ${appData>/visibleJSON/Y_MIKTAR_TON} === 'Y_MIKTAR_TON' ? true : false}" />
+                </statuses>
+            </ObjectHeader>
+            <FlexBox backgroundDesign="Solid" visible="{= ${appData>/visibleJSON/CONFIG_PARAM_LIST} === 'CONFIG_PARAM_LIST' ? true : false}" >
+                <layoutData>
+                    <layout:GridData span="L6 M12 S12"></layout:GridData>
+                </layoutData>
+                <HBox alignItems="End" height="135px">
+                    <ScrollContainer height="135px" vertical="true" horizontal="true" width = "240%">
+                        <List items="{configJSONList>/}" mode="None" >
+                            <items>
+                                <StandardListItem title="{configJSONList>ATBEZ}" info="{configJSONList>VAL}" />
+                            </items>
+                        </List>
+                    </ScrollContainer>
+                </HBox>
+            </FlexBox>
+        </layout:content>
+    </layout:Grid>
+</core:FragmentDefinition>

@@ -1,0 +1,142 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:ui="sap.ui.table"
+    xmlns:l="sap.ui.layout">
+    <Dialog state="Warning" id="refractoryDataInput"   contentHeight="100%"
+    contentWidth="90%" draggable="true">
+        <content>
+            <!-- <t:Table visibleRowCount="10" id="idFragmentTable"></t:Table> -->
+            <ui:Table id="idFragmentTable"  width="100%" rows="{/}" rowCount="20" visibleRowCount="20" alternateRowColors="true" selectionMode="Single" selectionBehavior="RowOnly" >
+				
+            <ui:columns>
+                <ui:Column visible="false" hAlign="Center" sortProperty="KALITE_ZORUNLULUK" filterProperty="KALITE_ZORUNLULUK" filterType="sap.ui.model.type.String">
+                    <Label text="Kalite Zorunluluk" design="Bold"/>
+                    <ui:template>
+                        <Text text="{KALITE_ZORUNLULUK}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column visible="false" hAlign="Center" sortProperty="MIKTAR_ZORUNLU" filterProperty="MIKTAR_ZORUNLU" filterType="sap.ui.model.type.String">
+                    <Label text="Miktar Zorunluluk" design="Bold"/>
+                    <ui:template>
+                        <Text text="{MIKTAR_ZORUNLU}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column hAlign="Center" sortProperty="CAST_ID" filterProperty="CAST_ID" filterType="sap.ui.model.type.String">
+                    <Label text="Döküm No" design="Bold"/>
+                    <ui:template>
+                        <Text text="{CAST_ID}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column hAlign="Center" sortProperty="EquipmentObjType" filterProperty="EquipmentObjType" filterType="sap.ui.model.type.String">
+                    <Label text="Teknik Nesne Türü" design="Bold"/>
+                    <ui:template>
+                        <Text text="{EquipmentObjType}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column hAlign="Center" sortProperty="EquipmentNumber" filterProperty="EquipmentNumber" filterType="sap.ui.model.type.String">
+                    <Label text="Ekipman No" design="Bold"/>
+                    <ui:template>
+                        <Text text="{EquipmentNumber}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column hAlign="Center" sortProperty="MaterialInfo" filterProperty="MaterialInfo" filterType="sap.ui.model.type.String">
+                    <Label text="Malzeme Tanımı" design="Bold"/>
+                    <ui:template>
+                        <Text text="{MaterialInfo}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column>                
+                <ui:Column hAlign="Center" sortProperty="Status_" filterProperty="Status_" filterType="sap.ui.model.type.String">
+                    <Label text="Durum" design="Bold"/>
+                    <ui:template>
+                        <ComboBox enabled="{= ${ANA_MALZEME} === 'X' ? false: true}" id="RefracStatus" valueState="Success"  showValueStateMessage="false"   width="100%" change="changeRefracStatus" items="{STATUS_DATA/}" selectedKey="{STATUS}" class="sapUiSmallMarginEnd" forceSelection="true">
+                            <core:Item text="{DESCRIPTION}" key="{USAGE_STATUS_CODE}"/>
+                        </ComboBox>
+                    </ui:template>
+                </ui:Column> 
+
+                <ui:Column hAlign="Center" sortProperty="Company" filterProperty="Company" filterType="sap.ui.model.type.String">
+                    <Label text="Firma" design="Bold"/>
+                    <ui:template>
+                        <ComboBox id="Company" width="100%" valueState="Success"  showValueStateMessage="false"  enabled="{= ${ANA_MALZEME} === 'X' ? false: true}" change="changeCompany" items="{FIRMA/}" selectedKey="{COMPANY}" class="sapUiSmallMarginEnd" forceSelection="true">
+                            <core:Item text="{ZREFVNDR}" key="{ZREFVNDR}"/>
+                        </ComboBox>
+                    </ui:template>
+                </ui:Column>
+
+                <ui:Column hAlign="Center" sortProperty="Quality" filterProperty="Quality" filterType="sap.ui.model.type.String">
+                    <Label text="Kalite" design="Bold"/>
+                    <ui:template>
+                        <Input  textAlign="Center" valueState="{= ${KALITE_ZORUNLULUK} === 'X' ? 'Success': 'None'}" value="{QUALITY}" type="text"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column hAlign="Center" sortProperty="CAST_ID" filterProperty="CAST_ID" filterType="sap.ui.model.type.String">
+                    <Label text="Formen " design="Bold"/>
+                    <ui:template>
+                        <ComboBox id="Formen" width="100%" items="{formen>/}" class="sapUiSmallMarginEnd" selectedKey="{selectedFormen}" forceSelection="true">
+                            <core:Item text="{formen>ENAME}" key="{formen>PERSNO}"/>
+                        </ComboBox>
+                    </ui:template>
+                </ui:Column>
+
+
+                <ui:Column hAlign="Center" sortProperty="CAST_ID" filterProperty="CAST_ID" filterType="sap.ui.model.type.String">
+                    <Label text="Açıklama" design="Bold"/>
+                    <ui:template>
+                        <Input id="RefracDescription" width="100%" value="{DESCRIPTION}" type="Text" maxLength="200" class="sapUiSmallMarginEnd" />
+                    </ui:template>
+                </ui:Column>
+
+                <ui:Column hAlign="Center" sortProperty="CAST_ID" filterProperty="CAST_ID" filterType="sap.ui.model.type.String">
+                    <Label text="Örüm Tarihi " design="Bold"/>
+                    <ui:template>
+                         <DatePicker id="RefracDate" width="100%"  value="{ORUM_DATE}" valueFormat="yyyy-MM-dd" displayFormat="dd.MM.yyyy" class="sapUiSmallMarginEnd"/>
+                    </ui:template>
+                </ui:Column>
+
+                <ui:Column visible="false" id="idfragmentLine" hAlign="Center" sortProperty="CAST_ID" filterProperty="CAST_ID" filterType="sap.ui.model.type.String">
+                    <Label text="Yol " design="Bold"/>
+                    <ui:template>
+                            <ComboBox id="RefracLine" width="100%" items="{lineList>/}" selectedKey="{LINE}" class="sapUiSmallMarginEnd" forceSelection="true">
+                                <core:Item text="{lineList>LINE}" key="{lineList>LINE}"/>
+                            </ComboBox>
+                    </ui:template>
+                </ui:Column>
+
+
+                <ui:Column hAlign="Center" id="idfragmentQty" sortProperty="CAST_ID" filterProperty="CAST_ID" filterType="sap.ui.model.type.String">
+                    <Label text="Miktar" design="Bold"/>
+                    <ui:template>
+                        <Input id="RefracQuantity"  value="{QUANTITY}" valueState="{= ${MIKTAR_ZORUNLU} === 'X' ? 'Success': 'None'}" width="100%" type="text"/>
+                    </ui:template>
+                </ui:Column>
+
+                <ui:Column hAlign="Center" id="idfragmentUnit" sortProperty="CAST_ID" filterProperty="CAST_ID" filterType="sap.ui.model.type.String">
+                    <Label text="Ölçü Birimi" design="Bold"/>
+                    <ui:template>
+                        <ComboBox id="idQuantityOB" width="100%" items="{unitList>/}" selectedKey="{selectedQuantity}" class="sapUiSmallMarginEnd" forceSelection="true">
+                            <core:Item text="{unitList>UNIT}" key="{unitList>UNIT}"/>
+                        </ComboBox>
+                    </ui:template>
+                </ui:Column>
+            
+                <!-- <ui:Column hAlign="Center" sortProperty="MATNR" filterProperty="MATNR" filterType="sap.ui.model.type.String">
+                    <Label text="Malzeme No" design="Bold"/>
+                    <ui:template>
+                        <Text text="{MATNR}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column> -->
+
+            </ui:columns>
+        </ui:Table>
+        </content>
+        <buttons>
+            <!-- <Button id="updateNotificationConfirm" width="125px" type="Accept" icon="sap-icon://save" text="Bilgileri Kaydet" press="createupdateNotificationConfirm"></Button> -->
+           <!--  <Button id="createNotificationConfirm" width="125px" type="Accept" icon="sap-icon://create" text="Bildirim Yarat" press="createupdateNotificationConfirm"></Button>
+            <Button id="createNotificationCancel" width="125px" type="Reject" icon="sap-icon://sys-cancel" text="İptal" press="createNotificationCancel"></Button> -->
+            <Button id="closeFragment" width="125px" type="Reject" icon="sap-icon://sys-cancel" text="İptal" press="closeFragment"></Button>
+            <Button id="idSaveFragmentData" text="{i18n>OEE_LABEL_SO_SAVE}" width="140px" type="Accept" press="saveFragmentData" class="sapUiSmallMarginEnd" icon="sap-icon://save"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

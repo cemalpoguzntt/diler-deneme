@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog id="billetChangeCharacteristic" title="{i18n>OEE_LABEL_L_CHANGE_CHARACTERISTICS}">
+        <content>
+            <FlexBox alignItems="Center" justifyContent="Center" >
+                <items>
+                    <Label text="{i18n>OEE_LABEL_PRODUCT_METHOD} :" width="10rem" />
+                    <Select id="productionType" width="15rem"  selectedKey = "{informationFragmentData>/0/Y_URETIM_YONTEMI}" >
+                        <core:Item text="TEMPCORE" key="TEMPCORE" />
+                        <core:Item text="SICAK HADDELEME" key="SICAK_HADDELEME" />
+                    </Select>
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center" visible = "true">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_BUFFER_LENGTH} :" width="10rem" />
+                    <Input id="bufferLength" type = "Number" width="15rem"  value = "{informationFragmentData>/0/Y_TAMPON_BOY}" enabled="false"/>
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_ROD_LENGTH} :" width="10rem" />
+                    <Input id="rodLength" type = "Number" width="15rem" value = "{informationFragmentData>/0/Y_BOY_CBK_M}" liveChange = "changeBufferLength"/>
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_ROD_COUNT} :" width="10rem" />
+                    <Input id="rodCount" type = "Number" width="15rem" value = "{informationFragmentData>/0/Y_CUBUK_SAYISI}"/>
+                </items>
+            </FlexBox>
+        </content>
+        <beginButton>
+            <Button text="{i18n>OEE_BTN_REJECTED_SAVE}" press="onChangeDialogCharacteristic" type="Accept" id="btnRejectNotif" />
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>OEE_BTN_REJECTED_CLOSE}" press="handleCancelCharc" type="Reject" id="btnCloseRejectedNotifs" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

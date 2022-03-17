@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+    <Dialog id="addBilletToFurnaceMill" title="{i18n>OEE_LABEL_COUNT}">
+        <content>
+            <f:SimpleForm>
+                <f:content>
+                    <Input id="quantity" type="Number" value="1"></Input>
+                </f:content>
+            </f:SimpleForm>
+        </content>
+        <OverflowToolbar>
+            <ToolbarSpacer />    
+            <Button id="addManualBillet" press="printLabelManual" text="{i18n>OEE_BTN_REJECTED_SAVE}" type="Accept" visible="true" ></Button> 
+            <Button  id ="cancelButton" press="handleCancel" text="{i18n>OEE_BTN_REJECTED_CLOSE}" type="Reject" ></Button> 
+           <ToolbarSpacer />    
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

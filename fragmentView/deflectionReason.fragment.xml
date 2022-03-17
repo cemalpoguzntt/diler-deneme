@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+	<Dialog title="{i18n>OEE_LABEL_REASON_OF_DEVIATION}" id = "deflectionReason">
+        <Select id="deflectionReasonSelect" items="{path: 'deflectionReasonModel>/0/Row/'}" forceSelection="false" width="100%">
+            <core:Item key="{deflectionReasonModel>REASON}" text="{deflectionReasonModel>REASON}" tooltip = "{LINE}"/>
+        </Select>
+		<beginButton>
+			<Button text="{i18n>OEE_BTN_OK}" press="saveDeflectionReason" />
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>OEE_BTN_CANCEL}" press="handleExit" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

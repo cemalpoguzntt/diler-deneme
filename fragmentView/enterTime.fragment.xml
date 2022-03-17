@@ -1,0 +1,41 @@
+<core:FragmentDefinition
+  xmlns:l="sap.ui.layout"
+  xmlns="sap.m"
+  xmlns:form="sap.ui.layout.form"
+  xmlns:core="sap.ui.core" >
+
+  <Dialog title = "{/fragmentHeader}"  contentHeight = "20%" contentWidth = "35%">
+   <content>
+   <l:VerticalLayout width="100%">
+   <form:Form minWidth="1024" editable = "true">
+		<form:layout>
+          <form:ResponsiveLayout/>
+        </form:layout>
+		<form:formContainers>
+		<form:FormContainer >
+		<form:FormElement label = "{/timeLabel}" >
+		<form:fields>
+			<DatePicker id="inputDate" enabled="true" editable="true"
+										value="{path:'/startDate',type:'sap.ui.model.type.Date',formatOptions:{style: 'short',strictParsing: true}}"
+										change="checkDateTime"></DatePicker>
+			<TimePicker id="inputTime" enabled="true" editable="true"
+										value="{path : '/startTime', type:'sap.ui.model.type.Time', formatOptions: {pattern: 'HH:mm:ss'}}"
+										change="checkDateTime"></TimePicker>
+			<Button id="setCurrentDateTime" text = "{i18n>OEE_BUTTON_SET_CURRENT}" press = "onPressSetCurrent" />
+		</form:fields>
+		
+		</form:FormElement>
+		</form:FormContainer>
+		
+		</form:formContainers>
+	</form:Form>
+	</l:VerticalLayout>
+   </content>
+   <beginButton>
+  <Button id = "okButton1" text= "{i18n>OEE_BTN_OK}" press="handleOKTime"></Button>
+  </beginButton>
+  <endButton>
+  <Button text= "{i18n>OEE_BTN_CANCEL}" press="handleCancelTime"></Button>
+  </endButton>
+  </Dialog>
+</core:FragmentDefinition>

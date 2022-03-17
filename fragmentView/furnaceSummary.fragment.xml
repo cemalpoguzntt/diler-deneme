@@ -1,0 +1,36 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"  xmlns:f="sap.ui.layout.form" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+    <Dialog   id="fragmentOne" draggable="true">
+       <content>
+            <Table id="tblBilletMaster2" mode="None"  selectionChange="billetItemSelected" includeItemInSelection="false" items="{confirmBilletList2>/}" growing="true" growingScrollToLoad="true" growingThreshold="100">
+                <columns>
+
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_WORKORDER}" tooltip="Sipariş Numarası"/>
+                    </Column>
+                  
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_PRODUCT_QUALITY}" tooltip="Mamul Kalitesi"/>
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_DIAMETER}" tooltip="Çap"/>
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <Label text="ADET" tooltip="ADET"/>
+                    </Column>
+
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <!-- <Text text="{confirmBilletList>KDAUF}" /> -->
+                            <Text text="{confirmBilletList2>AUFNR}" />
+                            <Text text="{confirmBilletList2>Y_KALITE_KTK}" />
+                            <Text text="{confirmBilletList2>Y_CAP_FLM_MM}" />
+                            <Text text="{confirmBilletList2>ADET}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Dialog>
+</core:FragmentDefinition>

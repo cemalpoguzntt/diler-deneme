@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_MAIN_INFORMATION}" id="confirmScreenButtonDetails">
+        <Table id="productionTableFragment" editable="false" items="{/}" mode="SingleSelectMaster">
+            <columns>
+                <Column>
+                    <Label text="{i18n>OEE_LABEL_QUANTITY_PRODUCED}" />
+                </Column>
+                <Column>
+                    <Label text="{i18n>OEE_LABEL_PRODUCTION_DATE}" />
+                </Column>
+                <Column>
+                    <Label text="{i18n>OEE_HEADING_USER}" />
+                </Column>
+                <Column>
+                    <Label text="{i18n>OEE_CONF_DETAIL_STATUS}" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{QUANTITY}" />
+                        <Text text="{DATE}" />
+                        <Text text="{CREATED_BY}" />
+                        <Text text="{STATUS}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+
+        <OverflowToolbar>
+            <Button text = "{i18n>OEE_BTN_UPDATE}" press = "getliquidSteelConfirmButtonDetails" type="Emphasized"/>
+            <ToolbarSpacer />
+            <Button id="deleteButton" text="{i18n>OEE_BTN_DELETE}" press="onPressDeleteConfirmation" type="Accept"></Button>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancel" type = "Reject"></Button>
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,60 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_COMPONENTS}" id="confirmListBilletCutting">
+        <content>
+            <FlexBox height="60px" alignItems="Center" justifyContent="Center">
+                <items>
+                    <HBox height="60px" alignItems="Center" justifyContent="Center">
+                        <DatePicker id="idDatePicker" valueFormat="dd.MM.yyyy" delimiter="-" displayFormat="dd.MM.yyyy" width="10rem" />
+                        <Button text="{i18n>titleSearch}" press="getConfirmListBilletCutting" class="sapUiTinyMarginBegin" />
+                    </HBox>
+                </items>
+            </FlexBox>
+            <Table id="confirmTable" mode="none" editable="false" items="{confirmListBilletCuttingModel>/}">
+                <columns>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CAST_ID}" />
+                    </Column>
+                    <Column width="8rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BATCH_NO}" />
+                    </Column>
+                    <Column width="8rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_MATERIAL_DESCRIPTION}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BATCH_NUMBER}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_PIECE}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>titleBilletMonitorWeight}(Ton)" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_DATE}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{confirmListBilletCuttingModel>CASTID}" />
+                            <Text text="{confirmListBilletCuttingModel>BARCODE}" />
+                            <Text text="{confirmListBilletCuttingModel>MAKTX}" />
+                            <Text text="{confirmListBilletCuttingModel>BARCODE}" />
+                            <Text text="{confirmListBilletCuttingModel>QUANTITY}" />
+                            <Text text="{confirmListBilletCuttingModel>QTY_REPORTED_BUOM}" />
+                            <Text text="{confirmListBilletCuttingModel>INSDATE}" />
+                            <Button text = "{i18n>OEE_LABEL_CANCEL_CONFIRM}" type = "Emphasized" press = "cancelConfirm"></Button>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <OverflowToolbar>
+            <ToolbarSpacer />
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancel" type="Reject"></Button>
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

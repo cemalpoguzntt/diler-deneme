@@ -1,0 +1,30 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog id="billetChangeCharacteristic" title="{i18n>OEE_LABEL_L_CHANGE_CHARACTERISTICS}">
+        <content>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_BUFFER_LENGTH} :" width="7rem" />
+                    <Input id="bufferLength" type = "Number" width="15rem" value = "{configJSON>/0/Y_TAMPON_BOY}"/>
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_ROD_LENGTH} :" width="7rem" />
+                    <Input id="rodLength" type = "Number" width="15rem" value = "{configJSON>/0/Y_BOY_CBK_M}" liveChange = "changeBufferLength"/>
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_ROD_COUNT} :" width="7rem" />
+                    <Input id="rodCount" type = "Number" width="15rem" value = "{configJSON>/0/Y_CUBUK_SAYISI}"/>
+                </items>
+            </FlexBox>
+        </content>
+        <beginButton>
+            <Button text="{i18n>OEE_BTN_REJECTED_SAVE}" press="onChangeDialogCharacteristic" type="Accept" id="btnRejectNotif" />
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>OEE_BTN_REJECTED_CLOSE}" press="handleCancel" type="Reject" id="btnCloseRejectedNotifs" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

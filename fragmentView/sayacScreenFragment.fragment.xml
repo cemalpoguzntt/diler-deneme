@@ -1,0 +1,46 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+    <Dialog horizontalScrolling="true" id="sayacFragment" showHeader="true" state="None" stretch="false" title="SayaçID Girişi" type="Standard" verticalScrolling="true">
+        <content>
+            <Vbox>
+                <Label text="Sayaç ID girişi" design="Bold" />
+                <Input id="input1" submit="onPressSubmit" />
+                <Label text="Sayaç Açıklaması" design="Bold" />
+                <Input id="input2" enabled="false" />
+                <Label text="Plant Seçimi" design="Bold" />
+                <Select forceSelection="true"   id="selectBox"     >
+                    <core:Item key="" text="" />
+                    <core:Item key="3001" text="3001" />
+                    <core:Item key="3007" text="3007" />
+                    <core:Item key="2002" text="2002" />
+                    <core:Item key="2001" text="2001" />
+                </Select>
+            </Vbox>
+        </content>
+        <beginButton/>
+        <buttons>
+            <Button text="KAYDET" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" press="onPressSave" iconDensityAware="false"/>
+            <Button text="KAPAT" type="Default" press="onCancelFragment" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+        </buttons>
+        <customHeader/>
+        <endButton/>
+        <subHeader/>
+    </Dialog>
+</core:FragmentDefinition>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

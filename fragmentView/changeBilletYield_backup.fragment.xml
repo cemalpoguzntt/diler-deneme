@@ -1,0 +1,138 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_COMPONENTS}" id="changeBilletYield">
+        <content>
+	<HBox alignItems="Center" justifyContent="Center">
+	<VBox alignItems="Center" justifyContent="Center">
+	<Title text="Kaynak" size="15px"/>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="Yol :" width="5rem" />
+		<Input value="{selectedItem>/YOL}" enabled="false"/>
+                </items>
+            </FlexBox>
+
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="Vardiya :" width="5rem" />
+		<Input value="{selectedItem>/SHIFT}" enabled="false"/>
+                </items>
+            </FlexBox>
+
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="Üretim Sip :" width="5rem" />
+		<Input value="{selectedItem>/AUFNR}" enabled="false"/>
+                </items>
+            </FlexBox>
+
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="Döküm :" width="5rem" />
+		<Input value="{selectedItem>/CASTID}" enabled="false"/>
+                </items>
+            </FlexBox>
+
+	<!-- sadece hizalamak için eklendi :( -->
+	<Label text="" width="2rem"/>
+	<Label text="" width="2rem"/>
+	<Label text="" width="2rem"/>
+
+            <FlexBox alignItems="Center" justifyContent="Center" visible="{= ${selectedItem>/SELECTED}}">
+                <items>
+                    <Label text="Kütük Adr :" width="5rem" />
+		<Input type="Number" value="{selectedItem>/COUNTKTK}" enabled="false"/>
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center" visible="{= !${selectedItem>/SELECTED}}">
+                <items>
+                    <Label text="HB :" width="5rem" />
+		<Input type="Number" value="{selectedItem>/HB}" enabled="false"/>
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center" visible="{= !${selectedItem>/SELECTED}}">
+                <items>
+                    <Label text="Uç/Baş :" width="5rem" />
+		<Input type="Number" value="{selectedItem>/UCKUYRUK}" enabled="false"/>
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center" visible="{= !${selectedItem>/SELECTED}}">
+                <items>
+                    <Label text="Kısa P :" width="5rem" />
+		<Input type="Number" value="{selectedItem>/SHORT_PIECE}" enabled="false"/>
+                </items>
+            </FlexBox>
+
+	</VBox>
+
+<Label text="" width="5rem"/>
+
+	<VBox alignItems="Center" justifyContent="Center" style="padding:1rem">
+	<Title text="Hedef" size="15px"/>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="Yol :" width="5rem" />
+		<StepInput id="idNewYol" type="Number" min="1" max="2"  value="{selectedItem>/YOL}" width="11rem" />
+                </items>
+            </FlexBox>
+
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="Vardiya :" width="5rem" />
+		<StepInput id="idNewShift" type="Number" min="1" max="3"  value="{selectedItem>/SHIFT}" width="11rem" />
+                </items>
+            </FlexBox>
+
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="Üretim Sip :" width="5rem" />
+		<Input id="idNewOrder" value=""/>
+                </items>
+            </FlexBox>
+
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="Döküm :" width="5rem" />
+		<Input id="idNewCastid" value="{selectedItem>/CASTID}" enabled="false"/>
+                </items>
+            </FlexBox>
+
+		<RadioButtonGroup id="GroupB" columns="2">
+                                <RadioButton id="idRB1" groupName="GroupB" text="Kütük Aktarma" select="onSelectRB" selected="true"/>
+                                <RadioButton id="idRB2" groupName="GroupB" text="Miktar Düzenleme" select="onSelectRB" selected="false"/>
+		</RadioButtonGroup>
+
+            <FlexBox alignItems="Center" justifyContent="Center" visible="{= ${selectedItem>/SELECTED}}">
+                <items>
+                    <Label text="Kütük Adr :" width="5rem" />
+		<StepInput id="idNewKTKCnt" value="0" min="0" max="{= parseInt(${selectedItem>/COUNTKTK})}" width="11rem" />
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center" visible="{= !${selectedItem>/SELECTED}}">
+                <items>
+                    <Label text="HB :" width="5rem" />
+		<StepInput id="idNewHB" value="0" min="0" max="{= parseInt(${selectedItem>/HB})}" width="11rem" />
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center" visible="{= !${selectedItem>/SELECTED}}">
+                <items>
+                    <Label text="Uç/Baş :" width="5rem" />
+		<StepInput id="idNewUB" value="0" min="0" max="{= parseInt(${selectedItem>/UCKUYRUK})}" width="11rem" />
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center" visible="{= !${selectedItem>/SELECTED}}">
+                <items>
+                    <Label text="Kısa P :" width="5rem" />
+		<StepInput id="idNewShort" value="0" min="0" max="{= parseInt(${selectedItem>/SHORT_PIECE})}" width="11rem" />
+                </items>
+            </FlexBox>
+
+	</VBox>
+	</HBox>
+
+        </content>
+        <buttons>
+            <Button id="idChangeAccept" text="{i18n>OEE_BTN_POST}" press="onPressChangeBilletYield" type="Accept"></Button>
+            <Button id="idChangeCancel" text="{i18n>OEE_BTN_CLOSE}" press="handleCancel" type="Reject"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

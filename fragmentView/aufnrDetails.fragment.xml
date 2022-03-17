@@ -1,0 +1,95 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout" width="120%">
+    <Dialog state="Information" showHeader="false" id="cycleEditDialog" draggable="true" width="900px">
+        <content>
+            <Table id="idAufnrDetails" items="{/}" width="100%" mode="SingleSelectMaster" showSeparators="All" inset="false" fixedLayout="false" growing="true" growingThreshold="20" growingScrollToLoad="true">
+                <columns>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label design="Bold" text="Rötor Tipi" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                            <customData>
+                                <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label design="Bold" text="Paket. Tav. Flm." placeholder="Paketleme Tavlanmış Filmaşin" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                            <customData>
+                                <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label design="Bold" text="Flm. Menşei" placeholder="Filmaşin Menşei" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                            <customData>
+                                <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label design="Bold" text="Boyama" placeholder="Boyama" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                            <customData>
+                                <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label design="Bold" text="Ülke" placeholder="Ülke" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                            <customData>
+                                <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label design="Bold" text="Açıklama" placeholder="Açıklama" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                            <customData>
+                                <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Active">
+                        <cells>
+                            <Text text="{Y_ROTOR_TIPI_VAL}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                            <Text text="{Y_PAKETLEME_TAVFLM_VAL}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                            <Text text="{Y_MENSEI_FLM_VAL}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                            <Text text="{Y_BOYAMA_VAL}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                            <Text text="{Y_ULKE_VAL}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                            <Text text="{Y_ACIKLAMA_VAL}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <buttons>
+            <Button id="btnCancel" text="Kapat" icon="sap-icon://sys-cancel" press="onAufnrDetailsClose"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,40 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_BTN_SCRAPS}" id="openBasketChargeScrap">
+        <content>
+            <Table id="basketChargeScraps" editable="false" items="{BasketChargeScraps>/Row}" mode="SingleSelectMaster">
+                <headerToolbar>
+                    <OverflowToolbar>
+                       <Label design = "Bold" text="{i18n>OEE_LABEL_TOTAL} : {BasketChargeScraps>/Row/0/SUMQUANTITY}" width="280px" />
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column width="6rem">
+                        <Label text="{i18n>OEE_LABEL_LAYER_NO}" />
+                    </Column>
+                    <Column width="6rem">
+                        <Label text="{i18n>OEE_LABEL_SCRAP}" />
+                    </Column>
+                    <Column width="6rem">
+                        <Label text="{i18n>OEE_LABEL_SUM_QUANTITY_KG}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{BasketChargeScraps>LAYER_NO}" />
+                            <Text text="{BasketChargeScraps>SCRAPTYPE}" />
+                            <Text text="{BasketChargeScraps>QUANTITY}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+ <Bar>
+                <contentRight>
+            <Button id="closeScraps" text="{i18n>OEE_BTN_CLOSE}" press="onCloseBasketChargeScraps" ></Button>
+      </contentRight>
+            </Bar>
+    </Dialog>
+</core:FragmentDefinition>

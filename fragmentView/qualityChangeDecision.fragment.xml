@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog id="qualityChangeDecision">
+        <content>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_QUALITY} :" width="70px" />
+                    <ComboBox items="{path: 'qualities>/'}" forceSelection="false" width="150px" id="quality">
+                        <core:Item key="{qualities>VALUE}" text="{qualities>VALUE}" />
+                    </ComboBox>
+                </items>
+            </FlexBox>
+        </content>
+        <OverflowToolbar>
+            <ToolbarSpacer />
+	 <Button id="AcceptButton" text="{i18n>OEE_BTN_POST}" press="onPressSaveChanges" type="Accept"></Button>
+            <Button id="RejectButton" text="{i18n>OEE_BTN_CLOSE}" press="handleExit" type="Reject"></Button>
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

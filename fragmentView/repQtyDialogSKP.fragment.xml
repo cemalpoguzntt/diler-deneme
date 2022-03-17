@@ -1,0 +1,59 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_COMPONENTS}" id="SKPDialog">
+        <content>
+            <Table id="SKPDialogTable" mode="SingleSelectLeft" editable="false" items="{/}">
+                <columns>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BATCH_NUM}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_WIRE_DIAMETER_MM}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="Y_DOKUMNO" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="Y_KALITE_FLM" />
+                    </Column>
+                    <!-- <Column width="6rem" hAlign="Center">
+                        <Label text="MC Metraj" />
+                    </Column> -->
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="FLM Ağırlık" />
+                    </Column>                                
+                    <Column width="7rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_SCRAP}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem vAlign="Middle">
+                        <cells>
+                            <Text text="{BARCODE}" />
+                            <Text text="{Y_CAP_FLM_MM}" />
+                            <Text text="{Y_DOKUMNO}" />
+                            <Text text="{Y_KALITE_FLM}" />
+                            <!-- <Text text="{path:'METERAGE', type:'sap.ui.model.odata.type.Decimal', formatOptions:{minFractionDigits:0,maxFractionDigits:3}, constraints:{precision:13,scale:2}}" /> -->
+                            <Text text="{QUANTITY}" />                                                     
+                            <CheckBox wrapping="true" width="150px" select="callCheckBox" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <OverflowToolbar>
+            <HBox class="labelWhiteFooter">
+                <Label text="{i18n>OEE_LABEL_WEIGHT} (Kg): " class="labelWhiteFooter" />
+            </HBox>
+            <Input id="idWeight" width="80px" class="customInput" value="{Y_METRAJ}" type="Number" liveChange="objValues" />
+            <Button id="getWeightFromScale" text="Kantar" icon="sap-icon://compare" press="onPressGetWeightSKP"/>
+            <Button id="getTheWeight" text="Teorik" icon="sap-icon://simulate" press="onPressGetTheoretical"/>
+            <ToolbarSpacer />
+            <Button id="openDatePicker" text="Geriye Dönük Teyit" type="Emphasized" icon="sap-icon://date-time" press="openDatePicker" visible="true"/>
+            <Button id="closeDatePicker" text="Kapat" type="Reject" icon="sap-icon://decline" press="closeDatePicker" visible="false"/>
+            <DateTimePicker id="DateTimePicker" width="14%" visible="false" change="handleChange" valueFormat="MM-dd-yyyy HH:mm:ss" displayFormat="dd-MM-yyyy HH:mm" />
+            <ToolbarSpacer />
+            <Button id="deleteComponent" text="{i18n>OEE_BTN_SAVE}" press="onSaveSKP" type = "Accept"></Button>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancel" type = "Reject"></Button>
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

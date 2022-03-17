@@ -1,0 +1,86 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_COMPONENTS}" id="openComponentsList">
+        <content>
+            <Table id="confirmTable" mode="MultiSelect" editable="false" items="{/}" selectionChange="onConfirmTableSelectedChanged">
+                <columns>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BARCODE}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_WIRE_DIAMETER_MM}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CENTER_SPHERE_WIRE}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BOBBIN_METERAGE}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_TOTALY_METERAGE}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BOBBIN_WEIGHT}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="T.Ağırlık" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_COIL_NO}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_SOURCE_METERAGE}" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center" visible="false">
+                        <Label text="{i18n>OEE_LABEL_SCRAP}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="K.Çapı" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="Beşik No" />
+                    </Column>
+                    <Column width="12rem" hAlign="Center">
+                        <Label text="Yükleme Zamanı" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <customData>
+                            <core:CustomData key="mydata" value="{COLOR}" writeToDom="true"></core:CustomData>
+                            <core:CustomData key="CT" value="{CT}" writeToDom="true"></core:CustomData>
+                        </customData>
+                        <cells>
+                            <Text text="{BARCODE}" />
+                            <Text text="{Y_TEL_CAP_MM_SC}" />
+                            <Text text="{Y_MERKEZ_CEVRE}" />
+                            <Input value="{path:'METERAGE'}" type="Number" liveChange = "onChangeMeterageInput"/>
+                            <Text text="{T_METERAGE}" />
+                            <Text text="{path:'QUANTITY'}" />
+                            <Text text="{T_QUANTITY}" />
+                            <Text text="{ROW_NUMBER}" />
+                            <Button text="{i18n>OEE_LABEL_SOURCE_METERAGE}" press="getWeldDetails"></Button>
+                            <CheckBox wrapping="true" width="150px" select="callCheckBox" />
+                            <Text text="{MSD_DIAMETER}" />
+                            <Text text="{LOCATION_BSK}" />
+                            <Text text="{INSDATE}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <OverflowToolbar>
+            <Button text="{i18n>OEE_LABEL_CALCULATE}" press="onPressCalculate"></Button>
+            <Input enabled="false" width="150px" id="inputConversion" class="classInput"></Input>
+            <Label text="{i18n>OEE_LABEL_TON}"></Label>
+            <ToolbarSpacer />
+            <Button id="openDatePicker" text="Geriye Dönük Teyit" type="Emphasized" icon="sap-icon://date-time" press="openDatePicker" visible="true"/>
+            <Button id="closeDatePicker" text="Kapat" type="Reject" icon="sap-icon://decline" press="closeDatePicker" visible="false"/>
+            <DateTimePicker id="DateTimePicker" width="12%" visible="false" change="handleChange" valueFormat="MM-dd-yyyy HH:mm:ss" displayFormat="dd-MM-yyyy HH:mm" />
+            <ToolbarSpacer />
+            <Button id="deleteComponent" text="{i18n>OEE_BTN_SAVE}" press="onSaveRecordsComponent" type="Accept"></Button>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancel" type="Reject"></Button>
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

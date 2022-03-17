@@ -1,0 +1,67 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_TITLE_RETURNED}" id="openReturnedBilletList">
+        <content>
+            <OverflowToolbar>
+                <content>
+                    <Button id="setTodayBtn" text="{i18n>OEE_LABEL_TODAY}" press="setTodayReturnedBillet" class="sapUiSmallMarginBegin" icon="sap-icon://appointment" />
+                    <DateRangeSelection visible="true" id="idDatePickerReturned" width="20rem" valueFormat="dd.MM.yyyy" delimiter="-" displayFormat="dd.MM.yyyy" class="sapUiSmallMarginEnd sapUiSmallMarginBegin" />
+                    <Button id="searchBtn" text="{i18n>titleSearch}" press="getReturnedBilletList" />
+
+                </content>
+            </OverflowToolbar>
+            <Table id="returnedBillet" editable="false" items="{returnedBilletModel>/Row}" mode="SingleSelectMaster">
+                <columns>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CAST_ID}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_RETURNED_BILLET_TIME}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_RETURNED_BILLET_LOCATION}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_KTKID}" />
+                    </Column>
+                    <Column width="6rem" visible="false" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_ERR_TYPE}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_REASON_TYPE}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_DETAIL}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_COMMENTS}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_HEADING_USER}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_RFC_STATUS}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{returnedBilletModel>CASTID}" />
+                            <Text text="{returnedBilletModel>RETURNED_TIME}" />
+                            <Text text="{returnedBilletModel>LOCATION}" />
+                            <Text text="{returnedBilletModel>KTKID}" />
+                            <Text text="{returnedBilletModel>REASONCODE}" />
+                            <Text text="{returnedBilletModel>REASON_DESC}" />
+                            <Text text="{returnedBilletModel>REASON_DETAIL}" />
+                            <Text text="{returnedBilletModel>DESCRIPTION}" />
+                            <Text text="{returnedBilletModel>INSUSER}" />
+                            <core:Icon color="{= ${returnedBilletModel>SUCCESS} === 'S'? 'green':'red'  }" src="sap-icon://circle-task-2" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <buttons>
+            <Button id="closeReturnedBilelt" type="Reject" text="{i18n>OEE_BTN_CLOSE}" press="handleCancelBilletReturned"></Button>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

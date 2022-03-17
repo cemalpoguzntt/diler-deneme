@@ -1,0 +1,70 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_COMPONENTS}" id="getBarcodeInformation" escapeHandler="handleCancel">
+        <content>
+            <Table id="confirmTable" mode="SingleSelectMaster" editable="false" items="{componentList>/}">
+                <columns>
+                    <Column hAlign="Center" vAlign="Middle" width="7%">
+                        <Label text="Bileşen Kodu"/>
+                    </Column>
+                    <Column hAlign="Center" vAlign="Middle" width="8%">
+                        <Label text="Bobin Sıra No"/>
+                    </Column>
+                    <Column hAlign="Center" vAlign="Middle" width="8%">
+                        <Label text="Fiziki Bobin No"/>
+                    </Column>
+                    <Column hAlign="Center" vAlign="Middle" width="7%">
+                        <Label text="Ağırlık(Ton)"/>
+                    </Column>
+                    <Column hAlign="Center" vAlign="Middle" width="7%">
+                        <Label text="Bobin Metrajı"/>
+                    </Column>
+                    <Column hAlign="Center" vAlign="Middle" width="5%">
+                        <Label text="M/Ç"/>
+                    </Column>
+                    <Column hAlign="Center" vAlign="Middle" width="4%">
+                        <Label text="T. Çapı"/>
+                    </Column>
+                    <Column hAlign="Center" vAlign="Middle" width="4%">
+                        <Label text="K. Çapı"/>
+                    </Column>
+	                <Column hAlign="Center" vAlign="Middle" width="5%">
+                        <Label text="Beşik No"/>
+                    </Column>
+                    <Column hAlign="Center" vAlign="Middle" width="10%">
+                        <Label text="Yükleme Zamanı"/>
+                    </Column>
+                    <Column hAlign="Center" vAlign="Middle" width="10%">
+                        <Label text="Kaynak Metrajı"/>
+                    </Column>
+                    <Column hAlign="Center" vAlign="Middle" width="6%">
+                        <Label text="Döküm No"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{componentList>BARCODE}" />
+                            <Text text="{componentList>ROW_NUMBER}" />
+                            <Text text="{componentList>BOBBIN_NO}" />
+                            <Text text="{componentList>CONS_QUAN}" />
+                            <Text text="{path:'componentList>METERAGE', type:'sap.ui.model.odata.type.Decimal', formatOptions:{minFractionDigits:0,maxFractionDigits:3}, constraints:{precision:13,scale:2}}" />
+                            <Text text="{componentList>Y_MERKEZ_CEVRE}" />
+                            <Text text="{componentList>Y_TEL_CAP_MM_SC}" />
+                            <Text text="{componentList>MSD_DIAMETER}" />
+		                    <Text text="{componentList>LOCATION_BSK}" />
+                            <Text text="{componentList>INSDATE}" />
+                            <Button text="{i18n>OEE_LABEL_SOURCE_METERAGE}" press="getWeldDetails"></Button>
+                            <Button text="{i18n>OEE_LABEL_CAST}" press="openCastList"></Button>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <beginButton>
+            <Button id="deleteComponent" text="{i18n>OEE_BTN_DELETE}" press="onPressDeleteComponent"></Button>
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancel"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

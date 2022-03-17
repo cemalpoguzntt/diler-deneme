@@ -1,0 +1,38 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+    <Dialog id="getBilletCastingDetails" title="{i18n>OEE_LABEL_ADD_BILLET}" width="100%">
+	<content>
+           	 <l:VerticalLayout class="sapUiContentPadding">
+	<Table id="tblBilletSearchResult" mode="MultiSelect" items="{billetTagListModel>/Row}">
+                <columns>               
+                     <Column width="3rem" hAlign="Center">
+                        <Label text="" />
+                    </Column>
+                    <Column  width="3rem" hAlign="Center">
+                        <Label text= "{i18n>OEE_LABEL_BATCH_NO}" />
+                    </Column>         
+                    <Column  width="3rem" hAlign="Center">
+                        <Label text= "{i18n>OEE_LABEL_CAST}" />
+                    </Column>  
+	       <Column  width="3rem" hAlign="Center">
+                        <Label text= "{i18n>OEE_LABEL_STOCK_AMOUNT}" />
+                    </Column>  
+                  </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{billetTagListModel>ENTRY_ID}" />
+                            <Text text="{billetTagListModel>LOT}" />
+		  <Text text="{billetTagListModel>ENTRY_ID}" />
+                            <Text text="{billetTagListModel>LOT}" />	 
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>	
+	
+	</l:VerticalLayout>
+	</content>
+        <endButton>
+	 <Button text="{i18n>OEE_BTN_OK}" press="handleCancelGetDetails" type="Accept" id="btnCloseGetBillet"  icon="sap-icon://complete"/>
+       </endButton>
+    </Dialog>
+</core:FragmentDefinition>

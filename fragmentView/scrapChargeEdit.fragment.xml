@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_SO_QUEUE_EDIT}" id="scrapChargeEdit">
+        <content>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_CASTINGNUMBER}" width="120px" />
+                    <Select id = "editCastSelect" showSecondaryValues="true" items="{castNoList>/Row}" forceSelection = "false" width="150px">
+                        <core:ListItem text="{castNoList>CASTID}" key="{castNoList>CASTID}"/>
+                    </Select>
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_CHARGE_NUMBER}" width="120px" />
+                    <Select id = "editCastNoList" items="{editChargeNo>/Row}" forceSelection = "false" width="150px">
+                        <core:ListItem text="{editChargeNo>ATWRT}" key="{editChargeNo>ATWRT}"/>
+                    </Select>
+                </items>
+            </FlexBox>
+        </content>
+        <OverflowToolbar>
+            <ToolbarSpacer />
+            <Button text="{i18n>OEE_BTN_POST}" press="onPressChargeEdit" type="Accept"></Button>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancel" type="Reject"></Button>
+            <ToolbarSpacer />
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

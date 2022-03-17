@@ -1,0 +1,133 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="SİPARİŞ ÖZET" id="orderFrag">
+        <content>
+            <Table width="auto" items="{path: '/'}"  mode="None" fixedLayout="false" noDataText="No data" id="frag0"  showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin">
+                
+                  
+                <columns>
+                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="TARİH" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="SİPARİŞ NO" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="FLM ÇAP" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                     <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="FLM KALİTE" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="MENŞEİ" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                    
+                     <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="PLANLANAN ÜRT.MİKTAR" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                     <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="PLANLANAN PAK.SAYI" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                     <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="URETILEN MİKTAR" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                     <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="URETILEN PAK.SAYI" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                     <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="STD.DIŞI PAK.MIKTAR" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                     <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="STD.DIŞI PAK.SAYI" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                     <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="İKİNCİ KALİTE PAK.MİK" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                     <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="İKİNCİ KALİTE PAK.SAYI" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                     <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="KALAN ADET" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                     </Column>
+                     <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="KALAN MIKTAR" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                     </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Active">
+             
+                        <cells>
+                        <Text text="{EXIT_DATE}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{AUFNR}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{Y_CAP_FLM_MM}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{Y_KALITE_FLM}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{Y_ULKE}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{Y_URETILECEK_PAKTON}" width="40px"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{Y_URETILECEK_PAKSAY}" width="40px"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{URETILEN_TONAJ}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/> 
+                             <Text text="{URETILEN_ADET}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                               <Text text="{STD_DISI_PAK_TON}" width="40px"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            
+                            <Text text="{STD_DISI_PAK_SAY}" width="40px"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{IKINCI_KAL_PAK_TON}" width="40px"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{IKINCI_KAL_PAK_SAY}" width="40px"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        
+                            <Text text="{KALAN_ADET}" width="40px"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{KALAN_MIKTAR}" width="40px"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                
+                        
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+        </content>
+        <endButton>
+            <Button text="KAPAT" press="onCancelFrag5" type="Reject"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

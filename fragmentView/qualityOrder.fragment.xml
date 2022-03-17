@@ -1,0 +1,38 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog id="qualityOrder">
+<Table id="CharacteristicTable4" items="{CharacteristicTable4>/}" >
+            <columns>
+                <Column hAlign = "Center">
+                    <Label text="Aynı kalitede kul. sip." class="quaOrdFragTableDesign"/>
+                </Column>
+                <Column hAlign="Center">
+                    <Label text="Döküm Adeti" class="quaOrdFragTableDesign" />
+                </Column>
+                <Column hAlign="Center">
+                    <Label text="{i18n>OEE_LABEL_PLANNED_START}" class="quaOrdFragTableDesign"/>
+                </Column>
+                <Column hAlign="Center">
+                    <Label text="{i18n>OEE_LABEL_SIZE}" class="quaOrdFragTableDesign"/>
+                </Column>
+                <Column hAlign="Center">
+                    <Label text="{i18n>OEE_LABEL_LENGTH}" class="quaOrdFragTableDesign"/>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{CharacteristicTable4>AUFNR}" class="quaOrdFragTableDesign"/>
+                        <Text text="{CharacteristicTable4>CREATEDOKUMADT} / {CharacteristicTable4>DOKUMADT}" class="quaOrdFragTableDesign"/>
+                        <Text text="{CharacteristicTable4>LASTDATE}" class="quaOrdFragTableDesign"/>
+                        <Text text="{CharacteristicTable4>Y_EBAT}" class="quaOrdFragTableDesign"/>
+                        <Text text="{CharacteristicTable4>Y_BOY_KTK}" class="quaOrdFragTableDesign"/>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+        <OverflowToolbar>
+            <ToolbarSpacer />
+            <Button id="RejectButton2" text="{i18n>OEE_BTN_CLOSE}" press="handleExit" type="Reject"></Button>
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

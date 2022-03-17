@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout">
+    <Dialog  id="Fragment3" title="Sayac Id Girişi" draggable="true">
+        <content>
+            <form:SimpleForm editable="true">
+                <l:VerticalLayout class="sapUiContentPadding" width="100%">
+                    <l:content>
+                        <Label text="Sayaç Id - Açıklaması" tooltip="" design="Bold"/>
+                        <ComboBox id="id1" width="400px" textAlign="Center" items="{path: '/'}" placeholder="Sayaç Id - Açıklaması giriniz" change="onManualMaterialSelected">
+                            <core:Item key="{Olcumno}" text="{Olcumno} - {Olcumyer}"/>
+                        </ComboBox>
+                       
+                         <Select forceSelection="true"  width="100%" id="selectBox" valueStateText="3001" selectedKey="3001">
+                    <core:Item key="" text="" />
+                    <core:Item key="3001" text="3001" />
+                    <core:Item key="3007" text="3007" />
+                    <core:Item key="2002" text="2002" />
+                    <core:Item key="2001" text="2001" />
+                </Select>
+                    </l:content>
+                </l:VerticalLayout>
+            </form:SimpleForm>
+        </content>
+        <buttons>
+            <Button type="Accept" width="100px"  text="Ekle" press="onPressSave" />
+            <Button type="Reject" width="100px"   text="Iptal" press="onCancelFragment"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

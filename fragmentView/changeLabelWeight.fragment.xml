@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_L_CHANGE_WEIGHT}" id="ChangeLabelWeight">
+        <content>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_L_NEW_WEIGHT} :" width="70px" />
+                    <Input id="idquantity"/>
+                </items>
+            </FlexBox>
+        </content>
+        <OverflowToolbar>
+            <ToolbarSpacer />
+            <Button text="{i18n>OEE_LABEL_SAVE_CHANGES}" press="onSaveChangeLabelWeight" type="Accept"></Button>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancel" type="Reject"></Button>
+            <ToolbarSpacer />
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" controllerName="com.sap.build.standard.untitledPrototype.controller.Dialog1">
+    <Dialog horizontalScrolling="true" showHeader="true" state="None" stretch="false" title="Printer Giriş" id="fragmentOne" type="Standard" verticalScrolling="true">
+        <content>
+         <FlexBox direction="Column">
+         	
+         	<Label text="Printer ID Giriniz." design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+         	 <Input id="printid" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" />
+                 <Button text="Kaydet" type="Accept" press="onPressSubmit"   iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                 <Button text="Ekrandan Çık" type="Reject"  press="onCancelFragment"  iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+             </FlexBox>
+        </content>
+
+        <subHeader/>
+    </Dialog>
+</core:FragmentDefinition>

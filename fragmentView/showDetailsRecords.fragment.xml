@@ -1,0 +1,53 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+
+    <Dialog title="{i18n>OEE_LABEL_DETAILS}" id="showDetailsRecords">
+        <content>
+            <SearchField width="100%" search="detailsSearch" liveChange="detailsSearch" id="detailsSearchField1" />
+            <Table growing="true" growingThreshold="100" growingScrollToLoad="false" id="detailsTable" mode="MultiSelect" selectionChange="onSelectEnableDeleteButton" items="{path: '/prodList'}">
+                <columns>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_SO_MAT}" />
+                    </Column>
+                   <!-- <Column visible="{= ${appData>/visibleJSON/SHOWDETAILSRECORDS_CASTID} === 'SHOWDETAILSRECORDS_CASTID' ? true : false }">
+                        <Label text="{i18n>titleCastNo}" />
+                    </Column>-->
+                    <Column visible="{= ${appData>/visibleJSON/SHOWDETAILSRECORDS_CASTID} === 'SHOWDETAILSRECORDS_CASTID' ? true : false }">
+                        <Label text="{i18n>titleSourceCastNo}" />
+                    </Column>
+                    <Column visible="{= ${appData>/visibleJSON/SHOWDETAILSRECORDS_CHARGE} === 'SHOWDETAILSRECORDS_CHARGE' ? true : false }">
+                        <Label text="{i18n>OEE_LABEL_SO_CHARG_NO}" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHANGE_LOG_BMENGE}" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_UOM}" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_DATE_TIME_LAST_REPORTED}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Inactive">
+                        <cells>
+                            <Text text="{MATNR}" />
+                          <!--    <Text text="{CASTID}" />-->
+                          <Text text="{BATCH_NO}" />
+                            <Text text="{CHARGE}" />
+                            <Text text="{QUANTITY}" />
+                            <Text text="{UOM}" />
+                            <Text text="{DATETIME}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <beginButton>
+            <Button id="deleteButton" text="{i18n>OEE_BTN_DELETE}" press="handleDeletion"></Button>
+        </beginButton>
+        <endButton>
+	<Button/>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleExit"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,61 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc">
+
+    <layout:Grid id="orderCardGrid" defaultSpan="L12 M12 S12">
+        <layout:content>
+            <ObjectStatus class="messageTextSize" text="{i18n>OEE_LABEL_NO_ACTIVE_ORDER}" state="Warning" visible="{path:'appData>/selected/runID', formatter : 'sap.oee.ui.Formatter.showIfRunDoesntExist'}" />
+                   <ObjectHeader id="orderCardHeaderr" titleSelectorPress="handleTitleSelectorPress" class="oeeOrderCard" showTitleSelector="true" visible="{path:'appData>/selected/runID', formatter : 'sap.oee.ui.Formatter.showIfRunExists'}" title="{parts : [{path: 'appData>/selected/order/orderNo'},{path:'allCharacteristicModel>/CASTID'},{path: 'appData>/selected/operationDesc'},{path: 'appData>/selected/parentOperationDesc'}], formatter : 'sap.oee.ui.Formatter.formatOrderAndOperationForOrderCard'}" backgroundDesign="Solid">
+         <layoutData>
+                    <layout:GridData span="L6 M12 S12"></layout:GridData>
+                </layoutData>
+                <attributes>
+                    <ObjectAttribute class="oeeTextBlack" text="{path:'appData>/selected/material/id', formatter : 'sap.oee.ui.Formatter.formatMaterialID'}   {path:'allCharacteristicModel>/Ordes2/MATNR', formatter:'.slashFunction'}" />
+                    <ObjectAttribute class="oeeTextBlack" text="{appData>/selected/material/description}  {path:'allCharacteristicModel>/Ordes2/MAKTX', formatter:'.slashFunction'}" />
+                    <ObjectAttribute class="oeeTextBlack" visible="{parts : [{path: 'appData>/selected/material/batchNumber'}], formatter : 'sap.oee.ui.Formatter.hideIfEmpty'}" text="{parts:[{path:'i18n>OEE_LABEL_BATCH_NUM'},{path:'appData>/selected/material/batchNumber'}],formatter:'sap.oee.ui.Formatter.formatBatchNumberDetails'}" />
+                    <ObjectAttribute visible="{parts : [{path: 'appData>/selected/productionVersion'}], formatter : 'sap.oee.ui.Formatter.hideIfEmpty'}" class="oeeTextBlack" text="{parts : [{path: 'i18n>OEE_LABEL_PRODUCTION_VERSION'}, {path: 'appData>/selected/productionVersion'}], formatter:'sap.oee.ui.Formatter.formatProductionVersion'}" />
+                    <ObjectAttribute visible="{path:'appData>/node/crewSize',formatter:'sap.oee.ui.Formatter.formatCrewSizeVisibility'}" class="oeeTextBlack" text="{parts : [{path: 'i18n>OEE_LABEL_CREWSIZE'},{path: 'appData>/selected/order/crewSize'}],formatter : 'sap.oee.ui.Formatter.formatCrewSize'}" />
+                    <ObjectAttribute class="oeeTextBlack" text="{parts : [{path: 'i18n>OEE_LABEL_STARTED_AT'}, {path: 'appData>/selected/orderStartTimestamp'},{path: 'appData>/plantTimezoneOffset'},{path: 'appData>/plantTimezoneKey'}], formatter : 'sap.oee.ui.Formatter.formatTimeStampWithLabel'}" />
+                    <ObjectAttribute class="oeeTextBlack" visible="{parts : [{path: 'appData>/selected/order/orderStatus'}], formatter : 'sap.oee.ui.Formatter.formatEndedAtVisibility'}" text="{parts : [{path: 'i18n>OEE_LABEL_ENDED_AT'}, {path: 'appData>/selected/orderEndTimestamp'},{path: 'appData>/plantTimezoneOffset'},{path: 'appData>/plantTimezoneKey'}], formatter : 'sap.oee.ui.Formatter.formatTimeStampWithLabel'}" />
+                    <ObjectAttribute class="oeeTextBlack" visible="{parts : [{path: 'appData>/selected/order/capacityNodes'}], formatter : 'sap.oee.ui.Formatter.formatCapacityNodesVisibilityInOrderCard'}" text="{parts : [{path: 'i18n>OEE_LABEL_WORK_UNIT_CAPACITIES'}, {path: 'appData>/selected/order/capacityNodes'}], formatter : 'sap.oee.ui.Formatter.formatCapacityNodesInOrderCardWithLabel'}" />
+                </attributes>
+                <statuses>
+                    <ObjectStatus text="{parts : [{path: 'appData>/selected/order/statusText'},{path: 'appData>/selected/productionActivity'}], formatter : 'sap.oee.ui.Formatter.formatStatusTextAndActivity'}" class="orderCardStatusActive" />
+                    <ObjectStatus class="orderCardStatus" text="{parts : [{path: 'i18n>OEE_HEADING_PLANNED_QUANTITY_NEW'},{path: 'appData>/selected/quantityReleased'} , {path:'appData>/selected/quantityReleasedUOMText'},{path: 'appData>/decimalPrecision'}], formatter : 'sap.oee.ui.Formatter.formatQuantity'}" />
+                    <ObjectStatus class="orderCardStatus" text="{parts : [{path: 'i18n>OEE_HEADING_TOTAL_PROD_NEW'},{path: 'appData>/selected/quantityReported'} , {path:'appData>/selected/quantityReleasedUOMText'},{path: 'appData>/decimalPrecision'}], formatter : 'sap.oee.ui.Formatter.formatQuantity'}" />
+                    <ObjectStatus class="orderCardStatus" text="{parts : [{path: 'i18n>OEE_HEADING_TOTAL_IN_SHIFT'},{path: 'appData>/selected/totalQuantityProducedInRun'} , {path:'appData>/selected/quantityReleasedUOMText'},{path: 'appData>/decimalPrecision'}], formatter : 'sap.oee.ui.Formatter.formatQuantity'}" />
+                    <ObjectStatus visible="false" class="orderCardStatus" text="{parts : [{path: 'i18n>OEE_LABEL_STANDARD_RATE'},{path: 'appData>/selected/standardRateQty'} ,{path: 'appData>/selected/timeQty'}, {path:'appData>/selected/stdRateUOMText'},{path:'appData>/selected/timeUom'},{path: 'appData>/decimalPrecision'}], formatter : 'sap.oee.ui.Formatter.formatTextQuantityAndDuration'}" />
+                    <ObjectStatus />
+                    <ObjectStatus />
+                    <ObjectStatus />
+                </statuses>
+            </ObjectHeader>
+            <ObjectHeader class="oeeOrderCard" title="{i18n>OEE_LABEL_AUFNR_DETAILS} ; " backgroundDesign="Solid" fullScreenOptimized="true">
+                <layoutData>
+                    <layout:GridData span="L6 M12 S12"></layout:GridData>
+                </layoutData>
+                <attributes>
+                    <ObjectAttribute class="castNumberRed" text="{i18n>OEE_LABEL_CAST_NO} : {allCharacteristicModel>/CASTID}" visible="true" />
+                    <ObjectAttribute class="oeeTextBlack" text="{i18n>OEE_LABEL_Y_DOKUM_TIPI} : {appData>/allCharacteristic/Y_DOKUM_TIPI}  {path:'allCharacteristicModel>/Ordes2/Y_DOKUM_TIPI', formatter:'.slashFunction'}" visible="{= ${appData>/plant} === '2001' ? true : false }" />
+                    <ObjectAttribute class="oeeTextBlack" text="{i18n>OEE_LABEL_Y_BOY_KTK} : {appData>/allCharacteristic/Y_BOY_KTK} {path:'allCharacteristicModel>/Ordes2/Y_BOY_KTK', formatter:'.slashFunction'}" visible="true" />
+                    <ObjectAttribute class="oeeTextBlack" text="{i18n>OEE_LABEL_Y_EBAT} : {appData>/allCharacteristic/Y_EBAT} {path:'allCharacteristicModel>/Ordes2/Y_EBAT', formatter:'.slashFunction'}" visible="true" />
+	         <ObjectAttribute class="oeeTextBlack" visible="{= ${appData>/node/description} === 'Pota Ocağı' ||  ${appData>/node/description} === 'Sürekli Döküm' ? true : false }" text="Tarette Bekleme Süresi : {appData>/allCharacteristic/taretTime} DK" />
+                </attributes>
+                <statuses>
+                    <ObjectStatus class="orderCardStatus" text="{i18n>OEE_LABEL_PREVIOUS_QUALITY} : {appData>/allCharacteristic/Y_ONCEKI_KALITE}" />
+                    <ObjectStatus class="orderCardStatus" text="{i18n>OEE_LABEL_Y_KALITE_KTK} : {appData>/allCharacteristic/Y_SUAN_KALITE}" />
+                    <ObjectStatus class="orderCardStatus" text="{i18n>OEE_LABEL_LAST_QUALITY} : {appData>/allCharacteristic/Y_SON_KALITE}" />
+                    <ObjectStatus class="orderCardStatus" text="{i18n>OEE_LABEL_Y_KUTUK_MENSEI} : {appData>/allCharacteristic/Y_KUTUK_MENSEI}" />
+                    <ObjectStatus class="orderCardStatus" text="{i18n>OEE_LABEL_Y_VAKUM} : {appData>/allCharacteristic/Y_VAKUM}" visible="{= ${appData>/plant} === '2001' ? true : false }"/>
+        
+                </statuses>
+            </ObjectHeader>
+<HBox>
+	<VBox>
+ 	   <Button id = "commentButton" text = "Not Ekle" press = "onPressEnterNote"></Button>
+	</VBox>	
+<VBox>
+ 	   <Button id = "shiftCommentButton" text = "Vardiya Notu" press = "onPressEnterShiftNote"></Button>
+	</VBox>	
+</HBox>
+        </layout:content>
+    </layout:Grid>
+</core:FragmentDefinition>

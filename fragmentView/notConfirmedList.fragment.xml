@@ -1,0 +1,131 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout" width="120%">
+    <Dialog state="Information" showHeader="false" id="cycleEditDialog" draggable="true" width="900px">
+        <content>
+            <Table id="idNotConfirmedTable" selectionChange="onPressTableRow" items="{/}" width="100%" noDataText="Parti Yok" mode="SingleSelectMaster" showSeparators="All" inset="false" fixedLayout="false" growing="true" growingThreshold="20" growingScrollToLoad="true">
+                <columns>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label design="Bold" text="Parti Numarası" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                            <customData>
+                                <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label design="Bold" text="Ağırlık" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                            <customData>
+                                <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label design="Bold" text="Çap" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                            <customData>
+                                <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label design="Bold" text="Müşteri" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                            <customData>
+                                <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label design="Bold" text="Döküm No" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                            <customData>
+                                <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label design="Bold" text="Kalite" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                            <customData>
+                                <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label design="Bold" text="Menşei" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                            <customData>
+                                <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label design="Bold" text="AYT" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                            <customData>
+                                <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label design="Bold" text="Üretim Yöntemi" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                            <customData>
+                                <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Active">
+                        <cells>
+                            <Text text="{BATCH}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                            <Text text="{AGIRLIK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                            <Text text="{CAP}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                            <Text text="{MUSTERI}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                            <Text text="{CASTNO}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                            <Text text="{KALITE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                            <Text text="{MENSEI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                            <Text text="{Y_AYT}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                            <Text text="{Y_URETIM_YONTEMI_FLM}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <buttons>
+            <Button id="btnCancel" text="Kapat" icon="sap-icon://sys-cancel" press="onNotConfirmedClose"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

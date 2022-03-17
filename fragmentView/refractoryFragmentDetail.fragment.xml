@@ -1,0 +1,129 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:ui="sap.ui.table"
+    xmlns:l="sap.ui.layout">
+    <Dialog state="Warning" id="idDetailFragment"   contentHeight="100%"
+    contentWidth="90%" draggable="true">
+        <content>
+            <!-- <t:Table visibleRowCount="10" id="idFragmentTable"></t:Table> -->
+            <ui:Table id="idDetailFragmentTable"  width="100%" rows="{/}" rowCount="20" visibleRowCount="20" alternateRowColors="true" selectionMode="Single" selectionBehavior="RowOnly" >
+				
+            <ui:columns>
+                <ui:Column visible="false" hAlign="Center" sortProperty="KALITE_ZORUNLULUK" filterProperty="KALITE_ZORUNLULUK" filterType="sap.ui.model.type.String">
+                    <Label text="Kalite Zorunluluk" design="Bold"/>
+                    <ui:template>
+                        <Text text="{KALITE_ZORUNLULUK}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column visible="false" hAlign="Center" sortProperty="MIKTAR_ZORUNLU" filterProperty="MIKTAR_ZORUNLU" filterType="sap.ui.model.type.String">
+                    <Label text="Miktar Zorunluluk" design="Bold"/>
+                    <ui:template>
+                        <Text text="{MIKTAR_ZORUNLU}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column hAlign="Center" sortProperty="CAST_ID" filterProperty="CAST_ID" filterType="sap.ui.model.type.String">
+                    <Label text="Döküm No" design="Bold"/>
+                    <ui:template>
+                        <Text text="{CAST_ID}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column hAlign="Center" sortProperty="OBJECTTYPE" filterProperty="OBJECTTYPE" filterType="sap.ui.model.type.String">
+                    <Label text="Teknik Nesne Türü" design="Bold"/>
+                    <ui:template>
+                        <Text text="{OBJECTTYPE}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column hAlign="Center" sortProperty="EKIPMAN_DETAY" filterProperty="EKIPMAN_DETAY" filterType="sap.ui.model.type.String">
+                    <Label text="Ekipman" design="Bold"/>
+                    <ui:template>
+                        <Text text="{EKIPMAN_DETAY}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column hAlign="Center" sortProperty="ZREFMLZ" filterProperty="ZREFMLZ" filterType="sap.ui.model.type.String">
+                    <Label text="Malzeme Tanımı" design="Bold"/>
+                    <ui:template>
+                        <Text text="{ZREFMLZ}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column>                
+                <ui:Column hAlign="Center" sortProperty="STATUS_DETAY" filterProperty="STATUS_DETAY" filterType="sap.ui.model.type.String">
+                    <Label text="Durum" design="Bold"/>
+                    <ui:template>
+                         <Text text="{STATUS_DETAY}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column> 
+
+                <ui:Column hAlign="Center" sortProperty="COMPANY" filterProperty="COMPANY" filterType="sap.ui.model.type.String">
+                    <Label text="Firma" design="Bold"/>
+                    <ui:template>
+                          <Text text="{COMPANY}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column>
+
+                <ui:Column hAlign="Center" sortProperty="QUALITY_TEXT" filterProperty="QUALITY_TEXT" filterType="sap.ui.model.type.String">
+                    <Label text="Kalite" design="Bold"/>
+                    <ui:template>
+                         <Text text="{QUALITY_TEXT}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column hAlign="Center" sortProperty="FORMEN_NAME" filterProperty="FORMEN_NAME" filterType="sap.ui.model.type.String">
+                    <Label text="Formen " design="Bold"/>
+                    <ui:template>
+                         <Text text="{FORMEN_NAME}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column hAlign="Center" sortProperty="DESCRIPTION" filterProperty="DESCRIPTION" filterType="sap.ui.model.type.String">
+                    <Label text="Açıklama" design="Bold"/>
+                    <ui:template>
+                         <Text text="{DESCRIPTION}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column>
+
+                <ui:Column hAlign="Center" sortProperty="KNIT_DATE2" filterProperty="KNIT_DATE2" filterType="sap.ui.model.type.String">
+                    <Label text="Örüm Tarihi " design="Bold"/>
+                    <ui:template>
+                           <Text text="{KNIT_DATE2}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column>
+
+                <ui:Column visible="false" id="idfragmentLine" hAlign="Center" sortProperty="REF_LINE" filterProperty="REF_LINE" filterType="sap.ui.model.type.String">
+                    <Label text="Yol " design="Bold"/>
+                    <ui:template>
+                              <Text text="{REF_LINE}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column>
+
+
+                <ui:Column hAlign="Center" id="idfragmentQty" sortProperty="QUANTITY" filterProperty="QUANTITY" filterType="sap.ui.model.type.String">
+                    <Label text="Miktar" design="Bold"/>
+                    <ui:template>
+                         <Text text="{QUANTITY}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column>
+
+                <ui:Column hAlign="Center" id="idfragmentUnit" sortProperty="UNIT" filterProperty="UNIT" filterType="sap.ui.model.type.String">
+                    <Label text="Ölçü Birimi" design="Bold"/>
+                    <ui:template>
+                          <Text text="{UNIT}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column>
+            
+                <!-- <ui:Column hAlign="Center" sortProperty="MATNR" filterProperty="MATNR" filterType="sap.ui.model.type.String">
+                    <Label text="Malzeme No" design="Bold"/>
+                    <ui:template>
+                        <Text text="{MATNR}" wrapping="false"/>
+                    </ui:template>
+                </ui:Column> -->
+
+            </ui:columns>
+        </ui:Table>
+        </content>
+        <buttons>
+            <!-- <Button id="updateNotificationConfirm" width="125px" type="Accept" icon="sap-icon://save" text="Bilgileri Kaydet" press="createupdateNotificationConfirm"></Button> -->
+           <!--  <Button id="createNotificationConfirm" width="125px" type="Accept" icon="sap-icon://create" text="Bildirim Yarat" press="createupdateNotificationConfirm"></Button>
+            <Button id="createNotificationCancel" width="125px" type="Reject" icon="sap-icon://sys-cancel" text="İptal" press="createNotificationCancel"></Button> -->
+            <Button id="closeDetailFragment" width="125px" type="Reject" icon="sap-icon://sys-cancel" text="KAPAT" press="closeFragment2"></Button>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

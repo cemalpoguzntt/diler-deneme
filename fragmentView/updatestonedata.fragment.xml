@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+    <Dialog contentHeight="300px" horizontalScrolling="true" id="updatestonedata" showHeader="true" state="None" stretch="false" title="Taş Bilgisi Güncelleme Ekranı" type="Standard" verticalScrolling="false">
+        <content>
+            <VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="368px" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
+                <items>
+                    <Label text="Taş Kodu" design="Bold" width="287.3125px" required="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                    <Input type="Text" id="stonecode" showValueHelp="false" enabled="true" visible="true" width="253.7375030517578px" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="0" class="sapUiSmallMarginBegin"/>
+                    <Label text="Taş Menşei" design="Bold" width="100%" required="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginTop"/>
+                    <Input type="Text" id="mensei" showValueHelp="false" enabled="true" visible="true" width="254px" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="0" class="sapUiSmallMarginBegin"/>
+                    <Label text="Taş Modeli" design="Bold" width="100%" required="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginTop"/>
+                    <Input type="Text" id="stonemodel" showValueHelp="false" enabled="true" visible="true" width="254px" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="0" class="sapUiSmallMarginBegin"/>
+               
+
+
+                </items>
+                <layoutData/>
+            </VBox>
+        </content>
+        <beginButton/>
+        <buttons>
+            <Button text="Güncelle" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="guncelle"/>
+            <Button text="İptal" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="openTasFragCancel"/>
+        </buttons>
+        <customHeader/>
+        <endButton/>
+        <subHeader/>
+    </Dialog>
+</core:FragmentDefinition>

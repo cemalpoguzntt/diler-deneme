@@ -1,0 +1,70 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_COMPONENTS}" id="changeBilletConsumption">
+        <content>
+            <Table id="confirmTable" mode="none" editable="false" items="{BilletFragmentModel>/}">
+                <columns>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>titleKtkID}" />
+                    </Column>
+                    <Column width="8rem" hAlign="Center">
+                        <Label text="{i18n>titleOrderNo}" />
+                    </Column>
+                    <Column width="8rem" hAlign="Center">
+                        <Label text="{i18n>titleCastNo}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BATCH_NUMBER}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_DONE_TIME}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_Y_FUR_ENTRY_WEIGHT}" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_THEORICAL_WEIGHT}" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_PACKAGE_W}" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_SHORT_PIECE_Y}" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center">
+                        <Label text="HB" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center">
+                        <Label text="UCBAS" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_YIELD_Y}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{BilletFragmentModel>KTKID}" />
+                            <Input value="{BilletFragmentModel>AUFNR}" />
+                            <Text text="{BilletFragmentModel>CASTID}" />
+                            <Text text="{BilletFragmentModel>CHARG}" />
+                            <Text text="{BilletFragmentModel>FURNACE_EXIT_TIME}" />
+                            <Text text="{BilletFragmentModel>ENTRY_WEIGHT}" />
+                            <Text text="{BilletFragmentModel>THEORETICAL_QUANTITY}" />
+                            <Text text="{BilletFragmentModel>BUNDLE_W}" />
+                            <Input value="{BilletFragmentModel>SHORT_PIECE}" change="onChangeBilletValue"/>
+                            <Input value="{BilletFragmentModel>HB}" change="onChangeBilletValue"/>
+                            <Input value="{BilletFragmentModel>UCBAS}"  change="onChangeBilletValue"/>
+                            <Input value="{BilletFragmentModel>PERSENTAGE}"  change="onChangeBilletValue"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <beginButton>
+            <Button id="deleteComponent" text="{i18n>OEE_BTN_POST}" press="onSaveBilletConsumption" type="Accept" visible="true"></Button>
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>OEE_BTN_CLOSE}" id="closeFragment" press="handleCancel" type="Reject"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

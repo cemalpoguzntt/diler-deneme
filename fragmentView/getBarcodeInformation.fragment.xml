@@ -1,0 +1,206 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_COMPONENTS}" id="getBarcodeInformation" escapeHandler="handleCancel">
+        <content>
+            <Table id="confirmTable" mode="SingleSelectMaster" editable="false" items="{componentList>/}">
+                <columns>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_DOKUMNO') }">
+                        <Label text="{i18n>OEE_LABEL_CASTINGNUMBER}" />
+                    </Column>
+                    <Column width="7rem">
+                        <Label text="{i18n>OEE_LABEL_COMPONENT_CODE}" />
+                    </Column>
+                    <Column width="7rem">
+                        <Label text="{i18n>OEE_LABEL_WEIGHT} Ton" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_KGADT') }">
+                        <Label text="{i18n>OEE_LABEL_KGADT}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_SIPARIS_MALZEME') }">
+                        <Label text="{i18n>OEE_LABEL_ORD_MATERIAL}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_PAKET_AGIRLIK_KG') }">
+                        <Label text="{i18n>OEE_LABEL_PACKAGE_WEIGHT}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_STANDART_FLM') }">
+                        <Label text="{i18n>OEE_LABEL_STRD}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_KALITE_FLM') }">
+                        <Label text="{i18n>OEE_LABEL_QLTY}" />
+                    </Column>
+                    <Column width="5rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_CAP_FLM_MM') }">
+                        <Label text="{i18n>OEE_LABEL_DIAMETER}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_MENSEI_FLM') }">
+                        <Label text="{i18n>OEE_LABEL_ORIGIN}" />
+                    </Column>
+                    <Column width="5rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_DAGITIM_KANALI') }">
+                        <Label text="{i18n>OEE_LABEL_DISTRIBUTION_CHANNEL}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_BOBIN_AGIRLIK') }">
+                        <Label text="{i18n>OEE_LABEL_KANGAL_WEIGHT}" />
+                    </Column>
+                    <Column width="5rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_TEL_CAP_MM_SC') }">
+                        <Label text="{i18n>OEE_LABEL_WIRE_DIAMETER_MM_RCOMP}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_MERKEZ_CEVRE') }">
+                        <Label text="{i18n>OEE_LABEL_CENTER_SPHERE_WIRE}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_METRAJ') }">
+                        <Label text="{i18n>OEE_LABEL_BOBBIN_METERAGE}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_BOBIN_AGIRLIK') }">
+                        <Label text="{i18n>OEE_LABEL_BOBBIN_WEIGHT}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('BOBIN_ID') }">
+                        <Label text="{i18n>OEE_LABEL_BOBBIN_ID}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('BOBIN_SN') }">
+                        <Label text="{i18n>OEE_LABEL_COIL_NO}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_STANDART_PCS') }">
+                        <Label text="{i18n>OEE_LABEL_PCS_STANDARD}" />
+                    </Column>
+                    <Column width="5rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_CAP_PCS_MM') }">
+                        <Label text="{i18n>OEE_LABEL_PCS_DIAMETER}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_KALITE_PCS') }">
+                        <Label text="{i18n>OEE_LABEL_PCS_QUALITY}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_MARKA') }">
+                        <Label text="{i18n>OEE_LABEL_Y_MARKA}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_EBAT') }">
+                        <Label text="{i18n>OEE_LABEL_Y_MARKA}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_BOY_KTK') }">
+                        <Label text="{i18n>OEE_LABEL_Y_EBAT}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_KALITE_KTK') }">
+                        <Label text="{i18n>OEE_LABEL_Y_BOY_KTK}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_VAKUM') }">
+                        <Label text="{i18n>OEE_LABEL_Y_VAKUM}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_KUTUK_MENSEI') }">
+                        <Label text="{i18n>OEE_LABEL_Y_KUTUK_MENSEI}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_DOKUM_TIPI') }">
+                        <Label text="{i18n>OEE_LABEL_Y_DOKUM_TIPI}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_IKINCIKLT') }">
+                        <Label text="{i18n>OEE_LABEL_Y_IKINCIKLT}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_SAPMA') }">
+                        <Label text="{i18n>OEE_LABEL_Y_SAPMA}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_STDDISI') }">
+                        <Label text="{i18n>OEE_LABEL_Y_STDDISI}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_KARISIM') }">
+                        <Label text="{i18n>OEE_LABEL_Y_KARISIM}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_KARISIM_KALITESI') }">
+                        <Label text="{i18n>OEE_LABEL_Y_KARISIM_KALITESI}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('MC_ID') }">
+                        <Label text="{i18n>OEE_LABEL_MASTER_COIL_ID}" />
+                    </Column>
+                    <Column width="5rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('MC_SIRA_NO') }">
+                        <Label text="{i18n>OEE_LABEL_MASTER_COIL_SN}" />
+                    </Column>
+                    <Column width="5rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('MC METRAJ') }">
+                        <Label text="{i18n>OEE_LABEL_MC_METRAJ}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('3007PCSTRAND') ? (${visibleStatusModel>/Row/}).localArrFilter('MC_TONAJ') : false }">
+                        <Label text="{i18n>OEE_LABEL_COIL_MC_TONNAGE}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_MIKTAR_TON') }">
+                        <Label text="{i18n>OEE_LABEL_QTY_TONNAGE}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_AYT') }">
+                        <Label text="{i18n>OEE_LABEL_AYT}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('LOKASYON') }">
+                        <Label text="{i18n>OEE_LABEL_LOCATION}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('PALET_NO') }">
+                        <Label text="{i18n>OEE_CONF_DETAIL_PALETTENO}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('PALET_NO') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('KAYNAK_METRAJI') }">
+                        <Label text="{i18n>OEE_LABEL_SOURCE_METERAGE}" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('KAYNAK_METRAJI') }">
+                        <Text text="{i18n>OEE_LABEL_CAST_ID}" />
+                    </Column>
+                    <Column width="7rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('COLUMNREWORK') }">
+                        <Label text="{i18n>OEE_LABEL_REWORK}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{componentList>Y_DOKUMNO}" />
+                            <Text text="{componentList>BARCODE}" />
+                            <Text text="{path:'componentList>QUANTITY', type:'sap.ui.model.odata.type.Decimal', formatOptions:{minFractionDigits:0,maxFractionDigits:3}, constraints:{precision:13,scale:2}}" />
+                            <Text text="{path:'componentList>Y_KGADT', type:'sap.ui.model.odata.type.Decimal', formatOptions:{minFractionDigits:0,maxFractionDigits:3}, constraints:{precision:13,scale:2}}" />
+                            <Text text="{componentList>MATNR}" />
+                            <Text text="{path:'componentList>QUANTITY', type:'sap.ui.model.odata.type.Decimal', formatOptions:{minFractionDigits:0,maxFractionDigits:3}, constraints:{precision:13,scale:2}}" />
+                            <Text text="{componentList>Y_STANDART_FLM}" />
+                            <Text text="{componentList>Y_KALITE_FLM}" />
+                            <Text text="{componentList>Y_CAP_FLM_MM}" />
+                            <Text text="{componentList>Y_MENSEI_FLM}" />
+                            <Text text="{componentList>Y_DAGITIM_KANALI}" />
+                            <Text text="{componentList>Y_TEL_CAP_MM_SC}" />
+                            <Text text="{componentList>Y_TEL_CAP_MM_SC}" />
+                            <Text text="{componentList>Y_MERKEZ_CEVRE}" />
+                            <Text text="{path:'componentList>METERAGE', type:'sap.ui.model.odata.type.Decimal', formatOptions:{minFractionDigits:0,maxFractionDigits:3}, constraints:{precision:13,scale:2}}" />
+                            <Text text="{path:'componentList>QUANTITY', type:'sap.ui.model.odata.type.Decimal', formatOptions:{minFractionDigits:0,maxFractionDigits:3}, constraints:{precision:13,scale:2}}" />
+                            <Text text="{componentList>BARCODE}" />
+                            <Text text="{componentList>ROW_NUMBER}" />
+                            <Text text="{componentList>Y_STANDART_PCS}" />
+                            <Text text="{componentList>Y_CAP_PCS_MM}" />
+                            <Text text="{componentList>Y_KALITE_PCS}" />
+                            <Text text="{componentList>Y_MARKA}" />
+                            <Text text="{componentList>Y_EBAT}" />
+                            <Text text="{componentList>Y_BOY_KTK}" />
+                            <Text text="{componentList>Y_KALITE_KTK}" />
+                            <Text text="{componentList>Y_VAKUM}" />
+                            <Text text="{componentList>Y_KUTUK_MENSEI}" />
+                            <Text text="{componentList>Y_DOKUM_TIPI}" />
+                            <Text text="{componentList>Y_IKINCIKLT}" />
+                            <Text text="{componentList>Y_SAPMA}" />
+                            <Text text="{componentList>Y_STDDISI}" />
+                            <Text text="{componentList>Y_KARISIM}" />
+                            <Text text="{componentList>Y_KARISIM_KALITESI}" />
+                            <Text text="{componentList>BARCODE}" />
+                            <Text text="{componentList>ROW_NUMBER}" />
+                            <Text text="{path:'componentList>METERAGE', type:'sap.ui.model.odata.type.Decimal', formatOptions:{minFractionDigits:0,maxFractionDigits:3}, constraints:{precision:13,scale:2}}" />
+                            <Text text="{path:'componentList>MC_TONAJ', type:'sap.ui.model.odata.type.Decimal', formatOptions:{minFractionDigits:0,maxFractionDigits:3}, constraints:{precision:13,scale:2}}" />
+                            <Text text="{path:'componentList>Y_MIKTAR_TON', type:'sap.ui.model.odata.type.Decimal', formatOptions:{minFractionDigits:0,maxFractionDigits:3}, constraints:{precision:13,scale:2}}" />
+                            <Text text="{componentList>Y_AYT}" />
+                            <Select id="locationSelect" forceSelection="false" selectedKey="{componentList>LOCATION}" class="sapUiTinyMarginEnd">
+                                <core:Item text="ALT" key="ALT" />
+                                <core:Item text="UST" key="UST" />
+                                <core:Item text="ORTA" key="ORTA" />
+                            </Select>
+                            <Input id="palletNoInput" value="{componentList>PALET_NO}" />
+                            <Button text="{i18n>OEE_BTN_POST}" press="saveBarcodeParameters"></Button>
+                            <Button text="{i18n>OEE_LABEL_SOURCE_METERAGE}" press="getWeldDetails"></Button>
+                            <Button text="{i18n>OEE_LABEL_CAST}" press="openCastList"></Button>
+                            <core:Icon src="{= ${componentList>DC_ELEMENT} === 'REWORK' ? 'sap-icon://circle-task-2' : null }" color="green" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <beginButton>
+            <Button id="deleteComponent" text="{i18n>OEE_BTN_DELETE}" press="onPressDeleteComponent"></Button>
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancel"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>
