@@ -1,0 +1,13 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="İptal Et" type="Message" id="cancelConfirmationFragment" afterClose="onCloseCncCnf">
+        <content>
+            <Label text="Teyidi iptal etmek istediğinize emin misiniz?"></Label>
+        </content>
+        <beginButton>
+            <Button id="AcceptCncCnf" text="Onayla" type="Accept" press="onAcceptCncCnf"></Button>
+        </beginButton>
+        <endButton>
+            <Button text="İptal" press="onCloseCncCnf"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

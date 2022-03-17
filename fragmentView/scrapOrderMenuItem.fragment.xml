@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+<Dialog title="Teyit İptali" id="confCancelDialog">
+<content>
+	<Text text="İptal etmek istediğinizden emin misiniz?" /> 
+</content>
+<beginButton>
+	<Button text= "{i18n>OEE_BTN_CONFIRM_CANCEL}" press="onPressCancel"></Button>
+</beginButton>
+<endButton>
+	<Button text= "{i18n>OEE_CONF_CLOSE_DIALOG}" press="onCloseDialog"></Button>
+</endButton>
+</Dialog>
+</core:FragmentDefinition>

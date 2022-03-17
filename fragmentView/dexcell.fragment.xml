@@ -1,0 +1,157 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+    <Dialog id="dexcellFragment" draggable="true">
+        <content>
+            <form:SimpleForm editable="true">
+                <l:VerticalLayout class="sapUiContentPadding">
+                    <l:content>
+                        <VBox id="container1">
+                            <HBox id="continer10" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <FlexBox width="40%" justifyContent="End">
+                                    <Label text="Üretim Yeri : " design="Bold" width="auto" />
+                                </FlexBox>
+
+                                <FlexBox width="50%">
+                                    <ComboBox id="uretimyeri" textAlign="Center" width="auto">
+                                           
+                                        <items>
+                                                 
+                                            <core:Item xmlns:core="sap.ui.core" key="2002" text="2002" />
+                                            <core:Item xmlns:core="sap.ui.core" key="2001" text="2001" />
+                                            <core:Item xmlns:core="sap.ui.core" key="3001" text="3001"/>
+                                            <core:Item xmlns:core="sap.ui.core" key="3007" text="3007" />
+                                                                                            
+                                         
+                                        </items>
+                                    </ComboBox>
+                                </FlexBox>
+
+
+                            </HBox>
+
+                            <HBox id="continer11" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+
+                                <FlexBox width="40%" justifyContent="End">
+                                    <Label text="PP İşyeri: " design="Bold" width="auto" />
+                                </FlexBox>
+
+                                <FlexBox width="50%">
+                                    <Input id="ppIsyeri" textAlign="Center" width="auto" />
+                                </FlexBox>
+                            </HBox>
+
+                            <HBox id="continer12" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <FlexBox width="40%" justifyContent="End">
+                                    <Label text="Teknik Birim Kodu: " design="Bold" width="auto" />
+                                </FlexBox>
+
+                                <FlexBox width="50%">
+                                    <Input id="tbk" textAlign="Center" width="auto" />
+                                </FlexBox>
+                            </HBox>
+
+
+                            <HBox id="continer13" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+
+                                <FlexBox width="40%" justifyContent="End">
+                                    <Label text="Teknik Birim Tanımı : " design="Bold" width="auto" />
+                                </FlexBox>
+
+                                <FlexBox width="50%">
+                                    <Input id="tbt" textAlign="Center" width="auto" />
+                                </FlexBox>
+                            </HBox>
+
+                            <HBox id="continer14" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+
+                                <FlexBox width="40%" justifyContent="End">
+                                    <Label text="Durus Ana Başlık Kodu : " design="Bold" width="auto" />
+                                </FlexBox>
+
+                                <FlexBox width="50%">
+                                    <Input id="dabk" textAlign="Center" width="auto" />
+                                </FlexBox>
+                            </HBox>
+
+                            <HBox id="continer15" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+
+                                <FlexBox width="40%" justifyContent="End">
+                                    <Label text="Duruş Ana Başlık : " design="Bold" width="auto" />
+                                </FlexBox>
+
+                                <FlexBox width="50%">
+                                    <Input id="dab" textAlign="Center" width="auto" />
+                                </FlexBox>
+                            </HBox>
+
+                            <HBox id="continer16" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+
+
+                                <FlexBox width="40%" justifyContent="End">
+                                    <Label text="Duruş Kodu : " design="Bold" width="auto" />
+                                </FlexBox>
+
+                                <FlexBox width="50%">
+                                    <Input id="dk" textAlign="Center" width="auto" />
+                                </FlexBox>
+                            </HBox>
+
+                            <HBox id="continer17" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+
+                                <FlexBox width="40%" justifyContent="End">
+                                    <Label text="Duruş Nedeni : " design="Bold" width="auto" />
+                                </FlexBox>
+
+                                <FlexBox width="50%">
+                                    <Input id="dn" textAlign="Center" width="auto" />
+                                </FlexBox>
+                            </HBox>
+
+
+                            <HBox id="continer18" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+
+
+                                <FlexBox width="40%" justifyContent="End">
+                                    <Label text="PM Bildirimi: " design="Bold" width="auto" />
+                                </FlexBox>
+
+                                <FlexBox width="50%">
+                                    <ComboBox id="pmBildirim" textAlign="Center" width="auto">
+                                           
+                                        <items>
+                                                 
+                                            <core:Item xmlns:core="sap.ui.core" key="VAR" text="VAR" id="item2" />
+                                            <core:Item xmlns:core="sap.ui.core" key="YOK" text="YOK" id="item55" />
+                                                                                            
+                                         
+                                        </items>
+                                    </ComboBox>
+                                </FlexBox>
+                            </HBox>
+
+
+                            <HBox id="continer19" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+
+
+                                <FlexBox width="40%" justifyContent="End">
+                                    <Label text="PM İşyeri: " design="Bold" width="auto" />
+                                </FlexBox>
+
+                                <FlexBox width="50%">
+                                    <Input id="pmIsyeri" textAlign="Center" width="auto" />
+                                </FlexBox>
+                            </HBox>
+
+
+                            <Input id="selectedID" textAlign="Center" visible="false" width="auto" />
+                        </VBox>
+                    </l:content>
+                </l:VerticalLayout>
+            </form:SimpleForm>
+        </content>
+        <buttons>
+            <Button id="save" width="auto" type="Accept" icon="sap-icon://save" text="Kaydet" press="saveFunction" />
+            <Button id="cancel" width="auto" type="Reject" icon="sap-icon://cancel" text="Kapat" press="closeFragment" />
+
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

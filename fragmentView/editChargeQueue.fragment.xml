@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_CHARGE_QUEUE}" id="ChargeQueue">
+        <content>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_CASTINGNUMBER} :" width="70px" />
+                    <Select id="castId" width="250px" items="{castData>/}" >
+                        <core:Item text="{castData>CASTID}" key="{castData>CASTID}" />
+                    </Select>
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_CHARGE_NUMBER} :" width="70px" />
+                    <Select id="chargeNo" width="250px" items="{ChargeList>/Row}">
+                        <core:Item text="{ChargeList>ATWRT}" key="{ChargeList>ATWRT}" />
+                    </Select>
+                </items>
+            </FlexBox>
+        </content>
+        <OverflowToolbar>
+            <ToolbarSpacer />
+            <Button text="{i18n>OEE_LABEL_SAVE_CHANGES}" press="onPressSaveChanges" type="Accept"></Button>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancel" type="Reject"></Button>
+            <ToolbarSpacer />
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

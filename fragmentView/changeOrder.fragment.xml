@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_CHANGE_ORDER}" id="changeOrder">
+        <content>
+            <FlexBox height="40px" alignItems="Center" justifyContent="Center">
+                <items>
+	        <Label text="{i18n>OEE_LABEL_ORDER_NUMBER_SHORT} :" width="70px" />
+                    <Combobox id="orderNoList" width="330px" items="{/}" showSecondaryValues="true">
+                        <core:ListItem text="{AUFNR} - {Y_KALITE_KTK}" key="{AUFNR}" additionalText="{MATNR}"/>
+                    </Combobox>
+                </items>
+            </FlexBox>
+        </content>
+        <OverflowToolbar>
+            <ToolbarSpacer />
+            <Button id="changeOrderBtn" text="{i18n>OEE_BTN_POST}" press="onPressChangeOrder" type="Accept"></Button>
+            <Button id="closeChangeOrder" text="{i18n>OEE_BTN_CLOSE}" press="handleCancel" type="Reject"></Button>
+            <ToolbarSpacer />
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

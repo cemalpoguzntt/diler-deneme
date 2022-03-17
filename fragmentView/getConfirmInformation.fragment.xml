@@ -1,0 +1,107 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_COMPONENTS}" id="getConfirmInformation">
+        <content>
+            <FlexBox id="idProductionType" visible="false" direction="Column" alignItems="Center" justifyContent="Center">
+                <FlexBox id="idShowTeoSCT" width="100%" direction="Column" alignItems="Center" justifyContent="SpaceBetween" visible="false">
+                    <FlexBox height="5%"/>
+                    <FlexBox width="100%" alignItems="Center" justifyContent="SpaceBetween">
+                        <Label text="Teorik Ağırlık: " design="Bold" id="teoWeightLabel" class="telCekmeFragment"/>
+                        <Label text="Tolerans Farkı: " design="Bold" id="weightToleranceLabel" class="telCekmeFragment"/>
+                    </FlexBox>
+                </FlexBox>
+                <FlexBox width="50%" alignItems="Center" justifyContent="SpaceBetween">
+                    <Select id="selectProductionType" selectedKey="R" change="onChangeProdunctionType">
+                        <core:Item key="R" text="Gerçek Ağırlık"></core:Item>
+                        <core:Item key="T" text="Teorik Ağırlık"></core:Item>
+                        <core:Item key="M" text="Manuel Tartım"></core:Item>
+                    </Select>
+                    <Button visible="true" type="Emphasized" icon="sap-icon://compare" id="getWeightFromScale" press="getWeightFromScale" text="Güncelle"></Button>
+                    <FlexBox id="idManuelInputBox" justifyContent="Center" alignItems="Center" visible="false" >
+                        <Label text="Ağırlık: " id="weightLabel" class="sapUiSmallMarginEnd telCekmeFragment"/>
+                        <Input id="idManuelInput" width="50%" placeholder="KG" type="Tel" submit="onPressManuelWeightInput"/>
+                        <Button id="getManuelWeightInput" visible="false" type="Emphasized" icon="sap-icon://save" text="Güncelle" press="onPressManuelWeightInput"/>
+                    </FlexBox>
+                </FlexBox>
+            </FlexBox>
+            <VBox id="idHeader" visible="false" width="100%">
+                <FlexBox alignItems="Center" justifyContent="SpaceBetween" class="sapUiSmallMarginBottom" width="100%">
+                    <Label id="idToplamMiktar" design="Bold" class="sapUiSmallMarginEnd telCekmeFragment" visible="false" width="100%"/>
+                    <Label id="idTamamenSum" design="Bold" class="sapUiSmallMarginEnd telCekmeFragment" visible="false" width="100%"/>
+                    <Label id="idRemaining" design="Bold" visible="false" class="telCekmeFragment" width="100%"/>
+                    <Label text="Bobin Ağırlığı: " id="bobbinWeightLabel" design="Bold" class="telCekmeFragment"/>
+                </FlexBox>
+            </VBox>
+            <Table id="confirmTable" mode="SingleSelectMaster" editable="false" items="{/}">
+                <columns>
+                    <Column width="100px" visible="false">
+                        <Label  />
+                    </Column>
+                    <Column width="100px" hAlign="Center" vAlign="Middle">
+                        <Label />
+                    </Column>
+                    <Column width="7rem" hAlign="Center" vAlign="Middle" >
+                        <Label text="{i18n>OEE_LABEL_CASTINGNUMBER}" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center" vAlign="Middle">
+                        <Label text="{i18n>OEE_LABEL_COMPONENT_CODE}" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center" vAlign="Middle">
+                        <Label text="{i18n>OEE_LABEL_ORD_MATERIAL}" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center" vAlign="Middle">
+                        <Label text="{i18n>OEE_LABEL_PACKAGE_WEIGHT}" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center" vAlign="Middle">
+                        <Label text="{i18n>OEE_LABEL_STRD}" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center" vAlign="Middle">
+                        <Label text="{i18n>OEE_LABEL_QLTY}" />
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Middle">
+                        <Label text="{i18n>OEE_LABEL_DIAMETER}" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center" vAlign="Middle">
+                        <Label text="{i18n>OEE_LABEL_ORIGIN}" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center" vAlign="Middle">
+                        <Label text="Sıra" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <customData>
+                            <core:CustomData key="mydata" value="{COLOR}" writeToDom="true"></core:CustomData>
+                        </customData>
+                        <cells>
+                            <Button icon="sap-icon://decline"     id = "deleteButton" press="onDeleteCombo" type="Reject" />
+                            <Select id="castID" width="100px" change="consumptionType" enabled="false" forceSelection="false">
+                                <core:Item text="Tamamen" key="30" />
+                                <core:Item text="Kismen" key="20" />
+                            </Select>
+                            <Text text="{Y_DOKUMNO}" />
+                            <Text text="{BARCODE}" />
+                            <Text text="{MATNR}" />
+                            <Text text="{path:'QUANTITY', type:'sap.ui.model.odata.type.Decimal', formatOptions:{minFractionDigits:0,maxFractionDigits:3}, constraints:{precision:13,scale:2}}" />
+                            <Text text="{Y_STANDART_FLM}" />
+                            <Text text="{Y_KALITE_FLM}" />
+                            <Text text="{Y_CAP_FLM_MM}" />
+                            <Text text="{Y_MENSEI_FLM}" />
+                            <Text text="{ROW_NUMBER}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <OverflowToolbar>            
+            <Button id="openDatePicker" text="Geriye Dönük Teyit" type="Emphasized" icon="sap-icon://date-time" press="openDatePicker" visible="true"/>
+            <Button id="closeDatePicker" text="Kapat" type="Reject" icon="sap-icon://decline" press="closeDatePicker" visible="false"/>
+            <DateTimePicker id="DateTimePicker" width="14%" visible="false" change="handleChange" valueFormat="MM-dd-yyyy HH:mm:ss" displayFormat="dd-MM-yyyy HH:mm" />
+            <ToolbarSpacer />
+            <Button visible = "false"/>
+            <Button id="saveButton" text="{i18n>OEE_BTN_SAVE}" press="onSaveRecords" type="Accept"></Button>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancel" type="Reject"></Button>
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

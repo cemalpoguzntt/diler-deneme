@@ -1,0 +1,41 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog id="componentDialog">
+        <content>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Table id="componentDialogTable" editable="false" items="{componensModel>/}" visibleRowCount="6" mode="SingleSelectMaster" width="400px">
+                        <columns>
+                            <Column hAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_MAT}" />
+                            </Column>
+                            <Column hAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_MATERIAL_DESCRIPTION}" />
+                            </Column>
+                            <Column hAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_QUANT}" />
+                            </Column>
+                            <Column hAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_QUANTITY_UOM}" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{componensModel>MATNR}" />
+                                    <Text text="{componensModel>MAKTX}" />
+                                    <Text text="{componensModel>BDMNG}" />
+                                    <Text text="{componensModel>MEINS}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </items>
+            </FlexBox>
+        </content>
+        <OverflowToolbar>
+            <ToolbarSpacer />
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleExit" type="Reject"></Button>
+            <ToolbarSpacer />
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

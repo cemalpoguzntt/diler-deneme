@@ -1,0 +1,178 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" controllerName="customActivity.controller.oeeBilletInsideFurnaceFLM" xmlns="sap.m" xmlns:layout="sap.ui.layout">
+    <Dialog contentHeight="22%" contentWidth="22%" id= "fieldControl" horizontalScrolling="true" showHeader="true" state="None" stretch="false" title="Sinyal Kontrol Penceresi" type="Standard" verticalScrolling="true">
+        <content>
+            <FlexBox width="100%" id="box0" justifyContent="Center" height="100%" direction="Column">
+              <items>
+                  
+                  
+                  
+                  
+                  
+                                      <FlexBox width="100%" id="box01" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+                                          <items>
+      
+                                          <FlexBox width="100%" id="box011" alignItems="Center"/>
+                                          <FlexBox width="100%" id="box012" alignItems="Center"/>
+                                          <FlexBox width="100%" id="box013" alignItems="Center"/>
+                                          <FlexBox width="100%" id="box014" alignItems="Center"/>
+                                          <FlexBox width="100%" id="box015" alignItems="Center"/>
+                                          
+      
+                                          </items>
+                                      </FlexBox>
+                                      
+                                      <FlexBox width="100%" id="box2" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+                                          <items>
+      
+                                          <FlexBox width="100%" id="box21" alignItems="Center"/>
+                                          <FlexBox width="100%" id="box22" alignItems="Center"/>
+                                          <FlexBox width="100%" id="box23" alignItems="Center"/>
+                                          <FlexBox width="100%" id="box24" alignItems="Center"/>
+                                          <FlexBox width="100%" id="box25" alignItems="Center"/>
+                                          
+      
+                                          </items>
+                                      </FlexBox>	
+                                      
+                                      <FlexBox width="100%" id="box3" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+                                          <items>
+      
+                                          <FlexBox width="100%" id="box31" alignItems="Center"/>
+                                          <FlexBox width="100%" id="box32" alignItems="Center" justifyContent="Center">
+                                              <items>
+                                                  <Label xmlns="sap.m" text="Fırın Girişi Sinyali" width="100%" id="label0" design="Bold"/>
+                                              </items>
+                                          </FlexBox>
+                                          <FlexBox width="100%" id="box33" alignItems="Center">
+                                              <items>
+                                                  <FlexBox xmlns="sap.m" width="100%" id="box83" alignItems="Center">
+                                              <items>
+                                                  <Switch xmlns="sap.m" id="FGS" change = "buttonSave" customTextOn=" " customTextOff=" "/>
+                                                  
+                                              </items>
+                                          </FlexBox>
+                                              </items>
+                                          </FlexBox>
+                                          <FlexBox width="100%" id="box35" alignItems="Center"/>
+                                          
+      
+                                          </items>
+                                      </FlexBox>	
+                                      
+                                      <FlexBox width="100%" id="box4" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+                                          <items>
+      
+                                          <FlexBox width="100%" id="box41321" alignItems="Center"/>
+                                          <FlexBox width="100%" id="box42" alignItems="Center" justifyContent="Center">
+                                              <items>
+                                                  <Label xmlns="sap.m" text="Konveyor" width="100%" id="label1" design="Bold"/>
+                                              </items>
+                                          </FlexBox>
+                                          <FlexBox width="100%" id="box43" alignItems="Center">
+                                              <items>
+                                                  <FlexBox xmlns="sap.m" width="100%" id="box63" alignItems="Center">
+                                              <items>
+                                                  <Switch xmlns="sap.m" id="konveyor" change = "buttonSave" customTextOn=" " customTextOff=" "/>
+                                              </items>
+                                          </FlexBox>
+                                              </items>
+                                          </FlexBox>
+                                          <FlexBox width="100%" id="box45" alignItems="Center"/>
+                                          
+      
+                                          </items>
+                                      </FlexBox>	
+                                      <FlexBox width="100%" id="box41" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+                                        <items>
+    
+                                        <FlexBox width="100%" id="box411" alignItems="Center"/>
+                                        <FlexBox width="100%" id="box42122" alignItems="Center" justifyContent="Center">
+                                            <items>
+                                                <Label xmlns="sap.m" text="Kamera" width="100%" id="label121" design="Bold"/>
+                                            </items>
+                                        </FlexBox>
+                                        <FlexBox width="100%" id="box431" alignItems="Center">
+                                            <items>
+                                                <FlexBox xmlns="sap.m" width="100%" id="box631" alignItems="Center">
+                                            <items>
+                                                <Switch xmlns="sap.m" id="kamera" change = "buttonSave" customTextOn=" " customTextOff=" "/>
+                                            </items>
+                                        </FlexBox>
+                                            </items>
+                                        </FlexBox>
+                                        <FlexBox width="100%" id="box451" alignItems="Center"/>
+                                        
+    
+                                        </items>
+                                    </FlexBox>
+
+                                        
+                                        <FlexBox width="100%" id="box421" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+                                            <items>
+        
+                                            <FlexBox width="100%" id="box4121" alignItems="Center"/>
+                                            <FlexBox width="100%" id="box4221" alignItems="Center" justifyContent="Center">
+                                                <items>
+                                                    <Label xmlns="sap.m" text="Giriş Kantar" width="100%" id="label122221" design="Bold"/>
+                                                </items>
+                                            </FlexBox>
+                                            <FlexBox width="100%" id="box4321" alignItems="Center">
+                                                <items>
+                                                    <FlexBox xmlns="sap.m" width="100%" id="box6321" alignItems="Center">
+                                                <items>
+                                                    <Switch xmlns="sap.m" id="GKantar" change = "buttonSave" customTextOn=" " customTextOff=" "/>
+                                                </items>
+                                            </FlexBox>
+                                                </items>
+                                            </FlexBox>
+                                            <FlexBox width="100%" id="box4521" alignItems="Center"/>
+                                            
+        
+                                            </items>
+                                        </FlexBox>
+                                      
+                                      <FlexBox width="100%" id="box8" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+                                          <items>
+      
+                                          <FlexBox width="100%" id="box81" alignItems="Center"/>
+                                          <FlexBox width="100%" id="box82" alignItems="Center" justifyContent="End">
+                                              <items>
+                                              </items>
+                                          </FlexBox>
+                                          <FlexBox width="100%" id="box84" alignItems="Center"/>
+                                          <FlexBox width="100%" id="box85" alignItems="Center"/>
+                                          
+      
+                                          </items>
+                                      </FlexBox>	
+                                      
+                                      <FlexBox width="100%" id="box9" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+                                          <items>
+      
+                                          <FlexBox width="100%" id="box91" alignItems="Center"/>
+                                          <FlexBox width="100%" id="box92" alignItems="Center"/>
+                                          <FlexBox width="100%" id="box93" alignItems="Center"/>
+                                          <FlexBox width="100%" id="box94" alignItems="Center"/>
+                                          <FlexBox width="100%" id="box95" alignItems="Center"/>
+                                          
+      
+                                          </items>
+                                      </FlexBox>	
+                          
+      
+                  
+                  
+                  
+              </items>
+          </FlexBox>
+      </content>
+        <beginButton/>
+        <buttons>
+                        <Button text="Kapat" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press ="fieldControlClose" />
+                       
+        </buttons>
+        <customHeader/>
+        <endButton/>
+        <subHeader/>
+    </Dialog>
+</core:FragmentDefinition>

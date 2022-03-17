@@ -1,0 +1,84 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form">
+	<Dialog showHeader="false" contentHeight="40rem">
+		<NavContainer id="navContainer">
+			<Page id="master" title="{i18n>OEE_BUTTON_FILTER}">
+				<subHeader>
+					<Bar>
+						<contentMiddle>
+							<SearchField liveChange="handleMasterSearch" width="100%" />
+						</contentMiddle>
+					</Bar>
+				</subHeader>
+				<content>
+					<List id="filterlist" type="Navigation" items="{/filterList}">
+						<StandardListItem title="{Name}" type="Navigation"
+							press="onNavToDetail" />
+					</List>
+				</content>
+			</Page>
+			<Page id="detailStatus" showNavButton="true" navButtonPress="onNavBack"
+				title="{i18n>OEE_LABEL_STATUSH}">
+				<subHeader>
+					<Bar>
+						<contentMiddle>
+							<SearchField liveChange="handleStatusSearch" width="100%" />
+						</contentMiddle>
+
+					</Bar>
+				</subHeader>
+				<content>
+					<Bar>
+						<contentLeft>
+							<CheckBox id="checkAll" text="{i18n>OEE_LABEL_ALL}"
+								selected="true" select="onSelectAll" />
+						</contentLeft>
+					</Bar>
+					<List id="filterStatus" mode="MultiSelect" items="{/status}"
+						selectionChange="onSelectItem">
+						<CustomListItem>
+							<Text text="{value}" />
+						</CustomListItem>
+					</List>
+				</content>
+
+			</Page>
+			<Page id="detailDuration" showNavButton="true" navButtonPress="onNavBack"
+				title="{i18n>OEE_LABEL_DURATION_MINS}">
+				<content>
+					<List mode="None">
+						<items>
+							<CustomListItem type="Inactive">
+								<Label class="textPaddingForFilter" width="63%"
+									text="{i18n>OEE_LABEL_STARTTIME}" />
+								<DatePicker id="startDate" enabled="true" editable="true" width="60%" class="textPaddingForFilter2"
+									value="{path:'/startDate',type:'sap.ui.model.type.Date',formatOptions:{style: 'short', strictParsing: true}}"></DatePicker>
+								<TimePicker id="startTime" enabled="true" editable="true"
+									value="{path : '/startTime', type:'sap.ui.model.type.Time', formatOptions:{style: 'short', strictParsing: true}}"></TimePicker>
+								<Button icon="sap-icon://history" id="setCurrentForStartTime"
+									class="textPaddingForFilter2" text="{i18n>OEE_BUTTON_SET_CURRENT}"
+									press="setCurrentStartTimeStamp" />
+							</CustomListItem>
+							<CustomListItem type="Inactive">
+								<Label class="textPaddingForFilter" width="63%"
+									text="{i18n>OEE_LABEL_ENDTIME}" />
+								<DatePicker id="endDate" enabled="true" editable="true" width="60%" class="textPaddingForFilter2"
+									value="{path:'/endDate',type:'sap.ui.model.type.Date',formatOptions:{style: 'short', strictParsing: true}}"></DatePicker>
+								<TimePicker id="endTime" enabled="true" editable="true"
+									value="{path : '/endTime', type:'sap.ui.model.type.Time', formatOptions:{style: 'short', strictParsing: true}}"></TimePicker>
+								<Button icon="sap-icon://history" id="setCurrentForEndTime"
+									class="textPaddingForFilter2" text="{i18n>OEE_BUTTON_SET_CURRENT}"
+									press="setCurrentEndTimeStamp" />
+							</CustomListItem>
+						</items>
+					</List>
+				</content>
+			</Page>
+		</NavContainer>
+		<buttons>
+			<Button id="reset-time" text="{i18n>OEE_BTN_RESET_TIME}"
+				press="onResetDurationFilter" visible="false" />
+			<Button text="{i18n>OEE_BTN_OK}" press="onCloseFilter" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

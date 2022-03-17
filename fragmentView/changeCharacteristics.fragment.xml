@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog id="changeCharacteristics" title="{i18n>OEE_LABEL_L_CHANGE_CHARACTERISTICS}">
+        <content>
+
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_L_DIAMETER} :" width="5rem" />
+                    <ComboBox id="selectDiameter" width="12rem" forceSelection="false" items="{diameterValues>/Row}" change = "handleChangeCharacteristicComboValues">
+                        <core:Item text="{diameterValues>VALUE}" key="{diameterValues>VALUE}" />
+                    </ComboBox>
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_L_QUALITY} :" width="5rem" />
+                    <ComboBox id="selectQuality" width="12rem" forceSelection="false" items="{qualityValues>/Row}"  change = "handleChangeCharacteristicComboValues">
+                        <core:Item text="{qualityValues>VALUE}" key="{qualityValues>VALUE}" />
+                    </ComboBox>
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_L_PRODUCTION_TYPE} :" width="5rem" />
+                    <ComboBox id="selectProduction" width="12rem" forceSelection="false" items="{productionTypeValues>/Row}"  change = "handleChangeCharacteristicComboValues">
+                        <core:Item text="{productionTypeValues>VALUE}" key="{productionTypeValues>VALUE}" />
+                    </ComboBox>
+                </items>
+            </FlexBox>
+        </content>
+        <beginButton>
+            <Button text="{i18n>OEE_BTN_REJECTED_SAVE}" press="onSaveChangeCharacteristics" type="Accept" id="btnSaveCharacteristics" />
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>OEE_BTN_REJECTED_CLOSE}" press="handleCancel" type="Reject" id="btnCloseRejectedNotifs" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

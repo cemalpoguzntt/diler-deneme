@@ -1,0 +1,121 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:mvc="sap.ui.core.mvc" xmlns:layout="sap.ui.layout">
+    <Dialog showHeader="false" resizable="true" draggable="true">
+        <content>
+            <FlexBox height="100%" width="100%" direction="Column">
+                <FlexBox height="25%">
+                    <Table id="idACTRemaningTable" inset="true" width="100%" sticky="ColumnHeaders" items="{path: '/'}" >
+                        <headerToolbar>
+                            <OverflowToolbar>
+                                <content>
+                                    <Title text="Aktif Sipariş" titleStyle="H1"/>
+                                    <ToolbarSpacer></ToolbarSpacer>
+                                    <Label text="Planlanan-Üretilen-Kalan: " class = "redAndBigEren"/>
+                                    <Label id="uretimMiktarFrag" text="" class = "ayiracEren"/>
+                                </content>
+                            </OverflowToolbar>
+                        </headerToolbar>
+                        <columns>
+                            <Column hAlign="Center" width="5rem">
+                                <Label text="Sipariş No" />
+                            </Column>
+                            <Column hAlign="Center" width="6rem" >
+                                <Label text="Çap" />
+                            </Column>
+                            <!-- <Column hAlign="Center" width="6rem" >
+                        <Label text="Std-Klt" />
+                    </Column> -->
+                            <Column hAlign="Center" width="7rem" >
+                                <Label text="M-Klt" />
+                            </Column>
+                            <Column hAlign="Center" width="6rem" >
+                                <Label text="Ktk-Klt" />
+                            </Column>
+                            <Column hAlign="Center" width="20rem" >
+                                <Label text="Mesaj" />
+                            </Column>
+                            <Column hAlign="Center" width="10rem" >
+                                <Label text="Kaydet" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{AUFNR}" />
+                                    <Text text="{Y_CAP_FLM_MM}" />
+                                    <!-- <Text text="{Y_STANDART_FLM}" /> -->
+                                    <Text text="{Y_KALITE_FLM}" />
+                                    <Text text="{Y_KALITE_KTK}" />
+                                    <TextArea id="idTextArea05" liveChange="handleLiveChange" valueLiveUpdate="true"/>
+                                    <Button id="idSaveLogs" text="Kaydet" type="Accept" press="onPressSave"></Button>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </FlexBox>
+                <FlexBox height="5%"/>
+                <FlexBox height="70%">
+                    <ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
+                        <Table id="idRemaningTable" sticky="ColumnHeaders" items="{path: '/'}" inset="true">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <content>
+                                        <Title text="Geçmiş Veriler" titleStyle="H1"/>                                        
+                                    </content>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column hAlign="Center" width="5rem">
+                                    <Label text="Sipariş No" />
+                                </Column>
+                                <Column hAlign="Center" width="6rem" >
+                                    <Label text="Çap" />
+                                </Column>
+                                <!-- <Column hAlign="Center" width="6rem" >
+                        <Label text="Std-Klt" />
+                        </Column> -->
+                                <Column hAlign="Center" width="7rem" >
+                                    <Label text="M-Klt" />
+                                </Column>
+                                <Column hAlign="Center" width="6rem" >
+                                    <Label text="Ktk-Klt" />
+                                </Column>
+                                <Column hAlign="Center" width="6rem" >
+                                    <Label text="Planlanan" />
+                                </Column>
+                                <Column hAlign="Center" width="6rem" >
+                                    <Label text="Üretilen" />
+                                </Column>
+                                <Column hAlign="Center" width="6rem" >
+                                    <Label text="Kalan" />
+                                </Column>
+                                <Column hAlign="Center" width="20rem" >
+                                    <Label text="Mesaj" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{AUFNR}" />
+                                        <Text text="{CAP}" />
+                                        <!-- <Text text="{Y_STANDART_FLM}" /> -->
+                                        <Text text="{M_KALITE}" />
+                                        <Text text="{KTK_KALITE}" />
+                                        <Text text="{PLANLANAN}" />
+                                        <Text text="{URETILEN}" />
+                                        <Text text="{KALAN}" />
+                                        <Text text="{TEXT}"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </ScrollContainer>
+                </FlexBox>
+            </FlexBox>
+        </content>
+        <beginButton>
+            <Button text="İptal" press="onCloseFrag" type="Reject"></Button>
+        </beginButton>
+        <endButton>            
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

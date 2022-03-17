@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+    <Dialog id="remainingStockDialog" draggable="true">
+        <content>
+            <FlexBox alignItems="Center" direction="Column" justifyContent="Center">
+                <Label text="Bu partinin mevcut kaydı bulunmadığı için KGM bilgisine ulaşılamıyor." design="Bold"/>
+                <Label text="Devam etmek istiyor musunuz?" design="Bold"/>
+            </FlexBox>
+        </content>
+        <beginButton>
+            <Button text="Onayla" type="Accept" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onPressLabel"/>
+        </beginButton>
+        <endButton>
+            <Button text="İptal" type="Reject" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onCancelFrag01"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

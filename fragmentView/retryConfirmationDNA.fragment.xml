@@ -1,0 +1,13 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="Yeniden Dene" type="Message" id="retryConfirmationFragment" afterClose="onCloseRtryCnf">
+        <content>
+            <Label text="Teyidi yeniden göndermek istediğinize emin misiniz?"></Label>
+        </content>
+        <beginButton>
+            <Button id="AcceptRtryCnf" text="Onayla" type="Accept" press="onAcceptRtryCnf"></Button>
+        </beginButton>
+        <endButton>
+            <Button text="İptal" press="onCloseRtryCnf"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

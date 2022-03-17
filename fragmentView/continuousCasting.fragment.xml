@@ -1,0 +1,71 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog id="continuousCasting">
+        <content>
+
+	
+   <FlexBox alignItems="Center" justifyContent="Start">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_CASTINGNUMBER} :" width="70px" />
+                    <Input id="idCastPopup" enabled="false" width="120px" value="{continuousCastingFragment>/0/CASTID}" />
+                </items>
+            </FlexBox>	
+
+
+            <FlexBox alignItems="Center" justifyContent="Start">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_QUALITY} :" width="70px" />
+                    <Input id="quality" enabled="false" width="120px" value="{continuousCastingFragment>/0/Y_KALITE_KTK}" />
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Start">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_CASTNUMBER_TYPE} :" width="70px" />
+                    <Select id="idCastingType" items="{path: 'castingType>/' , templateShareable:false}" width="120px" forceSelection="false" selectedKey = "{continuousCastingFragment>/0/Y_DOKUM_TIPI}">
+                        <core:Item key="{castingType>VALUE}" text="{castingType>VALUE}" />
+                    </Select>
+                </items>
+            </FlexBox>
+
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Table id="continuousCastingTable" editable="false" items="{/}" visibleRowCount="6" mode="SingleSelectMaster" width="400px">
+                        <columns>
+                            <Column hAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_ROAD}" />
+                            </Column>
+                            <Column hAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_BILLET_DIMENSION}" />
+                            </Column>
+                            <Column hAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_BILLET_HEIGHT}" />
+                            </Column>
+                            <Column hAlign="Center">
+                                <Label text="" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{LINE}" />
+                                    <Select items="{path: 'dimensions>/Row' , templateShareable:false}" forceSelection="false" change="changeFragmentCombobox" selectedKey="{Y_EBAT}">
+                                        <core:Item key="{dimensions>VALUE}" text="{dimensions>VALUE}" />
+                                    </Select>
+                                    <Select items="{path: 'lengths>/Row' , templateShareable:false}" forceSelection="false" change="changeFragmentCombobox" selectedKey="{Y_BOY}">
+                                        <core:Item key="{lengths>VALUE}" text="{lengths>VALUE}" />
+                                    </Select>
+                                   <Button press = "onPressLıneChange" icon = "sap-icon://dimension"/>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </items>
+            </FlexBox>
+        </content>
+        <OverflowToolbar>
+            <ToolbarSpacer />
+            <Button text="{i18n>OEE_BTN_POST}" press="onPressSaveChanges" type="Accept"></Button>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleExit" type="Reject"></Button>
+            <ToolbarSpacer />
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

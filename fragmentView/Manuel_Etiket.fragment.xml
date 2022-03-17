@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" controllerName="com.sap.build.standard.untitledPrototype.controller.Dialog1" xmlns="sap.m">
+    <Dialog horizontalScrolling="true" showHeader="true" id="fragmentOne" state="None" stretch="false" title="Title" type="Standard" verticalScrolling="true">
+        <content>
+        	<FlexBox direction="Column" > 
+        	<FlexBox direction="Row" > 
+            <Label text="İSTEDİĞİNİZ ETİKET TARİHİNİ SEÇİNİZ : " design="Standard" width="395.0000305175781px" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+            <DatePicker width="auto" displayFormat="medium" id="picker1" required="false" valueStateText="Invalid entry" enabled="true" visible="true" valueFormat="yyyyMMdd"/>
+             </FlexBox>
+             <FlexBox direction="Row" >
+            <Label text="İSTEDİĞİNİZ ETİKET FORMATINI SEÇİNİZ : " design="Standard" width="395.0000305175781px" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+               <ComboBox id="labelFormats" editable="true" enabled="true" visible="true" width="auto"   items="{path : '/'}" valueState="None" maxWidth="39%">
+               <items>
+                                        <core:ListItem key="{API_ADRESS}" text="{API_ADRESS}"/>
+                                    </items>
+                                </ComboBox>
+                                 </FlexBox>
+                                  </FlexBox>
+        </content>
+        <beginButton/>
+        <buttons>
+            <Button text="GÖNDER" type="Accept" press="onPressPrintManual" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+            <Button text="KAPAT" type="Reject" press="onCancelFrag1" id="kapanma" iconFirst="true" width="60px" enabled="true" visible="true" iconDensityAware="false"/>
+        </buttons>
+        <customHeader/>
+        <endButton/>
+        <subHeader/>
+    </Dialog>
+</core:FragmentDefinition>

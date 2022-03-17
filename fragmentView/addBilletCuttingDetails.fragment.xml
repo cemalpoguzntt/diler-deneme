@@ -1,0 +1,150 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+    <Dialog id="addBilletCuttingDetails" title="{i18n>OEE_LABEL_ADD_BILLET}">
+        <content>
+            <FlexBox direction="Row" alignItems="Stretch" justifyContent="Center">
+                <items>
+                    <VBox>
+                        <HBox alignItems="Center" class="sapUiSmallMarginEnd">
+                            <Label text="{i18n>OEE_LABEL_CHANGE_LOG_STORAGE_BIN}" labelFor="srcStockRoom" class="sapUiTinyMarginEnd" width="5rem" />
+                            <Input id="srcStockRoom" width="9rem" submit="handleSearchResults" enabled ="false" />
+                        </HBox>
+
+
+                        <HBox alignItems="Center" class="sapUiSmallMarginEnd">
+                            <Label text="{i18n>OEE_LABEL_QUALITYS}" labelFor="billetQuality" width="5rem" class="sapUiTinyMarginEnd" />
+                            <Input id="billetQuality" width="9rem" />
+                        </HBox>
+
+                        <HBox alignItems="Center" class="sapUiSmallMarginEnd">
+                            <Label text="{i18n>OEE_LABEL_SIZE}" labelFor="billetSize" width="5rem" class="sapUiTinyMarginEnd" />
+                            <Input id="billetSize" width="9rem" />
+                        </HBox>
+                        <HBox alignItems="Center" class="sapUiSmallMarginEnd">
+                            <Label text="{i18n>OEE_LABEL_LENGTH}" labelFor="billetLength" width="5rem" class="sapUiTinyMarginEnd" />
+                            <Input id="billetLength" width="9rem" />
+                        </HBox>
+                        <HBox></HBox>
+                    </VBox>
+                    <VBox>
+
+                        <HBox alignItems="Center" class="sapUiSmallMarginEnd">
+                            <Label text="{i18n>OEE_LABEL_CAST_ID}" labelFor="srcCastNo" class="sapUiTinyMarginEnd" width="5rem" />
+                            <Input id="srcCastNo" width="9rem" />
+                        </HBox>
+
+                        <HBox alignItems="Center" class="sapUiSmallMarginEnd">
+                            <Label text="{i18n>OEE_LABEL_DEFLECTION}" labelFor="billetDeflection" width="5rem" class="sapUiTinyMarginEnd" />
+                            <Input id="billetDeflection" width="9rem" />
+                        </HBox>
+
+
+                        <HBox alignItems="Center" class="sapUiSmallMarginEnd">
+                            <Label text="{i18n>OEE_LABEL_BLT_MIX}" labelFor="billetMix" width="5rem" class="sapUiTinyMarginEnd" />
+                            <Input id="billetMix" width="9rem" />
+                        </HBox>
+
+
+                        <HBox alignItems="Center" class="sapUiSmallMarginEnd">
+                            <Label text="{i18n>OEE_LABEL_SCND_QUALITY}" labelFor="billetScndQuality" width="5rem" class="sapUiTinyMarginEnd" />
+                            <Input id="billetScndQuality" width="9rem" />
+                        </HBox>
+
+
+                        <HBox alignItems="Center" justifyContent="Center">
+                            <Button text="{i18n>OEE_BTN_SEARCH}" press="handleSearchResults" type="Accept" id="searchBtn" width="10rem" icon="sap-icon://search" />
+                        </HBox>
+                    </VBox>
+                    <VBox>
+                        <HBox alignItems="Center" class="sapUiSmallMarginEnd">
+                            <Label text="{i18n>OEE_LABEL_CAST_TYPE}" labelFor="castType" width="5rem" class="sapUiTinyMarginEnd" />
+                            <Input id="castType" width="9rem" />
+                        </HBox>
+
+                        <HBox alignItems="Center" class="sapUiSmallMarginEnd">
+                            <Label text="{i18n>OEE_LABEL_VACUUM}" labelFor="vacuumSelect" width="5rem" class="sapUiTinyMarginEnd" />
+                            <ComboBox width="9rem" id="vacuumSelect">
+                                <core:ListItem key="X" text="VAR" />
+                                <core:ListItem key="" text="YOK" />
+                            </ComboBox>
+                        </HBox>
+
+                        <HBox alignItems="Center" class="sapUiSmallMarginEnd">
+                            <Label text="{i18n>OEE_LABEL_BILLET_ORIGIN}" labelFor="billetOrigin" width="5rem" class="sapUiTinyMarginEnd" />
+                            <Input id="billetOrigin" width="9rem" />
+                        </HBox>
+
+                        <HBox alignItems="Center" class="sapUiSmallMarginEnd">
+                            <Label text="{i18n>OEE_LABEL_BLT_MIX_QUALITY}" labelFor="billetMixQuality" width="5rem" class="sapUiTinyMarginEnd" />
+                            <Input id="billetMixQuality" width="9rem" />
+                        </HBox>
+
+                        <HBox></HBox>
+                    </VBox>
+                </items>
+            </FlexBox>
+
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <Table id="tblBilletSelect" mode="MultiSelect" class="sapUiMediumMarginTop" items="{searchTableModel>/Row}">
+                    <columns>
+                        <Column hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_BATCH_NUMBER}" />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_CAST_ID}" />
+                        </Column>
+                        <Column hAlign="Center" visible="false">
+                            <Label text="{i18n>OEE_LABEL_MAT_CODE}" />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_MAT_DESC}" />
+                        </Column>
+
+                        <Column hAlign="Center" visible="false">
+                            <Label text="{i18n>OEE_LABEL_L_QUALITY}" />
+                        </Column>
+
+                        <Column hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_BLT_MIX_QUALITY}" />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_DEFLECTION}" />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_NON-STANDARD}" />
+                        </Column>
+
+                        <Column hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_STOCK_QUAN}" />
+                        </Column>
+
+                        <Column hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_PIECE}" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{searchTableModel>CHARG}" />
+                                <Text text="{searchTableModel>Y_DOKUMNO}" />
+                                <Text text="{searchTableModel>MATNR}" />
+                                <Text text="{searchTableModel>MAKTX}" />
+                                <Text text="{searchTableModel>Y_KALITE_KTK}" />
+                                <Text text="{searchTableModel>Y_KARISIM_KALITESI}" />
+                                <Text text="{searchTableModel>Y_SAPMA}" />
+                                <Text text="{searchTableModel>Y_STDDISI}" />
+                                <Text text="{searchTableModel>MENGE} {= ${searchTableModel>MEINS} === 'TO'?'TON':${searchTableModel>MEINS}}" />
+                                <Text text="{searchTableModel>ADET}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </FlexBox>
+        </content>
+        <beginButton>
+            <Button text="{i18n>OEE_BTN_MAKE_ACTION}" press="onSearchResultsSelected" type="Accept" id="btnSearchBillet" icon="sap-icon://search" />
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>OEE_BTN_REJECTED_CLOSE}" press="handleCancel" type="Reject" id="btnCloseAddBillet" icon="sap-icon://undo" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

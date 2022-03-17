@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_EDIT_LOCATION}" id="editBilletLocationFLM">
+        <content>
+            <FlexBox>
+                <items>
+                    <ComboBox id="locationCombobox" width="400px" items="{locationModel>/}" placeholder="{i18n>OEE_LABEL_LOCATION}">
+                        <core:Item text="{locationModel>DESCRIPTION}" key="{locationModel>SIGNAL_POINT}" />
+                    </ComboBox>
+                </items>
+            </FlexBox>
+        </content>
+        <OverflowToolbar>
+            <ToolbarSpacer />
+            <Button id="acceptLocationButton" text="{i18n>OEE_BTN_ACCEPT}" press="onUpdateBilletLocation" type="Accept"></Button>
+            <Button id="closeLocationButton" text="{i18n>OEE_BTN_CLOSE}" press="handleCancel" type="Reject"></Button>
+            <ToolbarSpacer />
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

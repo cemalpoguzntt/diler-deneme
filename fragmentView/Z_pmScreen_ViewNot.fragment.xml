@@ -1,0 +1,137 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+    <Dialog state="Warning" id="idSelectedID2" draggable="true">
+        <content>
+            <form:SimpleForm editable="true">
+                <l:VerticalLayout class="sapUiContentPadding">
+                    <l:content>
+                        <VBox id="container1">
+
+
+                            <HBox id="hbox2124" fitContainer="true" visible = "false" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="notnum : " design="Bold" visible = "false" width="150px"/>
+                                  <Input id="notnum" textAlign="Center" enabled = "false" visible = "false" width="500px"/>
+                            </HBox>
+
+							<HBox id="hbox1" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Üretim Siparişi : " design="Bold" width="150px"/>
+                                <ComboBox id="uretimsip" enabled = "false" textAlign="Center" width="500px" items="{path : '/'}" selectionChange="">
+                                    <core:Item key="{AUFNR}" text="{AUFNR}"/>
+                                </ComboBox>
+                            </HBox>
+
+
+                            <HBox id="hbox2" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Dokum No : " design="Bold" width="150px"/>
+                                  <Input id="dokumNo" enabled = "false" textAlign="Center" width="500px"/>
+                            </HBox>
+
+
+                            <HBox id="continer12124" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Duruş Ana Baslik:" design="Bold" width="150px"/>
+                                <ComboBox id="DurusAnaBaslik" enabled = "false" textAlign="Center" width="500px" items="{path : '/'}" selectionChange="filter">
+                                    <core:Item key="{DURUS_ANA_BASLIK}" text="{DURUS_ANA_BASLIK}"/>
+                                </ComboBox>
+                            </HBox>
+
+                            <HBox id="continer12" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Duruş Nedeni :" design="Bold" width="150px"/>
+                                <ComboBox id="DurusNedeni" enabled = "false" textAlign="Center" width="500px" items="{path : '/'}" selectionChange="filter">
+                                    <core:Item key="{DURUS_NEDENI}" text="{DURUS_NEDENI}"/>
+                                </ComboBox>
+                            </HBox>
+                            <HBox id="continer13" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Duruş Kodu :" design="Bold" width="150px"/>
+                                <ComboBox id="DurusKodu" enabled = "false" textAlign="Center" width="500px" items="{path : '/'}" selectionChange="filter">
+                                    <core:Item key="{DURUS_KODU}" text="{DURUS_KODU}"/>
+                                </ComboBox>
+                            </HBox>
+                            <HBox id="continer988" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" visible="false" class="sapUiTinyMargin">
+                                
+                                  <Input id="selectedid" enabled = "false" textAlign="Center" width="500px"/>
+                            </HBox>
+
+                            <HBox id="continer15" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Teknik Birim Tanımı : " design="Bold" width="150px"/>
+                                <ComboBox id="TeknikBirimTanimi" enabled = "false" textAlign="Center" width="500px" items="{path : '/'}" selectionChange="filter">
+                                    <core:Item key="{TEKNIK_BIRIM_TANIMI}" text="{TEKNIK_BIRIM_TANIMI}"/>
+                                </ComboBox>
+                            </HBox>
+
+                            <HBox id="continer14" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Teknik Birim Kodu :" design="Bold" width="150px"/>
+                                <ComboBox id="TeknikBirimKodu" enabled = "false" textAlign="Center" width="500px" items="{path : '/'}" selectionChange="filter">
+                                    <core:Item key="{TEKNIK_BIRIM_KODU}" text="{TEKNIK_BIRIM_KODU} "/>
+                                </ComboBox>
+                            </HBox>
+                            
+                            <HBox id="continer16" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="PM İşyeri :" design="Bold" width="150px"/>
+                                <ComboBox id="PmIsyeri" enabled = "false" textAlign="Center" width="500px" items="{path :'/'}" selectionChange="filter">
+                                    <core:Item key="{PM_ISYERI}" text="{PM_ISYERI}"/>
+                                </ComboBox>
+                            </HBox>
+
+
+                            <HBox id="hbox3" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Parti No : " design="Bold" width="150px"/>
+                                  <Input id="partiNo" enabled = "false" textAlign="Center" width="500px"/>
+                            </HBox>
+                            
+                            <HBox id="continer55121" fitContainer="true" visible="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Açıklama : " visible="true" design="Bold" width="150px"/>
+                                <TextArea id="idExplanations" enabled = "false" visible="true" width="500px" placeholder="Max. uzunluk 80 karakter"  growing="true" growingMaxLines="5" maxLength="80" />
+                            </HBox>
+                            <HBox id="continer21" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Tesis Arıza Başlangıç Zamanı : " design="Bold" width="150px"/>
+                                <HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" width="500px">
+                                    <DatePicker id="TesisStartDate" enabled = "false" displayFormat="short" width="160px" change="TesiscalculateTimeInMinutes2"/>
+                                    <TimePicker id="TesisStartTime" enabled = "false" displayFormat="HH:mm" support2400="true" width="160px" change="TesiscalculateTimeInMinutes2"/>
+                                    <Button id="TesisChangeStartDateTime" enabled = "false" text="Güncel Zamana Ayarla" icon="sap-icon://history" width="160px" press="TesisStartDateTime"/>
+                                </HBox>
+                            </HBox>
+                            <HBox id="continer22" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Tesis Arıza Bitiş Zamanı : " design="Bold" width="150px"/>
+                                <HBox fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" width="500px">
+                                    <DatePicker id="TesisEndDate" enabled = "false" displayFormat="short" width="160px" change="TesiscalculateTimeInMinutes2"/>
+                                    <TimePicker id="TesisEndTime" enabled = "false" displayFormat="HH:mm" support2400="true" width="160px" change="TesiscalculateTimeInMinutes2"/>
+                                    <Button id="TesisChangeEndDateTime" enabled = "false" text="Güncel Zamana Ayarla" icon="sap-icon://history" width="160px" press="TesisEndDateTime"/>
+                                </HBox>
+                            </HBox>
+                            <HBox id="continer101" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text=" Toplam Tesis Arıza Süresi : " design="Bold" width="150px"/>
+                                  <Input id="TesisidTimeInMinutes"  textAlign="Center" width="500px" enabled="false"/>
+                            </HBox>
+
+                            
+                        </VBox>
+                        <VBox id="container2">
+                            
+                             <HBox id="continer30151" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Vardiya : " design="Bold" width="150px"/>
+                                <HBox id="continer23" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" width="500px">
+                                    <Input id="vardiya" enabled = "false" textAlign="Center" width="240px"/>
+                                </HBox>
+                            </HBox>
+                             <HBox id="continer30123" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Vardiya Amiri : " design="Bold" width="150px"/>
+                                <HBox id="continer2123" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" width="500px">
+                                    <Input id="vardiyaAmiri" enabled = "false" textAlign="Center" width="240px"/>
+                                </HBox>
+                            </HBox>
+                            <HBox id="continer30" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" class="sapUiTinyMargin">
+                                <Label text="Operator :" design="Bold" width="150px"/>
+                                <HBox id="continer2412" fitContainer="true" justifyContent="SpaceBetween" alignItems="Center" width="500px">
+                                    <Input id="NotifiedUser" enabled = "false" textAlign="Center" width="240px"/>
+                                </HBox>
+                            </HBox>
+                        </VBox>
+                    </l:content>
+                </l:VerticalLayout>
+            </form:SimpleForm>
+        </content>
+        <buttons>
+           
+            <Button id="createNotificationCancel" width="125px" type="Reject" icon="sap-icon://sys-cancel" text="İptal" press="ViewNotificationCancel"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

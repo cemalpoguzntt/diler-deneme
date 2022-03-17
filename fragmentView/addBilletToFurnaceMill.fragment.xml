@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+    <Dialog id="addBilletToFurnaceMill" title="{i18n>OEE_LABEL_ADD_BILLET}">
+        <content>
+            <f:SimpleForm>
+                <f:content>
+                    <Label text="{i18n>OEE_LABEL_ENTRY_WEIGHT}" />
+                    <Input id="idDialogWeight" editable="true" type="Number" />
+                    <Label text="{i18n>OEE_LABEL_ENTRY_WEIGHT}" />
+                    <Select id="idDialogSelectTable" showSecondaryValues="true" enabled = "{= ${appData>/plant} === '2001' ? true : false }">
+                        <core:ListItem text="SEHPA1" additionalText="SICAK" icon="sap-icon://temperature" />
+                        <core:ListItem text="SEHPA2" additionalText="SOĞUK" icon="sap-icon://heating-cooling" />
+                    </Select>
+                   <Label text="{i18n>OEE_LABEL_CHANGE_LOG_BMENGE}"></Label>
+                    <Input id="quantity" type="Number" value="1"></Input>
+                </f:content>
+            </f:SimpleForm>
+        </content>
+        <OverflowToolbar>
+            <ToolbarSpacer />    
+            <Button id="addManualBillet" press="onConfirmAddBillet" text="{i18n>OEE_BTN_REJECTED_SAVE}" type="Accept" visible="true" ></Button> 
+            <Button  id ="cancelButton" press="handleCancel" text="{i18n>OEE_BTN_REJECTED_CLOSE}" type="Reject" ></Button> 
+           <ToolbarSpacer />    
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

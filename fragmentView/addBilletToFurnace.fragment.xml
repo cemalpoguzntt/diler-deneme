@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog id="addBilletToFurnace" title="{i18n>OEE_LABEL_ADD_BILLET}">
+        <content>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_ENTRY_WEIGHT} :" width="5rem"/>
+                    <Input editable="true" id="entryWeight" type="number" width="10rem"/>
+                </items>
+            </FlexBox>
+        </content>
+        <beginButton>
+            <Button id="btnAddBillet" press="onConfirmAddBillet" text="{i18n>OEE_BTN_REJECTED_SAVE}" type="Accept"/>
+        </beginButton>
+        <endButton>
+            <Button id="btnCloseAddBillet" press="handleCancel" text="{i18n>OEE_BTN_REJECTED_CLOSE}" type="Reject"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

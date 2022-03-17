@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+	<Dialog contentHeight="70%"
+		contentWidth="60%">
+		<subHeader>
+			<Toolbar>
+				<SearchField id="searchTechObject" liveChange="handleSearchForTechnicalObjects"
+					width="100%" />
+			</Toolbar>
+		</subHeader>
+		<content>
+			<Table id="techTable">
+				<columns>
+					<Column>
+						<Text text="{i18n>OEE_LABEL_FLOC}" />
+					</Column>
+					<Column>
+						<Text text="{i18n>OEE_LABEL_EQUIPMENT}" />
+					</Column>
+				</columns>
+			</Table>
+		</content>
+		<endButton>
+			<Button text="{i18n>OEE_BTN_CANCEL}" press="handleCloseForTechnicalObjects" />
+		</endButton>
+
+	</Dialog>
+
+</core:FragmentDefinition>

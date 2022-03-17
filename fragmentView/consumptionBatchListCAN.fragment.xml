@@ -1,0 +1,62 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_COMPONENTS}" id="consumptionBatchList">
+        <content>
+            <Table id="consumptionBatchListTable" mode="none" editable="false" items="{/}">
+                <columns>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="Müşteri" design="Bold" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="Parti" design="Bold" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="Kalite" design="Bold" />
+                    </Column>
+                    <Column width="3rem" hAlign="Center">
+                        <Label text="Çap" design="Bold" />
+                    </Column>
+                    <Column width="3rem" hAlign="Center">
+                        <Label text="Çevrim" design="Bold" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="Döküm No" design="Bold" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="Menşei" design="Bold" />
+                    </Column>
+                    <Column width="3rem" hAlign="Center">
+                        <Label text="Miktar" design="Bold" />
+                    </Column>
+                    <Column width="3rem" hAlign="Center">
+                        <Label text="AYT" design="Bold" />
+                    </Column>
+                    <Column width="8rem" hAlign="Center">
+                        <Label text="Üretim Yöntemi" design="Bold" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{MUSTERI}" />
+                            <Text text="{BATCH}" />
+                            <Text text="{KALITE}" />
+                            <Text text="{CAP}" />
+                            <Text text="{CYCLENO}" />
+                            <Text text="{CASTNO}" />
+                            <Text text="{MENSEI}" />
+                            <Text text="{AGIRLIK}" />
+                            <Text text="{Y_AYT}" />
+                            <Text text="{Y_URETIM_YONTEMI_FLM}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <OverflowToolbar>
+            <ToolbarSpacer />
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancel"></Button>
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

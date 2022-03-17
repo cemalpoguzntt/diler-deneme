@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+    <Dialog title="{i18n>OEE_LABEL_COMMENTS}" id="castNoteReport">
+        <Label text="Ark Ocağı" />
+        <TextArea id="commentAo" value="{castNoteModel>/0/VALUE}" wrapping="Soft" width="100%" height="100%" maxLength="300" enabled = "false"/>
+        <Label text="Pota Ocağı" />
+        <TextArea id="commentPo" value="{castNoteModel>/1/VALUE}" wrapping="Soft" width="100%" height="100%" maxLength="300" enabled = "{= ${appData>/node/description} === 'Pota Ocağı' ? true: false}"/>
+        <Label text="Sürekli Döküm" />
+        <TextArea id="commentSdm" value="{castNoteModel>/2/VALUE}" wrapping="Soft" width="100%" height="100%" maxLength="300" enabled = "false"/>
+        <beginButton>
+
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>OEE_BTN_CANCEL}" press="handleExit" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

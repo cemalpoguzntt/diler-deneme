@@ -1,0 +1,35 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog id="rejectedNotifs" title="{i18n>titleRejectedNotifs}">
+<content>
+   
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                     <Label text="{i18n>OEE_LABEL_TYPE} :" width="5rem" />
+                     <Select  id="selectType" width="20rem" forceSelection="false" items="{rejectedNotifTypes>/Row}" change="onSelectRejectType">
+                                    <core:Item text="{rejectedNotifTypes>DESCRIPTION}" key="{rejectedNotifTypes>REASON_CODE4}"  />
+                      </Select>
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center" visible ="{= ${appData>/plant} ===  '2001' || ${appData>/plant} ===  '3001' ? false: true }" >
+                <items>
+                     <Label text="{i18n>OEE_LABEL_REASON} :" width="5rem" />
+                     <Select  id ="selectReason" width="20rem" forceSelection="false" items="{rejectedNotifReasons>/Row}">
+                                    <core:Item text=" {rejectedNotifReasons>REASONKEY} -- {rejectedNotifReasons>DESCRIPTION}"   key="{rejectedNotifReasons>REASONKEY}"  />
+                       </Select>
+                </items>
+            </FlexBox>
+               <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                                 <Label text="{i18n>OEE_LABEL_REJECTED_DESCRIPTION} :" width="5rem" />
+                                <TextArea  id="description" width="20rem"  growing="true" growingMaxLines="5" maxLength="60" />
+                </items>
+            </FlexBox>
+</content>
+        <beginButton>
+            <Button text="{i18n>OEE_BTN_REJECTED_SAVE}" press="onConfirmBilletReject" type="Accept" id="btnRejectNotif" />
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>OEE_BTN_REJECTED_CLOSE}" press="handleCancel" type="Reject" id="btnCloseRejectedNotifs" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

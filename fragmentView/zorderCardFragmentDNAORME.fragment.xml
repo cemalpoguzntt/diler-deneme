@@ -1,0 +1,74 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:ui="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc">
+
+    <layout:Grid defaultSpan="L12 M12 S12">
+        <layout:content>
+            <ObjectHeader id="orderCardHeader" class="oeeOrderCard" showTitleSelector="true" visible="{path:'appData>/selected/runID', formatter : 'sap.oee.ui.Formatter.showIfRunExists'}" title="{parts : [{path: 'appData>/selected/order/orderNo'},{path:'appData>/selected/operationNo'},{path: 'appData>/selected/operationDesc'},{path: 'appData>/selected/parentOperationDesc'}], formatter : 'sap.oee.ui.Formatter.formatOrderAndOperationForOrderCard'}" backgroundDesign="Solid" number="{parts : [{path: 'i18n>OEE_HEADING_TOTAL_REMAINING'},{path:'appData>/selected/örmeRemainingQty'},{path: 'appData>/decimalPrecision'}], formatter : 'sap.oee.ui.Formatter.formatRemainingQuantityWithoutUom'}" numberUnit="{appData>/selected/quantityReleasedUOMText}">
+                <layoutData>
+                    <layout:GridData span="L6 M12 S12"></layout:GridData>
+                </layoutData>
+                <attributes>
+                    <ObjectAttribute class="oeeTextBlack" text="{path:'appData>/selected/material/id', formatter : 'sap.oee.ui.Formatter.formatMaterialID'}" />
+                    <ObjectAttribute class="oeeTextBlack" text="{appData>/selected/material/description}" />
+                    <ObjectAttribute class="oeeTextBlack" visible="{parts : [{path: 'appData>/selected/material/batchNumber'}], formatter : 'sap.oee.ui.Formatter.hideIfEmpty'}" text="{parts:[{path:'i18n>OEE_LABEL_BATCH_NUM'},{path:'appData>/selected/material/batchNumber'}],formatter:'sap.oee.ui.Formatter.formatBatchNumberDetails'}" />
+                    <ObjectAttribute visible="{parts : [{path: 'appData>/selected/productionVersion'}], formatter : 'sap.oee.ui.Formatter.hideIfEmpty'}" class="oeeTextBlack" text="{parts : [{path: 'i18n>OEE_LABEL_PRODUCTION_VERSION'}, {path: 'appData>/selected/productionVersion'}], formatter:'sap.oee.ui.Formatter.formatProductionVersion'}" />
+                    <ObjectAttribute visible="{path:'appData>/node/crewSize',formatter:'sap.oee.ui.Formatter.formatCrewSizeVisibility'}" class="oeeTextBlack" text="{parts : [{path: 'i18n>OEE_LABEL_CREWSIZE'},{path: 'appData>/selected/order/crewSize'}],formatter : 'sap.oee.ui.Formatter.formatCrewSize'}" />
+                    <ObjectAttribute class="oeeTextBlack" text="{parts : [{path: 'i18n>OEE_LABEL_STARTED_AT'}, {path: 'appData>/selected/orderStartTimestamp'},{path: 'appData>/plantTimezoneOffset'},{path: 'appData>/plantTimezoneKey'}], formatter : 'sap.oee.ui.Formatter.formatTimeStampWithLabel'}" />
+                    <ObjectAttribute class="oeeTextBlack" visible="{parts : [{path: 'appData>/selected/order/orderStatus'}], formatter : 'sap.oee.ui.Formatter.formatEndedAtVisibility'}" text="{parts : [{path: 'i18n>OEE_LABEL_ENDED_AT'}, {path: 'appData>/selected/orderEndTimestamp'},{path: 'appData>/plantTimezoneOffset'},{path: 'appData>/plantTimezoneKey'}], formatter : 'sap.oee.ui.Formatter.formatTimeStampWithLabel'}" />
+                    <ObjectAttribute class="oeeTextBlack" visible="{parts : [{path: 'appData>/selected/order/capacityNodes'}], formatter : 'sap.oee.ui.Formatter.formatCapacityNodesVisibilityInOrderCard'}" text="{parts : [{path: 'i18n>OEE_LABEL_WORK_UNIT_CAPACITIES'}, {path: 'appData>/selected/order/capacityNodes'}], formatter : 'sap.oee.ui.Formatter.formatCapacityNodesInOrderCardWithLabel'}" />
+                </attributes>
+                <statuses>
+                    <ObjectStatus text="{parts : [{path: 'appData>/selected/order/statusText'},{path: 'appData>/selected/productionActivity'}], formatter : 'sap.oee.ui.Formatter.formatStatusTextAndActivity'}" class="orderCardStatusActive" />
+                    <ObjectStatus class="orderCardStatus" text="{parts : [{path: 'i18n>OEE_HEADING_PLANNED_QUANTITY_NEW'},{path: 'appData>/selected/quantityReleased'} , {path:'appData>/selected/quantityReleasedUOMText'},{path: 'appData>/decimalPrecision'}], formatter : 'sap.oee.ui.Formatter.formatQuantity'}" />
+                    <ObjectStatus class="orderCardStatus" text="{parts : [{path: 'i18n>OEE_HEADING_TOTAL_PROD_NEW'},{path: 'appData>/selected/örmeTotalQuantity'} , {path:'appData>/selected/quantityReleasedUOMText'},{path: 'appData>/decimalPrecision'}], formatter : 'sap.oee.ui.Formatter.formatQuantity'}" />
+                    <ObjectStatus class="orderCardStatus" text="{parts : [{path: 'i18n>OEE_HEADING_TOTAL_IN_SHIFT'},{path: 'appData>/selected/totalQuantityProducedInRun'} , {path:'appData>/selected/quantityReleasedUOMText'},{path: 'appData>/decimalPrecision'}], formatter : 'sap.oee.ui.Formatter.formatQuantity'}" />
+                    <ObjectStatus class="orderCardStatus" text="{parts : [{path: 'i18n>OEE_LABEL_STANDARD_RATE'},{path: 'appData>/selected/standardRateQty'} ,{path: 'appData>/selected/timeQty'}, {path:'appData>/selected/stdRateUOMText'},{path:'appData>/selected/timeUom'},{path: 'appData>/decimalPrecision'}], formatter : 'sap.oee.ui.Formatter.formatTextQuantityAndDuration'}" />
+                    <ObjectStatus />
+                    <ObjectStatus />
+                    <ObjectStatus />
+                </statuses>
+            </ObjectHeader>
+            <FlexBox alignItems="Column" width="100%">
+                <layoutData>
+                    <layout:GridData span="L6 M12 S12"></layout:GridData>
+                </layoutData>
+                <ui:Table id="idCharacteristicTable1" selectionMode="Single" selectionBehavior="RowOnly" visibleRowCount="8" fixedLayout="true" width="100%" rows="{path: '/'}" columnHeaderHeight="10px" rowHeight="15px" growing="false" growingScrollToLoad="false" class="transparentTableBackground">
+                    <ui:columns>
+                        <ui:Column hAlign="Center">
+                            <Label text="Karakteristik" design="Bold"/>
+                            <ui:template>
+                                <Text text="{DESC}" class="boldText"/>
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column hAlign="Center">
+                            <Label text="Değer" design="Bold"/>
+                            <ui:template>
+                                <Text text="{VALUE}" class="boldText"/>
+                            </ui:template>
+                        </ui:Column>
+                    </ui:columns>
+                </ui:Table>
+                <ui:Table id="idCharacteristicTable2" selectionMode="Single" selectionBehavior="RowOnly" visibleRowCount="8" fixedLayout="true" width="100%" rows="{path: '/'}" columnHeaderHeight="10px" rowHeight="15px" growing="false" growingScrollToLoad="false" class="transparentTableBackground">
+                    <ui:columns>
+                        <ui:Column hAlign="Center">
+                            <Label text="Karakteristik" design="Bold"/>
+                            <ui:template>
+                                <Text text="{DESC}" class="boldText"/>
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column hAlign="Center">
+                            <Label text="Değer" design="Bold"/>
+                            <ui:template>
+                                <Text text="{VALUE}" class="boldText"/>
+                            </ui:template>
+                        </ui:Column>
+                    </ui:columns>
+                </ui:Table>
+            </FlexBox>
+        </layout:content>
+    </layout:Grid>
+</core:FragmentDefinition>

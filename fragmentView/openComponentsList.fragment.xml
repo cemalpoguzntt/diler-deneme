@@ -1,0 +1,58 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_COMPONENTS}" id="openComponentsList">
+        <content>
+            <Table id="confirmTable" mode="none" editable="false" items="{/}">
+                <columns>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BARCODE}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_WIRE_DIAMETER_MM}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CENTER_SPHERE_WIRE}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BOBBIN_METERAGE}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BOBBIN_WEIGHT}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_COIL_NO}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_SOURCE_METERAGE}" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center" visible="false">
+                        <Label text="{i18n>OEE_LABEL_SCRAP}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{BARCODE}" />
+                            <Text text="{Y_TEL_CAP_MM_SC}" />
+                            <Text text="{Y_MERKEZ_CEVRE}" />
+                             <Input value="{path:'METERAGE', type:'sap.ui.model.odata.type.Decimal', formatOptions:{minFractionDigits:0,maxFractionDigits:3}, constraints:{precision:13,scale:2}}" liveChange = "changeMeterage"/>
+                            <Text text="{path:'QUANTITY', type:'sap.ui.model.odata.type.Decimal', formatOptions:{minFractionDigits:0,maxFractionDigits:3}, constraints:{precision:13,scale:2}}" />
+                            <Text text="{ROW_NUMBER}" />
+                            <Button text="{i18n>OEE_LABEL_SOURCE_METERAGE}" press="getWeldDetails"></Button>
+                            <CheckBox wrapping="true" width="150px" select="callCheckBox" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <OverflowToolbar>
+            <Label text="{i18n>OEE_LABEL_KGM}"></Label>
+            <Input width="70px" id="inputKgValue" class="classInput"></Input>
+            <Button text="{i18n>OEE_LABEL_CALCULATE}" press="onPressCalculate"></Button>
+            <Input enabled="false" width="70px" id="inputConversion" class="classInput"></Input>
+            <Label text="{i18n>OEE_LABEL_TON}"></Label>
+            <ToolbarSpacer />
+            <Button id="deleteComponent" text="{i18n>OEE_BTN_SAVE}" press="onSaveRecordsComponent" type="Accept"></Button>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancel" type="Reject"></Button>
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

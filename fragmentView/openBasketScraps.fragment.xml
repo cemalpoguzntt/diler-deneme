@@ -1,0 +1,45 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_BTN_SCRAPS}" id="openBasketScraps">
+        <content>
+            <Table id="basketScraps" editable="false" items="{BasketScraps>/Row}" mode="SingleSelectMaster">
+                <headerToolbar>
+                    <OverflowToolbar>    
+                        <Label design = "Bold" textAlign="Left" text="{i18n>OEE_LABEL_TOTAL} : {BasketScraps>/Row/0/SUMQUANTITY}" width="280px" />               
+                        <Label design = "Bold"  textAlign="Right" text="{i18n>OEE_LABEL_CAST_ID} : {BasketScraps>/Row/0/LASTCASTID}" width="280px" />               
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column width="6rem">
+                        <Label text="{i18n>OEE_LABEL_LAYER_NO}" />
+                    </Column>
+                    <Column width="6rem">
+                        <Label text="{i18n>OEE_LABEL_SCRAP}" />
+                    </Column>
+                    <Column width="6rem">
+                        <Label text="{i18n>OEE_LABEL_SUM_QUANTITY_KG}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{BasketScraps>LAYER_NO}" />
+                            <Text text="{BasketScraps>SCRAPTYPE}" />
+                            <Text text="{BasketScraps>QUANTITY}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+ <Bar>
+      <contentLeft>
+                <Button id="addEntryScrap" text="{i18n>OEE_LABEL_SCRAP_ADD}" icon="sap-icon://save" press="onPressOpenEntryFrag" type="Accept"></Button>
+                <Button id="saveButtonScrap" text="{i18n>OEE_BTN_DELETE}" icon="sap-icon://delete" press="onPressDeleteBasketScrap" type="Reject"></Button>
+      </contentLeft>
+                <contentRight>
+            <Button id="closeChargeScraps" text="{i18n>OEE_BTN_CLOSE}" press="handleCancelBasketScrap" ></Button>
+      </contentRight>
+            </Bar>
+    </Dialog>
+</core:FragmentDefinition>

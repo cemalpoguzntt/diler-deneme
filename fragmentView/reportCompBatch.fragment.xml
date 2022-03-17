@@ -1,0 +1,44 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+    <Dialog title="" contentHeight="90%" contentWidth="80%" id="batchQty" draggable="true">
+        <beginButton>
+            <Button text="Tamam" press="onSaveBatch"></Button>
+        </beginButton>
+        <endButton>
+            <Button text="Kapat" press="handleCloseBtn"></Button>
+        </endButton>
+        <content>
+            <Table items="{/0/Row/}" id="tblBacthQty" selectionChange="AssignDoc" growing="false" mode="SingleSelectMaster">
+                <columns>
+                    <Column hAlign="Center">
+                        <header>
+                            <Text text="Döküm Numarası" />
+                        </header>
+                    </Column>
+                    <Column hAlign="Center">
+                        <header>
+                            <Text text="Miktar" />
+                        </header>
+                    </Column>
+                    <Column hAlign="Center">
+                        <header>
+                            <Text text="Birim" />
+                        </header>
+                    </Column>
+                    <Column hAlign="Center">
+                        <header>
+                            <Text text="Mesaj" />
+                        </header>
+                    </Column>
+                </columns>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{BATCH_NO}" />
+                        <Text text="{QUANTITY}" />
+                        <Text text="{UOM} " />
+                        <Text text="{= ${MESSAGE} === 'NA' ? '': ${MESSAGE}} " />
+                    </cells>
+                </ColumnListItem>
+            </Table>
+        </content>
+    </Dialog>
+</core:FragmentDefinition>

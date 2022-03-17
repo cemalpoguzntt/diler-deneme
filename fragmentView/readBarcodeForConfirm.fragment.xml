@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_BTN_CONFIRM}" id="readBarcodeForConfirm">
+        <form:Form width="100%" editable="true">
+            <form:formContainers>
+                <form:FormContainer>
+                    <form:formElements>
+                        <form:FormElement>
+                            <form:label>
+                                <Label text="{i18n>OEE_LABEL_PROD_TYPE}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" />
+                            </form:label>
+                            <form:fields>
+                                <Select forceSelection="true" id="selectType" items="{/productionData}">
+                                    <core:Item key="{description}" text="{description}"/>
+                                </Select>
+                            </form:fields>
+                        </form:FormElement>
+                    </form:formElements>
+                    <form:title />
+                </form:FormContainer>
+            </form:formContainers>
+            <form:layout>
+                <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12" />
+            </form:layout>
+        </form:Form>
+        <beginButton>
+            <Button text="{i18n>OEE_BTN_ADD_ENTRY}" press="handleAddConfirm"></Button>
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancel"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,33 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+
+    <Dialog title="{i18n>OEE_LABEL_WELDS}" id="weldList">
+        <content>
+            <Table id="weldTable" items="{/}">
+                <columns>
+                    <Column>
+                        <Label text="Kaynak Metrajı" />
+                    </Column>
+                    <Column>
+                        <Label text="Parti No" />
+                    </Column>
+                    <Column>
+                        <Label text="Sıra No" />
+                    </Column>
+
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{QUANTITY}" />
+                            <Text text="{BATCH_NO}" />
+                            <Text text="{BATCH_LINE_NO}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <endButton>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="onCancelFrag"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

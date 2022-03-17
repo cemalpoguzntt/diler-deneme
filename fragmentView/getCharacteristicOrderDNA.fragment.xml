@@ -1,0 +1,225 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_MAIN_INFORMATION}" id="getCharacteristicOrder">
+        <Panel id="panel1" expandable="true" headerText="">
+            <Table id="charTable1" editable="false" items="{/}" mode="SingleSelectMaster">
+                <columns>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_DESCRIPTION}" />
+                    </Column>
+                    <Column visible="false">
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_CODE}" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_VALUE}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{CHARDESC}" />
+                            <Text text="{CHARCODE}" />
+                            <Text text="{CHARVALUE}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </Panel>
+        <Panel id="panel2" expandable="true" headerText="">
+            <Table id="charTable2" editable="false" items="{/}" mode="SingleSelectMaster">
+                <columns>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_DESCRIPTION}" />
+                    </Column>
+                    <Column visible="false">
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_CODE}" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_VALUE}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{CHARDESC}" />
+                            <Text text="{CHARCODE}" />
+                            <Text text="{CHARVALUE}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </Panel>
+        <Panel id="panel3" expandable="true" headerText="">
+            <Table id="charTable3" editable="false" items="{/}" mode="SingleSelectMaster">
+                <columns>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_DESCRIPTION}" />
+                    </Column>
+                    <Column visible="false">
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_CODE}" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_VALUE}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{CHARDESC}" />
+                            <Text text="{CHARCODE}" />
+                            <Text text="{CHARVALUE}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </Panel>
+        <Panel id="panel4" expandable="true" headerText="">
+            <Table id="charTable4" editable="false" items="{/}" mode="SingleSelectMaster">
+                <columns>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_DESCRIPTION}" />
+                    </Column>
+                    <Column visible="false">
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_CODE}" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_VALUE}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{CHARDESC}" />
+                            <Text text="{CHARCODE}" />
+                            <Text text="{CHARVALUE}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </Panel>
+        <Panel id="panel5" expandable="true" headerText="">
+            <Table id="charTable5" editable="false" items="{/}" mode="SingleSelectMaster">
+                <columns>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_DESCRIPTION}" />
+                    </Column>
+                    <Column visible="false">
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_CODE}" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_VALUE}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{CHARDESC}" />
+                            <Text text="{CHARCODE}" />
+                            <Text text="{CHARVALUE}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </Panel>
+        <Panel id="panel6" expandable="true" headerText="">
+            <Table id="charTable6" editable="false" items="{/}" mode="SingleSelectMaster">
+                <columns>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_DESCRIPTION}" />
+                    </Column>
+                    <Column visible="false">
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_CODE}" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_VALUE}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{CHARDESC}" />
+                            <Text text="{CHARCODE}" />
+                            <Text text="{CHARVALUE}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </Panel>
+        <Panel id="panel7" expandable="true" headerText="">
+            <Table id="charTable7" editable="false" items="{/}" mode="SingleSelectMaster">
+                <columns>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_DESCRIPTION}" />
+                    </Column>
+                    <Column visible="false">
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_CODE}" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_VALUE}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{CHARDESC}" />
+                            <Text text="{CHARCODE}" />
+                            <Text text="{CHARVALUE}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </Panel>
+        <Panel id="panel8" expandable="true" headerText="">
+            <Table id="charTable8" editable="false" items="{/}" mode="SingleSelectMaster">
+                <columns>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_DESCRIPTION}" />
+                    </Column>
+                    <Column visible="false">
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_CODE}" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_VALUE}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{CHARDESC}" />
+                            <Text text="{CHARCODE}" />
+                            <Text text="{CHARVALUE}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </Panel>
+        <Panel id="panel9" expandable="true" headerText="">
+            <Table id="charTable9" editable="false" items="{/}" mode="SingleSelectMaster">
+                <columns>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_DESCRIPTION}" />
+                    </Column>
+                    <Column visible="false">
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_CODE}" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_VALUE}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{CHARDESC}" />
+                            <Text text="{CHARCODE}" />
+                            <Text text="{CHARVALUE}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </Panel>
+        <endButton>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancel"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

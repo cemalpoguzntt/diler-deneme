@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_SELECT_MATERIAL}" id="formScrapPreparaitonNewEntry">
+        <content>
+            <SearchField id="searchMaterial" width="400px" enableSuggestions="true" search="onSearchMaterial" suggest="onSuggestMaterial" suggestionItems="{Material>/Row}" placeholder="{i18n>OEE_LABEL_MATERIAL}">
+                <suggestionItems>
+                    <SuggestionItem text="{Material>MATNR}" description=" - {Material>MAKTX}" />
+                </suggestionItems>
+            </SearchField>
+            <ComboBox id="scrapType" change="onSearch" width="400px" items="{scrapType>/Row}" placeholder="{i18n>OEE_LABEL_SCRAP_TYPE}">
+                            <core:Item text="{scrapType>NORMT}" key="  {scrapType>NORMT}" />
+                        </ComboBox>
+        </content>
+        <OverflowToolbar>
+            <ToolbarSpacer />
+            <Button text="{i18n>OEE_BTN_POST}" press="onPressAddEntry" type="Accept"></Button>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancel" type="Reject"></Button>
+            <ToolbarSpacer />
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

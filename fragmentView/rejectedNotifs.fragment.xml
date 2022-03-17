@@ -1,0 +1,43 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog id="rejectedNotifs" title="{i18n>titleRejectedNotifs}">
+        <content>
+
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_TYPE} :" width="5rem" />
+                    <Select id="selectType" width="12rem" forceSelection="false" items="{rejectedNotifTypes>/Row}" change="onSelectRejectType">
+                        <core:Item text="{rejectedNotifTypes>TYPE}" key="{rejectedNotifTypes>TYPEKEY}" />
+                    </Select>
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_REASON} :" width="5rem" />
+                    <Select id="selectReason" width="12rem" forceSelection="false" items="{rejectedNotifReasons>/Row}" change="onSelectRejectReason">
+                        <core:Item text="{rejectedNotifReasons>REASON}" key="{rejectedNotifReasons>REASONKEY}" />
+                    </Select>
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_DETAIL} :" width="5rem" />
+                    <Select id="selectDetail" width="12rem" forceSelection="false" items="{rejectedNotifDetails>/Row}" change="onSelectRejectDetail">
+                        <core:Item text="{rejectedNotifDetails>REASON}" key="{rejectedNotifDetails>REASONKEY}" />
+                    </Select>
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_REJECTED_DESCRIPTION} :" width="5rem" />
+                    <TextArea id="description" width="12rem" growing="true" growingMaxLines="5" maxLength="60" />
+                </items>
+            </FlexBox>
+        </content>
+        <beginButton>
+            <Button text="{i18n>OEE_BTN_REJECTED_SAVE}" press="onConfirmBilletReject" type="Accept" id="btnRejectNotif" />
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>OEE_BTN_REJECTED_CLOSE}" press="handleCancel" type="Reject" id="btnCloseRejectedNotifs" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

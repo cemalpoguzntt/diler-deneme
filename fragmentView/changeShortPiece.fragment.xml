@@ -1,0 +1,62 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog id="changeShortPiece" title="{i18n>OEE_CHANGE_SHORT_PIECE}">
+        <content>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_Y_DATE}" width="7rem" />
+                    <DatePicker id="idDatePickerFragment" valueFormat="dd.MM.yyyy" delimiter="-" displayFormat="dd.MM.yyyy" width="18rem" change = "getZmpmBilletShiftShortPiece"/>
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_PACKAGE_DETAIL_VRD}:" width="7rem" />
+                    <Select id="idSessionSelectFragment" width="18rem" forceSelection="false" class="sapUiTinyMarginBegin">
+                        <core:ListItem text="1. Vardiya (00:00 - 08:00)" key="1" />
+                        <core:ListItem text="2. Vardiya (08:00 - 16:00)" key="2" />
+                        <core:ListItem text="3. Vardiya (16:00 - 24:00)" key="3" />
+                    </Select>
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_CHANGE_LOG_BMENGE} :" width="7rem" />
+                    <Input id="shortPieceQuantity" type="Number" width="18rem" />
+                </items>
+            </FlexBox>
+            <FlexBox>
+                <Table id="shortPieceTable" mode="none" editable="false" items="{shortPieceList>/}">
+                    <columns>
+                        <Column width="6rem" hAlign="Center">
+                            <Label text="" />
+                        </Column>
+                        <Column width="8rem" hAlign="Center">
+                            <Label text="{i18n>OEE_PACKAGE_DETAIL_DATE}" />
+                        </Column>
+                        <Column width="8rem" hAlign="Center">
+                            <Label text="{i18n>OEE_PACKAGE_DETAIL_VRD}" />
+                        </Column>
+                        <Column width="6rem" hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_CHANGE_LOG_BMENGE}" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{shortPieceList>SSPID}" />
+                                <Text text="{shortPieceList>SPDATE}" />
+                                <Text text="{shortPieceList>SHIFT}" />
+                                <Text text="{shortPieceList>QUANTITY}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </FlexBox>
+        </content>
+        <beginButton>
+            <Button text="{i18n>OEE_BTN_REJECTED_SAVE}" press="onChangeDialogShortPiece" type="Accept" id="btnRejectNotif" />
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>OEE_BTN_REJECTED_CLOSE}" press="handleCancel" type="Reject" id="btnCloseRejectedNotifs" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

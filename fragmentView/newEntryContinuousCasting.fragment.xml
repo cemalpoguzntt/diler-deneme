@@ -1,0 +1,44 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog id="newEntryContinuousCasting">
+        <content>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_ROAD} :" width="70px" />
+                    <Select items="{path: 'roads>/'}" forceSelection="false" width="150px" id="idRoads" change = "onChangeGetDimension">
+                        <core:Item key="{roads>LINE}" text="{roads>LINE}" />
+                    </Select>
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_BILLET_DIMENSION} :" width="70px" />
+                    <Select items="{path: 'dimensions>/Row'}" enabled = "false" forceSelection="false" width="150px" id = "idDimensions"> 
+                        <core:Item key="{dimensions>VALUE}" text="{dimensions>VALUE}" />
+                    </Select>
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_BILLET_HEIGHT} :" width="70px" />
+                    <Select items="{path: 'lengths>/Row'}" forceSelection="false" width="150px" id="idLengths">
+                        <core:Item key="{lengths>VALUE}" text="{lengths>VALUE}" />
+                    </Select>
+                </items>
+            </FlexBox>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_BTN_REASONCODE} :" width="70px" />
+                    <Select items="{path: 'reasonCodes>/Row'}" forceSelection="false" width="150px" id="idReasonCode">
+                        <core:Item key="{reasonCodes>VALUE}" text="{reasonCodes>VALUE}" />
+                    </Select>
+                </items>
+            </FlexBox>
+        </content>
+        <OverflowToolbar>
+            <ToolbarSpacer />
+	<Button visible = "false"/>
+	 <Button text="{i18n>OEE_BTN_POST}" press="onPressSaveChanges" type="Accept"></Button>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleExit" type="Reject"></Button>
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

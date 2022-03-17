@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_ADD_NEW_SCRAP}" id="scrapBasketNewEntry">
+        <content>
+            <FlexBox  alignItems="Center" justifyContent="Center">
+                <items>
+	     <!--    <Label visible= "false" text="{i18n>OEE_LABEL_LAYER_NO} :" width="80px" />
+                    <Combobox visible= "false" id="layerList" forceSelection="false" width="400px" items="{layerList>/Row}" placeholder="{i18n>OEE_LABEL_LAYER_NO}">
+                        <core:Item text="{layerList>ATWRT}" key="{layerList>ATWRT}" />
+                    </Combobox> -->
+                </items>
+            </FlexBox>
+            <FlexBox height="40px" alignItems="Center" justifyContent="Center">
+                <items>
+	        <Label text="{i18n>OEE_LABEL_SCRAP_TYPE} :" width="80px" />
+                    <ComboBox id="scrapType" width="400px" items="{scrapTypeMaterial>/Row}" placeholder="{i18n>OEE_LABEL_SCRAP_TYPE}">
+                        <core:Item text="{scrapTypeMaterial>JARGON}" key="{scrapTypeMaterial>JARGON}" />
+                    </ComboBox>
+                </items>
+            </FlexBox>
+            <FlexBox height="40px" alignItems="Center" justifyContent="Center">
+                <items>
+                    <Label text="{i18n>OEE_LABEL_SCRAP_QUANTITY} :" width="80px" />
+                    <Input id="scrapQuantity" type="Number" width="400px" />
+                </items>
+            </FlexBox>
+        </content>
+        <OverflowToolbar>
+            <ToolbarSpacer />
+            <Button text="{i18n>OEE_BTN_POST}" press="onPressAddEntry" type="Accept"></Button>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancel" type="Reject"></Button>
+            <ToolbarSpacer />
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

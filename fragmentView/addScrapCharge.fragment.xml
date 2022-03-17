@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_BTN_SCRAP_CHARGE}" id="formScrapCharge">
+        <content>
+            <FlexBox>
+                <items>
+                    <ComboBox id="castId" width="400px" items="{CastNo>/Row}" placeholder="{i18n>OEE_LABEL_CASTINGNUMBER}">
+                        <core:Item text="{CastNo>CASTID}" key="  {CastNo>CASTID}" />
+                    </ComboBox>
+                </items>
+            </FlexBox>
+        </content>
+        <OverflowToolbar>
+            <ToolbarSpacer />
+            <Button text="{i18n>OEE_BTN_ACCEPT}" press="onPressAccept" type="Accept"></Button>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancel" type="Reject"></Button>
+            <ToolbarSpacer />
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

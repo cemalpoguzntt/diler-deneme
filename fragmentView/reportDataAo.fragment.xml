@@ -1,0 +1,104 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="Rapor" id="reportDataAo">
+        <content>
+            <Table id="dataCollectionTable" headerText="{i18n>OEE_MENUITEM_DATA_COLLECTION}" mode="none" editable="false" items="{dataCollectionModel>/}">
+                <columns>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_DC_NAME}" />
+                    </Column>
+                    <Column width="8rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CHARGING1}" />
+                    </Column>
+                    <Column width="8rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CHARGING2}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CHARGING3}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CHARGING4}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CHARGING5}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_TOTAL_QTY_FOR_ORDER}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{dataCollectionModel>DESCRIPTION}" />
+                            <Text text="{dataCollectionModel>CHARGE1}" />
+                            <Text text="{dataCollectionModel>CHARGE2}" />
+                            <Text text="{dataCollectionModel>CHARGE3}" />
+                            <Text text="{dataCollectionModel>CHARGE4}" />
+                            <Text text="{dataCollectionModel>CHARGE5}" />
+                            <Text text="{dataCollectionModel>SUM_QUANTITY}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+            <FlexBox height="30px" alignItems="Center" justifyContent="Center" width="1000px">
+                <HBox alignItems="Center" justifyContent="Center" width="250px">
+                    <Label text="Devirme Karbon : " desing="Bold" class = "dataCollectionLabel"/>
+                    <Label text="{dataCollectionGeneralModel>/DC_3001_AO_DEVKARB}" class = "dataCollectionLabel"/>
+                </HBox>
+                <HBox alignItems="Center" justifyContent="Center" width="250px" >
+                    <Label text="Devirme Oksijen : " desing="Bold" class = "dataCollectionLabel"/>
+                    <Label text="{dataCollectionGeneralModel>/DC_3001_AO_DEVOKSJ}" class = "dataCollectionLabel"/>
+                </HBox>
+                <HBox alignItems="Center" justifyContent="Center" width="250px">
+                    <Label text="Devirme Sıcaklığı : " desing="Bold" class = "dataCollectionLabel"/>
+                    <Label text="{dataCollectionGeneralModel>/DC_3001_AO_DEVSICA}" class = "dataCollectionLabel"/>
+                </HBox>
+                <HBox alignItems="Center" justifyContent="Center" width="250px">
+                    <Label text="Devirme Basıncı : " desing="Bold" class = "dataCollectionLabel"/>
+                    <Label text="{dataCollectionGeneralModel>/DC_3001_AO_OKSBSNC}" class = "dataCollectionLabel"/>
+                </HBox>
+            </FlexBox>
+            <Table id="consumptionTable" headerText="{i18n>OEE_LABEL_COMPONENTS}" mode="none" editable="false" items="{consumptionModel>/}">
+                <columns>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_DC_NAME}" />
+                    </Column>
+                    <Column width="8rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CHARGING1}" />
+                    </Column>
+                    <Column width="8rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CHARGING2}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CHARGING3}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CHARGING4}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CHARGING5}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_TOTAL_QTY_FOR_ORDER}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{consumptionModel>MATNR}" />
+                            <Text text="{consumptionModel>CHARGE1}" />
+                            <Text text="{consumptionModel>CHARGE2}" />
+                            <Text text="{consumptionModel>CHARGE3}" />
+                            <Text text="{consumptionModel>CHARGE4}" />
+                            <Text text="{consumptionModel>CHARGE5}" />
+                            <Text text="{consumptionModel>SUM_QUANTITY}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <endButton>
+            <Button />
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancel" type="Reject" visible="true"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

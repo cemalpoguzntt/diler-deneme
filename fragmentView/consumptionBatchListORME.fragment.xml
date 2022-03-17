@@ -1,0 +1,56 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_COMPONENTS}" id="consumptionBatchList">
+        <content>
+            <Table id="consumptionBatchListTable" mode="none" editable="false" items="{/}">
+                <columns>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_SO_MAT}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BARCODE}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="Fiziki Bobin No" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="Bobin Sıra No" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="Kontrol Çapı(mm)" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="Beşik No" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="Ağırlık" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="Metraj" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center">
+                        <Label text="Kaynak Metraj" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{MATNR}" />
+                            <Text text="{BARCODE}" />
+                            <Text text="{BOBBIN_NO}" />
+                            <Text text="{ROW_NUMBER}" />
+                            <Text text="{MSD_DIAMETER}" />
+                            <Text text="{LOCATION_BSK}" />
+                            <Text text="{QUANTITY}" />
+                            <Text text="{METERAGE}" />
+                            <Text text="{KAYNAK_METRAJ}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <OverflowToolbar>
+            <ToolbarSpacer />
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancel"></Button>
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

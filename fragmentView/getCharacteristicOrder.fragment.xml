@@ -1,0 +1,103 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_MAIN_INFORMATION}" id="getCharacteristicOrder">
+        <Panel expandable="true" headerText="{i18n>OEE_LABEL_MAIN_INFORMATION}">
+            <Table id="CharacteristicTable1" editable="false" items="{panelsJSON>/0/Y_GNL}" mode="SingleSelectMaster">
+                <columns>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_DESCRIPTION}" />
+                    </Column>
+                    <Column visible="false">
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_CODE}" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_VALUE}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{panelsJSON>CHARDESC}" />
+                            <Text text="{panelsJSON>CHARCODE}" />
+                            <Text text="{panelsJSON>CHARVALUE}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </Panel>
+        <Panel expandable="true" headerText="{i18n>OEE_LABEL_CHEMICAL}">
+            <Table id="CharacteristicTable2" editable="false" items="{panelsJSON>/1/Y_KIM}" mode="SingleSelectMaster">
+                <columns>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_DESCRIPTION}" />
+                    </Column>
+                    <Column visible="false">
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_CODE}" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_VALUE}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{panelsJSON>CHARDESC}" />
+                            <Text text="{panelsJSON>CHARCODE}" />
+                            <Text text="{panelsJSON>CHARVALUE}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </Panel>
+        <Panel expandable="true" headerText="{i18n>OEE_LABEL_MECHANICAL}">
+            <Table id="CharacteristicTable3" editable="false" items="{panelsJSON>/2/Y_MEK}" mode="SingleSelectMaster">
+                <columns>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_DESCRIPTION}" />
+                    </Column>
+                    <Column visible="false">
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_CODE}" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_VALUE}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{panelsJSON>CHARDESC}" />
+                            <Text text="{panelsJSON>CHARCODE}" />
+                            <Text text="{panelsJSON>CHARVALUE}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </Panel>
+        <Panel expandable="true" headerText="{i18n>OEE_TOLERANCES}">
+            <Table id="CharacteristicTable4" editable="false" items="{panelsJSON>/3/Y_TLR}" mode="SingleSelectMaster">
+                <columns>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_DESCRIPTION}" />
+                    </Column>
+                    <Column visible="false">
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_CODE}" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_VALUE}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{panelsJSON>CHARDESC}" />
+                            <Text text="{panelsJSON>CHARCODE}" />
+                            <Text text="{panelsJSON>CHARVALUE}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </Panel>
+        <endButton>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancel"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

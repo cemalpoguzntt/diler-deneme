@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+    <Dialog title="{i18n>OEE_LABEL_SHIFT_NOTE}" id="shiftNote">
+        <TextArea id="shiftNoteText" width="300px" height="100%" maxLength="250"/>
+    <beginButton>
+            <Button text="{i18n>OEE_BTN_OK}" press="onSaveShiftCommentDialog" />
+        </beginButton>
+        <endButton>
+            <Button text="{i18n>OEE_BTN_CANCEL}" press="handleExitShiftNote" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

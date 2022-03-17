@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_CASTING_NUMBERS}" id="castList">
+        <content>
+            <Table id="castTable" mode="SingleSelectMaster" editable="true" items="{castModel>/Row/}">
+                <columns>
+                    <Column width="7rem">
+                        <Label text="{i18n>OEE_LABEL_COMPONENT_CODE}" />
+                    </Column>
+                    <Column width="7rem">
+                        <Label text="{i18n>OEE_LABEL_CASTINGNUMBER}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{castModel>BARCODE}" />
+                            <Text text="{castModel>CHAR_VALUE}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+        </content>
+        <OverflowToolbar>
+            <ToolbarSpacer />
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancel" type="Reject"></Button>
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

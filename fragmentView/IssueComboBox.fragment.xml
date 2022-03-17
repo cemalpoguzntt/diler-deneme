@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"  xmlns="sap.m">
+    <Dialog contentHeight="auto" contentWidth = "25%" horizontalScrolling="true" id = "IssueComboBox" showHeader="true" state="None" stretch="false" title="Lütfen hata tipini seçiniz!" type="Standard" verticalScrolling="false">
+        <content>
+
+
+        <ComboBox id="IssueCode" items="{path:'/'}"  textAlign="Center"  placeholder="Hata Tipini Seçiniz!"  showValueHelp="false" width="88%"  maxLength="0" class="sapUiMediumMarginTop sapUiMediumMarginBottom sapUiMediumMarginBegin sapUiMediumMarginEnd">            
+            
+              <core:Item key="{REASON_CODE5}" text="{DESCRIPTION} - {REASON_CODE5}"/>
+
+            </ComboBox> 
+
+           
+        </content>
+        <beginButton/>
+        <buttons>
+            <Button text="Seç" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press = "getissueCode" />
+            <Button text="İptal" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press ="CloseIssueFragment" />
+        </buttons>
+        <customHeader/>
+        <endButton/>
+        <subHeader/>
+    </Dialog>
+</core:FragmentDefinition>

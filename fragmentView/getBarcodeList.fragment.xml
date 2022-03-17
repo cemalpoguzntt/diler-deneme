@@ -1,0 +1,44 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_CHARACTERISTICS}" id="getBarcodeList">
+        <content>
+            <Table id="barcodeList" editable="false" items="{BarcodeList>/Row}" mode="SingleSelectMaster">
+                <columns>
+                    <Column>
+                        <Label text="" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_COMPONENT_CODE}" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_DEFINITION}" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_BARCODE}" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_KTKID}" />
+                    </Column>
+                    <Column>
+                        <Label text="{i18n>OEE_LABEL_KANGAL_WEIGHT}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{BarcodeList>ROWNUMBER}" />
+                            <Text text="{BarcodeList>COMPONENTCODE}" />
+                            <Text text="{BarcodeList>DESCRIPTION}" />
+                            <Text text="{BarcodeList>BARCODE}" />
+                            <Text text="{BarcodeList>KTKID}" />
+                            <Text text="{BarcodeList>WEIGHT}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+	<buttons>
+            <Button class="sapUiMediumMarginBegin" text="{i18n>OEE_BTN_CHANGE}" icon="sap-icon://accept" press="onPressChangeBarcode" />
+            <Button class="sapUiMediumMarginBegin" text="{i18n>OEE_BTN_CLOSE}" icon="sap-icon://system-exit-2" press="handleCancel" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

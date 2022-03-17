@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_LABEL_ADD_MATERIAL}" id="openNewMaterial">
+        <content>
+            <FlexBox height="40px" alignItems="Center" justifyContent="Center">
+                <items>
+                    <Combobox  id = "selectMaterial" width="400px" items="{materialsModel>/}" placeholder="{i18n>OEE_LABEL_MATERIALS}" showSecondaryValues="true">
+                        <core:ListItem text="{materialsModel>MATNR}" key="{materialsModel>MATNR}" additionalText="{materialsModel>MAKTX}"/>
+                    </Combobox>
+                </items>
+            </FlexBox>
+        </content>
+        <OverflowToolbar>
+            <ToolbarSpacer />
+            <Button text="{i18n>OEE_BTN_POST}" press="onPressInsertMaterial" type="Accept"></Button>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCancel" type="Reject"></Button>
+            <ToolbarSpacer />
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>

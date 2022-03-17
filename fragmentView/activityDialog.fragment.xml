@@ -1,0 +1,86 @@
+<core:FragmentDefinition xmlns:l="sap.ui.layout"
+	xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+
+	<Dialog title="{/fragmentHeader}" contentWidth="48%" contentHeight="45%">
+		<content>
+			<l:VerticalLayout width="100%">
+				<core:InvisibleText id="invText"
+					text="{i18n>OEE_BUTTON_SET_CURRENT}" />
+				<form:Form minWidth="1024" visible="{/showTimeAndActivity}"
+					editable="true">
+					<form:layout>
+						<form:ResponsiveGridLayout labelSpanL="3"
+							labelSpanS="3" labelSpanM="3" columnsL="6" columnsM="6" columnsS="6" />
+					</form:layout>
+					<form:formContainers>
+						<form:FormContainer>
+							<form:FormElement label="{i18n>OEE_LABEL_STARTTIME}">
+								<form:fields>
+									<DatePicker id="inputStartDate" enabled="true"
+										editable="true"
+										value="{path:'/startDate',type:'sap.ui.model.type.Date',formatOptions:{style: 'short',strictParsing: true}}"
+										change="checkDateTime"></DatePicker>
+									<TimePicker id="inputStartTime" enabled="true"
+										editable="true" 
+										value="{path : '/startTime', type:'sap.ui.model.type.Time', formatOptions: {pattern: 'HH:mm:ss'}}"
+										change="checkDateTime"></TimePicker>
+									<Button id="buttonToSetCurrentTimeForStart" text="{i18n>OEE_BUTTON_SET_CURRENT}"
+										press="onPressSetCurDate" ariaDescribedBy="invText" />
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement label="{i18n>OEE_LABEL_TARGET_STATUS}">
+								<form:fields>
+									<Select id="selectStatus" items="{/data}" change="onChangeStatus">
+										<core:Item key="{Key}" text="{value}"></core:Item>
+									</Select>
+								</form:fields>
+							</form:FormElement>
+
+
+							<form:FormElement label="{i18n>OEE_LABEL_CREWSIZE}"
+								visible="{path:'/crewSizeVisibilty',formatter:'sap.oee.ui.Formatter.formatCrewSizeVisibility'}">
+								<form:fields>
+									<Input id="crewSize" maxLength="5"
+										value="{path : '/crewSize' , formatter : 'sap.oee.ui.Formatter.formatQuantityForOrderCard'}" />
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement label="{i18n>OEE_LABEL_ENDTIME}">
+								<form:fields>
+									<DatePicker id="inputEndDate" enabled="true"
+										editable="true"
+										value="{path:'/endDate',type:'sap.ui.model.type.Date',formatOptions:{style: 'short',strictParsing: true}}"
+										change="checkDateTime"></DatePicker>
+									<TimePicker id="inputEndTime" enabled="true"
+										editable="true"
+										value="{path : '/endTime', type:'sap.ui.model.type.Time', 			formatOptions: {pattern: 'HH:mm:ss'}}"
+										change="checkDateTime"></TimePicker>
+									<Button id="buttonToSetCurrentTime" text="{i18n>OEE_BUTTON_SET_CURRENT}"
+										ariaDescribedBy="invText" press="onPressSetCurrentDateForEndTime" />
+								</form:fields>
+							</form:FormElement>
+
+
+						</form:FormContainer>
+					</form:formContainers>
+				</form:Form>
+				<List id="activities" editable="false" items="{/activities}"
+					includeItemInSelection="true" mode="SingleSelectLeft" visible="{/showActivityList}">
+					<items>
+						<InputListItem
+							label="{parts :[{path:'prodActivity'}],formatter : '.productionActivitiesFormatter'}">
+						</InputListItem>
+					</items>
+				</List>
+
+
+			</l:VerticalLayout>
+		</content>
+		<beginButton>
+			<Button id="okButton" text="{i18n>OEE_BTN_OK}" press="handleOK"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>OEE_BTN_CANCEL}" press="handleActivityCancel"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
+

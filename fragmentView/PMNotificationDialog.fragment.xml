@@ -1,0 +1,129 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form">
+	<Dialog contentHeight="60%" contentWidth="60%">
+		<content>
+			<layout:Grid defaultSpan="L12 M12 S12" width="100%">
+				<layout:content>
+					<core:InvisibleText id="invText" text="{i18n>OEE_BUTTON_SET_CURRENT}"/>
+					<form:Form minWidth="1024" editable="true">
+						<form:layout>
+							<form:ResponsiveGridLayout labelSpanL="3"
+								labelSpanS="3" labelSpanM="3" columnsL="6" columnsM="6"
+								columnsS="6" />
+						</form:layout>
+						<form:formContainers>
+							<form:FormContainer>
+
+								<form:FormElement label="{i18n>OEE_LABEL_WORKUNIT}">
+									<form:fields>
+										<Text id="workunitforNotif" text="{/notificationDataForModel/nodeDesc}">
+										</Text>
+									</form:fields>
+								</form:FormElement>
+
+								<form:FormElement id="functionalLocation"
+									label="{i18n>OEE_LABEL_FLOC}">
+									<form:fields>
+										<Input id="floc" value="{/notificationDataForModel/fLocation}"
+											showValueHelp="true" editable="true" enabled="true"
+											valueHelpOnly="true" valueHelpRequest="onChangeTypePM">
+										</Input>
+									</form:fields>
+								</form:FormElement>
+
+								<form:FormElement id="equipment" label="{i18n>OEE_LABEL_EQUIPMENT}">
+									<form:fields>
+										<Input id="equip" value="{path:'/notificationDataForModel/equipment',formatter:'sap.oee.ui.Formatter.formatRemoveLeadingZero'}"
+											showValueHelp="true" editable="true" enabled="true"
+											valueHelpOnly="true" valueHelpRequest="onChangeTypePM">
+										</Input>
+									</form:fields>
+								</form:FormElement>
+
+								<form:FormElement id="formWorkCenter" label="{i18n>OEE_LABEL_CHANGE_LOG_WORKCENTER_ID}">
+									<form:fields>
+										<Select id="workcenter" items="{respMachines>/0/Row}" forceSelection="false">
+											<core:ListItem key="{respMachines>OBJID}" text="{respMachines>ARBPL}"/>
+										</Select>
+									</form:fields>
+								</form:FormElement>
+
+								<form:FormElement id="SinglePMNotificationType" label="{i18n>OEE_LABEL_NOTIFICATIONTYPE}">
+									<form:fields>
+										<Input  id="SingleValue" value="{/notificationDataForModel/notificationType}" enabled="false">
+										</Input>
+									</form:fields>
+								</form:FormElement>
+
+								<form:FormElement id="MultiPMNotificationType" label="{i18n>OEE_LABEL_NOTIFICATIONTYPE}">
+									<form:fields>
+										<Select  id="MultiValue" items="{pmCodes>/0/Row}">
+										<core:Item key="{pmCodes>CODE}" text="{pmCodes>DESCRIPTION}"  />
+										</Select>
+									</form:fields>
+								</form:FormElement>
+
+								<form:FormElement label="{i18n>OEE_LABEL_STARTTIME}" id="startTimeLabel">
+									<form:fields>
+										<DatePicker id="startDateforPMNotification"
+											enabled="true" editable="true" 
+											value="{path:'/startDate',type:'sap.ui.model.type.Date',formatOptions:{style: 'short', strictParsing: true}}"
+											change="checkStartDateTimeInputsPM"></DatePicker>
+										<TimePicker id="startTimeforPMNotification"
+											enabled="true" editable="true"
+											value="{path : '/startTime', type:'sap.ui.model.type.Time', formatOptions:{style: 'short', strictParsing: true}}"
+											change="checkStartDateTimeInputsPM"></TimePicker>
+										<Button icon="sap-icon://history" id="setCurrentForStartTimePM" 
+											text="{i18n>OEE_BUTTON_SET_CURRENT}" press="onPressResetStartDatePM" />      
+									</form:fields> 
+								</form:FormElement>
+
+								<form:FormElement label="{i18n>OEE_LABEL_DURATION_IN_MIN}">
+									<form:fields>
+										<Input id="durationforPMNotification" enabled="true" editable="true"
+											value="{/notificationDataForModel/duration}" change="setDurationInMinsPM"></Input>
+									</form:fields>
+								</form:FormElement>
+
+								<form:FormElement label="{i18n>OEE_LABEL_ENDTIME}">
+									<form:fields>
+										<DatePicker id="endDateforPMNotification"
+											enabled="true" editable="true" 
+											value="{path:'/endDate',type:'sap.ui.model.type.Date',formatOptions:{style: 'short', strictParsing: true}}"
+											change="checkEndDateTimeInputsPM"></DatePicker>
+										<TimePicker id="endTimeforPMNotification"
+											enabled="true" editable="true"
+											value="{path : '/endTime', type:'sap.ui.model.type.Time', formatOptions:{style: 'short', strictParsing: true}}"
+											change="checkEndDateTimeInputsPM"></TimePicker>
+										<Button icon="sap-icon://history" id="setCurrentForEndTimePM"
+											text="{i18n>OEE_BUTTON_SET_CURRENT}" press="onPressResetEndDatePM" ariaDescribedBy="invText"/>
+									</form:fields>
+								</form:FormElement>
+
+								<form:FormElement id="breakDown"
+									label="{i18n>OEE_LABEL_BREAKDOWN}">
+									<form:fields>
+										<CheckBox id="breakDownForPMNotification" selected="{/notificationDataForModel/actsAsBreakdown}"></CheckBox>
+									</form:fields>
+								</form:FormElement>
+
+								<form:FormElement label="{i18n>OEE_LABEL_COMMENTS}">
+									<form:fields>
+										<TextArea id="commentsForPMNotification" value="{/notificationDataForModel/comments}" liveChange="checkComments"></TextArea>
+									</form:fields>
+								</form:FormElement>
+
+							</form:FormContainer>
+						</form:formContainers>
+					</form:Form>
+				</layout:content>
+			</layout:Grid>
+
+		</content>
+		<buttons>
+			<Button text="{i18n>OEE_BTN_RESET_TIME}" press="onPressClearDatesAndDurationForPMDialog"></Button>
+			<Button text="{i18n>OEE_BTN_OK}" press="handleOkForPMDialog"></Button>
+			<Button text="{i18n>OEE_BTN_CANCEL}" press="handleCancelForPMDialog"></Button>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

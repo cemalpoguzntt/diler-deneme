@@ -1,0 +1,58 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc">
+    <layout:Grid id="orderCardGrid">
+        <layout:content>
+            <ObjectStatus class = "messageTextSize" text="{i18n>OEE_LABEL_NO_ACTIVE_ORDER}" state="Warning"  visible = "{path:'appData>/selected/runID', formatter : 'sap.oee.ui.Formatter.showIfRunDoesntExist'}" />
+            <ObjectHeader titleActive="true" showTitleSelector="true" id="orderCardHeader" class="oeeOrderCard" visible = "{path:'appData>/selected/runID', formatter : 'sap.oee.ui.Formatter.showIfRunExists'}" title="{parts : [{path: 'appData>/selected/order/orderNo'},{path:'appData>/selected/operationNo'},{path: 'appData>/selected/operationDesc'}], formatter : 'sap.oee.ui.Formatter.formatOrderAndOperationForOrderCard'}" backgroundDesign = "Solid">
+                <layoutData>
+                    <layout:GridData span=" L8 M8 S8">
+                    </layout:GridData>
+                </layoutData>
+                <attributes>
+                    <ObjectAttribute  class = "oeeTextBlack" text="{parts : [{path:'appData>/selected/material/id'}, {path:'appData>/selected/material/description'}]}"/>
+                    <ObjectAttribute class = "oeeTextBlack" text="{parts : [{path: 'i18n>OEE_LABEL_STARTED_AT'}, {path: 'appData>/selected/orderStartTimestamp'},{path: 'appData>/plantTimezoneOffset'},{path: 'appData>/plantTimezoneKey'}], formatter : 'sap.oee.ui.Formatter.formatTimeStampWithLabel'}" />
+                    <ObjectAttribute class = "oeeTextBlack" text="{parts : [{path: 'i18n>OEE_LABEL_ENDED_AT'}, {path: 'appData>/selected/orderEndTimestamp'},{path: 'appData>/plantTimezoneOffset'},{path: 'appData>/plantTimezoneKey'}], formatter : 'sap.oee.ui.Formatter.formatTimeStampWithLabel'}" />
+                </attributes>
+                <statuses>
+                    <ObjectStatus text="{parts : [{path: 'appData>/selected/order/statusText'},{path: 'appData>/selected/productionActivity'}], formatter : 'sap.oee.ui.Formatter.formatStatusTextAndActivity'}" class = "orderCardStatusActive" />
+                    <ObjectStatus class = "orderCardStatus" text= "{parts : [{path: 'i18n>OEE_HEADING_PLANNED_QUANTITY_NEW'},{path: 'appData>/selected/quantityReleased'} , {path:'appData>/selected/quantityReleasedUOMText'},{path: 'appData>/decimalPrecision'}], formatter : 'sap.oee.ui.Formatter.formatQuantity'}" />
+                    <ObjectStatus class = "orderCardStatus" text="{parts : [{path: 'i18n>OEE_HEADING_TOTAL_PROD_NEW'},{path: 'appData>/selected/quantityReported'} , {path:'appData>/selected/quantityReleasedUOMText'},{path: 'appData>/decimalPrecision'}], formatter : 'sap.oee.ui.Formatter.formatQuantity'}" />
+                    <ObjectStatus class = "orderCardStatus" text="{parts : [{path: 'i18n>OEE_HEADING_TOTAL_IN_SHIFT'},{path: 'appData>/selected/totalQuantityProducedInRun'} , {path:'appData>/selected/quantityReleasedUOMText'},{path: 'appData>/decimalPrecision'}], formatter : 'sap.oee.ui.Formatter.formatQuantity'}" />
+                </statuses>
+            </ObjectHeader>
+
+            <ObjectHeader
+		backgroundDesign="Solid">
+                <layoutData>
+                    <layout:GridData span=" L4 M4 S4">
+                    </layout:GridData>
+                </layoutData>
+                <attributes>
+                    <ObjectAttribute  class = "oeeTextBlack" text="{CharList2>/Row/0/CHARC}"/>
+                    <ObjectAttribute  class = "oeeTextBlack" text="{CharList2>/Row/1/CHARC}"/>
+                    <ObjectAttribute  class = "oeeTextBlack" text="{CharList2>/Row/2/CHARC}"/>
+                    <ObjectAttribute  class = "oeeTextBlack" text="{CharList2>/Row/3/CHARC}"/>
+                    <ObjectAttribute  class = "oeeTextBlack" text="{CharList2>/Row/4/CHARC}"/>
+                    <ObjectAttribute  class = "oeeTextBlack" text="{CharList2>/Row/5/CHARC}"/>
+                    <ObjectAttribute  class = "oeeTextBlack" text="{CharList2>/Row/6/CHARC}"/>
+                </attributes>
+                <statuses>
+                    <ObjectStatus class = "orderCardStatus" text= "{CharList2>/Row/0/CHARC_VALUE}" />
+                    <ObjectStatus class = "orderCardStatus" text= "{CharList2>/Row/1/CHARC_VALUE}" />
+                    <ObjectStatus class = "orderCardStatus" text= "{CharList2>/Row/2/CHARC_VALUE}" />
+                    <ObjectStatus class = "orderCardStatus" text= "{CharList2>/Row/3/CHARC_VALUE}" />
+                    <ObjectStatus class = "orderCardStatus" text= "{CharList2>/Row/4/CHARC_VALUE}" />
+                    <ObjectStatus class = "orderCardStatus" text= "{CharList2>/Row/5/CHARC_VALUE}" />
+                    <ObjectStatus class = "orderCardStatus" text= "{CharList2>/Row/6/CHARC_VALUE}" />
+                </statuses>
+            </ObjectHeader>
+
+
+        </layout:content>        <!-- sap.ui.core.Control -->
+    </layout:Grid>
+</core:FragmentDefinition>
+
+

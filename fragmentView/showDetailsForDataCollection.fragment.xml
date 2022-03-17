@@ -1,0 +1,48 @@
+<core:FragmentDefinition 
+	xmlns="sap.m"
+  	xmlns:core="sap.ui.core">
+  	
+  <Dialog title = "{i18n>OEE_LABEL_DETAILS}" id = "showDetailsForDataCollection">
+   <content>
+    <SearchField width="100%" search = "detailsSearch" liveChange = "detailsSearch" id= "detailsSearchField" visible="false"/>
+		<Table id = "detailsForDataCollectionTable" mode="MultiSelect"  selectionChange = "onSelectEnableDeleteButton" items = "{chargeNoModel>/Row}">
+		<columns>
+			<Column>
+				<Label text="{i18n>OEE_LABEL_DC_NAME}"/>
+			</Column>		
+			<Column>
+				<Label text="{i18n>OEE_LABEL_CHARGE}"/>
+			</Column>	
+			<Column>
+				<Label text="{i18n>OEE_LABEL_CHARGE_QUANTITY}"/>
+			</Column>		
+			<Column>
+				<Label text="{i18n>OEE_LABEL_DATE_TIME_LAST_REPORTED}"/>
+			</Column>
+			<Column>
+				<Label text="{i18n>REPORTED_LAST_CHANGED_BY_LABEL}"/>
+			</Column>	
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>				
+				           <Text text="{chargeNoModel>DC_ELEMENT}"/>	
+					<!-- Charge kolonundaki toplam değeri 0 yerine Toplam olarak değiştirildi.-->	
+				        	<Text text ="{=parseInt( ${chargeNoModel>CHARGE} )===0 ? 'TOPLAM' : ${chargeNoModel>CHARGE}}" />
+					<Text text="{chargeNoModel>QUANTITY}"/>
+					<Text text="{chargeNoModel>START_TIME_UTC}" />
+					<Text text="{chargeNoModel>CHANGED_BY}" />				    
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+	 </content>
+   <beginButton>
+  <Button  id = "deleteButton" text= "{i18n>OEE_BTN_DELETE}" enabled = "true" press="handleDeletion"></Button>
+  </beginButton>
+  <endButton>
+  <Button text= "{i18n>OEE_BTN_CLOSE}" press="handleCancel"></Button>
+  </endButton>
+  </Dialog>
+</core:FragmentDefinition>
+

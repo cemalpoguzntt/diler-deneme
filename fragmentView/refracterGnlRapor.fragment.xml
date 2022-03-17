@@ -1,0 +1,133 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:ui="sap.ui.table"
+    xmlns:l="sap.ui.layout">
+    <Dialog state="Warning" id="refractoryGnlRapor"   contentHeight="auto"
+    contentWidth="auto" draggable="true">
+    <VBox class="sapUiSmallMargin">
+		<f:Form id="idFragmentForm"
+			editable="false">
+			<f:title>
+				<core:Title text="{/DOKUM_NO}" />
+			</f:title>
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="4"
+					labelSpanL="4"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="0"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="3"
+					columnsL="2"
+					columnsM="2"
+					singleContainerFullSize="true" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer title="">
+					<f:formElements>
+						<f:FormElement visible="false" label="id">
+							<f:fields>
+								<Text text="{/ID}"  />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="ÜRETİM YERİ">
+							<f:fields>
+								<Text text="{/URETIM_YER}"  />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="DÖKÜM NUMARASI">
+							<f:fields>
+								<Text text="{/DOKUM_NO}"  />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="TEKNİK NESNE TÜRÜ">
+							<f:fields>
+								<Text text="{/T_NESNE}"  />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="EKİPMAN TANIMI">
+							<f:fields>
+								<Text text="{/EKIPMAN_TANIM}"  />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="EKİPMAN NO">
+							<f:fields>
+								<Text text="{/EKIPMAN}"  />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="MALZEME TANIMI">
+							<f:fields>
+								<Text text="{/MALZEME}"  />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="DURUM">
+							<f:fields>
+								<Text text="{/DURUM}"  />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="EKİPMAN SAYAÇ">
+							<f:fields>
+                                <Input type="Text" value="{/EKIPMAN_SAYAC}" maxLength="200" id="idEquipmentCounter" class="sapUiSmallMarginEnd" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="MALZEME SAYAC">
+							<f:fields>
+                                <Input type="Text" value="{/MALZEME_SAYAC}" maxLength="200" id="idMaterialCounter" class="sapUiSmallMarginEnd" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement visible="{= ${/T_NESNE} === 'ZKOKİL' ?  true : false}" label="MALZEME SAYAC 2">
+							<f:fields>
+                                <Input type="Text" value="{/MALZEME_SAYAC_2}" maxLength="200" id="idMaterialCounter2" class="sapUiSmallMarginEnd" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement visible="{= ${/MIKTAR_ZORUNLULUK} === 'X' ?  true : false}" label="MİKTAR">
+							<f:fields>
+                                <Input type="Text" value="{/MIKTAR}" maxLength="200" id="idMiktar" class="sapUiSmallMarginEnd" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="FİRMA">
+							<f:fields>
+								<Text text="{/FIRMA}"  />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="PERSONEL">
+							<f:fields>
+								<Text text="{/PERSONEL}"  />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="AÇIKLAMA">
+							<f:fields>
+								<Text text="{/ACIKLAMA}"  />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="KALİTE">
+							<f:fields>
+								<Text text="{/KALITE}"  />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="TARİH">
+							<f:fields>
+								<Text text="{/TARIH}"  />
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				
+			</f:formContainers>
+		</f:Form>
+	</VBox>
+        <buttons>
+            <!-- <Button id="updateNotificationConfirm" width="125px" type="Accept" icon="sap-icon://save" text="Bilgileri Kaydet" press="createupdateNotificationConfirm"></Button> -->
+           <!--  <Button id="createNotificationConfirm" width="125px" type="Accept" icon="sap-icon://create" text="Bildirim Yarat" press="createupdateNotificationConfirm"></Button>
+            <Button id="createNotificationCancel" width="125px" type="Reject" icon="sap-icon://sys-cancel" text="İptal" press="createNotificationCancel"></Button> -->
+            <Button id="closeFragment" width="125px" type="Reject" icon="sap-icon://sys-cancel" text="İptal" press="closeFragment"></Button>
+            <Button id="idSaveFragmentData" text="{i18n>OEE_LABEL_SO_SAVE}" width="140px" type="Accept" press="saveFragmentData" class="sapUiSmallMarginEnd" icon="sap-icon://save"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

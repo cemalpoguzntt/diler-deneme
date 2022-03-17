@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+    <Dialog title="{i18n>OEE_TITLE_ADD_DETAIL}" id="addDetailGenericData">
+        <content>
+            <FlexBox>
+                <items>
+	<VBox>
+		<Label text="{i18n>OEE_TITLE_ADD_DETAIL_DESCRIPTION_EAO} :  " class = "oeeTextBlack" design="Bold" visible="{= ${appData>/workcenterID} ===  '10000189' ? true: false }"/>
+		<Input id = "title" width="400px" visible="{= ${appData>/workcenterID} ===  '10000189' ? true: false }"/>
+	</VBox>
+                </items>
+            </FlexBox>
+	 <FlexBox>
+                <items>
+		<VBox>
+			<Label text="{i18n>OEE_TITLE_ADD_DETAIL_DESCRIPTION_AO_GENERAL} :  " class = "oeeTextBlack" design="Bold" visible="{= ${appData>/workcenterID} ===  '10000189' ? true: false }"/>
+			<Label text="{i18n>OEE_TITLE_ADD_DETAIL_DESCRIPTION_PO_GENERAL} :  " class = "oeeTextBlack" design="Bold" visible="{= ${appData>/workcenterID} ===  '10000190' ? true: false }"/>
+			<Input id = "description" width="400px" />
+		</VBox>
+                </items>
+            </FlexBox>
+        </content>
+        <OverflowToolbar>
+            <ToolbarSpacer />
+            <Button text="{i18n>OEE_BTN_ACCEPT}" press="onPressAccept" type="Accept"></Button>
+            <Button text="{i18n>OEE_BTN_CLOSE}" press="handleCloseFragment" type="Reject"></Button>
+            <ToolbarSpacer />
+        </OverflowToolbar>
+    </Dialog>
+</core:FragmentDefinition>
