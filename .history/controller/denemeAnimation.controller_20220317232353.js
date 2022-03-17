@@ -90,8 +90,7 @@ sap.ui.define(
 				});
 			},
 			onElementPress: function (oEvent) {
-				//MessageToast.show("press event triggered for " + oEvent.getSource().getId());
-				MessageToast.show("press event triggered for " + oEvent.getSource().getId());
+				MessageToast.show("press event triggered for       " + oEvent.getSource().getId());
 			}
 
 		});

@@ -1,42 +1,42 @@
 sap.ui.define(
-	[
-		"jquery.sap.global",
-		"sap/ui/core/mvc/Controller",
-		"sap/ui/model/json/JSONModel",
-		"sap/m/MessageBox",
-		"sap/m/MessageToast",
-		"customActivity/scripts/custom",
-		"../model/formatter",
-		"sap/ui/model/Filter",
-		"sap/ui/model/FilterOperator",
-		"sap/ui/model/FilterType",
-		"sap/ui/core/util/Export",
-		"sap/ui/core/util/ExportTypeCSV",
-		"customActivity/scripts/customStyle",
-		"customActivity/scripts/transactionCaller"
+    [
+        "jquery.sap.global",
+        "sap/ui/core/mvc/Controller",
+        "sap/ui/model/json/JSONModel",
+        "sap/m/MessageBox",
+        "sap/m/MessageToast",
+        "customActivity/scripts/custom",
+        "../model/formatter",
+        "sap/ui/model/Filter",
+        "sap/ui/model/FilterOperator",
+        "sap/ui/model/FilterType",
+        "sap/ui/core/util/Export",
+        "sap/ui/core/util/ExportTypeCSV",
+        "customActivity/scripts/customStyle",
+        "customActivity/scripts/transactionCaller"
+        
+    ],
 
-	],
+    function (
+        $,
+        Controller,
+        JSONModel,
+        MessageBox,
+        MessageToast,
+        customScripts,
+        formatter,
+        Filter,
+        FilterOperator,
+        FilterType,
+        Export,
+        ExportTypeCSV,
+        customStyle,
+        TransactionCaller
+    ) {
+        "use strict";
+        var that;
 
-	function (
-		$,
-		Controller,
-		JSONModel,
-		MessageBox,
-		MessageToast,
-		customScripts,
-		formatter,
-		Filter,
-		FilterOperator,
-		FilterType,
-		Export,
-		ExportTypeCSV,
-		customStyle,
-		TransactionCaller
-	) {
-		"use strict";
-		var that;
-
-		var bulbSvg =
+        var bulbSvg =
 			"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-0.5 0 23 29.48\">" +
 			"<title>Asset 23</title>" +
 			"<path d=\"M10.9,29.48a10.89,10.89,0,0,1-3-21.37v-7A1.1,1.1,0,0,1,9,0h3.66A1.24,1.24,0,0,1,13.9,1.24V8.11a10.89,10.89,0,0,1-3,21.37Z\"/>" +
@@ -70,7 +70,7 @@ sap.ui.define(
 			"indicator24", "indicator25", "indicator31", "indicator32"];
 
 		return Controller.extend("customActivity.controller.denemeAnimation", {
-			onInit: function () {
+			onInit: function() {
 				this._setCustomShapeDefinition("customShape1", cerealsSvg);
 				this._setCustomShapeDefinition("customShape2", cerealsSvg);
 				this._setCustomShapeDefinition("customShape3", cerealsSvg);
@@ -78,7 +78,7 @@ sap.ui.define(
 				this._setCustomShapeDefinition("customShape5", cerealsSvg);
 				this._setCustomShapeDefinition("customShape6", cerealsSvg);
 			},
-			_setCustomShapeDefinition: function (sShapeId, sSvg) {
+			_setCustomShapeDefinition:  function (sShapeId, sSvg) {
 				var oCustomShape = this.getView().byId(sShapeId);
 				oCustomShape.setDefinition(sSvg);
 			},
@@ -90,11 +90,10 @@ sap.ui.define(
 				});
 			},
 			onElementPress: function (oEvent) {
-				//MessageToast.show("press event triggered for " + oEvent.getSource().getId());
 				MessageToast.show("press event triggered for " + oEvent.getSource().getId());
 			}
 
 		});
 	});
-
+    
 

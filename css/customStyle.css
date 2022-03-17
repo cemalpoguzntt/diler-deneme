@@ -1,0 +1,731 @@
+.stickyToolbar {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 101;
+}
+[title=F] {
+color:red;
+}
+.setLeftContent {
+  text-align: left !important;
+}
+.oeeComponent .sapMListTbl .sapMText.fontSuccess {
+  font-size: 1.2rem !important;
+  color: green !important;
+}
+.oeeComponent .sapMListTbl .sapMText.fontError {
+  font-size: 1.2rem !important;
+  color: red !important;
+}
+.oeeComponent .sapMListTbl .sapMText.fontWarning {
+  font-size: 1.2rem !important;
+  color: orange !important;
+}
+.errorComponent {
+  background-color: #ffff66 !important;
+}
+.colourColumnBlue {
+  background: #b3d7e3;
+}
+table th {
+  position: sticky;
+  top: 0;
+  z-index:1;
+}
+div[id*="tblBilletLabelMasterToolbar"] {
+position: sticky;
+  top: 0;
+  opacity: 100;
+  z-index:2;
+background:#f7f7f7;
+}
+
+table[id*="tblBilletLabelMaster"] thead {
+ top: 35px!important;
+}
+
+
+table thead {
+  position: sticky;
+  top: 0px;
+  opacity: 100;
+  z-index:1;
+}
+.colourColumnBlueTwo {
+  background: #21addb;
+}
+
+.searchButton{
+border: 1px solid #bfbfbf;
+border-radius: 0;
+margin: 0;
+background: #f7f7f7;
+}
+
+.tableHeaderPurple {
+  background: #8662c4;
+  padding-bottom: 15px;
+  color: white;
+}
+
+.sapMTB-Transparent-CTX .labelWhite {
+  font-weight: normal;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+
+.labelMain .sapMLabel {
+  font-size: 2rem !important;
+}
+
+.labelMainH {
+  font-size: 1rem !important;
+  color: #e03f3f;
+}
+
+.labelMainC  {
+  font-size: 1rem !important;
+  color: #4292bd;
+}
+
+.labelMainFK  {
+  font-size: 1rem !important;
+  color: #ffff00 !important;
+}
+
+.oeeComponent .sapMBarChild.sapMLabel.sapMLabelMaxWidth.labelMainBQ  {
+  font-size: 2rem !important;
+  color: #e03f3f !important;
+}
+
+.tracerFlex {
+ background-color: #FFDD33;
+ font-size: 2rem !important;
+}
+
+.tracerSuccessFlex {
+ background-color: #2BD64F;
+ font-size: 2rem !important;
+}
+
+/*
+        .sapMListTblCell{
+            text-align: center!important;
+        }
+        */
+.labelQuan .sapMLabel {
+  font-size: 4rem !important;
+}
+
+.curved-button {
+  background-color: #404040;
+  border: 0 !important;
+  color: white !important;
+  border-radius: 2rem !important;
+  padding: 0.2rem 1rem;
+  cursor: pointer !important;
+  transition: opacity 0.4s ease;
+}
+
+.colourColumnYellow {
+  background: #fdff00;
+}
+
+.colourColumnOrange {
+  background: #f38e42;
+}
+
+.colourColumnGreen {
+  background: #00fe02;
+}
+
+.colourColumnPink {
+  background: #db55bd;
+}
+
+.colourRowYellow {
+  background: #fdff00;
+}
+
+.colourRowOrange {
+  background: #f38e42;
+}
+
+.colourRowGreen {
+  background: #00fe02;
+}
+
+.labelRed {
+  color: red;
+}
+
+.flowToolBar {
+  background: rgb(31, 75, 124);
+}
+
+.buttonColor {
+   background: #4095c6 !important;
+}
+
+.classScrapOrderFontSize .sapMText {
+  font-size: 0.9rem !important;
+}
+
+.oeeComponent .sapMListTbl .sapMText.labelFontSizeChemical {
+    font-size: 0.735rem !important;
+    color: black !important;
+    font-weight: bold;
+}
+
+.oeeComponent .sapMListTbl .sapMText.textWhite {
+    color : white im !important;
+  }
+
+.classInput .sapMInputBaseInner {
+  color: #000000;
+  background: #ffffff;
+  border: 1px solid #bfbfbf;
+  -webkit-appearance: none;
+  border-radius: 0;
+  vertical-align: top;
+  margin: 0;
+  -moz-appearance: textfield;
+  font-size: 1.5rem;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: normal;
+  height: 2.5rem;
+  padding: 0 0.75rem;
+}
+
+.labelWhiteFooter .sapMLabel {
+  color: red;
+  font-size: 1.2rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: text;
+}
+#__button8 {
+ /* visibility: hidden !important; */
+}
+
+.S_HURDA {
+  background: #fc9021d1 !important;
+} 
+
+.IKINCI_KAL {
+  background: #9ee458e3 !important;
+}
+
+.HURDA {
+  background: #FFB6C1 !important;
+}
+
+.E {
+  background: #f17878 !important;
+}
+
+.STD_DISI {
+  background: #f8ff0bf2 !important;
+}
+
+.SAPMA {
+  background: #9ee458e3 !important;
+}
+
+.Standart {
+}
+
+.STNDRT {
+}
+
+tr[data-mydata="S_HURDA"] {
+  background: #fc9021d1 !important;
+}
+tr[data-mydata="IKINCI_KAL"] {
+  background: #9ee458e3 !important;
+}
+tr[data-mydata="HURDA"] {
+  background: #f17878 !important;
+}
+tr[data-mydata="HAD_BOZ"] {
+  background: #f17878 !important;
+}
+tr[data-mydata="HADDE_BOZ"] {
+  background: #f17878 !important;
+}
+tr[data-mydata="STD_DISI"] {
+  background: #f8ff0bf2 !important;
+}
+tr[data-mydata="SAPMA"] {
+  background: #9ee458e3 !important;
+}
+
+.green {
+  background-color: #66ff33;
+}
+.red {
+  background-color: #d01929;
+  color: black !important;
+}
+.yellow {
+  background-color: #ffff66;
+}
+
+.lightPink {
+  background-color: #FF69B4;
+}
+
+.lightYellow {
+  background-color: #FFFFCC;
+}
+
+.blue {
+  background-color: blue !important;
+}
+
+.white {
+  background-color: #ffffff;
+}
+
+tr[data-mydata="Pending"] {
+  background: #ff9933 !important;
+}
+
+tr[data-mydata="Rejected"] {
+  background: #ff3333 !important;
+}
+
+tr[data-mydata="Approved"] {
+  background: #33cc33 !important;
+}
+tr[data-mydata="Error"] {
+  background: #fb0f009e !important;
+  color: white !important;
+}
+tr[data-mydata="Emphasized"] {
+  background: #33a3ff !important;
+  color: white !important;
+}
+
+.sapMSlt.selectCustom {
+  height: 2rem;
+  margin: 0.25rem 0 0.25rem 0;
+  border: 1px solid #bfbfbf;
+  background: #ffffff;
+}
+.transparentTableBackground .sapUiTableCnt{
+border-left: 1px solid #ffffff00 !important;
+border-right: 1px solid #ffffff00 !important;
+border-top: 1px solid #ffffff00 !important;
+border-bottom: 1px solid #ffffff00 !important;
+background-color:#ffffff00 !important;
+}
+.oeeComponent .sapMListTbl .sapMText.red{
+ background-color: #d01929;
+  color: white !important;
+}
+.oeeComponent .sapMListTbl .sapMText.blue{
+  background-color: blue !important;
+  color: white !important;
+}
+
+.castNumberRed.sapMObjectAttributeDiv .sapMObjectAttributeText{
+    color: red;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.filmasinToplam{
+color:white !important;
+font-weight:bold !important;
+}
+.telCekmeFragment{
+font-size:16px !important;
+}
+.boldText{
+font-weight: bold !important;
+}
+.whiteBoldText{
+font-weight: bold !important;
+font-color: white !important;
+}
+.billetInsideFLMTitle .sapMLabel {
+  font-size: 2rem !important;
+}
+.canTableBackground{
+background-color: #4caf50 !important;
+}
+.sapMLabel[data-canState="HAZIRLIK"]{
+color:#dae327 !important;
+font-size:2rem !important;
+}
+.sapMLabel[data-canState="AKTIF"]{
+color:#ff0000 !important;
+font-size:2.5rem !important;
+}
+.sapMLabel[data-canState="TAMAMLANDI"]{
+color:#33e327 !important;
+font-size:2.5rem !important;
+}
+.cycleText .oeeComponent .sapMListTbl .sapMText{
+font-size: 2rem !important;
+}
+.sapMListTbl .sapMLabel[data-can="HEADER"]{
+font-size: 1.7rem !important;
+}
+.sapMListTbl .sapMText[data-can="ROW"]{
+font-size: 1.5rem !important;
+}
+.sapMLabel[data-can="TOP"]{
+font-size: 2rem !important;
+}
+.sapMLabel[data-can="COUNT"]{
+font-size: 2.5rem !important;
+}
+.cycleBtnContent .sapMBtnContent{
+line-height:4rem !important;
+}
+.cycleBtnInner .sapMBtnInner{
+height:150% !important;
+width:100% !important;
+font-size:1.6rem !important;
+}
+.cycleBtnIcon .sapMBtnIcon{
+font-size: 2rem;
+}
+.cycleFooterBtnInner .sapMBtnInner{
+font-size:1.5rem !important;
+}
+.sapMLabel[data-canBatch="TITLE"]{
+font-size: 1.5rem !important;
+}
+.sapMLabel[data-canBatch="HEADER"]{
+font-size: 0.9rem !important;
+}
+.cycleBatchInput .sapMInputBaseInner{
+font-size:2rem !important;
+}
+.cycleRadioText .sapMLabel{
+font-size: 1.4rem !important;
+}
+
+.dataCollectionLabel.sapMLabel.sapMLabelMaxWidth.sapUiSelectable{
+    font-size: 1.5rem  !important;
+}
+
+.billetConsumptionLabel.sapMLabel.sapMLabelMaxWidth.sapUiSelectable{
+    font-size: 1.1rem  !important;
+}
+
+.billetConsumptionText.sapMText.sapMTextBreakWord.sapMTextMaxWidth.sapUiSelectable{
+    font-size: 1.1rem  !important;
+}
+.cycleTableDefaultBackground{
+    background-color:#F0F0F0 !important;
+}
+
+.cycleTableRedBackground{
+    background-color: #ef5350 !important;
+}
+.sapMLabel[data-fir="BIG"]{
+font-size: 2rem !important;
+color: #009de0 !important;
+}
+.sapMLabel[data-tas="URT"]{
+font-size: 2rem !important;
+color: #008a3b !important;
+}
+.sapMLabel[data-tas="TUK"]{
+font-size: 2rem !important;
+color: #cc1919 !important;
+}
+
+.neon.sapMInputBaseInner{
+
+    color:red !important ;
+    font-weight: bold !important ;
+}
+
+.neon {
+
+    color:red !important ;
+    font-weight: bold !important ;
+}
+
+tr[data-NOTTYPE="Duruş"]{
+        background: rgba(255, 252, 224) !important;
+    }
+    
+    tr[data-NOTTYPE="Arıza"]{
+    background:rgb(250, 150, 150) !important;
+    }
+    
+    tr[data-NOTTYPE="OTO"]{
+        background:#fc9021d1 !important;
+    }
+.neonx.sapMLabel {                                
+
+    color:red !important ;
+    font-weight: bold !important ;
+    font-size: 4rem !important;
+}
+
+
+.boldText {
+
+font-weight: bold;
+
+}
+
+.sapMObjectAttributeDiv .sapMText, .sapMObjectAttributeDiv .sapMObjectAttributeTitle, .sapMObjectAttributeDiv .sapMObjectAttributeText {
+    font-size: .875rem;
+    color: #333333;
+}
+
+
+
+
+.sapMSelectListItem {
+    padding: 0 1rem 0 1rem;
+    line-height: 2.5rem;
+    font-weight: bold;
+}
+
+
+.oeeComponent .sapMInputBaseInner {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+
+
+.sapMText.sapMObjLTitle {
+    //color: #333333;
+    color: #FF3333;
+    font-size: 1.125rem;
+    font-weight: bold;
+    line-height: 1.5rem;
+}
+
+	tr[data-STATUS="FAILED"]{
+	    background: #e97070 !important;
+	}
+	tr[data-STATUS="PASSED"]{
+	background: #7cdf5f !important;
+	}
+	tr[data-STATUS="QUEUED"]{
+	background: #dcca3e !important;
+}
+
+tr[data-SIGNAL_POINT="FRC"]{
+	    background: #16bee0 !important;
+	}
+
+
+	tr[data-N]{
+	    background: #E5CCD6 !important;
+	}
+	tr[data-X]{
+	background: #7cdf5f !important;
+}
+.qqq {
+
+border-left-style : solid
+
+}
+
+
+.telMetraj.sapMLabel {                                
+
+    color:#009de0 !important ;
+    font-size: 2.5rem !important;
+}
+
+tr[data-CT="20"]{
+	background: #dcca3e !important;
+}
+
+.haddeSerisi.sapMLabel{
+font-size: 1.5rem !important;
+}
+
+
+tr[data-YP16]{
+	background: #FAD02C !important;
+}
+
+tr[data-CT_REWORK="0"]{
+	background: #EEEDE7 !important;
+}
+tr[data-CT_REWORK="10"]{
+	background: #7EC8E3 !important;
+}
+tr[data-CT_REWORK="20"]{
+	background: #FAD02C !important;
+}
+tr[data-CT_REWORK="30"]{
+	background: #18A558 !important;
+}
+
+
+
+
+tr[data-BILLET_STATUS="S_HURDA"] {
+  background: #fc9021d1 !important;
+}
+tr[data-BILLET_STATUS="IKINCI_KAL"] {
+  background: #9ee458e3 !important;
+}
+tr[data-BILLET_STATUS="HURDA"] {
+  background: #f17878 !important;
+}
+tr[data-BILLET_STATUS="HAD_BOZ"] {
+  background: #EE82EE !important;
+}
+tr[data-BILLET_STATUS="HADDE_BOZ"] {
+  background: #EE82EE !important;
+}
+tr[data-BILLET_STATUS="STD_DISI"] {
+  background: #e0e623f2 !important;
+}
+
+tr[data-CONSUMPTIONTYPE="10"]{
+	background: #7EC8E3 !important;
+}
+tr[data-CONSUMPTIONTYPE="20"]{
+	background: #FAD02C !important;
+}
+
+
+.clearComponentWarning.sapMText {                                
+
+    color:#c9363e !important ;
+    font-weight: bold !important ;
+    font-size: 3rem !important;
+}
+.sapMListTbl .sapUiIcon:not(.sapMLIBImgNav):not(.sapMBtnIcon) {
+	font-size: 1.5rem;
+}
+
+tr[data-S1]{
+
+    background:#98989854 !important;
+
+}
+
+tr[data-S1]>td>span{
+
+font-weight:bold !important;
+
+}
+
+
+ .anaVeri{
+                    font-size: 2rem !important;
+                    color : red !important;
+}
+
+
+
+
+tr[data-S_HURDA] {
+  background: #fc9021d1 !important;
+}
+tr[data-IKINCI_KAL] {
+  background: #9ee458e3 !important;
+}
+tr[data-HURDA] {
+  background: #f17878 !important;
+}
+tr[data-HAD_BOZ] {
+  background: #EE82EE !important;
+}
+tr[data-HADDE_BOZ] {
+  background: #EE82EE !important;
+}
+tr[data-STD_DISI] {
+  background: #e0e623f2 !important;
+}
+
+
+
+html.sap-desktop ::-webkit-scrollbar-thumb {
+    background-color: #31afc3;
+}
+
+tr[data-Y_SAPMA] {
+  background: #9ee458e3 !important;
+}
+tr[data-Y_STDDISI] {
+  background: #f8ff0bf2 !important;
+}
+
+tr[data-X] {
+  background: #faa0a0 !important;
+}
+tr[data-UNCONFIRMED]{
+	    background: #ffaaa6 !important;
+	}
+
+.tableText {
+  color: red !important ;
+  font-weight: bold !important ;
+  font-size: 2rem !important;
+}
+
+.TextDimension {
+font-size: 2.5rem !important;
+}
+
+.oeeComponent .sapMText.redAndBig {
+    font-size: 1.8rem !important;
+    color:red !important;
+font-weight: normal;
+    
+}
+.oeeComponent .sapMBarChild.sapMLabel.sapMLabelMaxWidth.redAndBig {
+    font-size: 1.8rem !important;
+    color:red !important;
+font-weight: normal;
+}
+.oeeComponent .sapMText.ayirac {
+    font-size: 1.8rem !important;
+    color:#1330ff !important;
+}
+.oeeComponent .sapMBarChild.sapMLabel.sapMLabelMaxWidth.ayirac {
+    font-size: 1.8rem !important;
+    color:#1330ff !important;
+font-weight: normal;
+}
+.onClickSaveMessageBox{
+	font-size: 4.8rem !important;
+}
+#onClickSaveMessageBox span {
+	font-size: 2rem;
+}
+#onClickSaveMessageBox2 span {
+	font-size: 2rem;
+}
+.quaOrdFragTableDesign{
+    font-size: 1.4rem !important;
+}
+
+.ayiracEren {
+    font-size: 1.8rem !important;
+    color:#1330ff !important;
+}
+
+.redAndBigEren {
+    font-size: 1.8rem !important;
+    color:red !important;
+font-weight: normal;
+    
+}
+.arrowClass{
+ background-color: red !important;
+}
+	

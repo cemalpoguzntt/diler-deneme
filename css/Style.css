@@ -1,0 +1,9 @@
+	tr[data-STATUS="FAILED"]{
+	    background: #e97070 !important;
+	}
+	tr[data-STATUS="PASSED"]{
+	background: #7cdf5f !important;
+	}
+	tr[data-STATUS="QUEUED"]{
+	background: #dcca3e !important;
+}

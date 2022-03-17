@@ -1,0 +1,281 @@
+@font-face {
+   font-family: 'SF Pro Display';
+   src        : url('../webfonts/SF/SF-Pro-Display-Regular.otf');
+   font-weight: 300;
+}
+
+@font-face {
+   font-family: 'SF Pro Display';
+   src        : url('../webfonts/SF/SF-Pro-Display-Light.otf');
+   font-weight: 200
+}
+
+@font-face {
+   font-family: 'SF Pro Display';
+   src        : url('../webfonts/SF/SF-Pro-Display-Semibold.otf');
+   font-weight: 400
+}
+
+@font-face {
+   font-family: 'SF Pro Display';
+   src        : url('../webfonts/SF/SF-Pro-Display-Medium.otf');
+   font-weight: 500
+}
+
+@font-face {
+   font-family: 'SF Pro Text';
+   src        : url('../webfonts/SF/SF-Pro-Text-Regular.otf');
+   font-weight: 300
+}
+
+@font-face {
+   font-family: 'SF Pro Text';
+   src        : url('../webfonts/SF/SF-Pro-Text-Light.otf');
+   font-weight: 200
+}
+
+@font-face {
+   font-family: 'SF Pro Text';
+   src        : url('../webfonts/SF/SF-Pro-Text-Semibold.otf');
+   font-weight: 400
+}
+
+@font-face {
+   font-family: 'SF Pro Text';
+   src        : url('../webfonts/SF/SF-Pro-Text-Medium.otf');
+   font-weight: 500
+}
+
+@font-face {
+   font-family: 'SF Pro Text';
+   src        : url('../webfonts/SF/SF-Pro-Text-Bold.otf');
+   font-weight: 600
+}
+
+:not(.sapUiIcon):not(.custom-button-icon) {
+   font-family: 'SF Pro Display' !important;
+   font-weight: 200 !important;
+}
+
+html {
+   overflow: hidden;
+   margin  : 0;
+   padding : 0;
+}
+
+.page-sub-header {
+   background   : #F4F8FB !important;
+   border-bottom: 1px solid #E5E9EC !important;
+   min-height   : 3rem !important;
+   padding      : 0.4rem 1rem !important;
+}
+
+.page-sub-header .sapMTB {
+   border: 0 !important;
+}
+
+.search-field-container {
+   background   : #F4F8FB !important;
+   border-bottom: 1px solid #E5E9EC !important;
+   min-height   : 3rem !important;
+   padding      : 0.4rem 2rem !important;
+}
+
+.search-field-container .sapMSF {
+   border          : 1px solid #c3d6e7 !important;
+   background-color: #fff !important;
+   border-radius   : 1rem;
+}
+
+.search-field-container .sapMSFF {
+   border          : none !important;
+   background-color: transparent !important;
+}
+
+.search-field-container .sapMSFF::before {
+   outline: none !important;
+   border : 0 !important;
+}
+
+.curved-button {
+   background-color: transparent !important;
+   border          : 0 !important;
+   color           : #fff !important;
+   border-radius   : 1rem !important;
+   padding         : 0.2rem 1rem;
+   cursor          : pointer !important;
+   transition      : opacity 0.4s ease;
+}
+
+.curved-button:focus {
+   box-shadow: none !important;
+   outline   : none !important;
+}
+
+.curved-button .sapMBtnContent {
+   vertical-align: middle;
+}
+
+.curved-button .sapMBtnIcon {
+   padding-right : 5px !important;
+   color         : #fff !important;
+   vertical-align: middle;
+}
+
+.curved-button.color-01 {
+   background-color: #1480D0 !important;
+}
+
+.curved-button.color-02 {
+   background-color: #2FC09D !important;
+}
+
+.curved-button:hover {
+   opacity: 0.8;
+}
+
+.transparent-button {
+   background-color: transparent !important;
+   border          : 0 !important;
+   color           : #000 !important;
+   border-radius   : 1rem !important;
+   padding         : 0rem;
+}
+
+.transparent-button:focus {
+   box-shadow: none !important;
+   outline   : none !important;
+}
+
+.transparent-button .sapMBtnContent {
+   vertical-align: middle;
+}
+
+.transparent-button .sapMBtnIcon {
+   padding-right : 5px !important;
+   vertical-align: middle;
+}
+
+.transparent-button.color-01 {
+   color: #718b10 !important;
+}
+
+.transparent-button.color-01 .sapMBtnIcon {
+   color: #718b10 !important;
+}
+
+.machine-layout-list {
+   box-sizing: border-box !important;
+}
+
+.machine-layout-list.sapMListInsetBG {
+   padding: 0 2rem 2rem !important;
+}
+
+.machine-layout-list ul.sapMListUl {
+   list-style-type     : none !important;
+   overflow            : auto !important;
+   margin              : 0 !important;
+   margin-block-start  : 0 !important;
+   margin-block-end    : 0 !important;
+   padding-inline-start: 0 !important;
+}
+
+.machine-layout-list .cell-container {
+   background    : #e4edf3 !important;
+   border-radius : 0.5rem;
+   padding       : 0 !important;
+   margin-right  : 5px;
+   margin-bottom : 5px;
+   border        : 2px solid transparent !important;
+   overflow      : hidden;
+   float         : left;
+   vertical-align: top;
+   min-height    : 150px;
+   transition    : border-color 1s ease, background-color 1s ease;
+}
+
+.machine-layout-list .sapMLIB.sapMGHLI {
+   clear           : both;
+   border          : 0 !important;
+   background-color: transparent !important;
+   padding         : 2rem 0.5rem 2rem !important;
+}
+
+.machine-layout-list .sapMLIB.sapMGHLI .sapMGHLITitle {
+   font-size  : 1.5rem !important;
+   font-weight: 500 !important;
+   color      : #0e4e68 !important;
+}
+
+.machine-layout-list .sapMLIB.sapMGHLI:focus {
+   outline: none !important;
+}
+
+.machine-layout-list .cell-container:hover {
+   border-color    : #78afc5 !important;
+   background-color: #fff !important;
+}
+
+.machine-layout-list .cell-container:focus {
+   outline: none !important;
+}
+
+.machine-layout-list .cell-container .cell-content {
+   padding: 1rem;
+}
+
+.machine-layout-list .cell-container .title {
+   font-size  : 1.4rem !important;
+   color      : #0e4e68 !important;
+   font-weight: 400 !important;
+}
+
+.machine-layout-list .cell-container .sub-title {
+   font-size: 0.75rem !important;
+   color    : #33728b !important;
+}
+
+.machine-layout-list .cell-container .status {
+   font-size  : 1rem !important;
+   color      : #0e4e68 !important;
+   font-weight: 400 !important;
+}
+
+.machine-layout-list .cell-container .status-type {
+   font-size: 0.8rem !important;
+   color    : #444444 !important;
+}
+
+.machine-layout-list .cell-container .status-color {
+   min-width: 3px;
+   width    : 3px;
+}
+
+.machine-layout-list .cell-container .status-color.color-01 {
+   background-color: #f0ab17 !important;
+}
+
+.machine-layout-list .cell-container .status-color.color-02 {
+   background-color: #a3c529 !important;
+}
+
+.machine-layout-list .cell-container .date {
+   opacity  : 0.4;
+   font-size: 0.8rem !important;
+}
+
+.machine-layout-list .cell-container .date .sapUiIcon {
+   font-size: 0.8rem !important;
+}
+
+.machine-layout-scroll {
+   overflow: hidden scroll !important;
+}
+
+.navBackArrow {
+   padding-left: 0.85rem;
+   padding-right: 0.85rem;
+   padding-top: 0.2rem;
+   font-size: 1.2rem;
+ }

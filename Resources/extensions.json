@@ -1,0 +1,14 @@
+[
+	{
+		"type": "txt",
+		"extension": "text",
+	},	
+	{
+		"type": "js",
+		"extension": "field1 1",
+	},
+	{
+		"Idtype: "xml",
+		"extension": "field1 1",
+	},
+]
