@@ -1,0 +1,211 @@
+<mvc:View xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:layout="sap.ui.layout" controllerName="customActivity.controller.orme" >
+    <FlexBox id = "raporBox1" height="100%" width="100%"  direction="Column">
+        <FlexBox  height="10%" justifyContent="End" alignItems="End">
+            <Button  enabled="true" width="100%"  type="Emphasized" iconFirst="true" text="Kaydet" pressed="true" press="Execute"/>
+            <FlexBox  justifyContent="End" width="1%"/>
+            <Button  iconFirst="true" text="Rapor Ekranı" pressed="true" type="Accept" press="Transfer1"/>
+            <FlexBox  justifyContent="End" width="2%"/>
+        </FlexBox>
+        <FlexBox width="100%" height="15%" alignItems="Center" direction="Column" justifyContent="Center" >
+            <Label text="Aktif Sipariş Bilgileri" design="Bold"/>
+            <FlexBox height="25%"/>
+            <FlexBox width="40%" alignItems="Center" direction="Row" justifyContent="SpaceAround">
+                <FlexBox  width="30%" alignItems="Center" direction="Row" justifyContent="SpaceAround">
+                    <Label text="Çap:" design="Bold"/>
+                    <Label text="" id="ActiveCap" design="Bold"/>
+                </FlexBox>
+                <FlexBox  width="30%" alignItems="Center" direction="Row" justifyContent="SpaceAround">
+                    <Label text="Kalite:" design="Bold"/>
+                    <Label text="" id="ActiveKalite" design="Bold"/>
+                </FlexBox>
+            </FlexBox>
+        </FlexBox>
+        <FlexBox width="100%" height="100%" justifyContent="Center" direction="Column">
+            <FlexBox  width="100%" height="85%" direction="Row">
+                <FlexBox  width="33%" alignItems="End" direction="Column" justifyContent="Start">
+                    <FlexBox height="3.5%" />
+                    <Text  width="100%" text=""  />
+                    <FlexBox height="6.5%" />
+                    <Text  width="100%" text="Gergi Yükü (kg)"  />
+                    <FlexBox height="6.5%" />
+                    <Text  width="100%" text="Gergi Yükü (kN)"  />
+                    <FlexBox height="6.5%" />
+                    <Text  width="100%" text="Fırın Sıcaklığı (oC)"  />
+                    <FlexBox height="6.5%" />
+                    <Text  width="100%" text="Soğutma Çıkışı Halat Sıcaklığı (oC)"  />
+                    <FlexBox height="6.5%" />
+                    <Text  width="100%" text="Soğutma Havuzu Su Sıcaklığı (oC)"  />
+                    <FlexBox height="6.5%" />
+                    <Text  width="100%" text="Örüm Yönü"  />
+                    <FlexBox height="6.5%" />
+                    <Text  width="100%" text="Lay Uzunluğu"  />
+                    <FlexBox height="6.5%" />
+                    <Text  width="100%" text="Makina Hızı (m/dk)"  />
+                </FlexBox>
+                <FlexBox  width="33%" alignItems="Center" direction="Column" justifyContent="Start">
+                    <FlexBox height="10%" />
+                    <Input id="input1"    placeholder="0.00" liveChange="Warning"/>
+                    <FlexBox height="3%" />
+                    <Input id="input2"    placeholder="0.00" liveChange="Warning"/>
+                    <FlexBox height="3%" />
+                    <Input id="input3"    placeholder="0.00" liveChange="Warning"/>
+                    <FlexBox height="3%" />
+                    <Input id="input4"    placeholder="0.00" liveChange="Warning"/>
+                    <FlexBox height="3%" />
+                    <Input id="input5"    placeholder="0.00" liveChange="Warning"/>
+                    <FlexBox height="3%" />
+                    <Input id="input6"    placeholder="0.00"/>
+                    <FlexBox height="3%" />
+                    <Input id="input7"    placeholder="0.00" liveChange="Warning"/>
+                    <FlexBox height="3%" />
+                    <Input id="input8"    placeholder="0.00" liveChange="Warning"/>
+                </FlexBox>
+                <FlexBox  width="33%" alignItems="Start" direction="Column" justifyContent="Start">
+                    <!-- <FlexBox height="3.5%" /> -->
+                    <Label  width="100%" text="Toleranslar" design="Bold" />
+                    <FlexBox height="6.5%" />
+                    <FlexBox direction="Row"  width="30%">
+                        <Text id="input1-1" wrapping="false"/>
+                        <FlexBox width="20%"/>
+                        <Text id="input1-2" wrapping="false"/>
+                    </FlexBox>
+                    <FlexBox height="6.5%" />
+                    <FlexBox direction="Row"  width="30%">
+                        <Text id="input2-1" wrapping="false"/>
+                        <FlexBox width="20%"/>
+                        <Text id="input2-2" wrapping="false"/>
+                    </FlexBox>
+                    <FlexBox height="6.5%" />
+                    <FlexBox direction="Row"  width="30%">
+                        <Text id="input3-1" wrapping="false"/>
+                        <FlexBox width="20%"/>
+                        <Text id="input3-2" wrapping="false"/>
+                    </FlexBox>
+                    <FlexBox height="6.5%" />
+                    <FlexBox direction="Row"  width="30%">
+                        <Text id="input4-1" wrapping="false"/>
+                        <FlexBox width="20%"/>
+                        <Text id="input4-2" wrapping="false"/>
+                    </FlexBox>
+                    <FlexBox height="6.5%" />
+                    <FlexBox direction="Row"  width="30%">
+                        <Text id="input5-1" wrapping="false"/>
+                        <FlexBox width="20%"/>
+                        <Text id="input5-2" wrapping="false"/>
+                    </FlexBox>
+                    <FlexBox height="6.5%" />
+                    <Text text=""/>
+                    <FlexBox height="6.5%" />
+                    <FlexBox direction="Row"  width="30%">
+                        <Text id="input7-1" wrapping="false"/>
+                        <FlexBox width="20%"/>
+                        <Text id="input7-2" wrapping="false"/>
+                    </FlexBox>
+                    <FlexBox height="6.5%" />
+                    <FlexBox direction="Row"  width="30%">
+                        <Text id="input8-1" wrapping="false"/>
+                        <FlexBox width="20%"/>
+                        <Text id="input8-2" wrapping="false"/>
+                    </FlexBox>
+                </FlexBox>
+            </FlexBox>
+            <FlexBox alignContent="Center" alignItems="Center" justifyContent="Center">
+                <Button  enabled="true" icon="sap-icon://cause" width="auto" iconFirst="true" text="Getir" pressed="true"  press="PCoGetir"/>
+            </FlexBox>
+        </FlexBox>
+    </FlexBox>
+    <FlexBox id = "raporBox" height="100%" width="100%" visible="false" direction="Column">
+        <FlexBox id="fBox1" height="10%" width="100%" justifyContent="SpaceBetween" alignItems="Center">
+            <FlexBox id="dateSearchBox">
+                <DateRangeSelection change="_onDateRangeSelectionChange" class="sapUiResponsiveMargin"  enabled="true" valueStateText="Invalid entry" required="false" displayFormat="short" width="auto" dateValue="{staticDataModel>/sap_Responsive_Page_0-content-sap_m_DateRangeSelection-1625489109866/dateValue}" id="dateRange"/>
+                <Button class="sapUiResponsiveMargin"   iconDensityAware="false" iconFirst="true" type="Emphasized" text="Ara"   press="Search" />
+                 <Button class="sapUiResponsiveMargin"   iconDensityAware="false" iconFirst="true" type="Accept" text="Excel'e Aktar"   press="onExport" />
+            </FlexBox>
+            <Button xmlns="sap.m" text="Veri Girişi Ekranı" id="button0123" type="Accept" press="Transfer2" width="125px" class="sapUiResponsiveMargin" />
+        </FlexBox>
+        <FlexBox id="fBox2" height="90%" width="100%">
+            <ui:Table id="ormereport" selectionMode="None" width="100%" selectionBehavior="Row" enableColumnReordering="false" visibleRowCountMode="Auto" rows="{/}" class="sapUiResponsiveMargin">
+                <ui:columns>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Tarih" textAlign="Begin"  />
+                        <ui:template>
+                            <Text text="{DATE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" />
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Vardiya" textAlign="Begin"  />
+                        <ui:template>
+                            <Text text="{SHIFT}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" />
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Sipariş Numarası" textAlign="Begin"  />
+                        <ui:template>
+                            <Text text="{AUFNR}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" />
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Çap" textAlign="Begin"  />
+                        <ui:template>
+                            <Text text="{CAP}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" />
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Kalite" textAlign="Begin"  />
+                        <ui:template>
+                            <Text text="{KALITE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" />
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Gergi Yükü (kg)" textAlign="Begin"  />
+                        <ui:template>
+                            <Text text="{G_Y_KG}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" />
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Gergi Yükü (kN)" textAlign="Begin"  />
+                        <ui:template>
+                            <Text text="{G_Y_KN}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" />
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Fırın Sıcaklığı(oC)" textAlign="Begin"  />
+                        <ui:template>
+                            <Text text="{FI_SI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" />
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Soğutma Çıkışı Halat Sıcaklığı(oC)" textAlign="Begin"  />
+                        <ui:template>
+                            <Text text="{SC_HA_SI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" />
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Soğutma Havuzu Su Sıcaklığı(oC)" textAlign="Begin"  />
+                        <ui:template>
+                            <Text text="{SH_SU_SI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" />
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Örüm Yönü" textAlign="Begin"  />
+                        <ui:template>
+                            <Text text="{OR_YON}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" />
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Lay Uzunluğu" textAlign="Begin"  />
+                        <ui:template>
+                            <Text text="{LAY_UZ}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" />
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Makine Hızı" textAlign="Begin"  />
+                        <ui:template>
+                            <Text text="{MAKINE_HIZI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" />
+                        </ui:template>
+                    </ui:Column>
+                </ui:columns>
+            </ui:Table>
+        </FlexBox>
+    </FlexBox>
+</mvc:View>

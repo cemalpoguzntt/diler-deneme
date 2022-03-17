@@ -1,0 +1,19 @@
+<core:View xmlns:core="sap.ui.core" xmlns="sap.m"  xmlns:layout="sap.ui.layout"  
+	controllerName="customActivity.controller.orderCardCharcTileSd">
+			<layout:Grid>
+			<layout:content>
+			<!--
+			<Label text = "No Order Is Running" id = "noOrderRunning" visible = "{parts : [{path: 'order'},{path:'routingOperNo'}], formatter : '.showIfNoOrderRunning'}"/>
+			--><Panel id="orderCardTile" headerText = "{i18n>OEE_HEADING_CURRENT_SHIFT_ORDER}" height = "85%">
+			<layoutData>
+				<layout:GridData
+					 span="L12 M12 S12">
+				</layout:GridData>
+				</layoutData>
+			<content>
+			<core:Fragment fragmentName='customActivity.fragmentView.zorderCardCharacteristicFragmentSd' type='XML' id= "orderCardFragment"/>
+			</content> 
+			</Panel>
+		</layout:content> <!-- sap.ui.core.Control -->
+			</layout:Grid>
+</core:View>

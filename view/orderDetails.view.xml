@@ -1,0 +1,96 @@
+<core:View xmlns:core="sap.ui.core" xmlns:suite="sap.suite.ui.commons" xmlns:l="sap.ui.layout" xmlns="sap.m"  
+	controllerName="customActivity.controller.orderDetails">
+	<Page showHeader = "false" showNavButton="false" scrollTo = "0">
+	<content>
+	  <ScrollContainer vertical="true" height="100%">
+	<content>
+	<l:Grid>
+	<l:content>
+	<Panel headerText = "{i18n>OEE_HEADING_ORDER_DETAILS}" >
+	<layoutData>
+	<l:GridData
+		span="L12 M12 S12">
+	</l:GridData>
+	</layoutData>
+	<content>
+	<l:VerticalLayout width="100%" id = "orderCardFragment"/> 
+	</content>
+	</Panel>
+	</l:content> 
+	</l:Grid>
+	
+	<l:Grid>
+	<l:content>
+	<Panel id="orderExecutionDetails" headerText = "{i18n>OEE_HEADER_ORDER_EXECUTION_DETAILS}" >  
+	<layoutData>
+	<l:GridData
+		span="L12 M12 S12">
+	</l:GridData>
+	</layoutData>
+	<content>
+	
+	<Table id="idOrderDetails" items="{/orderDetailsData}" growing="true" growingScrollToLoad="true"  >
+	<columns> 
+			<Column>
+				 <Label text="{i18n>OEE_BTN_SHIFT}" />
+			</Column>
+			<Column>
+				 <Label text="{i18n>OEE_LABEL_ACTION1}" /> 
+			</Column>
+			<Column>
+				<Label text="{i18n>OEE_LABEL_START_TIME}"/> 
+			</Column>
+			<Column>
+				<Label text="{i18n>OEE_LABEL_ACTION2}"/>  
+			</Column>
+			<Column>  
+				<Label text="{i18n>OEE_LABEL_END_TIME}"/> 
+			</Column>
+			<Column visible="{path : 'appData>/node/crewSize' ,formatter : 'sap.oee.ui.Formatter.formatCrewSizeVisibility'}"> 
+				<Label text="{i18n>OEE_LABEL_CREWSIZE}"/>
+			</Column>
+			<Column id="productionActivity">
+				<Label  text="{i18n>OEE_LABEL_PRODUCTION_ACTIVITY}"/> 
+			</Column>
+			<Column >
+				 <Label text="{i18n>OEE_LABEL_DETAILS}"/>
+			</Column>
+		</columns>
+		
+	<items >
+      <ColumnListItem >  
+      <cells>
+      <Text text="{shift/shiftDescription}"/>
+       <Text text="{action1}"/>
+	    <Button width="94%"  press = "editStartDate"
+		enabled ="{parts : [{path:'existingTimeInterval/endTimestamp'},{path : 'action1'},{path : 'i18n>OEE_BTN_START'} ] ,formatter : 'sap.oee.ui.Formatter.formatDateButtonVisibilityForLastStartTime'}"
+		text="{parts : [{path : 'existingTimeInterval/startTimestamp'},{path:'appData>/plantTimezoneOffset'}, {path: 'appData>/plantTimezoneKey'}], formatter : 'sap.oee.ui.Formatter.formatTimeStampWithoutLabel'}" />		
+		<Text text="{action2}"/>
+		<Button  width="94%" enabled="true"  press="editEndDate" 
+		visible="{path:'existingTimeInterval/endTimestamp',formatter : 'sap.oee.ui.Formatter.formatDateButtonVisibility'}"
+		text="{parts : [{path : 'existingTimeInterval/endTimestamp'},{path:'appData>/plantTimezoneOffset'}, {path: 'appData>/plantTimezoneKey'}], formatter : 'sap.oee.ui.Formatter.formatTimeStampWithoutLabel'}" />		   
+		<Button width="40%" text="{path  : 'crewSize'  , formatter : 'sap.oee.ui.Formatter.formatQuantityForOrderCard'}" press="editCrewSize" />
+		<Text text="{productionActivity}"/>  
+		<Button id="orderDetails" icon = "sap-icon://detail-view" press="onPressDetails"/>
+		</cells>
+      </ColumnListItem>
+      </items>
+    </Table>
+	</content>
+	</Panel>
+	</l:content>
+	</l:Grid>
+	</content>
+
+</ScrollContainer>
+</content>
+	<footer>
+	       <Bar>
+	            <contentRight>
+	                <Button id="revert"  icon="sap-icon://activity-individual"  press ="onPressRevertAction" ></Button>
+	                <Button id="abort" icon="sap-icon://activity-individual"  press ="onPressAbortAction" ></Button>
+	            </contentRight>
+	        </Bar>
+	</footer>
+</Page>
+	</core:View>

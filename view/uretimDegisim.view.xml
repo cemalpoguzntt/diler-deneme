@@ -1,0 +1,171 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.commons" controllerName="customActivity.controller.uretimDegisim" displayBlock="true" height="100%">
+
+<html:style>
+
+	.sapMListTbl {
+		font-size: 2.975rem;
+	}
+
+
+	.sapMCbBg.sapMCbMarkChecked:before {
+		color: #059aeb;
+	}
+.sapMCbBg {
+    background-color: #ffffff;
+    border: solid 0.125rem #f91010;
+    display: inline-block;
+    position: absolute;
+    left: 0.8125rem;
+    top: 0.8125rem;
+    height: 1.125rem;
+    width: 1.125rem;
+    line-height: 1.125rem;
+    padding: 0;
+    text-align: center;
+    border-top-left-radius: 0.125rem;
+    border-top-right-radius: 0.125rem;
+    border-bottom-right-radius: 0.125rem;
+    border-bottom-left-radius: 0.125rem;
+    -webkit-focus-ring-color: none;
+}
+.sapMLabel {
+    color: #cf341b;
+    font-size: 0.875rem;
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: normal;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: text;
+}
+.oeeComponent .sapMLabel {
+    font-size: 1.6rem !important;
+}
+
+.sapMText {
+    display: inline-block;
+    box-sizing: border-box;
+    white-space: pre-line;
+    word-wrap: break-word;
+    cursor: text;
+    font-size: 1.875rem;
+    font-family: Arial,Helvetica,sans-serif;
+    line-height: normal;
+    color: #1a1919;
+}
+
+</html:style>
+
+
+	<Page>
+		<content>
+			<FlexBox justifyContent="SpaceBetween"> 
+			<FlexBox> 
+			<Label text="Başlangıç Tarih-Zaman" design="Bold" width="auto" required="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginTop"/>
+				<DateTimePicker id="DateTimePicker1" change="handleChange1" valueFormat="yyyy-MM-dd HH:mm" displayFormat="dd-MM-yyyy HH:mm" class="sapUiSmallMarginBottom"/>
+			<Label text="Bitiş Tarih-Zaman" design="Bold" width="auto" required="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginTop"/>
+	<DateTimePicker id="DateTimePicker2" change="handleChange2" valueFormat="yyyy-MM-dd HH:mm" displayFormat="dd-MM-yyyy HH:mm" class="sapUiSmallMarginBottom"/>
+		<Button xmlns="sap.m" text="ARA" id="button0" press="getMessageModel" type="Accept"/>
+		<Button xmlns="sap.m" text="GÜNCELLE" id="SS" press="openTasFrag" type="Emphasized"/>
+	<items/>
+	</FlexBox>
+	
+	<FlexBox> 
+	
+	
+	
+	
+	
+	<items> 
+	
+	
+	
+	
+	<Label text="Taş Kodu Filtresi :" design="Bold" width="auto" required="false" textAlign="Center" textDirection="Inherit" visible="true" class="neon"/>
+	    <ComboBox  items="{path:'/'}"  selectionChange = "onSearchSC"  id="kod" xmlns="sap.m"> 
+              <items> 
+	            <core:Item xmlns:core="sap.ui.core"  key="{STONE_CODE}" text="{STONE_CODE}"/> 
+	            </items> 
+	    </ComboBox> 
+	    	<Label text="Menşei Filtresi :" design="Bold" width="auto" required="false" textAlign="Center" textDirection="Inherit" visible="true" class="neon"/>
+	     <ComboBox items="{path:'/'}" id="mensei" selectionChange = "onSearchMens" xmlns="sap.m"> 
+              <items> 
+	            <core:Item xmlns:core="sap.ui.core"  key="{MENSEI}" text="{MENSEI}"/> 
+	            </items> 
+	    </ComboBox> 
+	    	<Label text="Model Filtresi :" design="Bold" width="auto" required="false" textAlign="Center" textDirection="Inherit" visible="true" class="neon"/>
+	     <ComboBox items="{path:'/'}"  selectionChange = "onSearchModel" id="model" xmlns="sap.m"> 
+              <items> 
+	            <core:Item xmlns:core="sap.ui.core"  key="{MODEL}" text="{MODEL}"/> 
+	            </items> 
+	    </ComboBox> 
+	    
+	    
+	    </items> 
+	
+	
+	
+	
+	
+	</FlexBox>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	</FlexBox>
+
+			
+			
+			<Table id="idOrdersTable" inset="false" selectionChange="selectChange" width="100%" sticky="ColumnHeaders" items="{path: '/'}" mode="MultiSelect" growing="true" growingScrollToLoad="true" growingThreshold="100" contextualWidth="Auto" popinLayout="GridSmall">
+				<columns>
+
+					<Column width="auto" visible="true" hAlign="Center">
+						<Label text="Kayıt Tarihi"/>
+					</Column>
+
+
+					<Column width="auto" visible="true" hAlign="Center">
+						<Label text="TAŞ KODU"/>
+					</Column>
+					
+
+					<Column width="auto" visible="true" hAlign="Center">
+						<Label text="MENŞEİ"/>
+					</Column>
+
+					<Column width="auto" visible="true" hAlign="Center">
+						<Label text="TAŞ MODELİ"/>
+					</Column>
+				
+					<Column width="auto" visible="true" hAlign="Center">
+						<Label text="Üretilen Miktar (TON)"/>
+					</Column>
+
+
+				
+					
+				</columns>
+
+				<items>
+					<ColumnListItem>
+						<cells>
+
+                            <Text text="{INSDATE}" class="castingFont"/>
+							 <Text text="{STONE_CODE}" class="castingFont"/>
+							<Text text="{MENSEI}" class="castingFont"/>
+							<Text text="{MODEL}" visible="true"/>
+							<Text text="{TOPLAMU}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+</core:View>

@@ -1,0 +1,291 @@
+<!-- // Ana veri eşleştirme -->
+
+<mvc:View xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:layout="sap.ui.layout" controllerName="customActivity.controller.gatherData">
+	<Page id="getdatascreen" title="" showNavButton="false" showFooter="true" showHeader="false">
+		<content>
+
+        <FlexBox id="mainflexbox1" width="100%" height="95%" direction="Row">
+
+			<FlexBox id="box1" width="47%" height="100%" direction="Column">
+
+                     <FlexBox id="box11" width="100%" height="25%" direction="Row">
+
+                      <FlexBox width="10%" height="100%" direction="Column">
+
+                        
+
+                       </FlexBox>
+
+                       <FlexBox width="90%" height="100%" direction="Row">
+
+                            <FlexBox width="30%" height="100%" direction="Column">
+
+                                        <FlexBox alignItems="Center" width="100%" height="33%" direction="Row" justifyContent="Center">
+
+                                            <Label text=" Plant : " design="Bold" width="100px"/>
+
+
+                                        </FlexBox>
+                                        
+                                        <FlexBox alignItems="Center" width="100%" height="33%" direction="Row" justifyContent="Center">
+
+                                         
+                                            <Label text="PP İşyeri : " design="Bold" width="100px"/>
+
+
+                                        </FlexBox>
+                                        <FlexBox alignItems="Center" width="100%" height="33%" direction="Row" justifyContent="Center">
+
+                                        <Label text="Kod Grubu : " design="Bold" width="100px"/>
+
+
+                                        </FlexBox>
+
+                                    
+
+                            </FlexBox>
+
+                            <FlexBox width="90%" height="100%" direction="Column">
+
+                                        <FlexBox width="100%" height="33%" direction="Row" alignContent="Start" alignItems="Center">
+
+                                            <ComboBox id="getPlant1"  textAlign="Center" width="auto" selectionChange = "cGroupCB2" items="{path : '/'}">
+                                                <core:ListItem key="{WERKS}" text="{WERKS}"/>
+                                            </ComboBox>
+
+
+                                        </FlexBox>
+                                        
+                                        <FlexBox width="100%" height="33%" direction="Row" alignContent="Center" alignItems="Center">
+                                            <ComboBox id="getPPworkCenter1" textAlign="Center" width="auto" items="{path : '/'}" selectionChange = "cGroupCB3" >
+                                               <core:ListItem key="{ARBPL}" text="{ARBPL} - {DESCRIPTION}"/>
+                                             </ComboBox>
+					
+
+                                        </FlexBox>
+                                        <FlexBox width="100%" height="33%" direction="Row" alignContent="Center" alignItems="Center" >
+                                             <ComboBox id="Codegroup1" textAlign="Center" width="auto" items="{path : '/'}" >
+                                                <core:ListItem key="{CODEGROUP}" text="{CODEGROUP}"/>
+                                            </ComboBox>
+
+                                        </FlexBox>
+
+                            
+
+                            </FlexBox>
+                       </FlexBox>
+				
+						
+					
+					
+				
+			         </FlexBox>
+
+                <FlexBox id="box12" width="100%" height="75%">
+
+
+                     <ui:Table id="WPCodeGroup" selectionMode="Single" width="100%" selectionBehavior="Row" enableColumnReordering="false" visibleRowCountMode="Auto" rows="{/}" class="sapUiResponsiveMargin">
+				        <ui:columns>
+
+					        <ui:Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						            <Label text="Plant" textAlign="Begin"/>
+						        <ui:template>
+							         <Text text="{PLANT}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						        </ui:template>
+					        </ui:Column>
+
+                            <ui:Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						            <Label text="PP İşyeri" textAlign="Begin"/>
+						        <ui:template>
+							        <Text text="{PP_WORKCENTER}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						        </ui:template>
+					        </ui:Column>
+
+                            <ui:Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						            <Label text="Code Group" textAlign="Begin"/>
+						        <ui:template>
+							        <Text text="{CODE_GROUP}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						        </ui:template>
+					        </ui:Column>
+					
+					
+				        </ui:columns>
+			         </ui:Table>
+
+
+				
+			    </FlexBox>	
+				
+						
+						
+					
+					
+				
+			</FlexBox>
+
+                <FlexBox id="box3" width="1%" height="100%" direction="Column">
+
+                 </FlexBox>
+
+
+
+
+                <FlexBox id="box2" width="50%" height="100%" direction="Column">
+
+            
+                    <FlexBox id="box21" width="100%" height="25%" direction="Row">
+                    	
+                    	<FlexBox width="10%" height="100%" direction="Column">
+
+                        
+
+                       </FlexBox>
+
+                       <FlexBox width="90%" height="100%" direction="Row">
+
+                            <FlexBox width="30%" height="100%" direction="Column">
+
+                                        <FlexBox alignItems="Center" width="100%" height="33%" direction="Row" justifyContent="Center">
+
+                                            <Label text=" Plant : " design="Bold" width="100px"/>
+
+
+                                        </FlexBox>
+                                        
+                                        <FlexBox alignItems="Center" width="100%" height="33%" direction="Row" justifyContent="Center">
+
+                                         
+                                            <Label text="PP İşyeri : " design="Bold" width="100px"/>
+
+
+                                        </FlexBox>
+                                        <FlexBox alignItems="Center" width="100%" height="33%" direction="Row" justifyContent="Center">
+
+                                        <Label text="Pm işyeri : " design="Bold" width="100px"/>
+
+
+                                        </FlexBox>
+
+                                    
+
+                            </FlexBox>
+
+                            <FlexBox width="90%" height="100%" direction="Column">
+
+                                        <FlexBox width="100%" height="33%" direction="Row" alignContent="Center" alignItems="Center">
+
+                                            <ComboBox id="getPlant2"  textAlign="Center" width="auto" selectionChange = "wCenterCB2" items="{path : '/'}">
+                                                <core:ListItem key="{WERKS}" text="{WERKS}"/>
+                                            </ComboBox>
+
+
+                                        </FlexBox>
+                                        
+                                        <FlexBox width="100%" height="33%" direction="Row" alignContent="Center" alignItems="Center">
+                                            <ComboBox id="getPPworkCenter2" textAlign="Center" width="auto" items="{path : '/'}" selectionChange = "wCenterCB3" >
+                                               <core:ListItem key="{ARBPL}" text="{ARBPL} - {DESCRIPTION}"/>
+                                             </ComboBox>
+					
+
+                                        </FlexBox>
+                                        <FlexBox width="100%" height="33%" direction="Row" alignContent="Center" alignItems="Center">
+                                            
+
+                                            <ComboBox id="getPmWorkCenter2" textAlign="Center" width="auto" items="{path : '/'}" >
+                                               <core:ListItem key="{ARBPL}" text="{ARBPL} - {DESCRIPTION}"/>
+                                             </ComboBox>
+
+                                        </FlexBox>
+
+                            
+
+                            </FlexBox>
+                       </FlexBox>
+
+            
+								
+						
+					
+					
+				
+			         </FlexBox>
+
+                     <FlexBox id="box22" width="100%" height="75%" direction="Row">
+
+                            <ui:Table id="PmWorkCenter" selectionMode="Single" width="100%" selectionBehavior="Row" enableColumnReordering="false" visibleRowCountMode="Auto" rows="{/}" class="sapUiResponsiveMargin">
+				        <ui:columns>
+
+					        <ui:Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						            <Label text="Plant" textAlign="Begin"/>
+						        <ui:template>
+							         <Text text="{PLANT}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						        </ui:template>
+					        </ui:Column>
+
+                            <ui:Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						            <Label text="PP İşyeri" textAlign="Begin"/>
+						        <ui:template>
+							        <Text text="{PP_WORKCENTER}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						        </ui:template>
+					        </ui:Column>
+
+                            <ui:Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						            <Label text="Pm İşyeri" textAlign="Begin"/>
+						        <ui:template>
+							        <Text text="{PM_WORKCENTER}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						        </ui:template>
+					        </ui:Column>
+					
+					
+				        </ui:columns>
+			                </ui:Table>
+
+			         </FlexBox>					
+														
+			    </FlexBox>
+
+        </FlexBox>
+
+        <FlexBox id="mainflexbox2" width="100%" height="5%" direction="Row">
+
+                
+
+                <FlexBox width="3%" height="100%" direction="Row">
+                </FlexBox>
+
+                <FlexBox width="39%" height="100%" direction="Row" justifyContent="SpaceAround" >
+
+                <Button id="save1" width="125px" type="Accept" visible="true" icon="sap-icon://save" text="Kaydet" press="save1" />
+                 <Button id="delete1" width="125px" type="Reject" icon="sap-icon://sys-cancel" text="Sil" press="delete1"/>
+                 </FlexBox>
+
+                <FlexBox width="15%" height="100%" direction="Row" justifyContent="Center">
+
+                    <Button id="saveall" width="auto" type="Approve" visible="false" icon="sap-icon://create-session" text="Tümünü Kaydet" press="saveall"/>
+                 </FlexBox>
+
+                  
+
+
+
+                 <FlexBox width="35%" height="100%" direction="Row" justifyContent="SpaceAround">
+
+                 <Button id="save2" width="125px" type="Accept" visible="true" icon="sap-icon://save" text="Kaydet" press="save2"/>
+                 <Button id="delete2" width="125px" type="Reject" icon="sap-icon://sys-cancel" text="Sil" press="delete2"/>
+                 </FlexBox>
+
+                
+
+
+
+        </FlexBox>
+			
+		</content>
+
+     
+		
+		<headerContent/>
+		<subHeader/>
+		<customHeader/>
+	</Page>
+</mvc:View>

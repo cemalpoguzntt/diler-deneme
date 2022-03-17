@@ -1,0 +1,133 @@
+<mvc:View xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:layout="sap.ui.layout" controllerName="customActivity.controller.oeeSelectOrderFIRK" >
+    <FlexBox direction="Column" height="100%">
+        <FlexBox justifyContent="Center" alignItems="Center" direction="Row">
+            <Label id="idLabelAktifSip" text="Aktif Sipariş Tablosu" design="Bold" />
+        </FlexBox>
+        <FlexBox >
+            <Table id="AktifSip" items="{path: '/'}" >
+                <columns>
+                    <Column hAlign="Center">
+                        <Label text="Sipariş"    />
+                    </Column >
+                    <Column hAlign="Center">
+                        <Label text="Ülke"    />
+                    </Column >
+                    <Column hAlign="Center">
+                        <Label text="Standart"   />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Kalite"   />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Çap"    />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Boy"    />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Bitir"    />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Karakteristikler"    />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Açıklama"    />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{AUFNR}"  />
+                            <Text text="{Y_ULKE}"  />
+                            <Text text="{Y_STANDART_FRK}"  />
+                            <Text text="{Y_KALITE_FRK}"  />
+                            <Text text="{Y_CAP_FRK_MM}"  />
+                            <Text text="{Y_BOY_FRK_M}"  />
+                            <Button id="idHold" icon="sap-icon://fob-watch" press="HoldButtonOK"  />
+                            <Button icon="sap-icon://display" press="onPressOpenCharacteristic"/>
+                            <Button icon="sap-icon://notes" press="onPressOpenDescription"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </FlexBox>
+        <FlexBox alignItems="Center" justifyContent="SpaceAround" direction="Row">
+            <Label text="Getir:" textAlign="Center" editable="false"/>
+            <Button icon="sap-icon://search" id="idGetir"  press="onPressidGetir"/>
+            <Label text="Sip No:" textAlign="Center" editable="false"/>
+            <Input id="idAUFNR" textAlign="Center"/>
+            <Label text="Ülke:" textAlign="Center" editable="false"/>
+            <Select id="idUlke" autoAdjustWidth="true" forceSelection="false" items="{path:'/'}" >
+                <core:Item key="{Y_ULKE}" text="{Y_ULKE}"/>
+            </Select>
+            <Label text="Standart:" textAlign="Center" editable="false"/>
+            <Select id="idStandart" autoAdjustWidth="true" forceSelection="false" items="{path:'/'}" >
+                <core:Item key="{Y_STANDART_FRK}" text="{Y_STANDART_FRK}"/>
+            </Select>
+            <Label text="Kalite:" textAlign="Center" editable="false"/>
+            <Select id="idKalite" autoAdjustWidth="true" forceSelection="false" items="{path:'/'}" >
+                <core:Item key="{Y_KALITE_FRK}" text="{Y_KALITE_FRK}"/>
+            </Select>
+            <Label text="Çap:" textAlign="Center" editable="false"/>
+            <Select id="idCap" autoAdjustWidth="true" forceSelection="false" items="{path:'/'}">
+                <core:Item key="{Y_CAP_FRK_MM}" text="{Y_CAP_FRK_MM}"/>
+            </Select>
+            <Label text="Boy:" textAlign="Center" editable="false"/>
+            <Select id="idBoy" autoAdjustWidth="true" forceSelection="false" items="{path:'/'}">
+                <core:Item key="{Y_BOY_FRK_M}" text="{Y_BOY_FRK_M}"/>
+            </Select>
+            <Label text="Temizle:" textAlign="Center" editable="false"/>
+            <Button icon="sap-icon://clear-filter" id="idTemizle" press="onPressidTemizle"/>
+        </FlexBox>
+        <FlexBox height="60%">
+            <ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
+                <Table id="ManageOrders" items="{path: '/'}" >
+                    <columns>
+                        <Column hAlign="Center">
+                            <Label text="Sipariş"   />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="Ülke"   />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="Standart"   />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="Kalite"   />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="Çap"    />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="Boy"    />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="Başlat"    />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="Karakteristikler"    />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="Açıklama"    />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{AUFNR}"  />
+                                <Text text="{Y_ULKE}"  />
+                                <Text text="{Y_STANDART_FRK}"  />
+                                <Text text="{Y_KALITE_FRK}"  />
+                                <Text text="{Y_CAP_FRK_MM}"  />
+                                <Text text="{Y_BOY_FRK_M}"  />
+                                <Button id="idStart" icon="sap-icon://begin"   press="StartButtonOK"/>
+                                <Button icon="sap-icon://display" press="onPressOpenCharacteristic"/>
+                                <Button icon="sap-icon://notes" press="onPressOpenDescription"/>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </ScrollContainer>
+        </FlexBox>
+    </FlexBox>
+</mvc:View>

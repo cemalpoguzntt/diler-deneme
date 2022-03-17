@@ -1,0 +1,179 @@
+<mvc:View xmlns:core="sap.ui.core"
+    xmlns:ui="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:suite="sap.suite.ui.commons"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns="sap.m"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.core" controllerName="customActivity.controller.oeeRelayBilletList">
+    <Page showHeader="false" showNavButton="false">
+        <content>
+
+            <l:ResponsiveSplitter height="100%">
+                <l:PaneContainer>
+                    <l:SplitPane requiredParentWidth="200">
+
+
+                        <Table id="tblBilletMaster" mode="MultiSelect" selectionChange="billetItemSelected" includeItemInSelection="false" items="{confirmBilletListRole>/}" growing="true" growingScrollToLoad="true" growingThreshold="1000">
+                            <headerToolbar>
+                                <OverflowToolbar height="5rem">
+                                    <HBox width="100%" justifyContent="SpaceAround">
+                                        <MessageStrip type="None" text="{i18n>OEE_LABEL_ROLLER_TABLE_SCREEN}" class="sapUiTinyMarginBottom"/>
+
+                                        <FlexBox direction="Column" width="auto">
+
+                                            <Label text="{PACKAGE_NUMBER}" class="cycleBtnContent cycleBtnInner" items="{path: '/'}" id="neon"/>
+                                        </FlexBox>
+
+
+                                    </HBox>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column width="5rem" hAlign="Center" vAlign="Center">
+                                    <Label text="{i18n>OEE_LABEL_RLY_SEQ}" tooltip="Kangal SÄ±rasÄ±"/>
+                                </Column>
+                                <Column width="6rem" hAlign="Center" vAlign="Center">
+                                    <Label text="{i18n>OEE_LABEL_RLY_ORDER_NO}" tooltip="SipariÅ NumarasÄ±"/>
+                                </Column>
+                                <Column width="4rem" hAlign="Center" vAlign="Center">
+                                    <Label text="{i18n>OEE_LABEL_KTKID}" tooltip="KÃ¼tÃ¼k ID"/>
+                                </Column>
+                                <Column width="3rem" hAlign="Center" vAlign="Center">
+                                    <Label text="OTOID" tooltip="Otomasyon ID"/>
+                                </Column>
+                                <Column width="3rem" hAlign="Center" vAlign="Center">
+                                    <Label text="{i18n>OEE_LABEL_BILLET_DIAMETER}" tooltip="Ãap"/>
+                                </Column>
+                                <Column width="5rem" hAlign="Center" vAlign="Center">
+                                    <Label text="{i18n>OEE_LABEL_PRODUCT_QUALITY}" tooltip="Mamul Kalitesi"/>
+                                </Column>
+                                <Column width="5rem" hAlign="Center"  vAlign="Center">
+                                    <Label text="HURDA" visible="true" tooltip="Mamul Kalitesi"/>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{confirmBilletListRole>ROLE_SEQ}"/>
+                                        <Text text="{confirmBilletListRole>AUFNR}"/>
+                                        <Text text="{confirmBilletListRole>KTKID}"/>
+                                        <Text text="{confirmBilletListRole>OTOID}"/>
+                                        <Text text="{confirmBilletListRole>Y_CAP_FLM_MM}"/>
+                                        <Text text="{confirmBilletListRole>Y_KALITE_FLM}"/>
+                                        <Button xmlns="sap.m" press="newStartButton"  text="HURDA" value="" id="button0" visible="{= ${confirmBilletListRole>BILLET_STATUSX} === 'HURDA' ? true : false }"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </l:SplitPane>
+                    <l:SplitPane requiredParentWidth="200">
+                        <Table id="tblBilletMaster2" mode="MultiSelect" selectionChange="billetItemSelected" includeItemInSelection="false" items="{confirmBilletListPackage>/Row}" growing="true" growingScrollToLoad="true" growingThreshold="1000">
+                              <headerToolbar>
+                                <OverflowToolbar height="5rem">
+                                    <HBox width="100%" justifyContent="SpaceAround">
+                                        <MessageStrip type="None" text="Şekillendirme" class="sapUiTinyMarginBottom"/>
+
+
+                                        <FlexBox direction="row-reverse" width="auto">
+                                            <Label text="{PACKAGE_NUMBER_DOLU}" class="cycleBtnContent cycleBtnInner" items="{path: '/'}" id="neon2"/>
+                                        </FlexBox>
+
+
+                                    </HBox>
+                                </OverflowToolbar>
+                            </headerToolbar>
+
+                            <columns>
+                                <Column width="3rem" hAlign="Center" vAlign="Center">
+                                    <Label text="{i18n>OEE_LABEL_PALET_NO}" tooltip="Palet NumarasÄ±"/>
+                                </Column>
+                                <Column width="3rem" hAlign="Center" vAlign="Center">
+                                    <Label text="{i18n>OEE_LABEL_KTKID}" tooltip="KÃ¼tÃ¼k ID"/>
+                                </Column>
+                                <Column width="3rem" hAlign="Center" vAlign="Center">
+                                    <Label text="OTOID" tooltip="Otomasyon ID"/>
+                                </Column>
+                                <Column width="3rem" hAlign="Center" vAlign="Center">
+                                    <Label text="{i18n>OEE_LABEL_COIL_WEIGHT}" tooltip="Kangal AÄÄ±rlÄ±k"/>
+                                </Column>
+                                <Column width="3rem" hAlign="Center" vAlign="Center">
+                                    <Label text="ZAMAN" tooltip="ZAMAN"/>
+                                </Column>
+                                <Column width="5rem" hAlign="Center"  vAlign="Center">
+                                    <Label text="HURDA" visible="true" tooltip="Mamul Kalitesi"/>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{confirmBilletListPackage>PACKAGE_NUMBER}"/>
+                                        <Text text="{confirmBilletListPackage>KTKID}"/>
+                                        <Text text="{confirmBilletListPackage>OTOID}"/>
+                                        <Text text="{confirmBilletListPackage>LABEL_WEIGHT}"/>
+                                        <Text text="{confirmBilletListPackage>SAAT}"/>
+                                        <Button xmlns="sap.m"   text="HURDA" press="newStartButton2" value="" id="button1" visible="{= ${confirmBilletListPackage>BILLET_STATUSX} === 'HURDA' ? true : false }"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </l:SplitPane>
+                </l:PaneContainer>
+            </l:ResponsiveSplitter>
+        </content>
+        <footer>
+            <OverflowToolbar>
+             <Button  icon="sap-icon://product" type="Default" text="Hata Mesajları" press="openFragment_errors" visible="true">
+                    <customData>
+                        <core:CustomData key="mydata" value="HB Paketlenen" writeToDom="true"/>
+                    </customData>
+                </Button>
+                <Button id="chkIntervalState" text="Otomatik Güncelleme Açık" type="Accept" press="changeIntervalState" icon="sap-icon://fob-watch"/>
+                <Button id="btnManuelDownPallet" icon="sap-icon://pull-down" text="{i18n>OEE_BTN_MANUAL_DOWN_PACKAGE}" press="onOpenDownPalletDialog" visible="true">
+                    <customData>
+                        <core:CustomData key="mydata" value="Manuel Ä°ndir" writeToDom="true"/>
+                    </customData>
+                </Button>
+                <Button id="btnDeleteBillet" type="Reject" text="Role Yolundan Sil" press="onPressDeleteFromRly" visible="true" icon="sap-icon://edit">
+                    <customData>
+                        <core:CustomData key="mydata" value="Yoldan Sil" writeToDom="true"/>
+                    </customData>
+                </Button>
+                <!--  <OverflowToolbarButton press="refreshData" text="{i18n>titleBilletMonitorRefresh}" icon="sap-icon://synchronize" />-->
+
+                <Button id="btnRejected" text="{i18n>titleRejectedNotifs}" press="onOpenRejectDialog" visible="false"/>
+                <Button id="btnContinue" icon="sap-icon://arrow-right" text="{i18n>OEE_LABEL_RLY_CONT}" press="onPressContinueDialog" visible="true">
+                    <customData>
+                        <core:CustomData key="mydata" value="Devam Et" writeToDom="true"/>
+                    </customData>
+                </Button>
+                <Button id="btnDownPallet" icon="sap-icon://pull-down" text="{i18n>OEE_LABEL_PLT_DOWN_ON_PACKAGE}" press="onPressSendBilletOnPackage" visible="false" enabled="true">
+                    <customData>
+                        <core:CustomData key="mydata" value="Ãst Ãste Ä°ndir" writeToDom="true"/>
+                    </customData>
+                </Button>
+                <Button id="btnHBRole" icon="sap-icon://media-forward" text="Üstte Parça" press="onPressHBRollerTbl" visible="true">
+                    <customData>
+                        <core:CustomData key="mydata" value="HB Role Yolu" writeToDom="true"/>
+                    </customData>
+                </Button>
+                <Button id="btnHBPacket" icon="sap-icon://product" text="Altta Parça" press="onPressHBPacked" visible="true">
+                    <customData>
+                        <core:CustomData key="mydata" value="HB Paketlenen" writeToDom="true"/>
+                    </customData>
+                </Button>
+                
+
+                <ToolbarSpacer/>
+                <Button id="btnSendRollerTbl" text="{i18n>OEE_LABEL_RLY_ROLEWAY}" press="onPressSendRollerTbl" visible="true" icon="sap-icon://arrow-left"/>
+                <Button id="btnPiece" text="Malzeme Bölme" press="onPressPieceBillet" visible="true" icon="sap-icon://arrow-left"/>
+                <Button id="btnScrap" text="{i18n>OEE_LABEL_PLT_SCRAP}" press="onPressScrapPackage" visible="false" icon="sap-icon://delete"/>
+                <Button id="btnEdit" text="{i18n>titleEdit}" press="openBarcodeEditDialog" icon="sap-icon://edit" visible="false"/>
+                <Button id="btnNew" text="{i18n>titleLogErrorDetail}" press="openBarcodeLogDialog" icon="sap-icon://inspect" visible="false"/>
+                <Button id="btnAdd" text="{i18n>titleAdd}" press="onOpenAddDialog" icon="sap-icon://add" visible="false"/>
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

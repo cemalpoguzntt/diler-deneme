@@ -1,0 +1,46 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="customActivity.controller.Printer_ID" xmlns="sap.m">
+    <Page showHeader="true" showFooter="true" showNavButton="false">
+        <content>
+            <FlexBox direction="Column"  width="100%">
+                <FlexBox  >
+                    <Table width="100%" noDataText="No data" items="{path: '/'}" mode="SingleSelectLeft" id="birinci" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true">
+                        <infoToolbar>
+                            <Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+                                <content>
+                                    <Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </content>
+                            </Toolbar>
+                        </infoToolbar>
+                        <headerToolbar/>
+                        <columns>
+                            <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                <header>
+                                    <Text text="ID" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </header>
+                                <footer/>
+                            </Column>
+                            <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                <header>
+                                    <Text text="PRINTER ID" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </header>
+                                <footer/>
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem type="Active">
+                                <cells>
+                                    <Label text="{ID}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                    <Label text="{PRINTER_ID}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </FlexBox>
+                <FlexBox  width="100%">
+                    <Button text="Yeni Kayıt" type="Emphasized" icon="sap-icon://add" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="openFragment"/>
+                    <Button text="Kayıt Sil" type="Reject"  press="onDelete"  iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                </FlexBox>
+            </FlexBox>
+        </content>
+    </Page>
+</mvc:View>

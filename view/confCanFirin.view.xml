@@ -1,0 +1,115 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core" controllerName="customActivity.controller.confCanFirin">
+    <Page showNavButton="false" showHeader="false">
+        <content>
+
+
+            <FlexBox alignItems="center" justifyContent="center" visible="true"/>
+            <Panel>
+                <FlexBox height="40px" alignItems="Center" justifyContent="Start">
+                    <Label text="{i18n>OEE_LABEL_COUNT} : " class="labelQuan"/>
+                    <Label width="2rem"/>
+                    <StepInput id="setLabelQuan" value="1" min="1" max="10" width="88px" validationMode="LiveChange" change="onChangeLabelQuan"/>
+                    <HBox class="sapUiSmallMarginBegin">
+                        <DateRangeSelection visible="true" id="idDatePicker" valueFormat="dd.MM.yyyy" delimiter="-" displayFormat="dd.MM.yyyy"/>
+                    </HBox>
+                    <HBox class="sapUiSmallMarginBegin">
+                        <Button text="ARA" press="getBilletList" class="sapUiSmallMarginBegin" type="Emphasized"/>
+                    </HBox>
+                  
+                <items/>
+                </FlexBox>
+
+            </Panel>
+
+            <Table id="CONFCan" mode="MultiSelect" selectionChange="billetItemSelected" items="{path: '/'}">
+                <columns>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <Label text="SIRA"/>
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <Label text="TARIH"/>
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="ÇEVRİM NO"/>
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="ÜRETİM SİP.NO" width="8rem"/>
+                    </Column>
+                    <Column width="4rem" visible="false" hAlign="Center" vAlign="Center">
+                        <Label text="PARTİ NO"/>
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="PALETNO"/>
+                    </Column>
+                  
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="AGIRLIK"/>
+                    </Column>
+                     <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="CAP"/>
+                    </Column>
+                     <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="KALITE"/>
+                    </Column>
+                     
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="KULLANICI"/>
+                    </Column>
+                    
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="FRN_NO"/>
+                    </Column>
+
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="Durum"/>
+                     </Column>
+                     
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                       <Label text="TEYİT İPTAL"/>
+                    </Column>
+                
+                  
+                </columns>
+                <items>
+
+                    <ColumnListItem>
+<customData>
+	                 <core:CustomData key="STATUS" value="{LABEL}" writeToDom="true"></core:CustomData>
+                        </customData>
+                   
+                   
+                        <cells>
+                             <Text text="{IDX}"/>
+                             <Text text="{CONFFDATE}"/>
+                            <Text text="{CYCLENO}"/>
+                            <Text text="{AUFNR}"/>
+                            <Text text="{BARCODE}"/>
+                            <Text text="{PALETNO}"/>
+                            <Text text="{WEIGHT}"/>
+                            <Text text="{CAP}"/>
+                            <Text text="{KALITE}"/>
+                            <Text text="{INSUSER}"/>
+                            <Text text="{FRN_NO}"/>
+
+                            <Text text="{DURUM}"/>
+                          
+                                                     
+                            <FlexBox justifyContent = "Center">
+                            <Button xmlns="sap.m"  text="Teyit İptal"  id="iptal" press="TeyitIptal" type="Reject" visible = "{= ${STATUS2} === 'QUEUED' || ${STATUS2} === 'RETRY' || ${STATUS2} === 'FAILED' ? false : true}" /> 
+                            <Button xmlns="sap.m"  text="Tekrar Dene"  id="iptal2" press="TekrarDene" type="Reject" visible = "{= ${STATUS2} === 'QUEUED' || ${STATUS2} === 'RETRY' || ${STATUS2} === 'PASSED' ? false : true}" /> 
+                        </FlexBox>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <Button id="chkIntervalState" text="Otomatik Güncelleme Açık" type="Accept" press="changeIntervalState" icon="sap-icon://fob-watch"/>
+               <ToolbarSpacer/>
+            <Button text="ETİKET ÇIKAR" press="LabelTas" type="Accept"/>
+            
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

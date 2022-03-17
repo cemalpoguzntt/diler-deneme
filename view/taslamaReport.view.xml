@@ -1,0 +1,119 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.commons" controllerName="customActivity.controller.taslamaReport" displayBlock="true" height="100%">
+
+<html:style>
+
+.DataMode {
+
+    color : red !important ;
+
+}
+
+.TextDataMode {
+
+    padding-bottom: 0.5ch !important;
+    padding-left : 1ch !important ;
+
+}
+
+.ButtonMode {
+
+
+    
+}
+
+</html:style>
+
+
+	<Page>
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<SearchField width="100%" liveChange="onSearch" search="onSearch" id="orderSearch"/>
+				</contentLeft>
+			</Bar>
+		</customHeader>
+		<subHeader>
+			<Toolbar id="statusBar">
+				
+
+               
+
+                    <Button text="Seçim Ekranı" id="MainPanel" type="Back" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin" press="backMainPanel" />
+                    <Button text="Excel Aktar" id="idExcel1" icon="sap-icon://excel-attachment" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin" press="onExport" />
+               
+	
+			</Toolbar>
+		</subHeader>
+		<content>
+			<Table id="idOrdersTable" inset="false" width="100%" sticky="ColumnHeaders" items="{path: '/', sorter: [{  path:  'SIRA' , ascending: true}]}" mode="SingleSelectMaster" growing="true" growingScrollToLoad="true" growingThreshold="100" contextualWidth="Auto" popinLayout="GridSmall">
+				<columns>
+
+					<Column width="auto" visible="true" hAlign = "Center">
+						<Label text="Kayıt Tarihi"/>
+					</Column>
+
+
+					<Column width="auto" visible="true" hAlign = "Center">
+						<Label text="Vardiya"/>
+					</Column>
+					
+
+					<Column width="auto" visible="true" hAlign = "Center">
+						<Label text="Sipariş Numarası"/>
+					</Column>
+
+					<Column width="auto" visible="true" hAlign = "Center">
+						<Label text="Planlı Miktar (TON)"/>
+					</Column>
+				
+					<Column width="auto" visible="true" hAlign = "Center">
+						<Label text="Üretilen Miktar (TON)"/>
+					</Column>
+
+
+					<Column width="auto" visible="true" hAlign = "Center">
+						<Label text="Üretilen Adet"/>
+					</Column>
+
+					<Column width="auto" visible="true" hAlign = "Center">
+						<Label text="Toplam Tüketim (TON)"/>
+					</Column>
+
+					<Column width="auto" visible="true" hAlign = "Center">
+						<Label text="Kalite"/>
+					</Column>
+
+					<Column width="auto" visible="true" hAlign = "Center">
+						<Label text="Ebat"/>
+					</Column>
+
+					<Column width="auto" visible="true" hAlign = "Center">
+						<Label text="Boy"/>
+					</Column>
+					
+				</columns>
+
+				<items>
+					<ColumnListItem>
+						<cells>
+
+                            <Text text="{TARIH}" class="castingFont"/>
+							 <Text text="{VARDIYA}" class="castingFont"/>
+							<Text text="{SIPNO}" class="castingFont"/>
+							<Text text="{PLANLANAN_URETIM}" visible="true"/>
+		
+							<Text text="{URETIM}"/>
+							<Text text="{URETILEN_ADET}"/>
+							<Text text="{TUKETIM}" />
+							<Text text="{TASLAMA_KALITE}"/>
+							<Text text="{EBAT}"/>
+							<Text text="{BOY}"/>
+							
+	
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+</core:View>

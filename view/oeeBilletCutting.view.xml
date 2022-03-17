@@ -1,0 +1,175 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" controllerName="customActivity.controller.oeeBilletCutting" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core">
+    <Page showNavButton="false" showHeader="false">
+        <content>
+            <FlexBox direction="Row" alignItems="Center" justifyContent="Center">
+                <items>
+                    <FlexBox alignItems="Start" justifyContent="Start" direction="Column" class="sapUiSmallPaddingBegin" backgroundDesign="Solid" height="18rem">
+                        <items>
+
+                            <HBox class="sapUiMediumMarginTop" alignItems="Center" alignConent="Center" height="30px">
+                                <Label design="bold" text="{i18n>OEE_LABEL_PARTY_NO}: " labelFor="billetPartyNo" width="11rem" class="sapUiSmallMarginEnd sapUiSmallMarginBegin" />
+                                <Select width="11rem" id="billetPartyNo" placeholder="{i18n>OEE_LABEL_PARTY_NO}" items="{batchModel>/}" forceSelection="true" class="sapUiSmallMarginEnd" change="selectRefBillet">
+                                    <core:ListItem key="{batchModel>CHARG}" text="{batchModel>CHARG}" />
+                                </Select>
+                                <Button id="btnSearch" text="{i18n>OEE_BTN_SEARCH}" press="onSearchDialog" type="Accept" width="8rem" icon="sap-icon://search" class=" sapUiSmallMarginBegin sapUiSmallMarginEnd" />
+                            </HBox>
+
+                            <HBox class="sapUiMediumMarginTop" alignItems="Center" alignConent="Center" height="30px">
+                                <Label design="bold" text="{i18n>OEE_LABEL_BILLET_NO}: " labelFor="billetNo" width="11rem" class="sapUiSmallMarginEnd sapUiSmallMarginBegin" />
+                                <Input width="11rem" id="billetQuantityInput" type="Number" class="sapUiSmallMarginEnd" liveChange="onChangeBilletQuantity" enabled="false" />
+                                <Button id="btnFetch" text="{i18n>OEE_BTN_CLEAN}" press="onPressClean" type="Success" width="8rem" icon="sap-icon://list" class="sapUiSmallMarginEnd" />
+                            </HBox>
+                            <HBox class="sapUiMediumMarginTop" alignItems="Center" alignConent="Center" height="30px">
+                                <Label design="bold" text="{i18n>OEE_LABEL_TOTAL_QTY_FOR_ORDER} (Ton): " width="11rem" class="sapUiSmallMarginEnd sapUiSmallMarginBegin" />
+                                <Input width="11rem" id="totalyQuantity" enabled="false" />
+                            </HBox>
+                            <HBox class="sapUiMediumMarginTop" alignItems="Center" alignConent="Center" height="30px">
+                                <Label design="bold" text="{i18n>OEE_LABEL_REMAINING_QTNY} (Ton) : " width="11rem" class="sapUiSmallMarginEnd sapUiSmallMarginBegin" />
+                                <Input width="11rem" id="remainingQuantity" enabled="false" />
+
+                            </HBox>
+
+                            <HBox class="sapUiMediumMarginTop" alignItems="Center"></HBox>
+                        </items>
+                    </FlexBox>
+                    <FlexBox alignItems="Start" justifyContent="Start" direction="Column" class="sapUiSmallPaddingBegin sapUiMediumMarginBegin" backgroundDesign="Solid" height="18rem" width="100rem">
+                        <items>
+                            <HBox alignItems="End" height="135px">
+                                <ScrollContainer height="160%" vertical="true" horizontal="true" width="100%">
+                                    <Table class="sapUiMediumMarginTop" backgroundDesign="Solid" items="{batchModel>/}">
+                                        <columns>
+                                            <Column width="4rem">
+                                                <Label text="REF" />
+                                            </Column>
+                                            <Column width="7rem">
+                                                <Label text="{i18n>OEE_LABEL_CAST_ID}" />
+                                            </Column>
+                                            <Column width="7rem">
+                                                <Label text="{i18n>OEE_LABEL_BATCH_NUMBER}" />
+                                            </Column>
+                                            <Column width="11rem">
+                                                <Label text="{i18n>OEE_LABEL_MAT_DESC}" />
+                                            </Column>
+                                            <Column width="11rem" visible="false">
+                                                <Label text="{i18n>OEE_LABEL_MAT_CODE}" />
+                                            </Column>
+                                            <Column width="6rem">
+                                                <Label text="{i18n>OEE_LABEL_PIECE}" />
+                                            </Column>
+                                            <Column width="6rem">
+                                                <Label text="KG/ADT" />
+                                            </Column>
+                                            <Column width="9rem">
+                                                <Label text="{i18n>OEE_LABEL_BLT_MIX_QUALITY}" />
+                                            </Column>
+                                            <Column width="9rem">
+                                                <Label text="{i18n>OEE_LABEL_SCND_QUALITY}" />
+                                            </Column>
+                                            <Column width="6rem">
+                                                <Label text="{i18n>OEE_LABEL_DEFLECTION}" />
+                                            </Column>
+                                            <Column width="8rem" hAlign="Start">
+                                                <Label text="{i18n>OEE_LABEL_NON-STANDARD}" />
+                                            </Column>
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem>
+                                                <cells>
+                                                    <Text text="{batchModel>REF}" />
+                                                    <Text text="{batchModel>Y_DOKUMNO}" />
+                                                    <Text text="{batchModel>CHARG}" />
+                                                    <Text text="{batchModel>MAKTX}" />
+                                                    <Text text="{batchModel>MATNR}" />
+                                                    <Text text="{batchModel>ADET}" />
+                                                    <Text text="{batchModel>Y_KGADT}" />
+                                                    <Text text="{batchModel>Y_KARISIM_KALITESI}" />
+                                                    <Text text="{batchModel>Y_IKINCIKLT}" />
+                                                    <Text text="{batchModel>Y_SAPMA}" />
+                                                    <Text text="{batchModel>Y_STDDISI}" />
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                </ScrollContainer>
+                            </HBox>
+                        </items>
+                    </FlexBox>
+                </items>
+            </FlexBox>
+
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <Table id="tblBilletCharacteristic" class="sapUiMediumMarginTop" backgroundDesign="Solid" items="{infoTableModel>/BilletInfo}">
+                    <columns>
+                        <Column width="4rem" hAlign="Center" visible="false">
+                            <Label text="{i18n>OEE_LABEL_CHANGE_LOG_BWART}" />
+                        </Column>
+                        <Column width="8rem" hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_LENGTH} (M)" />
+                        </Column>
+                        <Column width="6rem" hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_PIECE}" />
+                        </Column>
+                        <Column width="8rem" hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_CALCULATED_WEIGHT} (Ton)" />
+                        </Column>
+                        <Column width="6rem" hAlign="Center">
+                            <Label text="KG/ADT" />
+                        </Column>
+                        <Column width="6rem" hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_CAST_ID}" />
+                        </Column>
+                        <Column width="6rem" hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_Y_KARISIM}" />
+                        </Column>
+                        <Column width="6rem" hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_BLT_MIX_QUALITY}" />
+                        </Column>
+                        <Column width="6rem" hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_SCND_QUALITY}" />
+                        </Column>
+                        <Column width="6rem" hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_DEFLECTION}" />
+                        </Column>
+                        <Column width="6rem" hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_OFFSIZE}" />
+                        </Column>
+                        <Column width="3rem" hAlign="Center"></Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem id="infoListItem">
+                            <cells>
+                                <Select width="12rem" forceSelection="true">
+                                    <core:ListItem key="101" text="Sağlam - 101" />
+                                </Select>
+                                <Select items="{path : 'lengthBilletModel>/', templateShareable:false}" forceSelection="false" change="calculateWeight" selectedKey="{infoTableModel>LENGTH_BILLET}" width="8rem">
+                                    <core:Item key="{lengthBilletModel>LENGTH_BILLET}" text="{lengthBilletModel>LENGTH_BILLET}" />
+                                </Select>
+                                <Input width="5rem" value="{infoTableModel>QUANTITY}" liveChange="calculateWeight" type="Number" />
+                                <Text text="{infoTableModel>CALCULATED_WEIGHTTEXT}" />
+                                <Text text="{infoTableModel>CALCULATED_KGADT}" />
+                                <Text text="{infoTableModel>Y_DOKUMNO}" />
+                                <CheckBox selected="{= ${infoTableModel>Y_KARISIM} === 'X' ? true : false }" enabled="{= ${infoTableModel>Y_KARISIM} === 'X' ? true : false }" />
+                                <Text text="{infoTableModel>Y_KARISIM_KALITESI}" />
+                                <CheckBox id="secondQuality" selected="{= ${infoTableModel>Y_IKINCIKLT} === 'X' ? true : false }" select="selectCheckBox" />
+                                <CheckBox id="deflection" selected="{= ${infoTableModel>Y_SAPMA} === 'X' ? true : false }" select="selectCheckBox" />
+                                <CheckBox id="nonstandard" selected="{= ${infoTableModel>Y_STANDART} === 'X' ? true : false }" select="selectCheckBox" />
+                                <Button enabled="true" icon="sap-icon://delete" press="deleteRow" type="Reject" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </FlexBox>
+        </content>
+        <footer>
+            <Bar>
+                <contentLeft>
+                    <Button id="btnAdd" class="sapUiMediumMarginBegin" enabled="false" type="Accept" width="10rem" text="{i18n>OEE_BTN_ATTACH}" icon="sap-icon://add-document" press="onPressAdd" />
+                </contentLeft>
+                <contentRight>
+                    <Button  class="sapUiMediumMarginBegin" width="10rem" text="{i18n>OEE_MASTERPAGE_TITLE}" icon = "sap-icon://list" press = "onPressOpenConfirmList"/>
+                    <Button id="btnSave" class="sapUiMediumMarginBegin" enabled="false" type="Emphasized" width="10rem" text="{i18n>OEE_BTN_POST}" icon="sap-icon://save" press="onClickSave" />
+                </contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</mvc:View>

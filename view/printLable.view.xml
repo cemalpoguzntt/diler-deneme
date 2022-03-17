@@ -1,0 +1,211 @@
+<core:View 
+    xmlns:core="sap.ui.core"
+    xmlns:suite="sap.suite.ui.commons"
+    xmlns:l="sap.ui.layout"
+    xmlns="sap.m" 
+    controllerName="customActivity.controller.printLable">
+     
+<Page id="idPage" showHeader="false" showNavButton="false">
+<content>                       
+   
+            <Table  showNoData="false" selectionMode="Single" >
+                        <headerToolbar>
+                            <OverflowToolbar>
+                                <CheckBox id="STD" valueState="Success" groupName="GroupB" text="Standart" select="onPressSearch" />
+                                <CheckBox id="STD_DISI" valueState="Warning" groupName="GroupB" text="STD.DIŞI"  select="onPressSearch"/>
+                                <CheckBox id="SAPMA" valueState="Error" groupName="GroupB" text="SAPMA"  select="onPressSearch"/>
+                                <CheckBox id="KISAKTK" valueState="Error" groupName="GroupB" text="KISA KUTUK"  select="onPressSearch" />
+                                <CheckBox id="HURDA" valueState="Error" groupName="GroupB" text="HURDA" select="onPressSearch" />
+                                <CheckBox id="KARISIM" valueState="Error" groupName="GroupB" text="KARISIM" select="onPressSearch" />
+                        <HBox alignItems="Center" justifyContent="SpaceAround" height="10%" width="50%">
+
+                            <FlexBox height="60px" alignItems="Center" justifyContent="End">
+                                <items>
+                                    <VBox width="auto" alignItems="Center" justifyContent="Center">
+                                        <Input id="filterSearch" visible="false" liveChange="onSearch" placeholder="SipariŞ No, Döküm No" width="200px" class="sapUiTinyMarginBeginEnd" />
+                                    </VBox>
+                                    <VBox width="auto" alignItems="Center" justifyContent="Center">
+                                        <HBox alignItems="Center" justifyContent="Center">
+                                            <Label text="{i18n>OEE_LABEL_WORKHOUR} : " design="Bold" class="sapUiTinyMarginBeginEnd" />
+                                            <DateRangeSelection id="idDatePicker" width="230px" valueFormat="dd.MM.yyyy" delimiter="-" displayFormat="dd.MM.yyyy" change="getCastList" />
+                                        </HBox>
+                                    </VBox>
+                        <VBox width="50px">
+                            <Button type="Reject" press="onChangeCastNumber" icon="sap-icon://less" />
+                        </VBox>
+
+                        <VBox width="150px">
+                                <ComboBox id="idSelectCast" width="20rem" items="{path: 'castListModel>/'}"   placeholder="Döküm numarası seçiniz..." change="changeCastingNumber" class="sapUiSmallMarginEnd" showSecondaryValues="true">
+                                    <core:ListItem key="{castListModel>SUP_AUFNR}" text="{castListModel>CASTID}"  tooltip="{castListModel>IS_CLOSED}"  class="{castListModel>IS_CLOSED}" />
+                                </ComboBox>
+                        </VBox>
+
+                        <VBox width="100px">
+                            <Button type="Accept" press="onChangeCastNumber" icon="sap-icon://add" />
+                        </VBox>
+                                    <VBox width="auto" alignItems="Center" justifyContent="Center">
+                                        <Button text="Ara" press="onPressSearch"  type="Emphasized"   />
+                                    </VBox>
+                                </items>
+                            </FlexBox>
+                        </HBox>
+                            </OverflowToolbar>
+                        </headerToolbar>
+
+                     <columns>
+                                <Column hAlign="Center" vAlign="Center" visible="true">
+                        <Label text="Ktk ID" />
+                    </Column>
+                                <Column hAlign="Center" vAlign="Center" visible="true">
+                        <Label text="Döküm No" />
+                    </Column>
+                                <Column hAlign="Center" vAlign="Center" visible="true">
+                        <Label text="Müşteri S." />
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                       <Label text="Malzeme" />
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                       <Label text="Parti No" />
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                       <Label text="Döküm S." />
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                       <Label text="Döküm T." />
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                       <Label text="Teyit A." />
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                       <Label text="Yol" />
+                    </Column>
+                        <Column hAlign="Center" vAlign="Center" visible="true">
+                           <Label text="Kalite" />
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                       <Label text="Karışım" />
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                       <Label text="Karışım K." />
+                    </Column>
+                           <Column hAlign="Center" vAlign="Center" visible="true">
+                        <Label text="Ebat" />
+                    </Column>
+                           <Column hAlign="Center" vAlign="Center" visible="true">
+                        <Label text="Boy" />
+                    </Column>
+                            <Column hAlign="Center" vAlign="Center" visible="true">
+                        <Label text="Standart" />
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                       <Label text="Hurda" />
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                       <Label text="Kısa K." />
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                       <Label text="Sapma" />
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                       <Label text="Vakum" />
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                       <Label text="Üretim T.i" />
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                       <Label text="Menşei" />
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true" width="5rem">
+                       <Label text="Baskı" />
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                       <Label text="" />
+                    </Column>
+                </columns>
+        <items >            
+                </items>
+            </Table>
+<ScrollContainer  height="90%" width="100%" horizontal="true" vertical="true">
+            <Table id="tblLabelMaster" items="{genelData>/0/Row}"   includeItemInSelection="false" selectionMode="Single"  growing="true" growingScrollToLoad="true" growingThreshold="2000">
+                <columns>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                    </Column>
+                    <Column hAlign="Center" vAlign="Center" visible="true">
+                    </Column>
+       		 <Column hAlign="Center" vAlign="Center" visible="true">
+                    </Column>
+      		<Column hAlign="Center" vAlign="Center" visible="true">
+                    </Column>
+        		<Column hAlign="Center" vAlign="Center" visible="true">
+                    </Column>
+       		 <Column hAlign="Center" vAlign="Center" visible="true">
+                    </Column>
+       		 <Column hAlign="Center" vAlign="Center" visible="true">
+                    </Column>
+        		<Column hAlign="Center" vAlign="Center" visible="true">
+                    </Column>
+        		<Column hAlign="Center" vAlign="Center" visible="true">
+                    </Column>
+        		<Column hAlign="Center" vAlign="Center" visible="true">
+                    </Column>
+        		<Column hAlign="Center" vAlign="Center" visible="true">
+                    </Column>
+        		<Column hAlign="Center" vAlign="Center" visible="true">
+                    </Column>
+        		<Column hAlign="Center" vAlign="Center" visible="true">                        
+                    </Column>
+        		<Column hAlign="Center" vAlign="Center" visible="true" width="5rem">                        
+                    </Column>
+        		<Column hAlign="Center" vAlign="Center" visible="true">                        
+                    </Column>
+                </columns>
+        <items >
+                   <ColumnListItem>
+           <Text text="{genelData>ENTRY_ID}"/>
+          <Text text="{genelData>CASTID}"/>
+          <Text text="{genelData>AUFNR}"/>
+         <Text text="{genelData>MATNR}"/>
+          <Text text="{genelData>BATCH_NO}"/>
+         <Text text="{genelData>CRTCASTID}"/>
+         <Text text="{genelData>Y_DOKUM_TIPI}"/>
+         <Text text="{genelData>QUANTITY}"/>
+       <Text text="{genelData>LINE}"/>
+         <Text text="{genelData>Y_KALITE_KTK}"/>
+         <Text text="{genelData>Y_KARISIM}"/>
+        <Text text="{genelData>Y_KARISIM_KALITESI}"/>
+         <Text text="{genelData>Y_EBAT}"/>
+          <Text text="{genelData>Y_BOY_KTK}"/>
+          <Text text="{= ${genelData>Y_STDDISI}==='X' ?'SD' : 'S' }" />
+          <Text text="{genelData>HURDA}"/> 
+          <Text text="{genelData>Y_KISA_KUTUK}"/>
+         <Text text="{genelData>Y_SAPMA}"/>
+         <Text text="{genelData>VAKUM}"/>
+         <Text text="{genelData>START_DATE}"/>
+         <Text text="{genelData>MENSEI}"/>
+	<core:Icon  class="sapUiIcon" src = "sap-icon://circle-task-2"  color = "{= ${genelData>PRINT_LABEL} === '1'? 'Green' : 'red'}"/>
+           <Button icon="sap-icon://print" id="printManual" press="onPressPrintManual" text="Yazdır"   type="{= ${genelData>PRINT_LABEL} ==='1' ? 'Accept': 'Reject'}"  />
+                    </ColumnListItem>
+                </items>
+            </Table>
+</ScrollContainer>
+       </content>
+     </Page>
+</core:View>
+

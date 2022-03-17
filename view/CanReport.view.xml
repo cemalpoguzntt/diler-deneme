@@ -1,0 +1,213 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.commons" controllerName="customActivity.controller.CanReport" displayBlock="true" height="100%">
+
+<html:style>
+
+.DataMode {
+
+    color : red !important ;
+
+}
+
+.TextDataMode {
+
+    padding-bottom: 0.5ch !important;
+    padding-left : 1ch !important ;
+
+}
+
+.ButtonMode {
+
+
+    
+}
+
+</html:style>
+
+
+	<Page>
+
+
+		<!-- <customHeader>
+			<Bar>
+				<contentLeft>
+					<SearchField width="100%" liveChange="onSearch" search="onSearch" id="orderSearch"/>
+				</contentLeft>
+			</Bar>
+		</customHeader> -->
+		<subHeader>
+			<Toolbar id="statusBar">
+				
+
+               
+
+                    <Button text="Seçim Ekranı" id="MainPanel" type="Back"  iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin" press="backMainPanel" />
+                    <Button text="Excel Aktar" id="idExcel1"  icon="sap-icon://excel-attachment" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin" press="onExport" />
+					
+					<Button text="Geri" id="MainTable" type="Back" iconFirst="true" width="auto" enabled="true" visible="false" iconDensityAware="false" class="sapUiResponsiveMargin" press="backToMainTable" />
+					<Button text="Excel Aktar" id="idExcel2"  icon="sap-icon://excel-attachment" iconFirst="true" width="auto" enabled="true" visible="false" iconDensityAware="false" class="sapUiResponsiveMargin" press="onExport2" />
+               
+	
+			</Toolbar>
+		</subHeader>
+		<content>
+<FlexBox id="box1" visible = "true" width="100%" >
+			<Table id="idOrdersTable" inset="false" width="100%" sticky="ColumnHeaders" items="{path: '/', sorter: [{  path:  'SIRA' , ascending: true}]}" mode="SingleSelectMaster" growing="true" growingScrollToLoad="true" growingThreshold="100" contextualWidth="Auto" popinLayout="GridSmall">
+				<columns>
+
+					<Column width="auto" visible="true" hAlign = "Center">
+						<Label text="Kayıt Tarihi"/>
+					</Column>
+
+					<Column width="auto" visible="true" hAlign = "Center">
+						<Label text="Vardiya"/>
+					</Column>
+					
+
+					<Column width="10%" visible="true" hAlign = "Center">
+						<Label text="Çevrim Numarası"/>
+					</Column>
+
+					<Column width="auto" visible="true" hAlign = "Center">
+						<Label text="İş Yeri"/>
+					</Column>
+				
+					<Column width="auto" visible="true" hAlign = "Center">
+						<Label text="Üretilen Adet"/>
+					</Column>
+
+
+					<Column width="auto" visible="true" hAlign = "Center">
+						<Label text="Tüketim"/>
+					</Column>
+
+					
+					
+				</columns>
+
+				<items>
+					<ColumnListItem>
+						<cells>
+
+                            <Text text="{CONFDATE}" class="castingFont"/>
+							<Text text="{VARDIYA}" class="castingFont"/>
+							<Text text="{CYCLENO}" class="cNo castingFont"/>
+							<Text text="{ISYERI}" visible="true"/>
+                            <Text text="{URETILEN_ADET}"/>
+							<Text text="{TUKETIM}"/>
+							
+							
+							
+	
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+</FlexBox>
+
+
+<FlexBox id="box2" visible = "false" width="100%" >
+
+
+			<Table id="DetailTable" inset="false"  width="100%" sticky="ColumnHeaders" items="{path: '/', sorter: [{  path:  'SIRA' , ascending: true}]}" mode="SingleSelectMaster" growing="true" growingScrollToLoad="true" growingThreshold="100" contextualWidth="Auto" popinLayout="GridSmall">
+				<columns>
+
+					<Column width="6%" visible="true" hAlign = "Center">
+						<Label text="Kayıt Tarihi"/>
+					</Column>
+					
+
+					<Column width="5%" visible="true" hAlign = "Center">
+						<Label text="Çevrim No"/>
+					</Column>
+
+					<Column width="7%" visible="true" hAlign = "Center">
+						<Label text="Müşteri Notu"/>
+					</Column>
+
+					<Column width="4%" visible="true" hAlign = "Center">
+						<Label text="Grup No"/>
+					</Column>
+
+					<Column width="7%" visible="true" hAlign = "Center">
+						<Label text="Sip No"/>
+					</Column>
+
+					<Column width="6%" visible="true" hAlign = "Center">
+						<Label text="Parti No"/>
+					</Column>
+
+					<Column width="4%" visible="true" hAlign = "Center">
+						<Label text="Palet No"/>
+					</Column>
+
+					<Column width="5%" visible="true" hAlign = "Center">
+						<Label text="Konum"/>
+					</Column>
+
+					<Column width="5%" visible="true" hAlign = "Center">
+						<Label text="Ağırlık"/>
+					</Column>
+
+					<Column width="5%" visible="true" hAlign = "Center">
+						<Label text="Cap"/>
+					</Column>
+
+					<Column width="7%" visible="true" hAlign = "Center">
+						<Label text="Kalite"/>
+					</Column>
+
+					<Column width="7%" visible="true" hAlign = "Center">
+						<Label text="Kütük Mensei"/>
+					</Column>
+
+					<Column width="8%" visible="true" hAlign = "Center">
+						<Label text="Filmasin Mensei"/>
+					</Column>
+
+					<Column width="7%" visible="true" hAlign = "Center">
+						<Label text="Başlatan K."/>
+					</Column>
+
+					<Column width="7%" visible="true" hAlign = "Center">
+						<Label text="Bitiren K."/>
+					</Column>
+
+					
+					
+				</columns>
+
+				<items>
+					<ColumnListItem>
+						<cells>
+
+                            <Text text="{CONFDATE2}" />
+							<Text text="{CYCLENO}" />
+							<Text text="{TEXTMUSTERI}" />
+							<Text text="{GRUPNO}" />
+							<Text text="{AUFNR}" />
+							<Text text="{BATCH}" />
+							<Text text="{PALETNO}" />
+							<Text text="{KONUM}" />
+							<Text text="{WEIGHT}" />
+							<Text text="{CAP}" />
+							<Text text="{KALITE}" />
+							<Text text="{KMENSEY}" />
+							<Text text="{FMENSEI}" />
+							<Text text="{INSUSER}" />
+							<Text text="{UPDUSER}" />
+							
+							
+							
+							
+	
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+
+
+</FlexBox>
+		</content>
+
+	</Page>
+</core:View>

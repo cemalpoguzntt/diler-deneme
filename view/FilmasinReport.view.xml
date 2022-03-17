@@ -1,0 +1,725 @@
+<mvc:View xmlns="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns:u="sap.ui.unified"
+    xmlns:core="sap.ui.core" controllerName="customActivity/controller/FilmasinReport" displayBlock="true">
+    <m:FlexBox direction="Column" id="selectionScreen" busy="false">
+        <m:FlexBox justifyContent="Center" direction="Row">
+            <m:items>
+                <m:VBox>
+                    <m:Button text="Rapor Ekranına Dön" type="Accept" icon="sap-icon://forward" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="openRaporEkranı" class="sapUiResponsiveMargin"/>
+                    <m:Label text="Tarih" design="Bold" width="45%" class="sapUiTinyMargin"/>
+                    <m:DateRangeSelection id="datePicker" width="300px" displayFormat="long" enabled="true" visible="true" class="sapUiResponsiveMargin" />
+                    <m:Label text="Tesis" design="Bold" width="80%" class="sapUiTinyMargin"/>
+                    <m:Select textAlign="Center" width="90%" id="SelectBox"  visible ="true" fieldGroupIds="4" class="sapUiSmallMarginBottom">
+                        <m:items>
+                            <core:Item xmlns:core="sap.ui.core" key="FILMASIN" text="FILMASIN"/>
+                            <core:Item xmlns:core="sap.ui.core" key="KANGAL_DOGRULTMA" text="KANGAL_DOGRULTMA"/>
+		                    <core:Item xmlns:core="sap.ui.core" key="TASLAMA" text="Taşlama Üretim Raporu"/>
+                            <core:Item xmlns:core="sap.ui.core" key="CAN" text="Çan Fırını Üretim Raporu"/>
+                            <core:Item xmlns:core="sap.ui.core" key="STONE" text="Taşlama Taş Performans Raporu"/>
+                        </m:items>
+                    </m:Select>
+                    <m:Label text="Rapor Tipi" design="Bold" width="80%" class="sapUiTinyMargin"/>
+                    <m:Select textAlign="Center" width="90%" id="SelectBox2"  visible ="true" fieldGroupIds="4" class="sapUiSmallMarginBottom">
+                        <m:items>
+                            <core:Item xmlns:core="sap.ui.core" key="Vardiya" text="Vardiya Üretim"/>
+                            <core:Item xmlns:core="sap.ui.core" key="KTKID" text="KTKID"/>
+                            
+                        </m:items>
+                    </m:Select>
+                    <m:Button text="Search" icon="sap-icon://search" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin" press="searchData" />
+                </m:VBox>
+            </m:items>
+        </m:FlexBox>
+    </m:FlexBox>
+    <m:FlexBox id="FlexVardiya" width="100%" height="80%" direction="Column" visible="false">
+        <m:FlexBox alignContent="Stretch" alignItems="Stretch" backgroundDesign="Transparent" direction="Row" displayInline="false" fitContainer="false" justifyContent="Start" renderType="Div" wrap="NoWrap">
+            <m:items>
+                <m:HBox>
+                    <m:Button text="Seçim Ekranı" id="MainPanel" type="Back" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin" press="backMainPanel" />
+                    <m:Button text="Excel Aktar" id="idExcel1" icon="sap-icon://excel-attachment" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin" press="onExport" />
+                </m:HBox>
+            </m:items>
+        </m:FlexBox>
+        <m:FlexBox id="box32" height="auto" direction="Row" alignItems="Center" visible="false" alignContent="Center" justifyContent="SpaceAround">
+            <m:Button xmlns="sap.m" text="Filtrele" id="m:Button99" press="DataFilter" icon="sap-icon://search" type="Emphasized"/>
+            <m:Input id="input10" alignContent="Center" textAlign="Center" placeholder="Parti"/>
+            <m:Input id="input11" alignContent="Center" textAlign="Center" placeholder="Döküm No"/>
+            <m:Input id="input12" alignContent="Center" textAlign="Center" placeholder="Bağ"/>
+            <m:Input id="input13" alignContent="Center" textAlign="Center" placeholder="Paket Ağırlığı"/>
+            <m:Input id="input14" alignContent="Center" textAlign="Center" placeholder="Çubuk"/>
+            <m:Input id="input15" alignContent="Center" textAlign="Center" placeholder="Boy"/>
+        </m:FlexBox>
+        <m:FlexBox width="250%" id="box19" height="120%" direction="Column" alignItems="Center">
+            <m:items>
+                <m:ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
+                    <m:Table noDataText="Kayıtlı veri bulunamadı" mode="SingleSelectMaster" id="tableReportedTie3" sticky="ColumnHeaders" items="{/Rowsets/Rowset/Row}" class="stickyToolbar">
+                        <m:items>
+                            <m:ColumnListItem type="Active" id="item6">
+                                <m:cells>
+                                    <m:Text text="{EXIT_DATE}" wrapping="true" />
+                                    <m:Text text="{SHIFT}" wrapping="true" />
+                                    <m:Text text="{RMOD}" wrapping="true"/>
+                                    <m:Text text="{AUFNR}" wrapping="true" />
+                                    <m:Text text="{Y_EBAT}" wrapping="true" />
+                                    <m:Text text="{Y_BOY_KTK}" wrapping="true" />
+                                    <m:Text text="{Y_KALITE_KTK}" wrapping="true" />
+                                    <m:Text text="{Y_KUTUK_MENSEI}" wrapping="true" />
+                                    <m:Text text="{Y_VAKUM}" wrapping="true" />
+                                    <m:Text text="{Y_TASLAMA}" wrapping="true" />
+                                    <m:Text text="" wrapping="true" />
+                                    <m:Text text="" wrapping="true" />
+                                    <m:Text text="{TOPLAM_HAD_ADET}" wrapping="true" />
+                                    <m:Text text="{TOPLAM_HAD_TON}" wrapping="true" />
+                                    <m:Text text="{Y_CAP_FLM_MM}" wrapping="true" />
+                                    <m:Text text="{Y_NERVUR_DUZ}" wrapping="true" />
+                                    <m:Text text="{Y_STANDART_FLM}" wrapping="true" />
+                                    <m:Text text="{Y_KALITE_FLM}" wrapping="true" />
+                                    <m:Text text="" wrapping="true" />
+                                    <m:Text text="" wrapping="true" />
+                                    <m:Text text="" wrapping="true" />
+                                    <m:Text text="" wrapping="true" />
+                                    <m:Text text="{STD_DISI_PAK_SAY}" wrapping="true" />
+                                    <m:Text text="{STD_DISI_PAK_TON}" wrapping="true" />
+                                    <m:Text text="{IKINCI_KAL_PAK_SAY}" wrapping="true" />
+                                    <m:Text text="{IKINCI_KAL_PAK_TON}" wrapping="true" />
+                                    <m:Text text="{S_HURDA_PAK_SAY}" wrapping="true" />
+                                    <m:Text text="{S_HURDA_PAK_TON}" wrapping="true" />
+                                    <m:Text text="{TOPLAM_PAKET_SAYISI}" wrapping="true" />
+                                    <m:Text text="{TOPLAM_PAK_TON}" wrapping="true" />
+                                    <m:Text text="{HURDA_ADET}" wrapping="true" />
+                                    <m:Text text="{HURDA_TON}" wrapping="true" />
+                                    <m:Text text="{HADDE_BOZUGU_ADET}" wrapping="true" />
+                                    <m:Text text="{HADDE_BOZUGU_TON}" wrapping="true" />
+                                    <m:Text text="{YUZDE_HAD_BOZUGU}" wrapping="true" />
+                                    <m:Text text="{BAS_KUYRUK}" wrapping="true" />
+                                    <m:Text text="{YUZDE_UC_KUYRUK}" wrapping="true" />
+                                    <m:Text text="{= Math.round((('100'-${VERIM}))*1000)/1000}" wrapping="true" />
+                                    <!-- <m:Text text="{= Math.round(('100'-${VERIM}),3)}" wrapping="true" /> -->
+                                    <!-- <m:Text text="" wrapping="true" /> -->
+                                    <m:Text text="{VERIM}" wrapping="true" />
+                                    <m:Text text="{Y_ULKE}" wrapping="true" />
+                                    <m:Text text="" wrapping="true" />
+                                    <m:Text text="" wrapping="true" />
+                                    <m:Text text="" wrapping="true" />
+                                    <m:Text text="" wrapping="true" />
+                                    <m:Text text="" wrapping="true" />
+                                    <m:Text text="" wrapping="true" />
+                                    <m:Text text="{Y_ROTOR_TIPI}" wrapping="true" />
+                                    <m:Text text="{Y_KALITE_SINIF_FLM}" wrapping="true" />
+                                    <m:Text text="{Y_KALITE_GRUBU_FLM}" wrapping="true" />
+                                    <m:Text text="{Y_URETIM_YONTEMI_FLM}" wrapping="true" />
+                                </m:cells>
+                            </m:ColumnListItem>
+                        </m:items>
+                        <m:columns>
+                            <m:Column id="column1" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Tarih" id="label1"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column id="column2" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Vardiya" id="label2"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column id="column3" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Iş yeri" id="label3"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column id="column15" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Sipariş No" id="label15"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column id="column4" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Kütük Ebatı" id="label4"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column id="column5" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Kütük Boy" id="label5"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column id="column6" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Kütük Kalitesi" id="label6"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column id="column7" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Kütük Menşei" id="label7"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column id="column8" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Vakum" id="label8"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column id="column9" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Taşlama" id="label9"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column id="column10" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Kul.Flm Adet" id="label10"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="column12" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Kul.Flm Ton" id="label12"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column id="column13" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Kütük Sayısı" id="label13"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column id="column14" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Kütük Ton" id="label14"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="column16" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Mamul Çap" id="label16"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="column17" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Nervür/Düz" id="label17"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="column18" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Mamul Standartı" id="label18"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="column19" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Mamul Kalitesi" id="label19"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="column20" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="ihc Paket Say" id="label20"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="column21" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="ihc Paket Ton" id="label21"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="column22" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="iç Pys Pakt Say" id="label22"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="column23" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="iç Pys Pakt Ton " id="label23"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="column24" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Std Dışı Pak Say." id="label24"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="column25" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Std Dışı Pak Ton" id="label25"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="column26" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="2.Kalite Mml Adt" id="label26"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="column27" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="2.Kalite Mml Ton" id="label27"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="column28" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Satılabilir Hrd Adt" id="label28"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="column29" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Satılabilir Hrd Ton" id="label29"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="column30" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Top Pak Say" id="label30"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="column31" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Top Mml Ton" id="label31"/>
+                                </m:header>
+                            </m:Column>
+
+
+
+                            <m:Column id="column32" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Hurda Kangal Adt" id="label32"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="column33" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Hurda Kangal Ton" id="label33"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="column34" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Hadde Bozuğu Adt" id="label34"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="column35" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Hadde Bozuğu Ton" id="label35"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="column36" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="% Hadde Bozuğu" id="label36"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="column37" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="UçBaş-Uçkuyruk Ton" id="label37"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="column38" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="% Uç-Kuyruk" id="label38"/>
+                                </m:header>
+                            </m:Column>
+
+
+
+                            <m:Column id="column41" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="% Fire" id="label41"/>
+                                </m:header>
+                            </m:Column>
+
+
+
+                            <m:Column id="column42" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Verim" id="label42"/>
+                                </m:header>
+                            </m:Column>
+
+
+
+                            <m:Column id="column99" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="ULKE" id="label99"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="column43" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Doğal-Gaz Sarfiyatı m3" id="label43"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="column44" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Doğal-Gaz Sarfiyatı m3/ton" id="label44"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="column45" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Enerji Serfiyatı (kwh)" id="label45"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="column46" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Enerji Serfiyatı kwh/ton" id="label46"/>
+                                </m:header>
+                            </m:Column>
+
+
+
+                            <m:Column id="column47" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Vardiya Amiri" id="label47"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="column48" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Tav Fırıncısı" id="label48"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="column49" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Rötor Tipi" id="label49"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="column50" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Kalite Sınıfı" id="label50"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="column51" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Kalite Grubu" id="label51"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="column52" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Üretim Yönetimi" id="label52"/>
+                                </m:header>
+                            </m:Column>
+
+                        </m:columns>
+                    </m:Table>
+                </m:ScrollContainer>
+            </m:items>
+        </m:FlexBox>
+    </m:FlexBox>
+
+    <m:FlexBox id="FlexKtk" width="100%" height="80%" direction="Column" visible="false">
+        <m:FlexBox alignContent="Stretch" alignItems="Stretch" backgroundDesign="Transparent" direction="Row" displayInline="false" fitContainer="false" justifyContent="Start" renderType="Div" wrap="NoWrap">
+            <m:items>
+                <m:HBox>
+                    <m:Button text="Seçim Ekranı" id="MainPanel2" type="Back" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin" press="backMainPanel" />
+                    <m:Button text="Excel Aktar" id="idExcel2" icon="sap-icon://excel-attachment" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin" press="onExport2" />
+                </m:HBox>
+            </m:items>
+        </m:FlexBox>
+        <m:FlexBox width="450%" id="Kflexid1" height="110%" direction="Column" alignItems="Center">
+            <m:items>
+                <!-- <m:ScrollContainer focusable="false" height="90%" horizontal="true" vertical="false" width="auto"> -->
+
+                <m:ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
+
+                    <m:Table noDataText="Kayıtlı veri bulunamadı" mode="SingleSelectMaster" id="Ktable" items="{/Rowsets/Rowset/Row}" class="sapUiSizeCompact">
+                            <m:ColumnListItem type="Active" id="Kitem6">
+                                <m:cells>
+                                    <m:Text text="{SIRA}" wrapping="true"/>
+                                    <m:Text text="{SIGNAL_POINT}" wrapping="true"/>
+                                    <m:Text text="{BILLET_STATUS}" wrapping="true" />
+                                    <m:Text text="{KAYIT_TARIHI}" wrapping="true" />
+                                    <m:Text text="{FURNACE_ENTRY_TIME}" wrapping="true" />
+                                    <m:Text text="{FURNACE_EXIT_TIME}" wrapping="true" />
+                                    <m:Text text="{ENTRY_WEIGHT}" wrapping="true" />
+                                    <m:Text text="{THEORETICAL_QUANTITY}" wrapping="true" />
+                                    <m:Text text="{SHIFT}" wrapping="true" />
+                                    <m:Text text="{SIPARIS_NUMARASI}" wrapping="true" />
+                                    <m:Text text="{KTKID}" wrapping="true" />
+                                    <m:Text text="{OTOMASYON_ID}" wrapping="true" />
+                                    <m:Text text="{SIP_SIRA_NO}" wrapping="true" />
+                                    <m:Text text="{MATNR}" wrapping="true" />
+                                    <m:Text text="{KUTUK_PARTI}" wrapping="true" />
+                                    <m:Text text="{DOKUM_NUMARASI}" wrapping="true" />
+                                    <m:Text text="{Y_KALITE_KTK}" wrapping="true" />
+                                    <m:Text text="{Y_EBAT}" wrapping="true" />
+                                    <m:Text text="{Y_BOY_KTK}" wrapping="true" />
+                                    <m:Text text="{HEADUPDUSER}" wrapping="true" />
+                                    <m:Text text="{Y_CAP_FLM_MM}" wrapping="true" />
+                                    <m:Text text="{Y_KALITE_FLM}" wrapping="true" />
+                                    <m:Text text="{HB_REAL}" wrapping="true" />
+                                    <m:Text text="{UCBAS_REAL}" wrapping="true" />
+                                    <m:Text text="{UCKUYRUK_REAL}" wrapping="true" />
+                                    <m:Text text="{BAS_KUYRUK}" wrapping="true" />
+                                    <m:Text text="{PACKAGE_NUMBER}" wrapping="true" />
+                                    <m:Text text="{LABEL_STATUS}" wrapping="true" />
+                                    <m:Text text="{PAKET_STATU}" wrapping="true" />
+                                    <m:Text text="{BOS_TARTIM_ZAMAN}" wrapping="true" />
+                                    <m:Text text="{DOLU_ZAMAN}" wrapping="true" />
+                                    <m:Text text="{PACKAGE_TARE_WEIGHT}" wrapping="true" />
+                                    <m:Text text="{LABEL_WEIGHT}" wrapping="true" />
+                                    <m:Text text="{PACKAGE_USER}" wrapping="true" />
+                                </m:cells>
+                            </m:ColumnListItem>
+
+                        <m:columns>
+
+                            <m:Column id="Klcolumn6" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="No" id="Kllabel6"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="Kcolumn6" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Sinyal Noktası" id="Klabel6"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="Kcolumn99" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Kütük Durumu" id="Klabel99"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column id="Kcolumn1" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="KAYIT_TARIHI" id="Klabel1"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column id="Kcolumn16" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Fırın Giriş " id="Klabel16"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="Kcolumn17" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Fırın Çıkış " id="Klabel17"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="Kcolumn89" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Fırın Giriş Tartım " id="Klabel89"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="Kcolumn88" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Kütük Teorik" id="Klabel88"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="Kcolumn2" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Vardiya" id="Klabel2"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="Kcolumn3" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Sipariş No" id="Klabel3"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="Kcolumn4" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="KTKID" id="Klabel4"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="Kcolumn5" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="OTOMASYON_ID" id="Klabel5"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="Kcolumn9" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Sipariş Sıra No" id="Klabel9"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="Kcolumn7" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Kütük Kodu" id="Klabel7"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="Kcolumn8" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Kütük Parti" id="Klabel8"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="Kcolumn11" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Döküm Numrası" id="Klabel11"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="Kcolumn14" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Kütük Kalite" id="Klabel14"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="Kcolumn12" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Ebat" id="Klabel12"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="Kcolumn13" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Boy" id="Klabel13"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="Kcolumn19" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Fırın User" id="Klabel19"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="Kcolumn21" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Filmaşin Çap" id="Klabel21"/>
+                                </m:header>
+                            </m:Column>
+
+
+
+                            <m:Column id="Kcolumn22" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Filmaşin Kalite" id="Klabel22"/>
+                                </m:header>
+                            </m:Column>
+
+
+
+                            <m:Column id="Kcolumn23" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Hadde Bozuğu" id="Klabel23"/>
+                                </m:header>
+                            </m:Column>
+
+
+
+                            <m:Column id="Kcolumn24" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Uç Baş" id="Klabel24"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="Kcolumn25" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Uç Kuyruk" id="Klabel25"/>
+                                </m:header>
+                            </m:Column>
+
+
+
+                            <m:Column id="Kcolumn26" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Uç Baş Uç Kuyruk" id="Klabel26"/>
+                                </m:header>
+                            </m:Column>
+
+
+
+
+                            <m:Column id="Kcolumn30" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Palet Numarası " id="Klabel30"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="Kcolumn94" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Palet Statü " id="Klabel94"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="Kcolumn95" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Etiket  Statü " id="Klabel95"/>
+                                </m:header>
+                            </m:Column>
+
+                            <m:Column id="Kcolumn27" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Boş Tartım Zamanı" id="Klabel27"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="Kcolumn33" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Dolu Tartım Zamanı" id="Klabel33"/>
+                                </m:header>
+                            </m:Column>
+
+
+                            <m:Column id="Kcolumn34" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Palet Dara Tartım" id="Klabel34"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column id="Kcolumn35" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Filmaşın Net Tartım" id="Klabel35"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column id="Kcolumn36" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Paket User" id="Klabel36"/>
+                                </m:header>
+                            </m:Column>
+                        </m:columns>
+                    </m:Table>
+                </m:ScrollContainer>
+
+
+            </m:items>
+        </m:FlexBox>
+    </m:FlexBox>
+</mvc:View>

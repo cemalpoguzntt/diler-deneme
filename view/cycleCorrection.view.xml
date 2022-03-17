@@ -1,0 +1,352 @@
+<mvc:View xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:layout="sap.ui.layout" controllerName="customActivity.controller.cycleCorrection">
+
+	<Page title="" showNavButton="false" showFooter="true" showHeader="true">
+
+    
+		
+<content>
+      <FlexBox width="100%" id="box0" justifyContent="Center" height="100%" direction="Column">
+		<items>
+			
+			
+			
+			
+			
+								<FlexBox width="100%" id="box01" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+									<items>
+
+									<FlexBox width="100%" id="box011" alignItems="Center"/>
+									<FlexBox width="100%" id="box012" alignItems="Center"/>
+									<FlexBox width="100%" id="box013" alignItems="Center"/>
+									<FlexBox width="100%" id="box014" alignItems="Center"/>
+									<FlexBox width="100%" id="box015" alignItems="Center"/>
+									
+
+									</items>
+								</FlexBox>
+								
+								<FlexBox width="100%" id="box2" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+									<items>
+
+									<FlexBox width="100%" id="box21" alignItems="Center"/>
+									<FlexBox width="100%" id="box22" alignItems="Center"/>
+									<FlexBox width="100%" id="box23" alignItems="Center"/>
+									<FlexBox width="100%" id="box24" alignItems="Center"/>
+									<FlexBox width="100%" id="box25" alignItems="Center"/>
+									
+
+									</items>
+								</FlexBox>	
+								
+								<FlexBox width="100%" id="box3" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+									<items>
+
+									<FlexBox width="100%" id="box31" alignItems="Center"/>
+									<FlexBox width="100%" id="box32" alignItems="Center"/>
+									<FlexBox width="100%" id="box33" alignItems="Center" justifyContent="Center">
+									    <items>
+									        <Label text="İşyeri" width="100%" id="label0" textAlign="Center" design="Bold"/>
+									    </items>
+									</FlexBox>
+									<FlexBox width="100%" id="box34" alignItems="Center"/>
+									<FlexBox width="100%" id="box35" alignItems="Center"/>
+									
+
+									</items>
+								</FlexBox>	
+								
+								<FlexBox width="100%" id="box4" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+									<items>
+
+									<FlexBox width="100%" id="box41" alignItems="Center"/>
+									<FlexBox width="100%" id="box42" alignItems="Center"/>
+									<FlexBox width="100%" id="box43" alignItems="Center" justifyContent="Center">
+									<items>
+									    <ComboBox xmlns="sap.m" id="isYeri" width="100%" items="{path : '/'}">
+									        <items>
+									            <core:Item key="{NAME}" text="{NAME}"/>
+									            </items>
+									        
+									    </ComboBox>
+									</items>
+									</FlexBox>
+									<FlexBox width="100%" id="box44" alignItems="Center"/>
+									<FlexBox width="100%" id="box45" alignItems="Center"/>
+									
+
+									</items>
+								</FlexBox>	
+								
+								<FlexBox width="100%" id="box5" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+									<items>
+
+									<FlexBox width="100%" id="box51" alignItems="Center"/>
+									<FlexBox width="100%" id="box52" alignItems="Center"/>
+									<FlexBox width="100%" id="box53" alignItems="Center"/>
+									<FlexBox width="100%" id="box54" alignItems="Center"/>
+									<FlexBox width="100%" id="box55" alignItems="Center"/>
+									
+
+									</items>
+								</FlexBox>	
+								
+								<FlexBox width="100%" id="box6" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+									<items>
+
+									<FlexBox width="100%" id="box61" alignItems="Center"/>
+									<FlexBox width="100%" id="box62" alignItems="Center"/>
+									<FlexBox width="100%" id="box63" alignItems="Center" justifyContent="Center">
+									    <items>
+									        <Label text="Çevrim Numarası" width="100%" id="label1" design="Bold"/>
+									    </items>
+									</FlexBox>
+									<FlexBox width="100%" id="box64" alignItems="Center"/>
+									<FlexBox width="100%" id="box65" alignItems="Center"/>
+									
+
+									</items>
+								</FlexBox>	
+								
+								<FlexBox width="100%" id="box7" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+									<items>
+
+									<FlexBox width="100%" id="box71" alignItems="Center"/>
+									<FlexBox width="91%" id="box72" alignItems="Center"/><FlexBox width="100%" id="box73" alignItems="Center" justifyContent="Center">
+									    <items>
+									        <Input xmlns="sap.m" id="CevrimNo" width="114%"/>
+									    </items>
+									</FlexBox>
+									<FlexBox width="100%" id="box74" alignItems="Center">
+									    <items>
+									        <Button xmlns="sap.m" text="Getir" id="button0" press="getirFunc" type="Unstyled"/>
+									    </items>
+									</FlexBox>
+									<FlexBox width="100%" id="box75" alignItems="Center"/>
+									
+
+									</items>
+								</FlexBox>	
+								
+								<FlexBox width="100%" id="box8" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+									<items>
+
+									<FlexBox width="100%" id="box81" alignItems="Center"/>
+									<FlexBox width="100%" id="box82" alignItems="Center"/>
+									<FlexBox width="100%" id="box83" alignItems="Center"/>
+									<FlexBox width="100%" id="Getir" alignItems="Center"/>
+									<FlexBox width="100%" id="box85" alignItems="Center"/>
+									
+
+									</items>
+								</FlexBox>	
+								
+								<FlexBox width="100%" id="box9" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+									<items>
+
+									<FlexBox width="100%" id="box91" alignItems="Center"/>
+									<FlexBox width="100%" id="box92" alignItems="Center" justifyContent="Center">
+									    <items>
+									        <Label text="Statü Durumu" width="100%" id="label0_1637047104346" design="Bold"/>
+									    </items>
+									</FlexBox>
+									<FlexBox width="100%" id="box93" alignItems="Center" justifyContent="Center">
+									    <items>
+									        <Label text="Başlangıç Tarihi" width="100%" id="label2" design="Bold"/>
+									    </items>
+									</FlexBox>
+									<FlexBox width="100%" id="box94" alignItems="Center" justifyContent="Center">
+									    <items>
+									        <Label text="Bitiş Tarihi" width="100%" id="label3" design="Bold"/>
+									    </items>
+									</FlexBox>
+									<FlexBox width="100%" id="box95" alignItems="Center"/>
+									
+
+									</items>
+								</FlexBox>	
+								
+								<FlexBox width="100%" id="box10" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+									<items>
+
+									<FlexBox width="100%" id="box101" alignItems="Center"/>
+									<FlexBox width="100%" id="box102" alignItems="Center" justifyContent="Center">
+									<items>
+									    <ComboBox xmlns="sap.m" id="StatuDurumu" selectionChange = "controlStatu">
+									        <items>
+									            <core:Item xmlns:core="sap.ui.core" key="HAZIRLIK" text="HAZIRLIK" />
+									            <core:Item xmlns:core="sap.ui.core" key="AKTIF" text="AKTIF" />
+												<core:Item xmlns:core="sap.ui.core" key="TAMAMLANDI" text="TAMAMLANDI" />
+									            </items>
+									        
+									    </ComboBox>
+									</items>
+									</FlexBox>
+									<FlexBox width="100%" id="box103" alignItems="Center" justifyContent="Center">
+									    <items>
+									        <DateTimePicker value="{ path: '/MyDateTimeString',  type: 'sap.ui.model.type.Date',  formatOptions: {    source: {      pattern: 'yyyy-MM-ddTHH:mm:ss'    }
+  }
+}" xmlns="sap.m" id="BTarih"/>
+									    </items>
+									</FlexBox>
+									<FlexBox width="100%" id="box104" alignItems="Center" justifyContent="Center">
+									    <items>
+									        <DateTimePicker xmlns="sap.m" id="STarih"/>
+									    </items>
+									</FlexBox>
+									<FlexBox width="100%" id="box105" alignItems="Center"/>
+									
+
+									</items>
+								</FlexBox>	
+								
+								<FlexBox width="100%" id="box11" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+									<items>
+
+									<FlexBox width="100%" id="box111" alignItems="Center"/>
+									<FlexBox width="100%" id="box112" alignItems="Center"/>
+									<FlexBox width="100%" id="box113" alignItems="Center"/>
+									<FlexBox width="100%" id="box114" alignItems="Center"/>
+									<FlexBox width="100%" id="box115" alignItems="Center"/>
+									
+
+									</items>
+								</FlexBox>
+								
+								<FlexBox width="100%" id="box12" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+									<items>
+
+									<FlexBox width="100%" id="box121" alignItems="Center"/>
+									<FlexBox width="100%" id="box122" alignItems="Center"/>
+									<FlexBox width="100%" id="box123" alignItems="Center"/>
+									<FlexBox width="100%" id="box124" alignItems="Center"/>
+									<FlexBox width="100%" id="box125" alignItems="Center"/>
+									
+
+									</items>
+								</FlexBox>
+								
+								<FlexBox width="100%" id="box13" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+									<items>
+
+									<FlexBox width="100%" id="box131" alignItems="Center"/>
+									<FlexBox width="100%" id="box132" alignItems="Center"/>
+									<FlexBox width="100%" id="box133" alignItems="Center" alignContent="Center" justifyContent="Center">
+									    <items>
+									        <Button xmlns="sap.m" text="Kaydet" id="Kaydet" type="Emphasized" press = "kaydetFunc"/>
+									    </items>
+									</FlexBox>
+									<FlexBox width="100%" id="box134" alignItems="Center"/>
+									<FlexBox width="100%" id="box135" alignItems="Center"/>
+									
+
+									</items>
+								</FlexBox>
+								
+								<FlexBox width="100%" id="box14" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+									<items>
+
+									<FlexBox width="100%" id="box141" alignItems="Center"/>
+									<FlexBox width="100%" id="box142" alignItems="Center"/>
+									<FlexBox width="100%" id="box143" alignItems="Center"/>
+									<FlexBox width="100%" id="box144" alignItems="Center"/>
+									<FlexBox width="100%" id="box145" alignItems="Center"/>
+									
+
+									</items>
+								</FlexBox>
+								
+								<FlexBox width="100%" id="box15" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+									<items>
+
+									<FlexBox width="100%" id="box151" alignItems="Center"/>
+									<FlexBox width="100%" id="box152" alignItems="Center"/>
+									<FlexBox width="100%" id="box153" alignItems="Center"/>
+									<FlexBox width="100%" id="box154" alignItems="Center"/>
+									<FlexBox width="100%" id="box155" alignItems="Center"/>
+									
+
+									</items>
+								</FlexBox>
+								
+								<FlexBox width="100%" id="box16" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+									<items>
+
+									<FlexBox width="100%" id="box161" alignItems="Center"/>
+									<FlexBox width="100%" id="box162" alignItems="Center"/>
+									<FlexBox width="100%" id="box163" alignItems="Center"/>
+									<FlexBox width="100%" id="box164" alignItems="Center"/>
+									<FlexBox width="100%" id="box165" alignItems="Center"/>
+									
+
+									</items>
+								</FlexBox>
+								
+								<FlexBox width="100%" id="box17" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+									<items>
+
+									<FlexBox width="100%" id="box171" alignItems="Center"/>
+									<FlexBox width="100%" id="box172" alignItems="Center"/>
+									<FlexBox width="100%" id="box173" alignItems="Center"/>
+									<FlexBox width="100%" id="box174" alignItems="Center"/>
+									<FlexBox width="100%" id="box175" alignItems="Center"/>
+									
+
+									</items>
+								</FlexBox>
+								
+								<FlexBox width="100%" id="box18" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+									<items>
+
+									<FlexBox width="100%" id="box181" alignItems="Center"/>
+									<FlexBox width="100%" id="box182" alignItems="Center"/>
+									<FlexBox width="100%" id="box183" alignItems="Center"/>
+									<FlexBox width="100%" id="box184" alignItems="Center"/>
+									<FlexBox width="100%" id="box185" alignItems="Center"/>
+									
+
+									</items>
+								</FlexBox>
+								
+								<FlexBox width="100%" id="box19" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+									<items>
+
+									<FlexBox width="100%" id="box191" alignItems="Center"/>
+									<FlexBox width="100%" id="box192" alignItems="Center"/>
+									<FlexBox width="100%" id="box193" alignItems="Center"/>
+									<FlexBox width="100%" id="box194" alignItems="Center"/>
+									<FlexBox width="100%" id="box195" alignItems="Center"/>
+									
+
+									</items>
+								</FlexBox>
+								
+								<FlexBox width="100%" id="box20" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+									<items>
+
+									<FlexBox width="100%" id="box201" alignItems="Center"/>
+									<FlexBox width="100%" id="box202" alignItems="Center"/>
+									<FlexBox width="100%" id="box203" alignItems="Center"/>
+									<FlexBox width="100%" id="box204" alignItems="Center"/>
+									<FlexBox width="100%" id="box205" alignItems="Center"/>
+									
+
+									</items>
+								</FlexBox>
+								
+								
+								
+		
+	    
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+		</items>
+	</FlexBox>
+</content>
+	</Page>
+</mvc:View>

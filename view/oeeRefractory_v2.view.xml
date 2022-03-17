@@ -1,0 +1,199 @@
+<mvc:View xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:m="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:html="http://www.w3.org/1999/xhtml" controllerName="customActivity.controller.oeeRefractory"
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.commons">
+    <SplitApp id="workListSplit" initialDetail="detail" initialMaster="master">
+        <masterPages>
+            <Page id="master" icon="sap-icon://action" class="sapUiStdPage" showHeader="true" showNavButton="false">
+                <headerContent>
+                    <Button visible="false" icon="sap-icon://menu2" tooltip="menu2" press="onPressShowHide" />
+                </headerContent>
+                <content>
+                    <l:VerticalLayout width="100%">
+                        <FlexBox height="60px" alignItems="Center" justifyContent="Center">
+                            <items>
+                                <HBox height="60px" alignItems="Center" justifyContent="Center">
+                                    <DatePicker id="idDatePicker" width="25rem" valueFormat="yyyy-MM-dd" displayFormat="dd.MM.yyyy" change= "changeDatePicker" class="sapUiSmallMarginBottom"/>
+                                </HBox>
+                            </items>
+                        </FlexBox>
+                    </l:VerticalLayout>
+                    <List id="masterList" mode="SingleSelectLeft" includeItemInSelection="true" items="{castNoList>/Row}" select="selectedCastNo">
+                        <items>
+                            <ObjectListItem intro="{i18n>OEE_LABEL_SO_CAST_NO}" title="{castNoList>CASTID}" selected="false">
+                                <attributes>
+                                    <ObjectAttribute text="{i18n>OEE_LABEL_CHANGE_LOG_BMENGE} : {castNoList>QTY_RELEASED} {castNoList>UOM}" visible="true" />
+                                    <ObjectAttribute text="{i18n>OEE_LABEL_NUMBER} : {castNoList>DESCRIPTION}" visible="true" />
+                                </attributes>
+                                <firstStatus>
+                                    <ObjectStatus text="{{i18n>OEE_LABEL_NUMBER} : {castNoList>DESCRIPTION}" state="Success" visible="false" />
+                                </firstStatus>
+                            </ObjectListItem>
+                        </items>
+                    </List>
+                </content>
+                <footer>
+                    <OverflowToolbar>
+                        <Button id="nextCastNo" text="{i18n>OEE_LABEL_NEXT_CAST_NO}" type="Accept" width="150px" press="onPressNextCastNo" visible="true" icon="sap-icon://open-command-field" />
+                        <ToolbarSpacer />
+                        <Button id="refreshCastNo" text="" type="Default" width="50px" press="onPressRefreshCastNo" visible="true" icon="sap-icon://refresh" />
+                    </OverflowToolbar>
+                </footer>
+            </Page>
+        </masterPages>
+        <detailPages>
+            <Page id="detail" showHeader="true" showNavButton="false" icon="sap-icon://action" class="sapUiStdPage">
+                <content>
+                    <l:VerticalLayout id="containerLayout" width="100%">
+                        <l:BlockLayout id="BlockLayout" background="{/selectedBackground}">
+                            <l:BlockLayoutRow accentCells="Accent1">
+                                <l:BlockLayoutCell id="Accent1" width="1" title="">
+                                    <FlexBox height="40px" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                            <HBox height="40px" alignItems="Center" justifyContent="Center">
+                                                <Label text="{i18n>OEE_LABEL_CAST_ID} : " width="160px" />
+                                                <Text id="castNo" width="190px" />
+                                            </HBox>
+                                        </items>
+                                    </FlexBox>
+                                    <FlexBox height="40px" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                            <HBox height="40px" alignItems="Center" justifyContent="Center">
+                                                <Label text="{i18n>OEE_LABEL_NUMBER} : " width="160px" />
+                                                <ComboBox id="idEquipmentNumber" width="190px" selectedKey="{refractoryDetail>/Row/0/EQUIPMENT_NO}" items="{path: 'equipmentNo>/Row', templateShareable:false}" class="sapUiSmallMarginEnd">
+                                                    <core:Item text="{equipmentNo>DESCRIPTION}" key="{equipmentNo>EQUIPMENT}"/>
+                                                </ComboBox>
+                                            </HBox>
+                                        </items>
+                                    </FlexBox>
+                                    <FlexBox height="40px" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                            <HBox height="40px" alignItems="Center" justifyContent="Center">
+                                                <Label text="{i18n>OEE_CONF_DETAIL_CONFCOUNTER} : " width="160px" />
+                                                <Input id="idEquipmentCounter" width="190px" type="Number"/>
+                                            </HBox>
+                                        </items>
+                                    </FlexBox>
+                                    <FlexBox height="40px" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                            <HBox height="40px" alignItems="Center" justifyContent="Center">
+                                                <Label text="{i18n>OEE_LABEL_USAGE_STATUS} : " width="160px" />
+                                                <ComboBox id="idUsegeStatus" width="190px" change="changeUsageStatus" selectedKey="{refractoryDetail>/Row/0/USAGE_STATUS}" items="{path: 'usageStatus>/Row', templateShareable:false}" class="sapUiSmallMarginEnd">
+                                                    <core:Item text="{usageStatus>DESCRIPTION}" key="{usageStatus>USAGE_STATUS_CODE}"/>
+                                                </ComboBox>
+                                            </HBox>
+                                        </items>
+                                    </FlexBox>
+                                </l:BlockLayoutCell>
+
+                                <l:BlockLayoutCell id="Accent2" width="1" title="">
+                                    <FlexBox height="40px" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                            <HBox height="40px" alignItems="Center" justifyContent="Center">
+                                                <Label text="{i18n>OEE_LABEL_BASE_EQUIPMENT} : " width="160px" />
+                                                <ComboBox id="idEquipmentBase" width="190px" selectedKey="{refractoryDetail>/Row/0/EQUIPMENT_BASE}" items="{path: 'equipmentBase>/Row', templateShareable:false}" class="sapUiSmallMarginEnd">
+                                                    <core:Item text="{equipmentBase>DESCRIPTION}" key="{equipmentBase>EQUIPMENT}"/>
+                                                </ComboBox>
+                                            </HBox>
+                                        </items>
+                                    </FlexBox>
+                                    <FlexBox height="40px" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                            <HBox height="40px" alignItems="Center" justifyContent="Center">
+                                                <Label text="{i18n>OEE_LABEL_BASE_EQUIPMENT_COUNTER_NO} : " width="160px" />
+                                                <Input id="idEquipmentBaseCounter" width="190px" type="Number"/>
+                                            </HBox>
+                                        </items>
+                                    </FlexBox>
+                                    <FlexBox height="40px" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                            <HBox height="40px" alignItems="Center" justifyContent="Center">
+                                                <Label text="{i18n>OEE_LABEL_COMPANY} : " width="160px" />
+                                                <ComboBox id="idCompany" width="190px" items="{usageStatus>/Row}" class="sapUiSmallMarginEnd">
+                                                    <core:Item text="{usageStatus>DESCRIPTION}" key="{usageStatus>USAGE_STATUS_CODE}"/>
+                                                </ComboBox>
+                                            </HBox>
+                                        </items>
+                                    </FlexBox>
+                                    <FlexBox height="40px" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                            <HBox height="40px" alignItems="Center" justifyContent="Center">
+                                                <Label text="{i18n>OEE_LABEL_STAFF} : " width="160px" />
+                                                <ComboBox id="idPersonnel" width="190px" items="{personnel>/Row}" class="sapUiSmallMarginEnd" forceSelection="true">
+                                                    <core:Item text="{personnel>VORNA} {personnel>NACHN}" key="{personnel>PERNR}"/>
+                                                </ComboBox>
+                                            </HBox>
+                                        </items>
+                                    </FlexBox>
+                                </l:BlockLayoutCell>
+                            </l:BlockLayoutRow>
+                        </l:BlockLayout>
+                    </l:VerticalLayout>
+
+
+                    <Table id="idRefractoryReportTable" inset="false" width="100%" items="{refractoryReport>/Row}" growing="true" growingScrollToLoad="true" growingThreshold="100" contextualWidth="Auto" popinLayout="GridSmall">
+                        <columns>
+                            <Column width="3rem" minScreenWidth="tablet" demandPopin="true">
+                                <Label text="{i18n>OEE_LABEL_NUMBER}" />
+                            </Column>
+                            <Column visible="false" width="6rem" minScreenWidth="tablet" demandPopin="true">
+                                <Label text=" {i18n>OEE_LABEL_PLANT}" />
+                            </Column>
+                            <Column width="6rem" minScreenWidth="tablet" demandPopin="true">
+                                <Label text="{i18n>OEE_LABEL_SO_CAST_NO}" />
+                            </Column>
+                            <Column width="10rem" minScreenWidth="tablet" demandPopin="true">
+                                <Label text="{i18n>OEE_LABEL_NUMBER}" />
+                            </Column>
+                            <Column width="6rem" minScreenWidth="tablet" demandPopin="true">
+                                <Label text="{i18n>OEE_CONF_DETAIL_CONFCOUNTER}" />
+                            </Column>
+                            <Column width="10rem" minScreenWidth="tablet" demandPopin="true">
+                                <Label text="{i18n>OEE_LABEL_USAGE_STATUS}" />
+                            </Column>
+                            <Column width="10rem" minScreenWidth="tablet" demandPopin="true">
+                                <Label text="{i18n>OEE_LABEL_BASE_EQUIPMENT}" />
+                            </Column>
+                            <Column width="12rem" minScreenWidth="tablet" demandPopin="true">
+                                <Label text="{i18n>OEE_LABEL_BASE_EQUIPMENT_COUNTER_NO}" />
+                            </Column>
+                            <Column width="10rem" minScreenWidth="tablet" demandPopin="true">
+                                <Label text="{i18n>OEE_LABEL_COMPANY}" />
+                            </Column>
+                            <Column width="10rem" minScreenWidth="tablet" demandPopin="true">
+                                <Label text="{i18n>OEE_LABEL_STAFF}" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{refractoryReport>REFR_ID}"/>
+                                    <Text text="{refractoryReport>PLANT}"/>
+                                    <Text text="{refractoryReport>CAST_ID}"/>
+                                    <Text text="{refractoryReport>EQUIPMENT_NO}"/>
+                                    <Text text="{refractoryReport>EQUIPMENT_COUNTER}"/>
+                                    <Text text="{refractoryReport>USAGE_STATUS}"/>
+                                    <Text text="{refractoryReport>EQUIPMENT_BASE}"/>
+                                    <Text text="{refractoryReport>EQUIPMENT_BASE_COUNTER}"/>
+                                    <Text text="{refractoryReport>COMPANY}"/>
+                                    <Text text="{refractoryReport>VORNA} {refractoryReport>NACHN}"/>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+
+                </content>
+                <footer>
+                    <OverflowToolbar id="otbFooter">
+                        <ToolbarSpacer />
+                        <Button id="saveRefractory" text="{i18n>OEE_LABEL_SO_SAVE}" width="140px" type="Accept" press="saveRefractory" class="sapUiSmallMarginEnd" icon="sap-icon://save"/>
+                    </OverflowToolbar>
+                </footer>
+            </Page>
+        </detailPages>
+    </SplitApp>
+</mvc:View>

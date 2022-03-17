@@ -1,0 +1,559 @@
+<mvc:View afterInit="onPressScrapCharge"  xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:m="sap.m" xmlns:cs="customActivity.cc.customStyle.css" xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="customActivity.controller.oeeScrapOrderADM" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.commons">
+    <SplitApp id="workListSplit" initialDetail="detail" initialMaster="master">
+        <masterPages>
+            <Page id="master" icon="sap-icon://action" class="sapUiStdPage" showHeader="true" showNavButton="false">
+                <headerContent>
+                    <Button visible="false" icon="sap-icon://menu2" tooltip="menu2" press="onPressShowHide" />
+                    <l:VerticalLayout width="100%">
+                        <FlexBox height="60px" alignItems="Center" justifyContent="Center">
+                            <items>
+                                <HBox height="60px" alignItems="Center" justifyContent="Center" class="boldText">
+                                    <Label text="{i18n>OEE_LABEL_SO_STATUS}" width="60px"  class="boldText"/>
+                                    <Select id="statusSelect" items="{/}" change="onChangeStatusList" forceSelection="true" width="190px">
+                                        <core:Item text="{STATUSDESC}" key="{STATUSCODE}" />
+                                    </Select>
+		
+                                </HBox>
+                            </items>
+                        </FlexBox>
+                    </l:VerticalLayout>
+                </headerContent>
+                <content>
+
+                    <Select id="castingNumberList" width="100%" items="{castingNumber>/}" change="onChangeCastingNumberList" forceSelection="false" >
+                        <core:Item key="{castingNumber>CASTID}" text="{castingNumber>CASTID}" />
+                    </Select>
+                    <List id="masterList" mode="SingleSelectLeft" includeItemInSelection="true" items="{masterDetailList>/Row}" select="getSelectMasterCastID"  >
+                        <items >
+                            <ObjectListItem intro="{i18n>OEE_LABEL_SO_CAST_NO}" title="{masterDetailList>CASTID_DESC}" selected="false" number="{masterDetailList>COPPER_RATE}" numberUnit="{i18n>OEE_LABEL_SO_COPPER_RATE}" type="Active"  class="boldText">
+                                <attributes>
+                                    <ObjectAttribute text="{i18n>OEE_LABEL_SO_CHARG_NO} : {masterDetailList>CHARGE_NO_DESC}" visible="true"  />
+                                    <ObjectAttribute text="{i18n>OEE_LABEL_SO_BASKET_NO} : {masterDetailList>BASKET_NO}" visible="true" />
+                                    <ObjectAttribute text="{masterDetailList>TEMP_STATION}" visible="true" />
+                                    <ObjectAttribute class="classScrapOrderFontSize" text="{i18n>OEE_LABEL_SO_SUMQUANTITY_FORQUAN} : {path:'masterDetailList>SUMFORQUAN',type:'sap.ui.model.type.Float'} / {path:'masterDetailList>CASTIDFORQUAN',type:'sap.ui.model.type.Float'}" visible="true" />
+                                    <ObjectAttribute class="classScrapOrderFontSize" text="{i18n>OEE_LABEL_SO_SUMQUANTITY_SCRQUAN} : {path:'masterDetailList>SUMSCRQUAN',type:'sap.ui.model.type.Float'} / {path:'masterDetailList>CASTIDSCRQUAN',type:'sap.ui.model.type.Float'}" visible="true" />
+                                
+    </attributes>
+                                <firstStatus>
+                                    <ObjectStatus text="{masterDetailList>CHARGE_GROUP}" state="Success" visible="true" />
+                                </firstStatus>
+                            </ObjectListItem>
+                        </items>
+                    </List>
+                </content>
+                <footer>
+                    <OverflowToolbar>
+                        <Button id="newEntry" text="{i18n>OEE_LABEL_SO_NEW}" type="Accept" width="150px" press="onPressNewEntry" visible="false" icon="sap-icon://sys-add" />
+                        <Button text="{i18n>OEE_LABEL_SO_REPORT_SCREEN}" icon="sap-icon://open-command-field" press="onPressFormenReport" visible="false"></Button>
+                        <ToolbarSpacer />
+                    </OverflowToolbar>
+                </footer>
+            </Page>
+        </masterPages>
+        <detailPages>
+            <Page id="detail" showHeader="true" showNavButton="false" icon="sap-icon://action" class="sapUiStdPage">
+                <headerContent>
+                    <Button visible="false" icon="sap-icon://menu2" tooltip="menu2" press="onPressShowHide" />
+                </headerContent>
+                <content>
+                    <Panel id="scrapPreheatingPanel" expandable="true" expanded="true" headerText="{i18n>OEE_LABEL_SO_PREHEAT}" width="auto" visible="{= ${scrapStatusEditable>/Row/0/XHEAT}.substr(0,1) === '1' ? true: false}">
+                        <Table id="idPreHeatingTable" editable="false" mode="SingleSelectMaster" items="{ScrapPreheatingDetail>/}">
+                            <columns>
+                                <Column hAlign="Center" width="120px" visible="{= ${scrapStatusEditable>/Row/0/XHEAT}.substr(15,1) === '1' ? true: false}">
+                                    <Label text="{i18n>OEE_LABEL_SO_STATION}" />
+                                </Column>
+                                <Column hAlign="Center" width="120px" visible="{= ${scrapStatusEditable>/Row/0/XHEAT}.substr(1,1) === '1' ? true: false}">
+                                    <Label text="{i18n>OEE_LABEL_SO_START_TIME}" />
+                                </Column>
+                                <Column hAlign="Center" width="80px" visible="{= ${scrapStatusEditable>/Row/0/XHEAT}.substr(3,1) === '1' ? true: false}">
+                                    <Label text="{i18n>OEE_LABEL_SO_START_HEAT}" />
+                                </Column>
+                                <Column hAlign="Center" width="100px" visible="{= ${scrapStatusEditable>/Row/0/XHEAT}.substr(5,1) === '1' ? true: false}">
+                                    <Label text="" />
+                                </Column>
+                                <Column hAlign="Center" width="120px" visible="{= ${scrapStatusEditable>/Row/0/XHEAT}.substr(7,1) === '1' ? true: false}">
+                                    <Label text="{i18n>OEE_LABEL_SO_FINISH_TIME}" />
+                                </Column>
+                                <Column hAlign="Center" width="80px" visible="{= ${scrapStatusEditable>/Row/0/XHEAT}.substr(9,1) === '1' ? true: false}">
+                                    <Label text="{i18n>OEE_LABEL_SO_FINISH_HEAT}" />
+                                </Column>
+                                <Column hAlign="Center" width="100px" visible="{= ${scrapStatusEditable>/Row/0/XHEAT}.substr(11,1) === '1' ? true: false}">
+                                    <Label text="" />
+                                </Column>
+                                <Column hAlign="Center" width="100px" visible="{= ${scrapStatusEditable>/Row/0/XHEAT}.substr(17,1) === '1' ? true: false}">
+                                    <Label text="" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Select items="{path: 'ScrapPreheatTable>/Row', templateShareable:false}"  width="300px"  forceSelection="false" id="selectStation" selectedKey="{ScrapPreheatingDetail>TEMP_STATION}" change="onChangeSelectStation" enabled="{= ${scrapStatusEditable>/Row/0/XHEAT}.substr(16,1) === '1' ? true: false}">
+                                            <core:ListItem text="{ScrapPreheatTable>STATION}" key="{ScrapPreheatTable>STATION}" />
+                                        </Select>
+
+                                        <DateTimePicker enabled="{= ${scrapStatusEditable>/Row/0/XHEAT}.substr(2,1) === '1' ? true: false}" id="DTP1" placeholder="{i18n>OEE_LABEL_DATE_TIME2}" valueState="Success" value="{ScrapPreheatingDetail>TEMP_BEGINTIME}" valueFormat="yyyy-MM-dd HH:mm:ss" displayFormat="dd.MM.yyyy HH:mm:ss" />
+
+                                        <Input value="{ScrapPreheatingDetail>TEMP_BEGIN}" type="Number" enabled="{= ${scrapStatusEditable>/Row/0/XHEAT}.substr(4,1) === '1' ? true: false}" class="boldText" />
+                                        <Button press="onPressBeginTemp" width="100px"   enabled="{= ${scrapStatusEditable>/Row/0/XHEAT}.substr(6,1) === '1' ? true: false}" icon="sap-icon://temperature" type="Accept"></Button>
+
+                                        <DateTimePicker enabled="{= ${scrapStatusEditable>/Row/0/XHEAT}.substr(8,1) === '1' ? true: false}" id="DTP2" placeholder="{i18n>OEE_LABEL_DATE_TIME2}" valueState="Error" value="{ScrapPreheatingDetail>TEMP_ENDTIME}" valueFormat="yyyy-MM-dd HH:mm:ss" displayFormat="dd.MM.yyyy HH:mm:ss" />
+
+                                        <Input value="{ScrapPreheatingDetail>TEMP_END}" type="Number" enabled="{= ${scrapStatusEditable>/Row/0/XHEAT}.substr(10,1) === '1' ? true: false}" class="boldText"/>
+                                        <Button press="onPressEndTemp" width="100px"  icon="sap-icon://temperature" enabled="{= ${scrapStatusEditable>/Row/0/XHEAT}.substr(12,1) === '1' ? true: false}" type="Reject"></Button>
+
+                                        <Button text="{i18n>OEE_BTN_POST}" width="100px"  press="onPressSavePreheating" icon="sap-icon://save" type="Accept" enabled="{= ${scrapStatusEditable>/Row/0/XHEAT}.substr(18,1) === '1' ? true: false}"></Button>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </Panel>
+                    <l:Grid id="masterListTable" class="sapUiSmallMarginTop" containerQuery="true" defaultSpan="XL4 L6 M6 " visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(0,1) === '1' ? true: false}" >
+                        <HBox alignItems="Center" justifyContent="Start" height="40px" class="boldText">
+                            <Label text="{i18n>OEE_LABEL_SO_CAST_NO} : " width="120px" class="boldText"/>
+                            <Select id="selectCastNo" width="300px" selectedKey="{scrapHeadModel>CASTID}" items="{path: 'scrapHeadModel>/Row', templateShareable:false}" class="sapUiSmallMarginEnd" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(1,1) === '1' ? true: false}" enabled="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(2,1) === '1' ? true: false}">
+                                <core:Item text="{scrapHeadModel>CASTID}" key="{scrapHeadModel>CASTID}" />
+                            </Select>
+
+                            <MultiComboBox id="multiComboboxCastNo" enabled="false" visible="false" items="{castNoList>/Row}" selectionFinish="onPressScrapCharge" width="300px" showSecondaryValues="true" class="boldText" >
+                                <core:ListItem key="{castNoList>CASTID}"   text="{castNoList>CASTID} - {castNoList>CHARC_VALUE} - {castNoList>MATNR}" additionalText="{castNoList>CHARC_VALUE}" tooltip="{MATNR}" />
+                            </MultiComboBox>
+                        </HBox>
+                        <HBox alignItems="Center" justifyContent="Start" height="40px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(3, 1) === '1' ? true: false}" class="boldText">
+                            <Label text="{i18n>OEE_LABEL_PROD_PLANT} : " width="120px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(3,1) === '1' ? true: false}" class="boldText"/>
+                            <Text text="{appData>/plant}" width="190px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(3,1) === '1' ? true: false}" enabled="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(4,1) === '1' ? true: false}" />
+                        </HBox>
+                        <HBox alignItems="Center" justifyContent="Start" height="40px" class="boldText">
+                            <Label text="{i18n>OEE_LABEL_SO_CHARG_GR} : " width="120px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(5,1) === '1' ? true: false}" class="boldText" />
+                            <Select id="chargeGroupSelect" change="onChangeComp" selectedKey="{scrapHeadModel>/Row/0/CHARGE_GROUP}" items="{path: 'chargeGroupList>/Row', templateShareable:false}" width="190px" class="sapUiSmallMarginEnd" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(5,1) === '1' ? true: false}" enabled="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(6,1) === '1' ? true: false}">
+                                <core:Item text="{chargeGroupList>ATWRT}" key="{chargeGroupList>ATWRT}" />
+                            </Select>
+                        </HBox>
+
+                        <HBox alignItems="Center" justifyContent="Start" height="40px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(7,1) === '1' ? true: false}" class="boldText">
+                            <Label text="{i18n>OEE_LABEL_SO_LOC_GROUP} : " width="120px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(7,1) === '1' ? true: false}" />
+                            <Select id="locationGroupSelect" change="onChangeComp" selectedKey="{scrapHeadModel>/Row/0/LOCATION_GROUP}" items="{path: 'locationGroupList>/Row', templateShareable:false}" width="190px" class="sapUiSmallMarginEnd" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(7,1) === '1' ? true: false}" enabled="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(8,1) === '1' ? true: false}">
+                                <core:Item text="{locationGroupList>ATWRT}" key="{locationGroupList>ATWRT}" />
+                            </Select>
+                        </HBox>
+
+                        <HBox alignItems="Center" justifyContent="Start" height="40px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(9,1) === '1' ? true: false}" class="boldText">
+                            <Label text="{i18n>OEE_LABEL_SO_CHARG_NO} : " width="120px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(9,1) === '1' ? true: false}" class="boldText"/>
+                            <Select id="chargeNoSelect" selectedKey="{scrapHeadModel>/Row/0/CHARGE_NO}" items="{path: 'chargeNoList>/Row', templateShareable:false}" width="190px" change="onChangeComp" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(9,1) === '1' ? true: false}" enabled="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(10,1) === '1' ? true: false}">
+                                <core:Item text="{chargeNoList>ATWRT}" key="{chargeNoList>ATWRT}" />
+                            </Select>
+                        </HBox>
+                        <HBox alignItems="Center" justifyContent="Start" height="40px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(21,1) === '1' ? true: false}" class="boldText">
+                            <Label text="{i18n>OEE_LABEL_SO_LOC} : " width="120px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(21,1) === '1' ? true: false}" class="boldText" />
+                            <Select id="locationSelect" selectedKey="{scrapHeadModel>/Row/0/LOCATION}" items="{path: 'locationList>/Row', templateShareable:false}" width="190px" class="sapUiSmallMarginEnd" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(21,1) === '1' ? true: false}" enabled="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(22,1) === '1' ? true: false}">
+                                <core:Item text="{locationList>ATWRT}" key="{locationList>ATWRT}" />
+                            </Select>
+                        </HBox>
+                        <HBox alignItems="Center" justifyContent="Start" height="40px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(11, 1) === '1' ? true: false}" class="boldText">
+                            <Label text="{i18n>OEE_LABEL_SO_BASKET_NO} : " width="120px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(11, 1) === '1' ? true: false}" class="boldText"/>
+                            <Select id="basketNoSelect" forceSelection="false" selectedKey="{scrapHeadModel>/Row/0/BASKET_NO}" items="{path: 'basketNoList>/Row', templateShareable:false}" width="190px" change="onChangeBasketNo" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(11, 1) === '1' ? true: false}" enabled="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(12,1) === '1' ? true: false}">
+                                <core:Item text="{basketNoList>ATWRT}" key="{basketNoList>ATWRT}" />
+                            </Select>
+                        </HBox>
+                        <HBox alignItems="Center" justifyContent="Start" height="40px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(13, 1) === '1' ? true: false}" class="boldText">
+                            <Label  text="{i18n>OEE_LABEL_SO_BASKET_TYPE} : " width="120px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(13,1) === '1' ? true: false}" class="boldText"/>
+
+                            <ComboBox id="basketTypeSelect" change="onChangeComp" selectedKey="{scrapHeadModel>/Row/0/BASKET_TYPE}" width="190px" items="{path: 'basketTypeList>/Row', templateShareable:false}" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(13,1) === '1' ? true: false}" enabled="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(14,1) === '1' ? true: false}" class="boldText">
+                                <core:Item text="{basketTypeList>ATWRT}" key="{basketTypeList>ATWRT}" class="boldText"/>
+                            </ComboBox>
+
+                        </HBox>
+                        <HBox alignItems="Center" justifyContent="Start" height="40px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(25, 1) === '1' ? true: false}" class="boldText">
+                            <Label text="{i18n>OEE_LABEL_FORMEN_NAME} : " width="120px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(25, 1) === '1' ? true: false}" class="boldText"/>
+
+                            <Select id="forPernr" selectedKey="{scrapHeadModel>/Row/0/FOR_PERNR}"  forceSelection="false" width="190px" items="{path: 'pernrList>/Row', templateShareable:false}" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(25,1) === '1' ? true: false}" enabled="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(26,1) === '1' ? true: false}" class="boldText">
+                                <core:Item text="{pernrList>VORNA} {pernrList>NACHN}" key="{pernrList>PERNR}" />
+                            </Select>
+
+                        </HBox>
+                        <HBox alignItems="Center" justifyContent="Start" height="40px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(27, 1) === '1' ? true: false}" class="boldText">
+                            <Label text="{i18n>OEE_LABEL_OPER_NAME} : " width="120px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(27, 1) === '1' ? true: false}" class="boldText"/>
+
+                            <Select id="scrPernr" selectedKey="{scrapHeadModel>/Row/0/SCR_PERNR}" width="190px" items="{path: 'vincPernrList>/Row', templateShareable:false}" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(27,1) === '1' ? true: false}" enabled="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(28,1) === '1' ? true: false}" forceSelection="false" class="boldText">
+                                <core:Item text="{vincPernrList>VORNA} {vincPernrList>NACHN}" key="{vincPernrList>PERNR}" />
+                            </Select>
+
+                        </HBox>
+                        <HBox alignItems="Center" justifyContent="Start" height="40px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(29, 1) === '1' ? true: false}" class="boldText">
+                            <Label text="{i18n>OEE_LABEL_BASKET_OPER_NAME} : " width="120px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(29, 1) === '1' ? true: false}" class="boldText" />
+
+                            <Select id="basketPernr" selectedKey="{scrapHeadModel>/Row/0/BASKET_PERNR}" forceSelection="false" width="190px" items="{path: 'sepetPernrList>/Row', templateShareable:false}" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(29,1) === '1' ? true: false}" enabled="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(30,1) === '1' ? true: false}" >
+                                <core:Item text="{sepetPernrList>VORNA} {sepetPernrList>NACHN}" key="{sepetPernrList>PERNR}" />
+                            </Select>
+
+                        </HBox>
+                        <HBox alignItems="Center" justifyContent="Start" height="40px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(15, 1) === '1' ? true: false}" class="boldText">
+                            <Label text="{i18n>OEE_LABEL_WORKORDER_NO}" width="140px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(15,1) === '1' ? true: false}" />
+                            <Text id="workOrderText" text="{scrapHeadModel>/Row/0/SCRORDID}" width="140px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(15,1) === '1' ? true: false}" enabled="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(16,1) === '1' ? true: false}" />
+                        </HBox>
+                        <HBox alignItems="Center" justifyContent="Start" height="40px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(15, 1) === '1' ? true: false}" class="boldText" >
+                            <core:Icon src="sap-icon://flag" class="size2" width="20px" color="{= ${scrapHeadModel>/Row/0/IS_COPPER_RATE_CHANGE} === 'T' ? 'red': 'green'}" visible="{= ${scrapHeadModel>/Row/0/IS_COPPER_RATE_CHANGE} === 'T' ? true: false}"></core:Icon>
+                            <Text text="{i18n>OEE_LABEL_SO_COPPER_RATE_CHANGED} ({scrapHeadModel>/Row/0/FIRST_COPPER_RATE} => {scrapHeadModel>/Row/0/COPPER_RATE}) " width="250px" visible="{= ${scrapHeadModel>/Row/0/IS_COPPER_RATE_CHANGE} === 'T' ? true: false}" />
+
+                        </HBox>
+                        <HBox alignItems="Center" justifyContent="Center" height="0px" class="sapUiSmallMarginTop">
+                            <Button visible="false" id="castDetailButton" text="{i18n>OEE_LABEL_GET_CAST}" type="Accept" width="250px" press="onChangeComp" />
+                        </HBox>
+                    </l:Grid>
+                    <Table id="idCastTable" editable="false" mode="SingleSelectMaster" items="{castDetailModel>/Row}"  visible="{= ${scrapStatusEditable>/Row/0/XITEM}.substr(0,1) === '1' ? true: false}" class="boldText">
+                        <headerToolbar>
+                            <OverflowToolbar>
+                                <ToolbarSpacer />
+                                <HBox>
+                                    <Label visible="false" text="{i18n>OEE_LABEL_TARE_ENTRY} :" width="50px" />
+                                </HBox>
+                                <HBox>
+                                    <Input visible="false" type="Number" width="120px" enabled="false" value="0" tooltip="1" />
+                                </HBox>
+                            </OverflowToolbar>
+                        </headerToolbar>
+                        <columns>
+                            <Column width="50px" visible="{= ${scrapStatusEditable>/Row/0/XITEM}.substr(1,1) === '1' ? true: false}">
+                                <Label text="{i18n>OEE_LABEL_SO_LAYER}" />
+                            </Column>
+                            <Column width="200px" visible="{= ${scrapStatusEditable>/Row/0/XITEM}.substr(3,1) === '1' ? true: false}">
+                                <Label text="{i18n>OEE_LABEL_SO_SCRAP_TYPE}" />
+                            </Column>
+                            <Column width="200px" visible="{= ${scrapStatusEditable>/Row/0/XITEM}.substr(5,1) === '1' ? true: false}">
+                                <Label text="{i18n>OEE_LABEL_SO_MAT}" />
+                            </Column>
+                            <Column width="90px" visible="{= ${scrapStatusEditable>/Row/0/XITEM}.substr(7,1) === '1' ? true: false}">
+                                <Label text="{i18n>OEE_LABEL_SO_PROD_TREE_QUAN}" />
+                            </Column>
+                            <Column width="90px" visible="false">
+                                <Label text="{i18n>OEE_LABEL_SO_FORMEN_QUAN}" />
+                            </Column>
+                            <Column width="90px">
+                                <Label text="{i18n>OEE_LABEL_SO_ACT_QUAN}"/>
+                            </Column>
+                            <Column width="90px" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(21,1) === '1' ? true: false}">
+                                <Label text="{i18n>OEE_LABEL_SO_CUM_QUAN}" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(21,1) === '1' ? true: false}"/>
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells >
+                                    <Text text="{castDetailModel>LAYER}" enabled="{= ${scrapStatusEditable>/Row/0/XITEM}.substr(2,1) === '1' ? true: false}" class="boldText" />
+
+                                    <Select id="scrapJargon" width="250px" selectedKey="{castDetailModel>JARGON}" items="{path: 'scrapTypeJargon>/Row', templateShareable:false}" change="onChangeScrapType" enabled="{= ${scrapStatusEditable>/Row/0/XITEM}.substr(4,1) === '1' ? true: false}">
+                                        <core:Item key="{scrapTypeJargon>JARGON}" text="{scrapTypeJargon>JARGON}" />
+                                    </Select>
+
+                                    <ComboBox id="scrapMaterial" width="250px" selectedKey="{castDetailModel>MATNR}" items="{path: 'scrapTypeMaterial>/Row', templateShareable:false}" enabled="{= ${scrapStatusEditable>/Row/0/XITEM}.substr(6,1) === '1' ? true: false}" >
+                                        <core:Item key="{scrapTypeMaterial>MATNR}" text="{scrapTypeMaterial>MAKTX}" />
+                                    </ComboBox>
+                                    <Text text="{path:'castDetailModel>TEOQUAN',type:'sap.ui.model.type.Float'}" liveChange="changeSumQuantity" tooltip="teoQuan" enabled="{= ${scrapStatusEditable>/Row/0/XITEM}.substr(8,1) === '1' ? true: false}" class="boldText"/>
+                                       <Input placeholder="{i18n>OEE_LABEL_SO_FORMEN_QUAN}" id="forQuan" value="{path:'castDetailModel>FORQUAN',type:'sap.ui.model.type.Float'}"  liveChange="changeSumQuantity" tooltip="forQuan" enabled="{= ${scrapStatusEditable>/Row/0/XITEM}.substr(10,1) === '1' ? true: false}" style="font-weight: bold" visible="false"/>
+                                    <Input placeholder="{i18n>OEE_LABEL_SO_ACT_QUAN}" id="scrQuan" value="{path:'castDetailModel>SCRQUAN',type:'sap.ui.model.type.Number'}" liveChange="changeSumQuantity" type="Number" tooltip="scrQuan" enabled="{= ${HBIAUTH>/0/PLANT} === '2001' ? true: false}" />
+                                    <Input placeholder="{i18n>OEE_LABEL_SO_CUM_QUAN}" id="cumquan" value="{castDetailModel>CUMQUAN}"  liveChange="calculateCumulative" tooltip="cumQuan" enabled="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(21,1) === '1' ? true: false}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                    <VBox width="100%" >
+                        <OverflowToolbar id="castDetailToolbar" visible="{= ${scrapStatusEditable>/Row/0/XITEM}.substr(0,1) === '1' ? true: false}">
+                            <Button visible="{= ${HBIAUTH>/0/PLANT} === '2001' ? true: false}" text="{i18n>OEE_LABEL_SO_ADD_SCRAP_HBI}" width="140px" type="Accept" press="onPressAddScrapHBI" icon="sap-icon://add-product"/>
+
+                            <Button text="{i18n>OEE_LABEL_SO_ADD_SCRAP}" width="140px" type="Accept" press="onPressAddRow" icon="sap-icon://sys-add"/>
+                            <Button text="{i18n>OEE_LABEL_SO_DEL_SCRAP}" width="140px" type="Reject" press="onPressDeleteRow" class="sapUiSmallMarginStart" icon="sap-icon://sys-cancel"/>
+
+                            <ToolbarSpacer />
+                            <Label text="{i18n>OEE_LABEL_TEO_TOTAL} : " visible="{= ${scrapStatusEditable>/Row/0/XITEM}.substr(7,1) === '1' ? true: false}" ></Label>
+                            <Input id="sumQuantityTeo"  width="100px" visible="{= ${scrapStatusEditable>/Row/0/XITEM}.substr(7,1) === '1' ? true: false}" enabled="false"></Input>
+                            <Label text="{i18n>OEE_LABEL_FOR_TOTAL} : " visible="{= ${scrapStatusEditable>/Row/0/XITEM}.substr(9,1) === '1' ? true: false}"></Label>
+                            <Input id="sumQuantityFor" width="100px" visible="{= ${scrapStatusEditable>/Row/0/XITEM}.substr(9,1) === '1' ? true: false}" enabled="false"></Input>
+                            <Label text="{i18n>OEE_LABEL_SCR_TOTAL} : " visible="{= ${scrapStatusEditable>/Row/0/XITEM}.substr(11,1) === '1' ? true: false}"></Label>
+                            <Input id="sumQuantityScr" width="100px" visible="{= ${scrapStatusEditable>/Row/0/XITEM}.substr(11,1) === '1' ? true: false}" enabled="false"></Input>
+                        </OverflowToolbar>
+                    </VBox>
+                    <OverflowToolbar>
+                        <ToolbarSpacer />
+                    </OverflowToolbar>
+
+                    <Panel id="scrapReportPanel" visible="{= ${scrapStatusEditable>/Row/0/XREPO}.substr(0,1) === '1' ? true: false}" >
+
+                        <l:BlockLayout id="FormLogMonitoring" background="{/selectedBackground}" >
+                            <l:BlockLayoutRow >
+
+                                <l:BlockLayoutCell id="cell-0" width="100%">
+                                    <Table height="100rem" id="tableCharge1" items="{tableCharges>/0/}" headerText="{i18n>}" >
+                                        <headerToolbar>
+                                            <OverflowToolbar height="3rem" >
+                                                <HBox >
+                                                    <VBox >
+                                                        <Label text="{i18n>OEE_LABEL_CHARGING1}" class="boldText" />
+                                                        <Label text="Sepet : {tableCharges>/0/0/BASKET_NO}" class="boldText" />
+                                                    </VBox>
+                                                </HBox>
+                                                <ToolbarSpacer />
+                                                <HBox>
+                                                    <VBox alignItems="End" justifyContent="End" alignContent="End">
+                                                        <Label text="Formen Toplam : {path:'tableCharges>/0/0/SUMFORCHARGE',type:'sap.ui.model.type.Float'}" color="red" class="boldText" />
+                                                        <Label text="Operatör Toplam : {path:'tableCharges>/0/0/SUMSCRCHARGE',type:'sap.ui.model.type.Float'}"  class="boldText"/>
+                                                    </VBox>
+                                                </HBox>
+                                            </OverflowToolbar>
+                                        </headerToolbar>
+                                        <columns>
+                                            <Column width="20%" hAlign="Center">
+                                                <header>
+                                                    <Text text="Tbk" class="boldText" />
+                                                </header>
+                                            </Column>
+                                            <Column width="40%" hAlign="Center">
+                                                <header>
+                                                    <Text text="Hurda"  class="boldText"/>
+                                                </header>
+                                            </Column>
+                                            <Column hAlign="Center" width="40%">
+                                                <header>
+                                                    <Text text="Formen - Operatör" class="boldText" />
+                                                </header>
+                                            </Column>
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem>
+                                                <cells>
+                                                    <Text text="{tableCharges>LAYER_NO}" class="boldText"/>
+                                                    <Text text="{tableCharges>JARGON}" class="boldText"/>
+                                                    <Text text="{path:'tableCharges>FORQUAN',type:'sap.ui.model.type.Float'} - {path:'tableCharges>SCRQUAN',type:'sap.ui.model.type.Float'}" class="boldText" />
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                </l:BlockLayoutCell>
+
+                                <l:BlockLayoutCell id="cell-1" width="100%" >
+                                    <Table id="tableCharge2" contextualWidth="Auto" popinLayout="GridSmall" items="{tableCharges>/1/}">
+                                        <headerToolbar>
+                                            <OverflowToolbar height="3rem">
+                                                <HBox>
+                                                    <VBox>
+                                                        <Label text="{i18n>OEE_LABEL_CHARGING2}" class="boldText" />
+                                                        <Label text="Sepet : {tableCharges>/1/0/BASKET_NO}" class="boldText"/>
+                                                    </VBox>
+                                                </HBox>
+                                                <ToolbarSpacer />
+                                                <HBox>
+                                                    <VBox alignItems="End" justifyContent="End" alignContent="End">
+                                                        <Label text="Formen Toplam : {path:'tableCharges>/1/0/SUMFORCHARGE',type:'sap.ui.model.type.Float'}" color="red" class="boldText"/>
+                                                        <Label text="Operatör Toplam : {path:'tableCharges>/1/0/SUMSCRCHARGE',type:'sap.ui.model.type.Float'}" class="boldText" />
+                                                    </VBox>
+                                                </HBox>
+                                            </OverflowToolbar>
+                                        </headerToolbar>
+                                        <columns>
+                                            <Column width="20%" hAlign="Center">
+                                                <header>
+                                                    <Text text="Tbk" class="boldText" />
+                                                </header>
+                                            </Column>
+                                            <Column width="40%" hAlign="Center">
+                                                <header>
+                                                    <Text text="Hurda" class="boldText" />
+                                                </header>
+                                            </Column>
+                                            <Column hAlign="Center" width="40%">
+                                                <header>
+                                                    <Text text="Formen - Operatör" class="boldText"/>
+                                                </header>
+                                            </Column>
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem>
+                                                <cells>
+                                                    <Text text="{tableCharges>LAYER_NO}" class="boldText" />
+                                                    <Text text="{tableCharges>JARGON}"  class="boldText"/>
+                                                    <Text text="{path:'tableCharges>FORQUAN',type:'sap.ui.model.type.Float'} - {path:'tableCharges>SCRQUAN',type:'sap.ui.model.type.Float'}" class="boldText" />
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                </l:BlockLayoutCell>
+
+                                <l:BlockLayoutCell id="cell-2" width="100%">
+                                    <Table id="tableCharge3" contextualWidth="Auto" popinLayout="GridSmall" items="{tableCharges>/2/}">
+                                        <headerToolbar>
+                                            <OverflowToolbar height="3rem">
+                                                <HBox>
+                                                    <VBox>
+                                                        <Label text="{i18n>OEE_LABEL_CHARGING3}" class="boldText" />
+                                                        <Label text="Sepet : {tableCharges>/2/0/BASKET_NO}" class="boldText"/>
+                                                    </VBox>
+                                                </HBox>
+                                                <ToolbarSpacer />
+                                                <HBox>
+                                                    <VBox alignItems="End" justifyContent="End" alignContent="End">
+                                                        <Label text="Formen Toplam : {path:'tableCharges>/2/0/SUMFORCHARGE',type:'sap.ui.model.type.Float'}" color="red" class="boldText" />
+                                                        <Label text="Operatör Toplam : {path:'tableCharges>/2/0/SUMSCRCHARGE',type:'sap.ui.model.type.Float'}" class="boldText"/>
+                                                    </VBox>
+                                                </HBox>
+                                            </OverflowToolbar>
+                                        </headerToolbar>
+                                        <columns>
+                                            <Column width="20%" hAlign="Center">
+                                                <header>
+                                                    <Text text="Tbk" class="boldText"/>
+                                                </header>
+                                            </Column>
+                                            <Column width="40%" hAlign="Center">
+                                                <header>
+                                                    <Text text="Hurda" class="boldText" />
+                                                </header>
+                                            </Column>
+                                            <Column hAlign="Center" width="40%">
+                                                <header>
+                                                    <Text text="Formen - Operatör" class="boldText"/>
+                                                </header>
+                                            </Column>
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem>
+                                                <cells>
+                                                    <Text text="{tableCharges>LAYER_NO}" class="boldText"/>
+                                                    <Text text="{tableCharges>JARGON}" class="boldText"/>
+                                                    <Text text="{path:'tableCharges>FORQUAN',type:'sap.ui.model.type.Float'} - {path:'tableCharges>SCRQUAN',type:'sap.ui.model.type.Float'}" class="boldText"/>
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                </l:BlockLayoutCell>
+
+                                <l:BlockLayoutCell id="cell-3" width="100%">
+                                    <Table id="tableCharge4" contextualWidth="Auto" popinLayout="GridSmall" items="{tableCharges>/3/}">
+                                        <headerToolbar>
+                                            <OverflowToolbar height="3rem">
+                                                <HBox>
+                                                    <VBox>
+                                                        <Label text="{i18n>OEE_LABEL_CHARGING4}" class="boldText"/>
+                                                        <Label text="Sepet : {tableCharges>/3/0/BASKET_NO}" class="boldText"/>
+                                                    </VBox>
+                                                </HBox>
+                                                <ToolbarSpacer />
+                                                <HBox>
+                                                    <VBox alignItems="End" justifyContent="End" alignContent="End">
+                                                        <Label text="Formen Toplam : {path:'tableCharges>/3/0/SUMFORCHARGE',type:'sap.ui.model.type.Float'}" color="red" class="boldText" />
+                                                        <Label text="Operatör Toplam : {path:'tableCharges>/3/0/SUMSCRCHARGE',type:'sap.ui.model.type.Float'}" class="boldText" />
+                                                    </VBox>
+                                                </HBox>
+                                            </OverflowToolbar>
+                                        </headerToolbar>
+                                        <columns>
+                                            <Column width="20%" hAlign="Center">
+                                                <header>
+                                                    <Text text="Tbk" class="boldText"/>
+                                                </header>
+                                            </Column>
+                                            <Column width="40%" hAlign="Center">
+                                                <header>
+                                                    <Text text="Hurda" class="boldText"/>
+                                                </header>
+                                            </Column>
+                                            <Column hAlign="Center" width="40%">
+                                                <header>
+                                                    <Text text="Formen - Operatör" class="boldText"/>
+                                                </header>
+                                            </Column>
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem>
+                                                <cells>
+                                                    <Text text="{tableCharges>LAYER_NO}" class="boldText" />
+                                                    <Text text="{tableCharges>JARGON}" class="boldText" />
+                                                    <Text text="{path:'tableCharges>FORQUAN',type:'sap.ui.model.type.Float'} - {path:'tableCharges>SCRQUAN',type:'sap.ui.model.type.Float'}" class="boldText"/>
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                </l:BlockLayoutCell>
+
+                                <l:BlockLayoutCell id="cell-4" width="100%">
+                                    <Table id="tableCharge5" contextualWidth="Auto" popinLayout="GridSmall" items="{tableCharges>/4/}">
+                                        <headerToolbar>
+                                            <OverflowToolbar height="3rem">
+                                                <HBox>
+                                                    <VBox>
+                                                        <Label text="{i18n>OEE_LABEL_CHARGING5}" class="boldText" />
+                                                        <Label text="Sepet : {tableCharges>/4/0/BASKET_NO}" class="boldText" />
+                                                    </VBox>
+                                                </HBox>
+                                                <ToolbarSpacer />
+                                                <HBox>
+                                                    <VBox alignItems="End" justifyContent="End" alignContent="End">
+                                                        <Label text="Formen Toplam : {path:'tableCharges>/4/0/SUMFORCHARGE',type:'sap.ui.model.type.Float'}" color="red" class="boldText"/>
+                                                        <Label text="Operatör Toplam : {path:'tableCharges>/4/0/SUMSCRCHARGE',type:'sap.ui.model.type.Float'}" class="boldText"/>
+                                                    </VBox>
+                                                </HBox>
+                                            </OverflowToolbar>
+                                        </headerToolbar>
+                                        <columns>
+                                            <Column width="20%" hAlign="Center">
+                                                <header>
+                                                    <Text text="Tbk" class="boldText"/>
+                                                </header>
+                                            </Column>
+                                            <Column hAlign="Center" width="40%">
+                                                <header>
+                                                    <Text text="Hurda" class="boldText"/>
+                                                </header>
+                                            </Column>
+                                            <Column hAlign="Center" width="40%">
+                                                <header>
+                                                    <Text text="Formen - Operatör" class="boldText" />
+                                                </header>
+                                            </Column>
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem>
+                                                <cells>
+                                                    <Text text="{tableCharges>LAYER_NO}" class="boldText"/>
+                                                    <Text text="{tableCharges>JARGON}" class="boldText"/>
+                                                    <Text text="{path:'tableCharges>FORQUAN',type:'sap.ui.model.type.Float'} - {path:'tableCharges>SCRQUAN',type:'sap.ui.model.type.Float'}" class="boldText" />
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+
+                                </l:BlockLayoutCell>
+
+                            </l:BlockLayoutRow>
+                        </l:BlockLayout>
+                    </Panel>
+                    <VBox width="100%">
+                        <OverflowToolbar id="scrapReportToolbar" visible="{= ${scrapStatusEditable>/Row/0/XREPO}.substr(0,1) === '1' ? true: false}">
+                            <ToolbarSpacer />
+                            <Label text="{i18n>OEE_LABEL_TEO_TOTAL} : "></Label>
+                            <Input value="{path:'tableCharges>/0/0/SUMTOTALFORCHARGE',type:'sap.ui.model.type.Float'}" width="100px" enabled="false"></Input>
+                            <Label text="{i18n>OEE_LABEL_FOR_TOTAL} : "></Label>
+                            <Input id="sumAllForQuantity" value="{path:'selectedCastData>/0/Row/0/FORQUAN',type:'sap.ui.model.type.Float'}" width="100px" enabled="false"></Input>
+                            <Label text="{i18n>OEE_LABEL_SCR_TOTAL} : "></Label>
+                            <Input id="sumAllScrQuantity" value="{path:'tableCharges>/0/0/SUMTOTALSCRCHARGE',type:'sap.ui.model.type.Float'}" width="100px" enabled="false"></Input>
+                        </OverflowToolbar>
+                    </VBox>
+                </content>
+                <footer>
+                    <OverflowToolbar id="otbFooter">
+                        <!-- çağrı üstün 03.10.2022 updatePageButton eklendi -->
+                        <Button id="updatePageButton" text="Güncelle" width="110px" type="Emphasized" press="onPressUpdate_1" class="sapUiSmallMarginStart" icon="sap-icon://refresh"/>
+                        <MenuButton id="menuButton" text="{i18n>OEE_BTN_SUBMIT}" type="Accept" width="110px">
+                            <menu>
+                                <Menu itemSelected="onPressWorkflow" items="{visibleStatusModel>/Row}">
+                                 
+                                    <MenuItem class="SendButtonT1"   key="{visibleStatusModel>SCRWFLWID}"  text="{visibleStatusModel>DESCRIPTION}" icon="{visibleStatusModel>ICON}" />
+                                </Menu>
+                            </menu>
+                        </MenuButton>
+                        <ToolbarSpacer />
+                        <Button id="chargeEdit" text="{i18n>OEE_LABEL_SO_QUEUE_EDIT}" width="140px" type="Emphasized" press="openChargeEditDialog" class="sapUiSmallMarginStart" icon="sap-icon://decrease-line-height" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(23,1) === '1' ? true: false}" enabled="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(24,1) === '1' ? true: false}" />
+                        <Button id="deleteButton" text="{i18n>OEE_BTN_DELETE}" width="70px" type="Reject" press="onPressDeleteChargeComp" class="sapUiSmallMarginStart" icon="sap-icon://sys-cancel" visible="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(17,1) === '1' ? true: false}" enabled="{= ${scrapStatusEditable>/Row/0/XHEAD}.substr(18,1) === '1' ? true: false}" />
+                        <Button id="saveButton" text="{i18n>OEE_LABEL_SO_SAVE}" width="140px" type="Accept" press="saveChargeScrap" class="sapUiSmallMarginEnd" icon="sap-icon://save"/>
+                    </OverflowToolbar>
+                </footer>
+            </Page>
+        </detailPages>
+    </SplitApp>
+</mvc:View>

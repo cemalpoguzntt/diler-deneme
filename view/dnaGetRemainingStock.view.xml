@@ -1,0 +1,27 @@
+<mvc:View xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:layout="sap.ui.layout" controllerName="customActivity.controller.dnaGetRemainingStock" >
+    <FlexBox width="100%" alignItems="Center" direction="Row" height="20%">
+        <FlexBox width="20%" height="20%"/>
+        <FlexBox justifyContent="Center" alignItems="Center" direction="Row" width="60%" height="20%">
+            <Label text="Barcode:" />
+            <Input id="inputBarcodeRead" width="100%" filterSuggests="false" submit="changeBarcodeInput"/>
+        </FlexBox>
+        <FlexBox justifyContent="Center" alignItems="Center" width="20%" height="20%">
+            <Select id="idPrinter" autoAdjustWidth="true" forceSelection="false" items="{path:'/'}">
+                <core:Item key="{PRINTER_ID}" text="{PRINTER_ID}"/>
+            </Select>
+        </FlexBox>
+    </FlexBox>
+    <FlexBox justifyContent="Center" alignItems="Center" direction="Row" width="100%" height="10%">
+        <FlexBox justifyContent="Center" alignItems="Center" direction="Row" width="50%" height="10%">
+            <Label text="Parti No:" />
+            <Label id="idBatchNo" />
+        </FlexBox>
+        <FlexBox justifyContent="Center" alignItems="Center" direction="Row" width="50%" height="10%">
+            <Label text="Ağırlık:" />
+            <Label id="idWeight" />
+        </FlexBox>
+    </FlexBox>
+    <FlexBox justifyContent="Center" alignItems="Center" direction="Row" width="100%" height="10%">
+        <Button text="Etiket Al" id="idGetLabel" width="100%" type="Emphasized" icon="sap-icon://tags" press="onPressGetLabel" />
+    </FlexBox>
+</mvc:View>

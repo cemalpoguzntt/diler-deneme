@@ -1,0 +1,151 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" controllerName="customActivity.controller.oeeBilletLabelList" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core">
+    <Page showNavButton="false" showHeader="false">
+        <content>
+
+
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+                    <HBox justifyContent="Center" class="sapUiSmallMarginTop">
+
+                        <HBox alignItems="Center" justifyContent="End" width="auto" class="labelMain">
+                            <Label text="{i18n>OEE_LABEL_INSIDE_FURNACE_SUM} : " class="labelMain" />
+                            <Label id="idMainSum" width="100px" class="labelMain" />
+                        </HBox>
+                        <VBox class="sapUiSmallMarginBegin">
+                            <ComboBox id="searchFieldOrder" width="14rem" placeholder="{i18n>titleOrderNo}" items="{qualityFilterModel>/Row}" change="getBilletList">
+                                <core:ListItem text="{qualityFilterModel>AUFNR}" key="{qualityFilterModel>AUFNR}" />
+                            </ComboBox>
+                        </VBox>
+                        <VBox class="sapUiSmallMarginBegin">
+                            <ComboBox id="searchFieldQuality" width="14rem" placeholder="{i18n>OEE_LABEL_BILLET_QUALITY_FILTER}" items="{qualityFilterModel>/Row}" change="getBilletList">
+                                <core:ListItem text="{qualityFilterModel>CHARC_VALUE}" key="{qualityFilterModel>CHARC_VALUE}" />
+                            </ComboBox>
+                        </VBox>
+                        <VBox class="sapUiSmallMarginBegin">
+                            <ComboBox id="searchFieldCap" width="14rem" placeholder="{i18n>OEE_LABEL_BILLET_CAP_FILTER}" items="{capFilterModel>/Row}" change="getBilletList">
+                                <core:ListItem text="{capFilterModel>CHARC_VALUE}" key="{capFilterModel>CHARC_VALUE}" />
+                            </ComboBox>
+                        </VBox>
+                        <!-- <VBox class="sapUiSmallMarginBegin">
+                        <ComboBox width="12rem" id="listSignalPoint" placeholder="{i18n>titleSignalPoint}" selectionFinish="handleSelectionFinish" items="{signalPoints>/Row}">
+                            <core:ListItem key="{signalPoints>STATUS}" text="{signalPoints>DESCRIPTION}" />
+                        </ComboBox>
+                    </VBox>
+                    <VBox class="sapUiSmallMarginBegin">
+                        <DatePicker id="idDate" valueFormat="dd.MM.yyyy" displayFormat="dd.MM.yyyy" />
+                    </VBox> -->
+                        <VBox class="sapUiSmallMarginBegin">
+
+                            <!--     <DateRangeSelection visible="false" id="idDatePicker" valueFormat="dd.mm.yyyy" /> -->
+                            <Button text="{i18n>titleSearch}" press="onSearch" class="sapUiSmallMarginBegin" />
+                        </VBox>
+
+
+                    </HBox>
+                </items>
+            </FlexBox>
+
+            <Table id="tblBilletMaster" mode="MultiSelect" items="{confirmBilletList>/}">
+                <columns>
+                    <Column width="4rem">
+                        <Label text="{i18n>OEE_LABEL_BILLET_WORKORDER}" />
+                    </Column>
+                    <Column width="4rem">
+                        <Label text="{i18n>OEE_LABEL_ORDER_SEQ_NO}" />
+                    </Column>
+                    <Column width="5rem">
+                        <Label text="{i18n>OEE_LABEL_BILLET_SEQ}" />
+                    </Column>
+                    <Column width="5rem">
+                        <Label text="{i18n>OEE_LABEL_SIGNAL_POINT}" />
+                    </Column>
+                    <Column width="7rem">
+                        <Label text="{i18n>OEE_LABEL_FURNACE_ENTRY_TIME}" />
+                    </Column>
+                    <Column width="4rem">
+                        <Label text="{i18n>OEE_LABEL_FURNACE_TIME}" />
+                    </Column>
+                    <Column width="4rem">
+                        <Label text="{i18n>OEE_LABEL_KTKID}" />
+                    </Column>
+                    <Column width="6rem">
+                        <Label text="{i18n>OEE_LABEL_CAST_CASTING_NO}" />
+                    </Column>
+                    <Column width="5rem">
+                        <Label text="{i18n>OEE_LABEL_THEORICAL_WEIGHT}" />
+                    </Column>
+                    <Column width="5rem">
+                        <Label text="{i18n>OEE_LABEL_ENTRY_WEIGHT}" />
+                    </Column>
+                    <Column width="5rem">
+                        <Label text="{i18n>OEE_LABEL_BILLET_QUALITY}" />
+                    </Column>
+                    <Column width="4rem">
+                        <Label text="{i18n>OEE_LABEL_BILLET_DIMENSION}" />
+                    </Column>
+                    <Column width="3rem">
+                        <Label text="{i18n>OEE_LABEL_BILLET_HEIGHT}" />
+                    </Column>
+                    <Column width="5rem">
+                        <Label text="{i18n>OEE_LABEL_PRODUCT_QUALITY}" />
+                    </Column>
+                    <Column width="3rem">
+                        <Label text="{i18n>OEE_LABEL_BILLET_DIAMETER}" />
+                    </Column>
+                    <Column width="5rem">
+                        <Label text="{i18n>OEE_LABEL_BILLET_ORIGIN}" />
+                    </Column>
+                    <Column width="3rem">
+                        <Label text="{i18n>OEE_LABEL_BILLET_ND}" />
+                    </Column>
+                    <Column width="8rem">
+                        <Label text="{i18n>OEE_LABEL_PRODUCTION_METHOD}" />
+                    </Column>
+                    <Column width="4rem">
+                        <Label text="{i18n>OEE_LABEL_BILLET_ROTOR}" />
+                    </Column>
+                    <Column width="4rem">
+                        <Label text="{i18n>OEE_LABEL_TABLE}" />
+                    </Column>
+
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{confirmBilletList>AUFNR}" />
+                            <Text text="{confirmBilletList>AUFNR_SEQ}" />
+                            <Text text="{confirmBilletList>BILLET_SEQ}" />
+                            <Text text="{confirmBilletList>SIGNAL_POINT}" />
+                            <Text text="{confirmBilletList>FURNACE_ENTRY_TIME}" />
+                            <Text text="{confirmBilletList>TIME_DIFF}" />
+                            <Text text="{confirmBilletList>KTKID}" />
+                            <Text text="{confirmBilletList>CASTID}" />
+                            <Text text="{confirmBilletList>THEORIC_WEIGHT}" />
+                            <Text text="{confirmBilletList>ENTRY_WEIGHT}" />
+                            <Text text="{confirmBilletList>Y_KALITE_KTK}" />
+                            <Text text="{confirmBilletList>Y_EBAT}" />
+                            <Text text="{confirmBilletList>Y_BOY_KTK}" />
+                            <Text text="{confirmBilletList>Y_KALITE_FLM}" />
+                            <Text text="{confirmBilletList>Y_CAP_FLM_MM}" />
+                            <Text text="{confirmBilletList>Y_KUTUK_MENSEI}" />
+                            <Text text="{confirmBilletList>Y_NERVUR_DUZ}" />
+                            <Text text="{confirmBilletList>Y_URETIM_YONTEMI_FLM}" />
+                            <Text text="{confirmBilletList>Y_ROTOR_TIPI}" />
+                            <Text text="{confirmBilletList>BTABLE}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <OverflowToolbarButton press="refreshData" text="{i18n>titleBilletMonitorRefresh}" icon="sap-icon://synchronize" />
+                <Button type="Reject" id="btnRejected" text="{i18n>titleRejectedNotifs}" press="onOpenRejectDialog" />
+                <ToolbarSpacer />
+                <Button id="btnEdit" text="{i18n>titleEdit}" press="openBarcodeEditDialog" icon="sap-icon://edit" visible="false" />
+                <Button id="btnNew" text="{i18n>titleLogErrorDetail}" press="openBarcodeLogDialog" icon="sap-icon://inspect" visible="false" />
+                <Button id="btnAdd" text="{i18n>titleAdd}" press="onOpenAddDialog" icon="sap-icon://add" visible="false" />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

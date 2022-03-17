@@ -1,0 +1,105 @@
+ <mvc:View xmlns:core="sap.ui.core" xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" controllerName="customActivity.controller.oeeFurnaceCycleTracing" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core">
+    <Page showNavButton="false" showHeader="false">
+        <content>
+            <FlexBox alignItems="Center" justifyContent="Center" visible="false">
+                <items>
+                    <HBox justifyContent="Center" class="sapUiSmallMarginTop">
+                        <VBox class="sapUiSmallMarginBegin">
+                            <DateRangeSelection visible="true" id="idDatePicker" valueFormat="dd.MM.yyyy" delimiter = "-" displayFormat= "dd.MM.yyyy" />
+                        </VBox>
+                        <VBox class="sapUiSmallMarginBegin">
+                            <Button text="{i18n>titleSearch}" press="getBilletList" class="sapUiSmallMarginBegin" />
+                        </VBox>
+                    </HBox>
+                </items>
+            </FlexBox>
+	
+            <Table id="tblFurnaceCycle" mode="SingleSelectMaster"  items="{cycleTrackingList>/}" class="sapUiMediumMarginTop">
+                <columns>	
+ 	<Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CYCLE_NO}" />
+                    </Column>
+ 	<Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_F_ERP_GRUP_NO}" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_ORDER_NUMBER_SHORT}" /> 
+                    </Column>  
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BATCH_NO}" />
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_CONF_DETAIL_PALETTENO}" />
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_F_LOCATION}" />
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_WEIGHT}" />
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_START_TIMEDAY}" />
+                    </Column>
+                   <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_CAP_FILTER}" />
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_QUALITY}" />
+                    </Column>
+                   <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CAST_ID}" />
+                    </Column>
+                   <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_KTKID}" />
+                    </Column>    
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_K_ORIGIN}" />
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_F_ORIGIN}" />
+                    </Column>                    
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CUSTOMER}" />
+                    </Column>              
+	       <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_STAFF}" />
+                    </Column>
+             	<Column width="4rem"></Column>
+		<Column width="4rem"></Column>                            
+                </columns>
+                <items>
+                    <ColumnListItem detailPress="onEdit" type="Detail">
+                        <cells>
+		   <Input value="{cycleTrackingList>CHAR_VALUE}"   editable = "false" type="Number" liveChange="onLiveChange" width="4rem"/>	
+		   <Text text="{cycleTrackingList>ERP_GROUP_NO}"/>			
+                            <Text text="{cycleTrackingList>AUFNR}" />
+                            <Text text="{cycleTrackingList>BARCODE}" />	    	 
+                            <Text text="{cycleTrackingList>QUANTITY}" />
+                            <Text text="{cycleTrackingList>PALET_NO}" />
+                            <Text text="{cycleTrackingList>LOCATION}" />
+                            <Text text="{cycleTrackingList>TIME}" />
+                            <Text text="{cycleTrackingList>Y_CAP_FLM_MM}" />
+                            <Text text="{cycleTrackingList>Y_KALITE_FLM}" />
+                            <Text text="{cycleTrackingList>Y_DOKUMNO}" />
+                            <Text text="{cycleTrackingList>Y_KUTUKID}" />
+                            <Text text="{cycleTrackingList>Y_KUTUK_MENSEI}" />
+                            <Text text="{cycleTrackingList>Y_MENSEI_FLM}" />
+                            <Text text="{cycleTrackingList>CUSTOMER}" />                         
+		      <Text text="{cycleTrackingList>PERSONEL}" />        
+		   <Button text="Kaydet" type="Accept"  visible="false" press="onSaveEdit" class="sapUiSmallMarginBegin"/>
+		  <Button text="İptal" type="Reject"  visible="false" press="onCancelEdit"/>                 
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <footer>
+            <OverflowToolbar class="sapUiMediumMarginTop">
+               <Button id="chkIntervalState" text="Otomatik Güncelleme Açık"  type="Accept" press = "changeIntervalState" icon="sap-icon://fob-watch"  visible="false"/> 
+	   <Button  id="btnRefresh" press="refreshData" type="Default" text="{i18n>titleBilletMonitorRefresh}" icon="sap-icon://refresh"  visible="false" />	  
+	<ToolbarSpacer/>
+	 <Button id="saveButton"  text="{i18n>OEE_BTN_SAVE}"  type="Accept" icon="sap-icon://save" press="onCycleNoSave" visible="false"/>
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

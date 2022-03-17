@@ -1,0 +1,20 @@
+<mvc:View controllerName="customActivity.controller.oeeBilletYieldReport" 
+	xmlns="sap.m" xmlns:c="sap.ui.commons" 
+	xmlns:core="sap.ui.core" 
+	xmlns:html="http://www.w3.org/1999/xhtml" 
+	xmlns:l="sap.ui.layout" 
+	xmlns:m="sap.m" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:u="sap.ui.unified">
+    <Page class="sapUiStdPage" icon="sap-icon://action" id="detail" showHeader="false" showNavButton="false">
+        <content>
+            <core:HTML id="idHtml" content=""/>
+        </content>
+        <footer>
+            <OverflowToolbar class="sapUiMediumMarginTop">
+                <ToolbarSpacer/>
+                <Button press="onPressRefresh" text="{}" type="Accept" icon="sap-icon://refresh"/>
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

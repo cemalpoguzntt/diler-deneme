@@ -1,0 +1,211 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="customActivity.controller.oeeSelectOrderFLM" xmlns:layout="sap.ui.layout" displayBlock="true" height="100%">
+    <Page>
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <SearchField width="100%" liveChange="onSearch" search="onSearch" id="orderSearch" />
+                </contentLeft>
+            </Bar>
+        </customHeader>
+        <subHeader>
+            <Toolbar id="statusBar">
+                <RadioButtonGroup id="idRadioGroup" selectedIndex="1" columns="4" select="getTableModel">
+                    <RadioButton text="Yeni" id="idNewStatus" />
+                    <RadioButton text="Aktif" id="idActiveStatus" />
+                    <RadioButton text="Beklet" id="idHoldStatus" />
+                    <RadioButton text="Tamamlanmış" id="idCompletedStatus" />
+                </RadioButtonGroup>
+                <Text text="" />
+                <Text text="Sipariş No:" class="redAndBig" />
+                <Text text="" id="idToolbarAufnr" class="ayirac" />
+                <Text text="Üretilen Ton:" class="redAndBig" />
+                <Text text="" id="idUretilenTon" class="ayirac" />
+                <Text text="Kalan Ton:" class="redAndBig" />
+                <Text text="" id="idKalanTon" class="ayirac" />
+                <Text text="" class="redAndBig" />
+                <Text text="Üretilen Paket:" class="redAndBig" />
+                <Text text="" id="idUretilenPaket" class="ayirac" />
+                <Text text="Kalan Paket:" class="redAndBig" />
+                <Text text="" id="idKalanPaket" class="ayirac" />
+                <Label text="Planlanan-Üretilen-Kalan: " id="puk"  class = "redAndBig"/>
+                <Label id="uretimMiktar" text="" class = "ayirac"/>
+                <ToolbarSpacer></ToolbarSpacer>
+                <Text text="Üretim Detayı:" class="redAndBig" />
+                <Button id="idTonajBilgisi" icon="sap-icon://task" press="onPressTonajBilgisi" />
+                <!-- <core:Icon src="sap-icon://sort" press="sortOrderData" width="2rem"></core:Icon>
+                <core:Icon src="sap-icon://refresh" press="refreshOrderData" width="2rem"></core:Icon> -->
+            </Toolbar>
+        </subHeader>
+        <content>
+            <Table id="idOrdersTablefake" inset="false" width="100%" mode="SingleSelectMaster" growing="true" growingScrollToLoad="true" growingThreshold="100" contextualWidth="Auto" popinLayout="GridSmall">
+                <columns>
+                    <Column width="6rem" minScreenWidth="tablet"  demandPopin="true" visible="true">
+                        <Label text="SIRA" />
+                    </Column>
+                    <Column width="6rem" visible="true">
+                        <Label text="Sipariş" />
+                    </Column>
+                    <Column width="5rem" visible="true">
+                        <Label text="LOTNO" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center" visible="true">
+                        <Label text="Çap" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center" visible="true">
+                        <Label text="Std-Klt" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center" visible="true">
+                        <Label text="M-Klt" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center" visible="true">
+                        <Label text="Miktar" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center" visible="true">
+                        <Label text="Pkt.Say." />
+                    </Column>
+                    <Column width="6rem" hAlign="Center" visible="true">
+                        <Label text="Ktk-Menş" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center" visible="true">
+                        <Label text="Ktk-Klt" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center" visible="true">
+                        <Label text="Ebat" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center" visible="true">
+                        <Label text="Boy" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center" visible="true">
+                        <Label text="Vak" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center" visible="true">
+                        <Label text="Taş" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center" visible="true">
+                        <Label text="ND" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center"  visible="true">
+                        <Label text="Rotor" />
+                    </Column>
+                    <Column width="6rem" visible="true">
+                        <Label text="Ürt-Ynt" />
+                    </Column>
+                    <Column width="7rem" visible="true">
+                        <Label text="Paketleme" />
+                    </Column>
+                    <Column width="6rem" visible="true">
+                        <Label text=" Ktk PartiNo" />
+                    </Column>
+                    <Column width="6rem" visible="true">
+                        <Label text="Ktk Durum" />
+                    </Column>
+                    <Column width="8rem" visible="true">
+                        <Label text="Kar. Kalite" />
+                    </Column>
+                    <Column id="idColumnBaslatFAKE" width="6rem">
+                        <Label text="Başlat" />
+                    </Column>
+                    <Column id="idColumnDevamFAKE" width="6rem">
+                        <Label text="Devam Ettir" />
+                    </Column>
+                    <Column id="idColumnBekletFAKE" width="6rem" visible="false">
+                        <Label text="Beklet" visible="false"/>
+                    </Column>
+                    <Column id="idColumnTekrarHoldFAKE" width="6rem">
+                        <Label text="Tekrar Hold" />
+                    </Column>
+                    <Column id="idColumnTamamlaFAKE" width="6rem">
+                        <Label text="Tamamlanmış" />
+                    </Column>
+                    <!-- <Column width="auto" visible="true">
+                        <Label text="Bitirilmiş" />
+                    </Column> -->
+                    <Column width="6rem" visible="true">
+                        <Label text="Açıklama" />
+                    </Column>
+                    <Column width="6rem" visible="true">
+                        <Label text="Bileşenler" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem visible="false"></ColumnListItem>
+                </items>
+            </Table>
+            <ScrollContainer height="93%" vertical="true" focusable="true">
+                <Table id="idOrdersTable" inset="false" width="100%" sticky="ColumnHeaders" items="{path: '/', sorter: [{  path:  'SIRA' , ascending: true}]}" mode="SingleSelectMaster" growing="true" growingScrollToLoad="true" growingThreshold="100" contextualWidth="Auto" popinLayout="GridSmall">
+                    <columns>
+                        <Column hAlign="Center" width="5rem" minScreenWidth="tablet" demandPopin="true" visible="true"></Column>
+                        <Column hAlign="Center" width="6rem" visible="true"></Column>
+                        <Column hAlign="Center" width="6rem" visible="true"></Column>
+                        <Column hAlign="Center" width="7rem" visible="true"></Column>
+                        <Column hAlign="Center" width="6rem" visible="true"></Column>
+                        <Column hAlign="Center" width="7rem" visible="true"></Column>
+                        <Column hAlign="Center" width="7rem" visible="true"></Column>
+                        <Column hAlign="Center" width="6rem" visible="true"></Column>
+                        <Column hAlign="Center" width="6rem" visible="true"></Column>
+                        <Column hAlign="Center" width="7rem" visible="true"></Column>
+                        <Column hAlign="Center" width="6rem" visible="true"></Column>
+                        <Column hAlign="Center" width="6rem" visible="true"></Column>
+                        <Column hAlign="Center" width="7rem" visible="true"></Column>
+                        <Column hAlign="Center" width="6rem" visible="true"></Column>
+                        <Column hAlign="Center" width="6rem" visible="true"></Column>
+                        <Column hAlign="Center" width="7rem" visible="true"></Column>
+                        <Column hAlign="Center" width="5rem" visible="true"></Column>
+                        <Column hAlign="Center" width="7rem" visible="true"></Column>
+                        <Column hAlign="Center" width="6rem" visible="true"></Column>
+                        <Column hAlign="Center" width="7rem" visible="true"></Column>
+                        <Column hAlign="Center" width="8rem" visible="true"></Column>
+                        <Column id="idColumnBaslat" width="6rem"></Column>
+                        <Column id="idColumnDevam" width="6rem"></Column>
+                        <Column id="idColumnBeklet" width="6rem" visible="false"></Column>
+                        <Column id="idColumnTekrarHold" width="6rem"></Column>
+                        <Column id="idColumnTamamla" width="6rem"></Column>
+                        <Column width="6rem" visible="true"></Column>
+                        <Column width="6rem" visible="true"></Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{SIRA}" />
+                                <Text text="{AUFNR}" class="castingFont" />
+                                <Text text="{IDTNR}" />
+                                <Text text="{Y_CAP_FLM_MM}" />
+                                <Text text="{Y_STANDART_FLM}" />
+                                <Text text="{Y_KALITE_FLM}" />
+                                <Text text="{Y_URETILECEK_PAKTON}" />
+                                <Text text="{Y_URETILECEK_PAKSAY}" />
+                                <Text text="{Y_KUTUK_MENSEI}" />
+                                <Text text="{Y_KALITE_KTK}" />
+                                <Text text="{Y_EBAT}" />
+                                <Text text="{Y_BOY_KTK}" />
+                                <Text text="{Y_VAKUM}" />
+                                <Text text="{Y_TASLAMA}" />
+                                <Text text="{Y_NERVUR_DUZ}" />
+                                <Text text="{Y_ROTOR_TIPI}" />
+                                <Text text="{Y_URETIM_YONTEMI_FLM}" />
+                                <Text text="{Y_PAKETLEME_FLM}" />
+                                <Text text="{CHARG}" />
+                                <Text text="{SORTF}" />
+                                <Text text="{ZZKARISIM_KALITE}" />
+                                <Button id="idStart" icon="sap-icon://begin" press="newStartButton" width="2rem"></Button>
+                                <Button id="idResume" icon="sap-icon://begin" press="newResumeButton" width="2rem"></Button>
+                                <Button id="idHold" icon="sap-icon://fob-watch" press="newHoldButton" visible="false" width="2rem"></Button>
+                                <Button id="idTekrarHoldAlma" icon="sap-icon://fob-watch" press="newTekrarHoldAlma" width="2rem"></Button>
+                                <Button id="idBitir" icon="sap-icon://complete" press="newBitirButton" width="2rem"></Button>
+                                <Button id="idInfo" type="{descriptionBtnColor}" icon="sap-icon://notes" press="onPressOpenInfo" width="2rem" />
+                                <Button icon="sap-icon://shelf" press="onPressOpenComponents" width="2rem"></Button>
+                                <!-- <Button  width="2rem" visible="true"></Button> -->
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </ScrollContainer>
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <Button type="Accept" id="idOpenOrderLogs" text="Geçmiş Veriler" press="onPressOpenOrderLogsFrag"/>
+                <Button type="Accept" id="idCompletedToHold" text="Beklete Al" press="onPressCompletedToHold"/>
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</core:View>

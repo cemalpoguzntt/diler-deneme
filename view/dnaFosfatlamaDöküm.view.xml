@@ -1,0 +1,122 @@
+<mvc:View xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:layout="sap.ui.layout" controllerName="customActivity.controller.dnaFosfatlamaDöküm" >
+    <Page showHeader="true" title="" showFooter="true" showNavButton="false">
+        <content>
+            <FlexBox direction="Row" justifyContent="SpaceAround" alignItems="Center" height="10%" width="57%">
+                <FlexBox direction="Row" justifyContent="SpaceAround" alignItems="Center" width="35%">
+                    <DateRangeSelection   id="datePicker"  placeholder="Tarih" width="300px" displayFormat="long"  enabled="true" visible="true" class="sapUiResponsiveMargin" />
+                    <Button text="" type="Accept" icon="sap-icon://search" iconFirst="true" width="70px" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin" press="searchData" />
+                </FlexBox>
+                <FlexBox direction="Row" justifyContent="SpaceAround" alignItems="Center" width="30%">
+                    <Label text="Fosfat Toplam Üretim (ton):" design="Bold" width="auto" required="false" textAlign="Begin" textDirection="Inherit" visible="true" class="sapUiMediumMargin"/>
+                    <Label id="toplamUretimFosfat" text="0.000" design="Bold" width="auto" required="false" textAlign="Begin" textDirection="Inherit" visible="true" class="sapUiMediumMargin"/>
+                </FlexBox>
+                <FlexBox direction="Row" justifyContent="SpaceAround" alignItems="Center" width="10%">
+                    <Button type="Accept" icon="sap-icon://excel-attachment"  text="Excel Export" press="onExport" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin"/>
+                </FlexBox>
+            </FlexBox>
+            <FlexBox direction="Row" justifyContent="SpaceAround" alignItems="Start" height="5%" width="57%">
+                <FlexBox direction="Row" justifyContent="SpaceAround" alignItems="Center" width="35%">
+            
+                </FlexBox>
+                <FlexBox direction="Row" justifyContent="SpaceAround" alignItems="Center" width="30%">
+                    <Label text="AYT Toplam Üretim (ton):" design="Bold" width="auto" />
+                    <Label id="toplamUretimAYT" text="0.000" design="Bold" width="auto" />                    
+                </FlexBox>
+                <FlexBox direction="Row" justifyContent="SpaceAround" alignItems="Center" width="10%">
+            
+                 </FlexBox>
+            </FlexBox>           
+            <FlexBox direction="Row" justifyContent="SpaceAround" alignItems="Start" height="5%" width="57%">
+                <FlexBox direction="Row" justifyContent="SpaceAround" alignItems="Center" width="35%">
+            
+                </FlexBox>
+                <FlexBox direction="Row" justifyContent="SpaceAround" alignItems="Center" width="30%">
+                    <Label text="Rework Toplam Üretim (ton):" design="Bold" width="auto" />
+                    <Label id="toplamUretimRW" text="0.000" design="Bold" width="auto" />                    
+                </FlexBox>
+                <FlexBox direction="Row" justifyContent="SpaceAround" alignItems="Center" width="10%">
+            
+                 </FlexBox>
+            </FlexBox>           
+            <ui:Table id="FosfatDokum" selectionMode="None" selectionBehavior="Row" enableColumnReordering="false" visibleRowCountMode="Auto" rows="{/}" class="sapUiResponsiveMargin">
+                <ui:columns>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Tarih" textAlign="Begin"  />
+                        <ui:template>
+                            <Text text="{TARIH}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Vardiya" textAlign="Begin" />
+                        <ui:template>
+                            <Text text="{VARDIYA}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Satış Sip No." textAlign="Begin" />
+                        <ui:template>
+                            <Text text="{SATIS_SIP}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Üretim Sip No." textAlign="Begin"/>
+                        <ui:template>
+                            <Text text="{URETIM_SIP}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Rework - AYT" textAlign="Begin"/>
+                        <ui:template>
+                            <Text text="{RW_AYT}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Filmaşin Kalite" maxLines="2" wrapping="true" textAlign="Begin" />
+                        <ui:template>
+                            <Text text="{KALITE}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Filmaşin Kalite Değişim" maxLines="2" wrapping="true" textAlign="Begin" />
+                        <ui:template>
+                            <Text text="{KALITE_DEGISIM}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Filmaşin Çap (mm)" maxLines="2" wrapping="true" textAlign="Begin" />
+                        <ui:template>
+                            <Text text="{CAP}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Döküm Numarası" maxLines="2" wrapping="true" textAlign="Begin" />
+                        <ui:template>
+                            <Text text="{DOKUMNO}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Üretim (ton)" maxLines="2" wrapping="true" textAlign="Begin" />
+                        <ui:template>
+                            <Text text="{TOPLAM_URETIM}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <Label text="Üretim (adet)" textAlign="Begin"/>
+                        <ui:template>
+                            <Text text="{URETIM_ADEDI}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </ui:template>
+                    </ui:Column>
+                </ui:columns>
+            </ui:Table>
+        </content>
+        <footer>
+            <!-- <OverflowToolbar width="100%" height="46px" design="Auto" enabled="true" visible="true">
+                <content>
+                    <ToolbarSpacer width=""/>
+                    <Button text="Save" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                    <Button text="Cancel" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                </content>
+            </OverflowToolbar> -->
+        </footer>
+    </Page>
+</mvc:View>

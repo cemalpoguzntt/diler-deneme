@@ -1,0 +1,216 @@
+<mvc:View controllerName="customActivity.controller.oeeBilletTagList" xmlns:f="sap.ui.layout.form" xmlns:tnt="sap.tnt" xmlns="sap.m" xmlns:c="sap.ui.core" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns:ui="sap.ui.table">
+    <Page showHeader="false" showNavButton="false">
+        <content height="200px">
+            <VBox>
+                <l:DynamicSideContent breakpointChanged="handleBreakpointChanged" class="sapUiDSCExplored sapUiContentPadding" containerQuery="true" id="DynamicSideContent" sideContentFallDown="BelowM">
+                    <FlexBox backgroundDesign="Solid" height="50px" alignItems="Center" justifyContent="Left">
+
+                        <Label text="{i18n>OEE_LABEL_PRINT_QUAN} : " class="labelQuan" />
+                        <Label width="2rem" />
+                        <StepInput id="setLabelQuan" value="0" min="0" max="10" width="88px" validationMode="LiveChange" change="onChangeLabelQuan" />
+                        <Label text="" width="100px" />
+                        <Label text="Vardiya 1:" width="80px" design="Bold" />
+                        <Label text="{= ${producedQuantityToday>/0/PRODUCED} === undefined ? '0': ${producedQuantityToday>/0/PRODUCED}}" width="50px" />
+		<Label text="Vardiya 2:" width="80px" design="Bold" />
+                        <Label text="{= ${producedQuantityToday>/1/PRODUCED} === undefined ? '0': ${producedQuantityToday>/1/PRODUCED}}" width="50px" />
+		 <Label text="Vardiya 3:" width="80px" design="Bold" />
+                        <Label text="{= ${producedQuantityToday>/2/PRODUCED} === undefined ? '0': ${producedQuantityToday>/2/PRODUCED}}" width="50px" />
+
+
+                    </FlexBox>
+                    <FlexBox backgroundDesign="Solid" height="50px" alignItems="Center" justifyContent="Left">
+
+		<VBox>
+<HBox>
+                        <Label text="{i18n>OEE_HEADING_PLANNED_QUANTITY} : " width="190px" design="Bold" />
+                        <Label enabled="false" text="{producedQuantity>/0/PRODUCT_QUANTITYTON} TON / {producedQuantity>/0/PRODUCT_QUANTITY} BAĞ" width="160px" />
+                        <Label text="{i18n>OEE_HEADING_TOTAL_PROD_NEW} : " width="180px" design="Bold" />
+        		  <Label enabled="false" text="{producedQuantity>/0/PRODUCED_WEIGHT} TON / {producedQuantity>/0/PRODUCED} BAĞ" width="180px" />
+                        <Label text="{i18n>OEE_LABEL_UNCONFIRM_PACKAGE_QUAN} : " width="180px" design="Bold" />
+                        <Label enabled="false" text="{producedQuantity>/0/UNCONFIRM}" width="50px" />
+                        <Label text="{i18n>OEE_LABEL_TOTAL_REMAINING_QUANTITY} : " width="170px" design="Bold" />
+                        <Label enabled="false" text="{producedQuantity>/0/REMAINING_TON} TON / {producedQuantity>/0/REMAINING} BAĞ" width="200px" />
+		 <Label text="{i18n>OEE_LABEL_BILLET_COUNT_GRILL} : " width="150px" design="Bold" />
+                        <Label enabled="false" text="{producedQuantity>/0/C_GRILL}" width="20px" />
+                       
+</HBox>
+<HBox>
+		 <Label text="{i18n>OEE_HEADING_TOTAL_IN_SHIFT} : " width="230px" design="Bold" />
+                        <Label enabled="false" text="{producedQuantity>/0/TOTAL_SHIFT} TON / {producedQuantity>/0/TOTAL_SHIFT} BAĞ" width="180px" />
+                        
+</HBox>
+
+</VBox>
+                    </FlexBox>
+
+
+                    <ScrollContainer height="60rem" width="100%" vertical="true">
+                        <Table id="tblBilletLabelMaster" items="{billetTagListModel>/}" selectionChange="billetItemSelected" includeItemInSelection="false" mode="MultiSelect" growing="true" growingScrollToLoad="true" growingThreshold="2000">
+                            <headerToolbar>
+                                <OverflowToolbar id="tblBilletLabelMasterToolbar">
+                                    <Label class="labelQuan" text="{i18n>OEE_LABEL_WEIGHT} :" visible="true" />
+                                    <Label visible="true" width="2rem" />
+                                    <Input id="idPackageWeight" type="Number" value="0" width="88px" />
+                                    <Button icon="sap-icon://add" press="onPressAddPackageButton" text="" />
+                                    <Label width="30px" />
+                                    <CheckBox id="shortPiece2" text="{i18n>OEE_LABEL_SHORT_PIECE}" select="onPressShortPiece" visible="false" />
+                                    <Label width="30px" />
+                                    <HBox class="sapUiSmallMarginBegin">
+                                        <DateRangeSelection visible="true" width="18rem" id="idDatePicker" valueFormat="dd.MM.yyyy" delimiter="-" displayFormat="dd.MM.yyyy" />
+                                    </HBox>
+                                    <HBox>
+                                        <Button text="{i18n>titleSearch}" press="getBilletTagList" width="4rem" />
+                                    </HBox>
+                                    <ToolbarSpacer />
+                                    <RadioButton id="STD" valueState="Success" groupName="GroupB" text="Standart" select="onSelectConfirmType" selected="true" />
+                                    <RadioButton id="SAPMA" valueState="Error" groupName="GroupB" text="SAPMA" select="onSelectConfirmType" />
+                                    <RadioButton id="STD_DISI" valueState="Warning" groupName="GroupB" text="STD.DIŞI" select="onSelectConfirmType" />
+                                    <RadioButton id="KISAPARCA" valueState="Information" groupName="GroupB" text="KISA PARÇA" select="onSelectConfirmType" visible="true" />
+                                    <ComboBox id="idSelectReason" width="20rem" items="{rejectedNotifReasons>/Row}" placeholder="Hata kodu seçiniz..." change="onSelectRejectReasonCode" class="sapUiSmallMarginEnd" showSecondaryValues="true">
+                                        <core:ListItem text="{rejectedNotifReasons>DESCRIPTION}" key="{rejectedNotifReasons>REASON_CODE5}" additionalText="{rejectedNotifReasons>REASON_CODE5}" />
+                                    </ComboBox>
+
+                                    <Button icon="sap-icon://clear-filter" press="onPressClearReasons" text="" />
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column hAlign="Center" vAlign="Center" visible="true">
+                                    <Label text="{i18n>OEE_LABEL_BAG_ID}" />
+                                </Column>
+                                <Column hAlign="Center" vAlign="Center" visible="false">
+                                    <Label text="{i18n>OEE_LABEL_LOT}" />
+                                </Column>
+                                <Column hAlign="Center" vAlign="Center">
+                                    <Label text="{i18n>titleKtkID}" />
+                                </Column>
+                                <Column hAlign="Center" vAlign="Center">
+                                    <Label text="{i18n>OEE_LABEL_CAST_CASTING_NO}" />
+                                </Column>
+                                <Column hAlign="Center" vAlign="Center">
+                                    <Label text="{i18n>OEE_LABEL_ORDER}" />
+                                </Column>
+                                <Column hAlign="Center" vAlign="Center">
+                                    <Label text="Sipariş S." />
+                                </Column>
+                                <Column hAlign="Center" vAlign="Center">
+                                    <Label text="{i18n>OEE_LABEL_BATCH_NO}" />
+                                </Column>
+                                <Column hAlign="Center" vAlign="Center">
+                                    <Label text="{i18n>OEE_LABEL_THEORICAL_WEIGHT}" />
+                                </Column>
+                                <Column hAlign="Center" vAlign="Center">
+                                    <Label text="{i18n>OEE_LBL_SCALE_WEIGHT}" />
+                                </Column>
+                                <Column hAlign="Center" vAlign="Center" width="5rem">
+                                    <Label text="Fark" />
+                                </Column>
+                                <Column hAlign="Center" vAlign="Center" width="5rem">
+                                    <Label text="Çubuk S." />
+                                </Column>
+                                <Column hAlign="Center" vAlign="Center">
+                                    <Label text="{i18n>OEE_LABEL_TAG_STATE}" />
+                                </Column>
+                                <Column hAlign="Center" vAlign="Center">
+                                    <Label text="{i18n>OEE_LABEL_ROBOT_TAG_STATE}" />
+                                </Column>
+                                <Column hAlign="Center" vAlign="Center" width="5rem" visible="true">
+                                    <Label text="{i18n>OEE_LABEL_ERROR_CODE}" />
+                                </Column>
+                                <Column hAlign="Center" vAlign="Center" width="8rem">
+                                    <Label text="{i18n>OEE_LABEL_FLM_CONFIRM}" />
+                                </Column>
+                                <Column hAlign="Center" vAlign="Center" width="8rem">
+                                    <Label text="{i18n>OEE_BTN_CONFIRM_CANCEL}" />
+                                </Column>
+                                <Column hAlign="Center" vAlign="Center" width="8rem">
+                                    <Label text="{i18n>}" />
+                                </Column>
+			<Column visible="{= ${appData>/plant} === '3001'}"  hAlign="Center" vAlign="Center" width="8rem">
+                                    <Label text="{i18n>}" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{billetTagListModel>ENTRY_ID}" />
+                                        <Text text="{billetTagListModel>LOT}" />
+                                        <Text text="{billetTagListModel>KTKID}" />
+                                        <Text text="{billetTagListModel>CASTID}" />
+                                        <Text text="{billetTagListModel>AUFNR}" />
+                                        <Text text="{billetTagListModel>AUFNR_SEQ}" />
+                                        <Text text="{billetTagListModel>PACKAGE_NUMBER}" />
+                                        <Text text="{billetTagListModel>LABEL_WEIGHT}" />
+                                        <Text text="{billetTagListModel>PACKAGE_NET_WEIGHT}" />
+                                        <Text text="{billetTagListModel>KANTAR_TEORIC_FARK}" />
+                                        <Text text="{billetTagListModel>CBK_QUAN}" />
+                                        <c:Icon src="sap-icon://print" visible="{= (${billetTagListModel>LABEL_STATUS} === 'BASILDI' )? true: false }" />
+                                        <c:Icon src="sap-icon://print" visible="{= (${billetTagListModel>ROBOT_LABEL_STS} === 'BASILDI')? true: false }" />
+                                        <Text text="{billetTagListModel>HATAKODU}" />
+                                        <!-- <Text text="{billetTagListModel>LABEL_STATUS}" />-->
+                                        <HBox alignContent="Center" justifyContent="Center">
+                                            <Button width="4rem" id="billetConfirm" press="onPressBilletConfirm" text="{= ${billetTagListModel>STATUS}==='FAILED' ? ${i18n>OEE_LABEL_RESEND_CONFIRM} : ${i18n>OEE_LABEL_FLM_CONFIRM} }" type="{= ${billetTagListModel>STATUS}==='FAILED' ? 'Reject': 'Emphasized'}" enabled="{= ${billetTagListModel>STATUS}==='QUEUED' ? false: true}" visible="{= (${billetTagListModel>KTKID} === 0 || ${billetTagListModel>BP_SUCCESS}  === 'S')? false: true }" />
+                                            <core:Icon color="{= (${billetTagListModel>BP_SUCCESS} === 'I' || ${billetTagListModel>BP_SUCCESS}  === 'S' )? 'green':'red'  }" src="sap-icon://circle-task-2" visible="{= (${billetTagListModel>BP_SUCCESS}  === 'S' )? true: false }" />
+                                        </HBox>
+                                        <HBox alignContent="Center" justifyContent="Center">
+                                            <Button width="4rem" id="billetConfirmCancel" press="onPressBilletConfirmCancel" text="{= ${billetTagListModel>STATUS}==='SUCCESS' ?${i18n>OEE_BAG_CONFIRM_CANCEL} : ${i18n>OEE_BAG_CONFIRM_CANCEL} }" type="{= ${billetTagListModel>CANCEL_STATUS}==='FAILED' ? 'Reject': 'Emphasized'}" visible="{= ${billetTagListModel>BP_SUCCESS}  === 'S' ? true: false }" />
+                                        </HBox>
+			      
+                                        <Text text="{billetTagListModel>INSDATE}" />
+<Text visible="{= ${appData>/plant} === '3001'}" text="{billetTagListModel>CONF_TYPE}" />
+			     
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </ScrollContainer>
+                    <l:sideContent>
+                        <FlexBox alignItems="Center" visible="{= ${appData>/plant} === '2001'}">
+
+                            <Label text=" Robot Ön Etiket: " width="150px" design="Bold" />
+                            <core:Icon color="{= ${appData>/on} === 1? 'green':'red'  }" src="sap-icon://circle-task-2" visible="true" />
+
+                        </FlexBox>
+                        <FlexBox alignItems="Center" visible="{= ${appData>/plant} === '2001'}">
+
+                            <Label text=" Robot Arka Etiket: " width="150px" design="Bold" />
+                            <core:Icon color="{= ${appData>/arka} === 1? 'green':'red'  }" src="sap-icon://circle-task-2" visible="true" />
+
+                        </FlexBox>
+
+                        <FlexBox height="30px" alignItems="Center" justifyContent="Center"></FlexBox>
+
+                        <List growing="true" growingThreshold="10" id="charList" items="{CharList>/Row/}" mode="None">
+                            <headerToolbar>
+                                <Toolbar>
+                                    <Button text="{i18n>OEE_LABEL_L_CHANGE_CHARACTERISTICS}" type="Emphasized" press="onPressChangeCharacteristic" />
+                                </Toolbar>
+                            </headerToolbar>
+                            <items>
+                                <ObjectListItem intro="{CharList>CHARC}" number="{CharList>CHARC_VALUE}" press="onListItemPress" title="{CharList>ATBEZ}" type="Active" />
+                            </items>
+                        </List>
+                    </l:sideContent>
+                </l:DynamicSideContent>
+            </VBox>
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <Button visible="false" />
+                <Button press="onOpenDeleteBilletTag" text="{i18n>OEE_BTN_DELETE}" type="Reject" />
+                <Title width="1rem" />
+
+                <CheckBox id="kantarToleransCb" text="Uyarı mesajı ver" visible="true" selected="false"/>
+                <Title text="Kantar Toleransı: " class="labelMainFK" />
+                <Title id="idConfirmTolerance" width="18rem" class="labelMainFK" text="{ConfirmTolerance>/0/KANTAR_MIN_TOL} -- {ConfirmTolerance>/0/KANTAR_MAX_TOL}" />
+                <ToolbarSpacer />
+                <Button id="FailedTeyit" press="getBilletTagListFailed" text="Teyit Verilmemiş Bağlar" type="Reject" />
+                <Button id="editGrill" press="editGrillQuan" text="Izgara Miktarını Düzenle" type="Emphasized" />
+                <Button id="autoConfirm" press="updateAutoConfirm" text="Otomatik Teyit" type="Reject" enabled="{= ${appData>/plant} === '2001'? false: true}" />
+                <Button visible="false" />
+                <Button icon="sap-icon://refresh" press="onPressRefresh" text="Yenile" />
+                <Button icon="sap-icon://fob-watch" id="chkIntervalState" press="changeIntervalState" type="Accept" />
+                <Button icon="sap-icon://print" id="printManual" press="onPressPrintManual" text="Manuel Yazdır" type="Reject" />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

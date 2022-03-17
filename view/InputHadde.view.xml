@@ -1,0 +1,419 @@
+<View xmlns:mvc="sap.ui.core.mvc" xmlns:ui="sap.ui.table" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" controllerName="customActivity.controller.HaddeSicaklik" displayBlock="true">
+	<App id="idAppControl">
+		<pages>
+			<Page id="userInputPage" title="Veri Giriş Ekranı" backgroundDesign="Transparent">
+				<content>
+					<FlexBox width="100%" id="box0" height="100%" direction="Column" visible="true">
+						<items>
+							<FlexBox width="100%" id="box1" height="10%">
+								<items>
+									<FlexBox width="60%" id="box0_1625838378823" alignItems="Center" justifyContent="End">
+										<items>
+											<Text xmlns="sap.m" text="Blok No" id="text0" textAlign="Center" />
+										</items>
+									</FlexBox>
+									<FlexBox width="100%" id="box0_1625838378863" justifyContent="Center" alignItems="Center">
+										<items>
+											<Text xmlns="sap.m" text="Hadde Çıkış Sıcaklığı (oC)" id="text0_1625840377156" textAlign="Left" />
+										</items>
+									</FlexBox>
+									<FlexBox width="115%" id="box0_1625838378883" alignItems="Center" justifyContent="SpaceBetween">
+										<items>
+											<Text xmlns="sap.m" text="Blok Çıkış Sıcaklığı (oC) " id="text0_1625840415510" textAlign="Center" width="250px" />
+											<Button xmlns="sap.m" text="Kaydet" id="button21" type="Accept" press="Execute" width="100px" />
+											<Button xmlns="sap.m" text="Rapor Tablosu" id="button0" type="Accept" press="Transfer1" width="100px" />
+											
+										</items>
+									</FlexBox>
+								</items>
+							</FlexBox>
+							<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" width="100%" id="box1_copy2" height="10%" justifyContent="SpaceBetween">
+								<items>
+									<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" width="100%" id="box1_copy" height="10%" justifyContent="Inherit">
+										<items>
+											<FlexBox width="50%" id="box0_1625838378823_copy" alignItems="Center" justifyContent="End" alignContent="Start" height="50px">
+												<items>
+													<Text xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" text="1" id="text0_copy" textAlign="Initial" />
+												</items>
+											</FlexBox>
+											<FlexBox width="100%" id="box0_1625838378863_copy" justifyContent="Center" alignItems="Center" height="50px">
+												<items>
+													<Input xmlns="sap.m" id="input1" placeholder="0.00" />
+												</items>
+											</FlexBox>
+											<FlexBox width="100%" id="box0_1625838378883_copy" alignItems="Center" height="50px">
+												<items>
+													<Input xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="input11" placeholder="0.00" />
+												</items>
+											</FlexBox>
+										</items>
+									</FlexBox>
+								</items>
+							</FlexBox>
+							<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" width="100%" id="box32" height="10%" justifyContent="SpaceBetween">
+								<items>
+									<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" width="100%" id="box1_c32y" height="10%" justifyContent="Inherit">
+										<items>
+											<FlexBox width="50%" id="box0_16258328823_copy" alignItems="Center" justifyContent="End" alignContent="Start" height="50px">
+												<items>
+													<Text xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" text="2" id="text032py" textAlign="Initial" />
+												</items>
+											</FlexBox>
+											<FlexBox width="100%" id="box0_16258328863_copy" justifyContent="Center" alignItems="Center" height="50px">
+												<items>
+													<Input xmlns="sap.m" id="input2" placeholder="0.00" />
+												</items>
+											</FlexBox>
+											<FlexBox width="100%" id="box0_162532378883_copy" alignItems="Center" height="50px">
+												<items>
+													<Input xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="input22" placeholder="0.00" />
+												</items>
+											</FlexBox>
+										</items>
+									</FlexBox>
+								</items>
+							</FlexBox>
+							<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" width="100%" id="box1_cop12" height="10%" justifyContent="SpaceBetween">
+								<items>
+									<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" width="100%" id="box12copy" height="10%" justifyContent="Inherit">
+										<items>
+											<FlexBox width="50%" id="box0_16258312378823_copy" alignItems="Center" justifyContent="End" alignContent="Start" height="50px">
+												<items>
+													<Text xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" text="3" id="text22copy" textAlign="Initial" />
+												</items>
+											</FlexBox>
+											<FlexBox width="100%" id="box0_1625832278863_copy" justifyContent="Center" alignItems="Center" height="50px">
+												<items>
+													<Input xmlns="sap.m" id="input3" placeholder="0.00" />
+												</items>
+											</FlexBox>
+											<FlexBox width="100%" id="box0_16258383378883_copy" alignItems="Center" height="50px">
+												<items>
+													<Input xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="input33" placeholder="0.00" />
+												</items>
+											</FlexBox>
+										</items>
+									</FlexBox>
+								</items>
+							</FlexBox>
+							<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" width="100%" id="box1_3cop12" height="10%" justifyContent="SpaceBetween">
+								<items>
+									<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" width="100%" id="box12c3opy" height="10%" justifyContent="Inherit">
+										<items>
+											<FlexBox width="50%" id="box0_163258312378823_copy" alignItems="Center" justifyContent="End" alignContent="Start" height="50px">
+												<items>
+													<Text xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" text="4" id="text242copy" textAlign="Initial" />
+												</items>
+											</FlexBox>
+											<FlexBox width="100%" id="box0_14625832278863_copy" justifyContent="Center" alignItems="Center" height="50px">
+												<items>
+													<Input xmlns="sap.m" id="input4" placeholder="0.00" />
+												</items>
+											</FlexBox>
+											<FlexBox width="100%" id="box0_16258383378883_4copy" alignItems="Center" height="50px">
+												<items>
+													<Input xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="input44" placeholder="0.00" />
+												</items>
+											</FlexBox>
+										</items>
+									</FlexBox>
+								</items>
+							</FlexBox>
+							<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" width="100%" id="box1_co232" height="10%" justifyContent="SpaceBetween">
+								<items>
+									<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" width="100%" id="box1223copy" height="10%" justifyContent="Inherit">
+										<items>
+											<FlexBox width="50%" id="box0_1625823312378823_copy" alignItems="Center" justifyContent="End" alignContent="Start" height="50px">
+												<items>
+													<Text xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" text="5" id="te23xt22copy" textAlign="Initial" />
+												</items>
+											</FlexBox>
+											<FlexBox width="100%" id="box0_162523832278863_copy" justifyContent="Center" alignItems="Center" height="50px">
+												<items>
+													<Input xmlns="sap.m" id="input5" placeholder="0.00" />
+												</items>
+											</FlexBox>
+											<FlexBox width="100%" id="box0_1625838337888323_copy" alignItems="Center" height="50px">
+												<items>
+													<Input xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="input55" placeholder="0.00" />
+												</items>
+											</FlexBox>
+										</items>
+									</FlexBox>
+								</items>
+							</FlexBox>
+							<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" width="100%" id="box1_123cop12" height="10%" justifyContent="SpaceBetween">
+								<items>
+									<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" width="100%" id="box1232copy" height="10%" justifyContent="Inherit">
+										<items>
+											<FlexBox width="50%" id="box0_16123258312378823_copy" alignItems="Center" justifyContent="End" alignContent="Start" height="50px">
+												<items>
+													<Text xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" text="6" id="te2xt22copy" textAlign="Initial" />
+												</items>
+											</FlexBox>
+											<FlexBox width="100%" id="box0_16258332278863_copy" justifyContent="Center" alignItems="Center" height="50px">
+												<items>
+													<Input xmlns="sap.m" id="input6" placeholder="0.00" />
+												</items>
+											</FlexBox>
+											<FlexBox width="100%" id="box0_162586383378883_copy" alignItems="Center" height="50px">
+												<items>
+													<Input xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="input66" placeholder="0.00" />
+												</items>
+											</FlexBox>
+										</items>
+									</FlexBox>
+								</items>
+							</FlexBox>
+							<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" width="100%" id="box1_3123cop12" height="10%" justifyContent="SpaceBetween">
+								<items>
+									<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" width="100%" id="box12332copy" height="10%" justifyContent="Inherit">
+										<items>
+											<FlexBox width="50%" id="box0_161323258312378823_copy" alignItems="Center" justifyContent="End" alignContent="Start" height="50px">
+												<items>
+													<Text xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" text="7" id="te23xt223copy" textAlign="Initial" />
+												</items>
+											</FlexBox>
+											<FlexBox width="100%" id="box0_162583322738863_copy" justifyContent="Center" alignItems="Center" height="50px">
+												<items>
+													<Input xmlns="sap.m" id="input7" placeholder="0.00" />
+												</items>
+											</FlexBox>
+											<FlexBox width="100%" id="box0_1625863783378883_copy" alignItems="Center" height="50px">
+												<items>
+													<Input xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="input77" placeholder="0.00" />
+												</items>
+											</FlexBox>
+										</items>
+									</FlexBox>
+								</items>
+							</FlexBox>
+							<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" width="100%" id="box1_13cop12" height="10%" justifyContent="SpaceBetween">
+								<items>
+									<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" width="100%" id="box132copy" height="10%" justifyContent="Inherit">
+										<items>
+											<FlexBox width="50%" id="box0_1612325832378823_copy" alignItems="Center" justifyContent="End" alignContent="Start" height="50px">
+												<items>
+													<Text xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" text="8" id="text221copy" textAlign="Initial" />
+												</items>
+											</FlexBox>
+											<FlexBox width="100%" id="box0_162538332278863_copy" justifyContent="Center" alignItems="Center" height="50px">
+												<items>
+													<Input xmlns="sap.m" id="input8" placeholder="0.00" />
+												</items>
+											</FlexBox>
+											<FlexBox width="100%" id="box0_1625863833788883_copy" alignItems="Center" height="50px">
+												<items>
+													<Input xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="input88" placeholder="0.00" />
+												</items>
+											</FlexBox>
+										</items>
+									</FlexBox>
+								</items>
+							</FlexBox>
+							<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" width="100%" id="box31_13cop12" height="10%" justifyContent="SpaceBetween">
+								<items>
+									<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" width="100%" id="box1332copy" height="10%" justifyContent="Inherit">
+										<items>
+											<FlexBox width="50%" id="box0_16123258323378823_copy" alignItems="Center" justifyContent="End" alignContent="Start" height="50px">
+												<items>
+													<Text xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" text="9" id="text2213copy" textAlign="Initial" />
+												</items>
+											</FlexBox>
+											<FlexBox width="100%" id="box0_1625383322788363_copy" justifyContent="Center" alignItems="Center" height="50px">
+												<items>
+													<Input xmlns="sap.m" id="input9" placeholder="0.00" />
+												</items>
+											</FlexBox>
+											<FlexBox width="100%" id="box0_16258623833788883_copy" alignItems="Center" height="50px">
+												<items>
+													<Input xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="input99" placeholder="0.00" />
+												</items>
+											</FlexBox>
+										</items>
+									</FlexBox>
+								</items>
+							</FlexBox>
+							<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" width="100%" id="box1_132cop12" height="10%" justifyContent="SpaceBetween">
+								<items>
+									<FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" width="100%" id="box1322copy" height="10%" justifyContent="Inherit">
+									</FlexBox>
+								</items>
+							</FlexBox>
+						</items>
+					</FlexBox>
+					<FlexBox id = "raporBox" height="100%" width="100%" visible="false" direction="Column">
+						<FlexBox id="fBox1" height="10%" width="100%" justifyContent="SpaceBetween" alignItems="Center">
+							<FlexBox id="dateSearchBox">
+							<DateRangeSelection change="_onDateRangeSelectionChange" class="sapUiResponsiveMargin" visible="true" enabled="true" valueStateText="Invalid entry" required="false" displayFormat="short" width="auto" dateValue="{staticDataModel>/sap_Responsive_Page_0-content-sap_m_DateRangeSelection-1625489109866/dateValue}" id="dateRange"/>
+							<Button class="sapUiResponsiveMargin"  visible="true" enabled="true" width="auto" iconDensityAware="false" iconFirst="true" type="Emphasized" text="Ara"   press="Search" />
+							<Button class="sapUiResponsiveMargin"  visible="true" enabled="true" width="auto" iconDensityAware="false" iconFirst="true" type="Accept" text="Excel'e Aktar"   press="onExport" />
+							</FlexBox>
+							<Button xmlns="sap.m" text="Veri Girişi" id="button0123" type="Accept" press="Transfer2" width="100px" class="sapUiResponsiveMargin" />
+						</FlexBox>
+						<FlexBox id="fBox2" height="90%" width="100%">
+							<ui:Table id="HaddeSicaklik" selectionMode="None" selectionBehavior="Row" enableColumnReordering="false" visibleRowCountMode="Auto" rows="{/}" class="sapUiResponsiveMargin">
+								<ui:columns>
+									<ui:Column width="7%" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<Label text="Tarih" textAlign="Begin"  />
+										<ui:template>
+											<Text text="{LDATE}" width="auto"  wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="5%" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<Label text="Vardiya" textAlign="Begin"  />
+										<ui:template>
+											<Text text="{SHIFT}" width="auto"  wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="5%" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<Label text="İş Yeri" textAlign="Begin"  />
+										<ui:template>
+											<Text text="{ARBPL}" width="auto"  wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="9%" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<Label text="Sipariş Numarası" textAlign="Begin"  />
+										<ui:template>
+											<Text text="{AUFNR}" width="auto"  wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<Label text="1-H" textAlign="Begin"  />
+										<ui:template>
+											<Text text="{H_C_S-1}" width="auto"  wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<Label text="1-B" textAlign="Begin"  />
+										<ui:template>
+											<Text text="{B_C_S-1}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<Label text="2-H" textAlign="Begin"  />
+										<ui:template>
+											<Text text="{H_C_S-2}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<Label text="2-B" textAlign="Begin"  />
+										<ui:template>
+											<Text text="{B_C_S-2}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<Label text="3-H" textAlign="Begin"  />
+										<ui:template>
+											<Text text="{H_C_S-3}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<Label text="3-B" textAlign="Begin"  />
+										<ui:template>
+											<Text text="{B_C_S-3}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<Label text="4-H" textAlign="Begin"  />
+										<ui:template>
+											<Text text="{H_C_S-4}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<Label text="4-B" textAlign="Begin"  />
+										<ui:template>
+											<Text text="{B_C_S-4}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<Label text="5-H" textAlign="Begin"  />
+										<ui:template>
+											<Text text="{H_C_S-5}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<Label text="5-B" textAlign="Begin"  />
+										<ui:template>
+											<Text text="{B_C_S-5}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<Label text="6-H" textAlign="Begin"  />
+										<ui:template>
+											<Text text="{H_C_S-6}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<Label text="6-B" textAlign="Begin"  />
+										<ui:template>
+											<Text text="{B_C_S-6}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<Label text="7-H" textAlign="Begin"  />
+										<ui:template>
+											<Text text="{H_C_S-7}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<Label text="7-B" textAlign="Begin"  />
+										<ui:template>
+											<Text text="{B_C_S-7}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<Label text="8-H" textAlign="Begin"  />
+										<ui:template>
+											<Text text="{H_C_S-8}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<Label text="8-B" textAlign="Begin"  />
+										<ui:template>
+											<Text text="{B_C_S-8}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<Label text="9-H" textAlign="Begin"  />
+										<ui:template>
+											<Text text="{H_C_S-9}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<Label text="9-B" textAlign="Begin"  />
+										<ui:template>
+											<Text text="{B_C_S-9}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</ui:template>
+									</ui:Column>
+									
+								</ui:columns>
+							</ui:Table>
+						</FlexBox>
+					</FlexBox>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</View>

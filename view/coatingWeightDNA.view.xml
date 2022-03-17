@@ -1,0 +1,161 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="customActivity.controller.coatingWeightDNA"  xmlns:ui="sap.ui.table" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+    <FlexBox width="100%" height="100%" id="CoatingWeight" direction="Row" visible="true">
+        <FlexBox width="90%" height="100%" direction="Column">
+            <FlexBox height="3%"/>
+            <FlexBox alignItems="Center" justifyContent="SpaceAround" width="90%" direction ="Row">
+                <!-- <FlexBox width="30%"/> -->
+                <FlexBox width="30%" justifyContent="End">
+                    <Label text="Etiket Okut" design="Bold"/>
+                </FlexBox>
+                <FlexBox width="30%" justifyContent="Start">
+                    <Input id="idReadBarcode" submit="changeBarcodeInput"/>
+                </FlexBox>
+            </FlexBox>
+            <FlexBox height="5%"/>
+            <FlexBox alignItems="Center" justifyContent="SpaceAround" direction ="Row" width="90%">
+                <FlexBox width="10%"/>
+                <FlexBox alignItems="Center" justifyContent="SpaceAround" direction ="Row" width="13%">
+                    <Label text="Sip. No:" design="Bold"/>
+                    <Label text="" design="Bold" id="idAufnr" class="neon"/>
+                </FlexBox>
+                <FlexBox alignItems="Center" justifyContent="SpaceAround" direction ="Row" width="13%">
+                    <Label text="Parti No:" design="Bold"/>
+                    <Label text="" design="Bold"    id="idCharg" class="neon"/>
+                </FlexBox>
+                <FlexBox alignItems="Center" justifyContent="SpaceAround" direction ="Row" width="13%">
+                    <Label text="Numune Tipi:" design="Bold"/>
+                    <Label text="" design="Bold" id="idType" class="neon"/>
+                </FlexBox>
+                <FlexBox alignItems="Center" justifyContent="SpaceAround" direction ="Row" width="18%">
+                    <Label text="Numune Kalite:" design="Bold"/>
+                    <Label text="" design="Bold" id="idQuantity" class="neon"/>
+                </FlexBox>
+                <FlexBox alignItems="Center" justifyContent="SpaceAround" direction ="Row" width="5%">
+                    <Button text="Temizle" icon="sap-icon://clear-filter" type="Emphasized" press="clearAll"/>
+                </FlexBox>
+            </FlexBox>
+            <FlexBox height="10%"/>
+            <FlexBox alignItems="Center" justifyContent="SpaceAround" width="90%" direction ="Row">
+                <!-- <FlexBox width="30%"/> -->
+                <FlexBox width="30%" justifyContent="End">
+                    <Label text="İlk tartım (g)"   design="Bold"/>
+                </FlexBox>
+                <FlexBox width="30%" justifyContent="Start">
+                    <Input type="Number" id="idFirstWeight" liveChange="calculateCW" />
+                </FlexBox>
+            </FlexBox>
+            <FlexBox height="5%"/>
+            <FlexBox alignItems="Center" justifyContent="SpaceAround" width="90%" direction ="Row">
+                <!-- <FlexBox width="30%"/> -->
+                <FlexBox width="30%" justifyContent="End">
+                    <Label text="Son tartım (g)"   design="Bold"/>
+                </FlexBox>
+                <FlexBox width="30%" justifyContent="Start">
+                    <Input type="Number" id="idLastWeight" liveChange="calculateCW"/>
+                </FlexBox>
+            </FlexBox>
+            <FlexBox height="5%"/>
+            <FlexBox alignItems="Center" justifyContent="SpaceAround" width="90%" direction ="Row">
+                <!-- <FlexBox width="30%"/> -->
+                <FlexBox width="30%" justifyContent="End">
+                    <Label text="Numune Çapı (mm)"  design="Bold" />
+                </FlexBox>
+                <FlexBox width="30%" justifyContent="Start">
+                    <Input type="Number" id="idSampDiameter" liveChange="calculateCW"/>
+                </FlexBox>
+            </FlexBox>
+            <FlexBox height="5%"/>
+            <FlexBox alignItems="Center" justifyContent="SpaceAround" width="90%" direction ="Row">
+                <!-- <FlexBox width="30%"/> -->
+                <FlexBox width="30%" justifyContent="End">
+                    <Label text="Numune Boyu (cm)"   design="Bold"/>
+                </FlexBox>
+                <FlexBox width="30%" justifyContent="Start">
+                    <Input  type="Number" id="idSampLength" liveChange="calculateCW"/>
+                </FlexBox>
+            </FlexBox>
+            <FlexBox height="5%"/>
+            <FlexBox alignItems="Center" justifyContent="SpaceAround" width="90%" direction ="Row">
+                <!-- <FlexBox width="30%"/> -->
+                <FlexBox width="30%" justifyContent="End">
+                    <Label text="Kaplama Ağırlığı (g/m2)"  design="Bold" />
+                </FlexBox>
+                <FlexBox width="30%" justifyContent="Start">
+                    <Input type="Number" id="idCW" editable="false"/>
+                </FlexBox>
+            </FlexBox>
+        </FlexBox>
+        <FlexBox width="5%" direction="Column" alignItems="Start"
+				justifyContent="Start">
+            <FlexBox width="5%" direction="Row" alignItems="Start"
+				justifyContent="Center">
+                <Button text="Kaydet" type="Accept" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onPressSave" class="sapUiResponsiveMargin"/>
+                <Button text="Rapor Ekranı" type="Accept" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="openRaporEkranı" class="sapUiResponsiveMargin"/>
+            </FlexBox>
+        </FlexBox>
+    </FlexBox>
+    <FlexBox id = "raporBox" height="100%" width="100%" visible="false" direction="Column">
+        <FlexBox>
+            <FlexBox direction="Row" width="90%">
+                <DateRangeSelection   id="datePicker"  placeholder="Tarih" width="300px" displayFormat="long"  enabled="true" visible="true" class="sapUiResponsiveMargin" />
+                <Button text="" type="Accept" icon="sap-icon://search" iconFirst="true" width="70px" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin" press="searchData" />
+                <Button type="Accept" icon="sap-icon://excel-attachment"  text="Excel Export" press="onExport" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin"/>
+            </FlexBox>
+            <FlexBox direction="Row" justifyContent="End">
+                <Button type="Accept" text="Veri Giriş Ekranı" press="openCW" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin"/>
+            </FlexBox>
+        </FlexBox>
+        <ui:Table id="coatingWeightTable" selectionMode="None" selectionBehavior="Row" enableColumnReordering="false" visibleRowCountMode="Auto" minAutoRowCount="15" rows="{/}" class="sapUiResponsiveMargin">
+            <ui:columns>
+                <ui:Column width="7%" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                    <Label text="Tarih" textAlign="Begin"  />
+                    <ui:template>
+                        <Text text="{DATE}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                    <Label text="Vardiya" width="auto"  wrapping="true" textAlign="Begin" />
+                    <ui:template>
+                        <Text text="{SHIFT}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column width="9%" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                    <Label text="Sipariş No." maxLines="2" wrapping="true" textAlign="Begin" />
+                    <ui:template>
+                        <Text text="{AUFNR}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                    <Label text="Parti No." maxLines="2" wrapping="true" textAlign="Begin"/>
+                    <ui:template>
+                        <Text text="{CHARG}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                    <Label text="Numune Tipi" maxLines="2" wrapping="true" textAlign="Begin" />
+                    <ui:template>
+                        <Text text="{TYPE}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                    <Label text="Numune Çapı" maxLines="2" wrapping="true" textAlign="Begin" />
+                    <ui:template>
+                        <Text text="{DIAMETER}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                    <Label text="Numune Kalitesi" maxLines="2" wrapping="true" textAlign="Begin" />
+                    <ui:template>
+                        <Text text="{QUALITY}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                    <Label text="Kaplama Ağırlığı (g/m2)" maxLines="2" wrapping="true" textAlign="Begin" />
+                    <ui:template>
+                        <Text text="{COATING_WEIGHT}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                    </ui:template>
+                </ui:Column>
+            </ui:columns>
+        </ui:Table>
+    </FlexBox>
+</mvc:View>

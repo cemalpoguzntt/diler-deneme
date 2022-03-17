@@ -1,0 +1,236 @@
+<core:View xmlns:core="sap.ui.core"
+    xmlns:suite="sap.suite.ui.commons"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns="sap.m" controllerName="customActivity/controller/oeeReportQuantityDNA">
+    <Page showHeader="false" showNavButton="false">
+        <content>
+            <l:VerticalLayout width="100%">
+                <core:Fragment fragmentName="customActivity.fragmentView.zorderCardFragmentDNA" type="XML" id="orderCardFragment" />
+                <VBox width="100%">
+                    <HBox id="selectedBatchHBox" width="100%" alignItems="Center" justifyContent="Center" class="sapUiSmallMargin" visible="false">
+                        <Label design="Bold" text="Seçili Parti Numarası" class="sapUiTinyMarginEnd"/>
+                        <Input id="selectedBatchNumber" class="sapUiSmallMarginEnd"/>
+                        <Button text="Sıfırla" id="idSelectedBatch" press="onPressClearSelectedBatchNumber" type="Emphasized"/>
+                    </HBox>
+                </VBox>
+                <IconTabBar id="idIconTabBar" selectedKey="filterCons" select="footerVisibleStatus">
+                    <items>
+                        <IconTabFilter text="{i18n>OEE_LABEL_GENERAL}" icon="sap-icon://hint" iconColor="Neutral" id="filterCons" key="filterCons">
+                            <Vbox>
+                                <HBox id="resetPartiNo" width="100%" alignItems="Center" justifyContent="Center" class="sapUiSmallMargin" visible="false">
+                                    <Button text="Parti No Temizle" id="idResetPartiNo" press="onPressResetPartiNo" type="Accept"/>
+                                    <FlexBox id="idOrmeFB" width="60%" alignItems="Center" justifyContent="SpaceAround" class="sapUiSmallMargin" visible="false">
+                                        <FlexBox id="idLastMCRNFB" width="30%" alignItems="Center" justifyContent="Center" class="sapUiSmallMargin">
+                                            <Label text="Son MC Sıra No :" design="Bold"/>
+                                            <Label id = "idLastMCRNLabel" text=""  design="Bold"/>
+                                        </FlexBox>
+                                        <FlexBox id="idLastMCWMFB" width="30%" alignItems="Center" justifyContent="Center" class="sapUiSmallMargin">
+                                            <Label text="Son MC Kaynak Metraj :" design="Bold" />
+                                            <Label id="idLastMCWMLabel" text=""  design="Bold"/>
+                                        </FlexBox>
+                                    </FlexBox>
+                                </HBox>
+                                <FlexBox id="idFosfatFB" justifyContent="Center" alignItems="Center" visible="false">
+                                    <Button text="Ağırlık Getir" id="idGetWeightFS" press="onPressGetWeightFS" type="Emphasized"/>
+                                </FlexBox>
+                                <Table id="reportProductionQuantityTable" editable="false" items="{/productionData}">
+                                    <columns>
+                                        <Column>
+                                            <Label text="{i18n>OEE_LABEL_PARAMETER}" />
+                                        </Column>
+                                        <Column>
+                                            <Label text="{i18n>OEE_LABEL_QUANTITY}" />
+                                        </Column>
+                                        <Column>
+                                            <Label text="{i18n>OEE_LABEL_UOM}" />
+                                        </Column>
+                                        <Column visible="{= ${appData>/customizationVisible/BATCH_NO_MANDATORY/value} === 'YES' ? true : false }">
+                                            <Label text="{i18n>OEE_LABEL_BATCH_NUM}" />
+                                        </Column>
+                                        <Column visible="{appData>/visibleJSON/K_CAP}">
+                                            <Label text="Ölçülen Çap(mm)" />
+                                        </Column>
+                                        <Column visible="{appData>/visibleJSON/K_CAP}">
+                                            <Label text="Bobin No" />
+                                        </Column>
+                                        <Column>
+                                            <Label text="{i18n>OEE_LABEL_RC}" />
+                                        </Column>
+                                        <Column>
+                                            <Label text="{i18n>OEE_LABEL_COMMENTS}" />
+                                        </Column>
+                                        <Column>
+                                            <Label text="{i18n>OEE_LABEL_DETAILS}" />
+                                        </Column>
+                                        <Column>
+                                            <Label text="{i18n>OEE_LABEL_REPORTED_QTY}" />
+                                        </Column>
+                                        <Column>
+                                            <Label text="{i18n>OEE_LABEL_DATE_TIME_LAST_REPORTED}" />
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem>
+                                            <cells>
+                                                <Text text="{description}" />
+                                                <Input id="idquantity" value="{quantity}" change="onChangeValidateQuantity" />
+                                                <Input value="{uomText}" showSuggestion="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelpRequest" enabled="false"/>
+                                                <Input id="idbatch" value="{batchNumber}" submit="changeBarcodeInput" visible="true" enabled="{= ${objek} === '3007FOSFAT' ? true : false }"/>
+                                                <Input id="idMeasuredDiameter" value="{MSD_DIAMETER}" visible="{= ${description} === 'Sağlam Miktar' ? true : false }"/>
+                                                <ComboBox items="{path: '/BOBBIN'}" visible="{= ${description} === 'Sağlam Miktar' ? true : false }">
+                                                    <core:Item key="{BOBBINNO}" text="{BOBBINNO} - {WEIGHT} KG"/>
+                                                </ComboBox>
+                                                <Button text="{i18n>OEE_BTN_ASSIGN}" tooltip="{i18n>OEE_BTN_ASSIGN}" visible="{path : 'dcElementType', formatter : '.checkIfNotLossType'}" icon="sap-icon://value-help" press="onClickOpenReasonCodeUtilityPopup" width="7rem" />
+                                                <Button text="{parts : [{path : 'i18n>OEE_BTN_ADD'},{path:'comments'}], formatter : 'sap.oee.ui.Formatter.reasonCodeButttonFormatter'}" tooltip="{i18n>OEE_BTN_ADD}" icon="sap-icon://comment" press="onClickAddComments" width="7rem" />
+                                                <Button text="{i18n>OEE_LABEL_DETAILS}" icon="sap-icon://inspection" enabled="{path : 'reportedByTimeStamp', formatter : '.checkIfValueReported'}" press="onClickShowListOfProductionData" />
+                                                <Text text="{parts : [{path:'quantityReported'}, {path:'defaultUOMText'},{path : 'appData>/decimalPrecision'}], formatter : 'sap.oee.ui.Formatter.formatQuantityAndUOMText'}" />
+                                                <Text text="{parts : [{path:'reportedByTimeStamp'}, {path: 'appData>/plantTimezoneOffset'}, {path: 'appData>/plantTimezoneKey'}], formatter : 'sap.oee.ui.Formatter.formatTimeStampWithoutLabel'}" />
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                                <Table id="reportProductionQuantityTable2" visible="false" editable="false" items="{/}">
+                                    <columns>
+                                        <Column>
+                                            <Label id="idKaynak"/>
+                                        </Column>
+                                        <Column>
+                                            <Label text="Ölçü Birimi" />
+                                        </Column>
+                                        <Column>
+                                            <Label text="Oluşturma Zamanı" />
+                                        </Column>
+                                        <Column>
+                                            <Label text="" />
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem>
+                                            <cells>
+                                                <Text text="{QUANTITY}" />
+                                                <Text text="{UOM}" />
+                                                <Text text="{CREATION_TIMESTAMP}" />
+                                                <Button id="deleteButton" ariaHasPopup="Dialog" press="onPressDelete" icon="sap-icon://decline" />
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </Vbox>
+                        </IconTabFilter>
+                        <IconTabFilter text="{i18n>OEE_LABEL_BATCH_CHOSEN}" icon="sap-icon://feed" iconColor="Positive" id="filterCons2" key="filterCons2" visible="{= ${appData>/visibleJSON/SEKME_PARTI_SEC} === 'SEKME_PARTI_SEC' ? true : false }">
+                            <Table id="tblComponents1" includeItemInSelection="true" mode="SingleSelectLeft" fixedLayout="false" growing="false" items="{batchList>/Row}" showSeparators="None" inset="false" noDataText="{i18n>titleNoItem}" selectionChange="onSelectBatchTableChange">
+                                <columns>
+                                    <Column hAlign="Center">
+                                        <Text text="{i18n>OEE_LABEL_ORDER_NO}" />
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="{i18n>OEE_LABEL_BATCH_NO}" />
+                                    </Column>
+                                    <Column hAlign="Center" visible="{= ${appData>/visibleJSON/MC_COIL_NO} === 'MC_COIL_NO' ? true : false }">
+                                        <Text text="{i18n>OEE_LABEL_MC_SEQ_NO}" />
+                                    </Column>
+                                    <Column hAlign="Center" visible="{= ${appData>/visibleJSON/MC_COIL_BATCH_NO} === 'MC_COIL_BATCH_NO' ? true : false }">
+                                        <Text text="{i18n>OEE_LABEL_MC_BATCH_NUMBER}" />
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="{i18n>OEE_LABEL_PROD_TYPE}" />
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="{i18n>OEE_LABEL_COIL_METERAGE}" />
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="{i18n>OEE_LABEL_COIL_TONNAGE}" />
+                                    </Column>
+                                    <Column hAlign="Center" visible="{appData>/visibleJSON/K_CAP}">
+                                        <Text text="Ölçülen Çap(mm)" />
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="{=(${appData>/node/workcenterID}==='10000300')?${i18n>OEE_LABEL_EXTRA_METERAGE}:${i18n>OEE_LABEL_WELDING_METERAGE}}" />
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="{i18n>OEE_LABEL_CAST_ID}" />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem vAlign="Middle">
+                                        <cells>
+                                            <Text text="{batchList>ROWNUMBER}" />
+                                            <Text text="{batchList>BATCH}" />
+                                            <Text text="{batchList>OLDROWNUMBER}" />
+                                            <Text text="{batchList>BARCODE}" />
+                                            <Text text="{batchList>PRODTYPE}" />
+                                            <Text text="{batchList>QTY_REPORTED_BUOM}" />
+                                            <Text text="{batchList>QUANTITY}" />
+                                            <Text text="{batchList>MSD_DIAMETER}" />
+                                            <Button text="{i18n>OEE_LABEL_METERAGES}" tooltip="{batchList>BATCH}" press="openMeterage"></Button>
+                                            <Button text="{= !!${batchList>CASTNO} ? ${batchList>CASTNO} : ${i18n>OEE_LABEL_CAST} }" press="openCastList"></Button>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </IconTabFilter>
+                        <IconTabFilter text="{i18n>OEE_HEADING_REPORT_PRODUCTION}" icon="sap-icon://feed" iconColor="Positive" id="filterCons3" key="filterCons3" visible="{= ${appData>/visibleJSON/SEKME_TEYIT_LISTESI} === 'SEKME_TEYIT_LISTESI' ? true : false }">
+                            <Table id="tblComponents2" includeItemInSelection="true" mode="SingleSelectLeft" fixedLayout="false" growing="false" items="{prodRunModel>/}" showSeparators="None" inset="false" noDataText="{i18n>titleNoItem}">
+                                <columns>
+                                    <Column hAlign="Center">
+                                        <Text text="{i18n>OEE_LABEL_CASTINGNUMBER}" />
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="{i18n>OEE_LABEL_COMPONENT_CODE}" />
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="{i18n>OEE_LABEL_PROD_TYPE}" />
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="{i18n>OEE_LABEL_PKT_AGR}" />
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="{i18n>OEE_LABEL_UUNIT}" />
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="{i18n>OEE_LABEL_STRD}" />
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="{i18n>OEE_LABEL_QLTY}" />
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="{i18n>OEE_LABEL_DIAMETER}" />
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem vAlign="Middle">
+                                        <cells>
+                                            <Text text="{prodRunModel>Y_DOKUMNO}" />
+                                            <Text text="{prodRunModel>BARCODE}" />
+                                            <Text text="{prodRunModel>DESCRIPTION}" />
+                                            <Text text="{prodRunModel>QUANTITY}" />
+                                            <Text text="{prodRunModel>UOM}" />
+                                            <Text text="{prodRunModel>Y_STANDART_FLM}" />
+                                            <Text text="{prodRunModel>Y_KALITE_FLM}" />
+                                            <Text text="{prodRunModel>Y_CAP_FLM_MM}" />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </IconTabFilter>
+                    </items>
+                </IconTabBar>
+            </l:VerticalLayout>
+        </content>
+        <footer>
+            <Toolbar>
+                <Button id="addBarcode" text="Parti Oluştur" icon="sap-icon://create" press="onClickReadBarcode" visible="{= ${appData>/visibleJSON/BUTON_PARTI_YARAT} === 'BUTON_PARTI_YARAT' ? true : false }"></Button>
+                <ToolbarSpacer />
+                <Button id="addMeterage" text="{i18n>OEE_LABEL_ADD_METERAGE_SCRREN}" visible="{= ${appData>/visibleJSON/BUTON_EK_METRAJ} === 'BUTON_EK_METRAJ' ? true : false }" icon="sap-icon://add" press="onPressAddMeterage"></Button>
+                <ToolbarSeparator visible="{= ${appData>/visibleJSON/BUTON_EK_METRAJ} === 'BUTON_EK_METRAJ' ? true : false }" />
+                <Button id="addSource" text="{i18n>OEE_LABEL_SOURCE_ADD}" visible="{= ${appData>/visibleJSON/BUTON_KAYNAK_EKLE} === 'BUTON_KAYNAK_EKLE' ? true : false }" icon="sap-icon://add" press="onPressAddSource"></Button>
+                <ToolbarSeparator visible="{= ${appData>/visibleJSON/BUTON_KAYNAK_EKLE} === 'BUTON_KAYNAK_EKLE' ? true : false }" />
+                <Button text="{i18n>OEE_BTN_SAVE}" icon="sap-icon://save" press="onClickConfirm" type="Accept" visible="true"></Button>
+            </Toolbar>
+        </footer>
+    </Page>
+</core:View>

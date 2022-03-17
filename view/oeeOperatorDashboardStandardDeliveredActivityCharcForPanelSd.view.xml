@@ -1,0 +1,8 @@
+<core:View xmlns:core="sap.ui.core" xmlns="sap.m"  xmlns:layout="sap.ui.layout"  
+	controllerName="customActivity.controller.oeeOperatorDashboardStandardDeliveredActivityCharcForPanelSd">
+			<layout:Grid id="panel1">
+			<layout:content>
+				
+			</layout:content>
+			</layout:Grid> 
+</core:View>

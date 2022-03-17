@@ -1,0 +1,239 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" controllerName="customActivity.controller.oeeBilletInsideFurnaceHH" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core">
+    <Page showNavButton="false" showHeader="false">
+        <content>
+
+
+            <FlexBox alignItems="Center" justifyContent="Start">
+                <items>
+                    <HBox justifyContent="Center" class="sapUiSmallMarginTop">
+
+                     <VBox class="sapUiSmallMarginBegin">
+                            <ComboBox id="searchFieldQuality" width="14rem" placeholder="{i18n>OEE_LABEL_BILLET_QUALITY_FILTER}" items="{/}" change="onChange">
+                                <core:ListItem text="{Y_KALITE_KTK}" key="{Y_KALITE_KTK}" />
+                            </ComboBox>                      
+                        </VBox>
+                       <Label width="1rem" />
+                        <HBox alignItems="Center" justifyContent="End" width="auto" >
+
+                             <Label text="Sıcak Şarj Sayısı: " class="labelMainH" />
+                            <Label width="1rem" />
+                            <Label id="idHotCharge" width="80px" class="labelMainH" text="{ChargeTypeQuan>/0/SICAK_SARJ}" />
+                            <Label text="Soğuk Sarj Sayısı: " class="labelMainC" />
+                            <Label width="1rem" />
+                            <Label id="idColdCharge" width="80px" class="labelMainC" text="{ChargeTypeQuan>/0/SOGUK_SARJ}" />
+                            <Label width="1rem" />
+                        </HBox>
+                    </HBox>
+                </items>
+            </FlexBox>
+            <FlexBox>
+                <items>
+                    <HBox>
+                        <Panel expandable="true" expanded="false" headerText="Döküm - Kütük Sayaç Tablosu" width="auto" class="sapUiResponsiveMargin">
+                            <content>
+                                <ui:Table id="idReportTable" width="100%" rows="{/}" visibleRowCount="5" alternateRowColors="true" selectionMode="Single" selectionBehavior="RowOnly" >
+                                    <ui:columns>
+                                        <ui:Column hAlign="Center" sortProperty="CASTID" filterProperty="CASTID" filterType="sap.ui.model.type.String">
+                                            <Label text="Döküm No (Son 5 Döküm)" design="Bold"/>
+                                            <ui:template>
+                                            <Text text="{CASTID}" wrapping="false"/>
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column hAlign="Center" sortProperty="FIRIN_ICI_KUTUK_SAYISI" filterProperty="FIRIN_ICI_KUTUK_SAYISI" filterType="sap.ui.model.type.String">
+                                            <Label text="Fırın İçi Kütük Sayısı" design="Bold"/>
+                                            <ui:template>
+                                            <Text text="{FIRIN_ICI_KUTUK_SAYISI}" wrapping="false"/>
+                                            </ui:template>
+                                        </ui:Column>
+                                    </ui:columns>
+                                </ui:Table>
+                            </content>
+                        </Panel>
+                    </HBox>
+                </items>
+            </FlexBox>
+   
+
+ <Table id="firstBillet"  includeItemInSelection="false" items="{firstBilletDetail>/}" growing="true" growingScrollToLoad="true" growingThreshold="1000">
+                <columns>
+              <Column width="5rem" hAlign="Center" vAlign="Center">
+
+                        <Label text="{i18n>OEE_LABEL_BILLET_SEQ}" />
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_LOCATION}" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_FURNACE_ENTRY_TIME}" />
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_FURNACE_TIME}" />
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_KTKID}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CAST_CASTING_NO}" />
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_ENTRY_WEIGHT}" />
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_THEORICAL_WEIGHT}" />
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center" visible="{= ${appData>/plant} !== '3001'}">
+                        <Label text="{i18n>OEE_LABEL_TABLE}" />
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CHARGE_INFO_HH}" />
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_KTKKALITE}" />
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_LENGTH}" />
+                    </Column>
+                    <Column width="4rem" visible="false" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_STATUS}" />
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_SIZE}" />
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BLT_MIX_STATU}" />
+                    </Column> 
+
+
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+
+                            <Text text="{firstBilletDetail>BILLET_SEQ}" />
+                            <Text text="{firstBilletDetail>SIGNAL_POINT}" />
+                            <Text text="{firstBilletDetail>FURNACE_ENTRY_TIME}" />
+                            <Text text="{firstBilletDetail>TIME_DIFF}" />
+                            <Text text="{firstBilletDetail>KTKID}" />
+                            <Text text="{firstBilletDetail>CASTID}" />
+                            <Text text="{firstBilletDetail>ENTRY_WEIGHT}" />
+                            <Text text="{firstBilletDetail>THEORETICAL_QUANTITY}" />
+                            <Text text="{firstBilletDetail>BTABLE}" />
+                            <Text text="{firstBilletDetail>CHARGE_TYPE}" />
+                            <Text text="{firstBilletDetail>Y_KALITE_KTK}" />
+                            <Text text="{= ((${firstBilletDetail>Y_BOY_KTK}*10)/10) }" />
+                            <!-- <Text text="{confirmBilletList>Y_BOY_KTK}" />-->
+                            <Text text="{firstBilletDetail>BILLET_STATUS}" style="" />
+                            <Text text="{= Math.round((${firstBilletDetail>Y_EBAT})*10)/10 }" />
+                            <Text text="{= (${confirmBilletList>Y_STDDISI} === 'X')? 'STDDISI': (${confirmBilletList>Y_SAPMA} === 'X')? 'SAPMA':''}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+    <FlexBox backgroundDesign="Solid" height="30px" alignItems="Center" justifyContent="Center">
+            </FlexBox>
+
+<ScrollContainer  height="90%" width="100%" horizontal="true" vertical="true">
+            <Table id="tblBilletMaster" mode="MultiSelect" selectionChange="billetItemSelected" includeItemInSelection="false" items="{confirmBilletList>/}" growing="true" growingScrollToLoad="true" growingThreshold="1000">
+                <columns>
+                   <Column width="3rem" hAlign="Center">
+                        <Label text="Manuel" />
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_SEQ}" />
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_LOCATION}" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_FURNACE_ENTRY_TIME}" />
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_FURNACE_TIME}" />
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_KTKID}" />
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CAST_CASTING_NO}" />
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_ENTRY_WEIGHT}" />
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_THEORICAL_WEIGHT}" />
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center" visible="{= ${appData>/plant} !== '3001'}">
+                        <Label text="{i18n>OEE_LABEL_TABLE}" />
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CHARGE_INFO_HH}" />
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_KTKKALITE}" />
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_LENGTH}" />
+                    </Column>
+                    <Column width="4rem" visible="false" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_STATUS}" />
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_SIZE}" />
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BLT_MIX_STATU}" />
+                    </Column> 
+
+
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                    <HBox alignContent="Center" justifyContent="Center">
+                                        <core:Icon color="{= (${confirmBilletList>MANUAL} === 'X')? 'blue':'green' }" src="sap-icon://circle-task-2" visible="{= (${confirmBilletList>MANUAL}  === 'X' )? true: false }" />
+                                    </HBox>
+                            <Text text="{confirmBilletList>BILLET_SEQ}" />
+                            <Text text="{confirmBilletList>SIGNAL_POINT}" />
+                            <Text text="{confirmBilletList>FURNACE_ENTRY_TIME}" />
+                            <Text text="{confirmBilletList>TIME_DIFF}" />
+                            <Text text="{confirmBilletList>KTKID}" />
+                            <Text text="{confirmBilletList>CASTID}" />
+                            <Text text="{confirmBilletList>ENTRY_WEIGHT}" />
+                            <Text text="{confirmBilletList>THEORETICAL_QUANTITY}" />
+                            <Text text="{confirmBilletList>BTABLE}" />
+                            <Text text="{confirmBilletList>CHARGE_TYPE}" />
+                            <Text text="{confirmBilletList>Y_KALITE_KTK}" />
+                            <Text text="{=((${confirmBilletList>Y_BOY_KTK}*10)/10) }" />
+                            <!-- <Text text="{confirmBilletList>Y_BOY_KTK}" />-->
+                            <Text text="{confirmBilletList>BILLET_STATUS}" style="" />
+                            <Text text="{= Math.round((${confirmBilletList>Y_EBAT})*10)/10 }" />
+                            <Text text="{= (${confirmBilletList>Y_STDDISI} === 'X')? 'STDDISI': (${confirmBilletList>Y_SAPMA} === 'X')? 'SAPMA':''}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+ </ScrollContainer>
+        </content>
+        <footer> 
+            <OverflowToolbar>
+                <OverflowToolbarButton press="refreshData" text="{i18n>titleBilletMonitorRefresh}" icon="sap-icon://synchronize" visible="false" />
+                <ToggleButton id="chkIntervalState" text="" press="changeIntervalState" pressed="true" icon="sap-icon://fob-watch" />
+                <Button type="Reject" id="btnRejected" text="Kütük İade" press="onOpenRejectDialog" />
+                <Button type="Emphasized" icon="sap-icon://refresh" press="onInit" text="" />
+                 <Title width="1rem" />
+                <Title  text="{i18n>OEE_LABEL_INSIDE_FURNACE_SUM} : " class="labelMainFK" />
+                 <Title id="idMainSum" width="100px" class="labelMainFK" text="{BilletCount>/0/BILLET_COUNT}" />
+                <ToolbarSpacer />
+                <Button id="btnGetReturn" text="{i18n>OEE_SHOW_RETURNED}" type="Reject" press="openReturnedBilletList" />
+                <Button id="btnChangeLocation_Admin"  fieldGroupIds= "Z_HH_LOKASYON_ADMIN" visible="false" text="{i18n>OEE_EDIT_LOCATION_ADMIN}" type="Emphasized" press="onChangeLocationAdmin" enabled="true" />
+                <Button id="btnChangeLocation" text="{i18n>OEE_EDIT_LOCATION}" type="Reject" press="onChangeLocation" enabled="true" />
+                <Button id="btnNew" text="{i18n>titleLogErrorDetail}" press="openBarcodeLogDialog" icon="sap-icon://inspect" visible="false" />
+                <Button id="btnAdd" text="{i18n>titleAdd}" press="onOpenAddDialog" icon="sap-icon://add" visible="false" />
+                <Button id="addBillet" text="{i18n>OEE_LABEL_ADD_BILLET}" press="addBilletToFurnaceDialog" type="Accept" icon="sap-icon://add" visible="true" />
+                <Button id="editBillet" text="{i18n>titleEdit}" press="onPressEditBilletDialog" icon="sap-icon://edit" visible="false" />
+                <!--	<Switch id="idSwitchInternal" change="changeIntervalState"  customTextOn="Açık" customTextOff="Kapalı" state="true"/> -->
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

@@ -1,0 +1,104 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core" controllerName="customActivity.controller.dogTiptal">
+    <Page showNavButton="false" showHeader="false">
+        <content>
+
+
+            <FlexBox alignItems="center" justifyContent="center" visible="true"/>
+            <Panel>
+                <FlexBox height="40px" alignItems="Center" justifyContent="Start">
+                    <Label text="{i18n>OEE_LABEL_COUNT} : " class="labelQuan"/>
+                    <Label width="2rem"/>
+                    <StepInput id="setLabelQuan" value="1" min="1" max="10" width="88px" validationMode="LiveChange" change="onChangeLabelQuan"/>
+                    <HBox class="sapUiSmallMarginBegin">
+                        <DateRangeSelection visible="true" id="idDatePicker" valueFormat="dd.MM.yyyy" delimiter="-" displayFormat="dd.MM.yyyy"/>
+                    </HBox>
+                    <HBox class="sapUiSmallMarginBegin">
+                        <Button text="ARA" press="getBilletList" class="sapUiSmallMarginBegin" type="Emphasized"/>
+                    </HBox>
+                  
+                <items/>
+                </FlexBox>
+
+            </Panel>
+
+            <Table id="confDog" mode="MultiSelect" selectionChange="billetItemSelected" items="{path: '/'}">
+                <columns>
+
+                   
+                    <Column width="auto" hAlign="Center" vAlign="Center">
+                        <Label text="Sipariş Numarası"/>
+                    </Column>
+
+                    <Column width="auto" hAlign="Center" vAlign="Center">
+                        <Label text="Ürün Tipi"/>
+                    </Column>
+
+                    <Column width="auto" hAlign="Center" vAlign="Center">
+                        <Label text="MATNR"/>
+                    </Column>
+
+                    <Column width="auto" hAlign="Center" vAlign="Center">
+                        <Label text="Parti Numarası"/>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Center">
+                        <Label text="Bağ No." width="auto"/>
+                    </Column>
+                    <Column width="auto"  hAlign="Center" vAlign="Center">
+                        <Label text="Ağırlık(KG)"/>
+                    </Column>
+                    
+
+                    <Column width="auto" hAlign="Center" vAlign="Center">
+                        <Label text="Tarih"/>
+                    </Column>
+
+                    <Column width="auto" hAlign="Center" vAlign="Center">
+                        <Label text="Durum"/>
+                     </Column>
+
+                                          
+                    <Column width="auto" hAlign="Center" vAlign="Center">
+                       <Label text=""/>
+                    </Column>
+                
+                  
+                </columns>
+                <items>
+
+                    <ColumnListItem>
+                    <customData>
+	                 <core:CustomData key="{LABEL_STATUS}" value="SF" writeToDom="true"></core:CustomData>
+                        </customData>
+                   
+                        <cells>
+                             
+
+                            <Text text="{AUFNR}"/>
+                            <Text text="{URUN_TIPI}"/>
+                            <Text text="{MATNR}"/>
+                            <Text text="{CHARG}"/>
+                            <Text text="{ENTRY_ID}"/>
+                            <Text text="{MENGE}"/>
+                            <Text text="{TARIH}"/>
+                            <Text text="{STATUS}"/>
+                            
+                            <FlexBox> 
+                            <Button xmlns="sap.m"  text="Teyit İptal"  id="iptal" press="TeyitIptal" type="Reject" visible = "{= ${STATUS2} === 'QUEUED' || ${STATUS2} === 'RETRY' || ${STATUS2} === 'FAILED' ? false : true}" /> 
+                            <Button xmlns="sap.m"  text="Tekrar Dene"  id="iptal2" press="TekrarDene" type="Reject" visible = "{= ${STATUS2} === 'QUEUED' || ${STATUS2} === 'RETRY' || ${STATUS2} === 'PASSED' ? false : true}" /> 
+                            </FlexBox>
+                    
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <Button id="chkIntervalState" text="Otomatik Güncelleme Açık" type="Accept" press="changeIntervalState" icon="sap-icon://fob-watch"/>
+               <ToolbarSpacer/>
+            <Button text="ETİKET ÇIKAR" press="LabelDog" type="Accept"/>
+            
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

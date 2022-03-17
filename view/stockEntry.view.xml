@@ -1,0 +1,36 @@
+<mvc:View xmlns="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" controllerName="customActivity.controller.stockEntry" displayBlock="true">
+	<m:Page id="page" title="Stock Entry">
+		<m:content>
+			<m:FlexBox width="100%" id="box1" height="10%" direction="Row" alignItems="Center" alignContent="Center" justifyContent="Center">
+				<m:FlexBox width="15%" id="box2" alignItems="Center" alignContent="Center" justifyContent="Center">
+					<m:Label id="Label1" text="{AUFNR}" design="Bold"/>
+				</m:FlexBox>
+				<m:FlexBox width="15%" id="box3" justifyContent="Center">
+					<m:Label id="Label2" text="{QUALITY}" design="Bold"/>
+				</m:FlexBox>
+				<m:FlexBox width="15%" id="box4" justifyContent="Center">
+					<m:Label id="Label3" text="{DIAMETER}" design="Bold"/>
+				</m:FlexBox>
+			</m:FlexBox>
+			<m:FlexBox width="100%" id="box0" height="90%" direction="Column" alignItems="Center">
+				<m:Input xmlns="sap.m" id="input0" description="QR-Barcode" fieldWidth="70%" filterSuggests="false" change="onChangeInput"/>
+				<Table id="tableEtiket" selectionMode="None" visibleRowCount="10" columnHeaderHeight="5%" width="100%" rows="{/Rowsets/Rowset/Row}">
+					<columns>
+						<Column hAlign="Center" autoResizable="true">
+							<m:Label text="ID" design="Bold"/>
+							<template>
+								<m:Text text="{ID}"/>
+							</template>
+						</Column>
+						<Column hAlign="Center" autoResizable="true">
+							<m:Label text="Döküm No" design="Bold"/>
+							<template>
+								<m:Text text="{CASTNO}"/>
+							</template>
+						</Column>
+					</columns>
+				</Table>
+			</m:FlexBox>
+		</m:content>
+	</m:Page>
+</mvc:View>

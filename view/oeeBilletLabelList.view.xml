@@ -1,0 +1,223 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core" controllerName="customActivity.controller.oeeBilletLabelList">
+    <Page showNavButton="false" showHeader="false">
+        <content>
+
+
+            <FlexBox alignItems="center" justifyContent="center" visible="true" />
+            <Panel>
+                <FlexBox height="40px" alignItems="Center" justifyContent="Start">
+                    <Label text="{i18n>OEE_LABEL_COUNT} : " class="labelQuan" />
+                    <Label width="2rem" />
+                    <StepInput id="setLabelQuan" value="1" min="1" max="10" width="88px" validationMode="LiveChange" change="onChangeLabelQuan" />
+                    <HBox class="sapUiSmallMarginBegin">
+                        <DateRangeSelection visible="true" id="idDatePicker" valueFormat="dd.MM.yyyy" delimiter="-" displayFormat="dd.MM.yyyy" />
+                    </HBox>
+                    <HBox class="sapUiSmallMarginBegin">
+                        <Button text="{i18n>titleSearch}" press="getBilletList" class="sapUiSmallMarginBegin" />
+                    </HBox>
+                    <Label width="40px" text="" />
+                    <Label width="auto" text="ETİKET DURUMU : " />
+                    <Label width="10px" text="" />
+                    <ToolbarSpacer />
+                    <ComboBox xmlns="sap.m" id="box2" selectedKey="TUMU" selectionChange="callBilletList" placeholder="Etiket Durum Filtresi">
+                        <items>
+                            <core:Item xmlns:core="sap.ui.core" key="TEL" text="TEL" />
+                            <core:Item xmlns:core="sap.ui.core" key="SRT" text="SRT" />
+                            <core:Item xmlns:core="sap.ui.core" key="BASILMADI" text="BASILMADI" />
+                            <core:Item xmlns:core="sap.ui.core" key="TUMU" text="TUMU" />
+                        </items>
+                    </ComboBox>
+                    <HBox class="sapUiSmallMarginBegin">
+                        <Button text="SİPARİŞ ÖZET" press="openfragment5" type="Accept" class="sapUiSmallMarginBegin" />
+                    </HBox>
+                    <items />
+                </FlexBox>
+
+            </Panel>
+
+            <Table id="tblBilletLabelMasterfake" showNoData="false">
+                <columns>
+                    <Column width="9rem" hAlign="Center" vAlign="Center">
+                        <header>
+                            <Label text="{i18n>OEE_LABEL_BILLET_WORKORDER}" />
+                        </header>
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <header>
+                            <Label text="{i18n>OEE_LABEL_ORDER_SEQ_NO}" />
+                        </header>
+                    </Column>
+                    <Column width="4rem" visible="false" hAlign="Center" vAlign="Center">
+                        <header>
+                            <Label text="{i18n>OEE_LABEL_LOT}" />
+                        </header>
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <header>
+                            <Label text="{i18n>OEE_LABEL_KTKID}" />
+                        </header>
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <header>
+                            <Label text="Otomasyon ID" />
+                        </header>
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <header>
+                            <Label text="{i18n>OEE_LABEL_PALLET_NO}" />
+                        </header>
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <header>
+                            <Label text="{i18n>OEE_LABEL_CAST_CASTING_NO}" />
+                        </header>
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <header>
+                            <Label text="{i18n>OEE_LABEL_BILLET_DIAMETER}" />
+                        </header>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <header>
+                            <Label text="{i18n>OEE_LABEL_PRODUCT_QUALITY}" />
+                        </header>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <header>
+                            <Label text="Menşei" />
+                        </header>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <header>
+                            <Label text="{i18n>OEE_LABEL_BILLET_QUALITY_LBL}" />
+                        </header>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <header>
+                            <Label text="{i18n>OEE_LABEL_COIL_WEIGHT}" />
+                        </header>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <header>
+                            <Label text="{i18n>OEE_LABEL_PRODUCT_STATE}" />
+                        </header>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <header>
+                            <Label text="{i18n>OEE_LABEL_PACKAGE_KTK}" />
+                        </header>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <header>
+                            <Label text="{i18n>OEE_LABEL_ERROR_CODE}" />
+                        </header>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <header>
+                            <Label text="{i18n>OEE_LABEL_ERROR_DETAIL}" />
+                        </header>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <header>
+                            <Label text="{i18n>OEE_LABEL_LABEL_STATE}" />
+                        </header>
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <header>
+                            <Label text="{i18n>OEE_LABEL_FLM_CONFIRM}" />
+                        </header>
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <header>
+                            <Label text="Teyit Zamanı" />
+                        </header>
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <header>
+                            <Label text="{i18n>OEE_LABEL_CONF_STATUS}" />
+                        </header>
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <header>
+                            <Label text="{i18n>OEE_LABEL_FLM_CONF_CANCEL}" />
+                        </header>
+                    </Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem visible="false"></ColumnListItem>
+                </items>
+            </Table>
+
+
+            <ScrollContainer height="88%" vertical="true" focusable="true">
+                <Table id="tblBilletLabelMaster" mode="MultiSelect" selectionChange="billetItemSelected" includeItemInSelection="false" items="{confirmBilletLabelList>/}">
+                    <columns>
+                        <Column width="6rem" hAlign="Center" vAlign="Center"></Column>
+                        <Column width="3rem" hAlign="Center" vAlign="Center"></Column>
+                        <Column width="4rem" visible="false" hAlign="Center" vAlign="Center"></Column>
+                        <Column width="3rem" hAlign="Center" vAlign="Center"></Column>
+                        <Column width="4rem" hAlign="Center" vAlign="Center"></Column>
+                        <Column width="3rem" hAlign="Center" vAlign="Center"></Column>
+                        <Column width="4rem" hAlign="Center" vAlign="Center"></Column>
+                        <Column width="3rem" hAlign="Center" vAlign="Center"></Column>
+                        <Column width="5rem" hAlign="Center" vAlign="Center"></Column>
+                        <Column width="3rem" hAlign="Center" vAlign="Center"></Column>
+                        <Column width="5rem" hAlign="Center" vAlign="Center"></Column>
+                        <Column width="5rem" hAlign="Center" vAlign="Center"></Column>
+                        <Column width="5rem" hAlign="Center" vAlign="Center"></Column>
+                        <Column width="5rem" hAlign="Center" vAlign="Center"></Column>
+                        <Column width="5rem" hAlign="Center" vAlign="Center"></Column>
+                        <Column width="5rem" hAlign="Center" vAlign="Center"></Column>
+                        <Column width="5rem" hAlign="Center" vAlign="Center"></Column>
+                        <Column width="4rem" hAlign="Center" vAlign="Center"></Column>
+                        <Column width="6rem" hAlign="Center" vAlign="Center"></Column>
+                        <Column width="6rem" hAlign="Center" vAlign="Center"></Column>
+                        <Column width="4rem" hAlign="Center" vAlign="Center"></Column>
+                    </columns>
+                    <items>
+
+                        <ColumnListItem>
+                            <customData>
+                                <core:CustomData key="{=${confirmBilletLabelList>BILLET_STATUS}.toString()}" value="hello" writeToDom="true"></core:CustomData>
+                            </customData>
+                            <cells>
+                                <Text text="{confirmBilletLabelList>AUFNR}" />
+                                <Text text="{confirmBilletLabelList>AUFNR_SEQ}" />
+                                <Text text="{confirmBilletLabelList>LOT}" />
+                                <Text text="{confirmBilletLabelList>KTKID}" />
+                                <Text text="{confirmBilletLabelList>OTO_ID}" />
+                                <Text text="{confirmBilletLabelList>PACKAGE_NUMBER}" />
+                                <Text text="{confirmBilletLabelList>CASTID}" />
+                                <Text text="{confirmBilletLabelList>Y_CAP_FLM_MM}" />
+                                <Text text="{confirmBilletLabelList>Y_KALITE_FLM}" />
+                                <Text text="{confirmBilletLabelList>Y_KUTUK_MENSEI}" />
+                                <Text text="{confirmBilletLabelList>Y_KALITE_KTK}" />
+                                <Text text="{confirmBilletLabelList>LABEL_WEIGHT}" />
+                                <Text text="{confirmBilletLabelList>REJDESC}" />
+                                <Text text="{confirmBilletLabelList>Y_PAKETLEME_FLM}" />
+                                <Text text="{confirmBilletLabelList>REASONCODE}" />
+                                <Button text="{i18n>OEE_LABEL_DETAIL}" press="onOpenBilletRejectDialog" visible="{= (${confirmBilletLabelList>BILLET_STATUS} !==  'STNDRT' &amp;&amp; ${confirmBilletLabelList>BILLET_STATUS} !==  'HADDE_BOZ') }" />
+                                <Text text="{confirmBilletLabelList>LABEL_STATUS}" />
+                                <Button id="billetConfirm" text="{= ${confirmBilletLabelList>SUCCESS} === 'E' || ${confirmBilletLabelList>SUCCESS}==='A'? ${i18n>OEE_BT_FLM_RESEND_CONFIRM}:${i18n>OEE_BT_FLM_CONFIRM_ACCEPT}}" type="{= ${confirmBilletLabelList>SUCCESS}==='E' || ${confirmBilletLabelList>SUCCESS}==='A' ? 'Reject':'Accept'}" press="onPressBilletConfirm" visible="{= ${confirmBilletLabelList>SUCCESS} ===  'S' || ${confirmBilletLabelList>BILLET_STATUS} ===  'HADDE_BOZ'? false: true }" />
+                                <Text text="{confirmBilletLabelList>RECEIVED_DATE_TIME}" />
+                                <Text text="{confirmBilletLabelList>MESSAGE}" />
+                                <Button id="billetConfirmCancel" text="{i18n>OEE_BT_FLM_CONFIRM_CANCEL}" press="onPressBilletConfirmCancel" type="Emphasized" visible="{= ${confirmBilletLabelList>BILLET_STATUS} ===  'HADDE_BOZ' ||  ${confirmBilletLabelList>SUCCESS} !==  'S'? false: true }" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </ScrollContainer>
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <Button id="chkIntervalState" text="Otomatik Güncelleme Açık" type="Accept" press="changeIntervalState" icon="sap-icon://fob-watch" />
+                <Button id="btnReject" text="Hata Bildir" type="Reject" press="onOpenRejectDialog" icon="sap-icon://message-error" />
+                <Button id="btnChangeCharacteristic" text="{i18n>OEE_LABEL_L_CHANGE_CHARACTERISTICS}" type="Emphasized" press="onOpenChangeCharacteristicsDialog" icon="sap-icon://message-error" />
+                <Button id="btnChangeLabelWeight" text="{i18n>OEE_LABEL_L_CHANGE_WEIGHT}" type="Emphasized" press="onPressChangeLabel" icon="sap-icon://message-error" />
+                <ToolbarSpacer />
+                <Button id="printManual" text="Manuel Yazdır" type="Reject" press="openmanueltarih" icon="sap-icon://print" />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

@@ -1,0 +1,72 @@
+<core:View xmlns:core="sap.ui.core" xmlns:suite="sap.suite.ui.commons" xmlns:l="sap.ui.layout" xmlns="sap.m" controllerName="customActivity.controller.oeeReportQuantitySteel">
+    <Page showHeader="false" showNavButton="false">
+        <content>
+            <l:VerticalLayout width="100%">
+                <core:Fragment fragmentName='customActivity.fragmentView.zorderCardCharacteristicFragment' type='XML' id="orderCardFragment" />
+                <Bar>
+                    <contentRight>
+                        <Button icon="sap-icon://refresh" press="onClickRefreshScreen"></Button>
+                    </contentRight>
+                </Bar>
+                <Table id="reportProductionQuantityTable" editable="false" items="{/productionData}">
+                    <columns>
+                        <Column>
+                            <Label text="{i18n>OEE_LABEL_PARAMETER}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>OEE_LABEL_QUANTITY}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>OEE_LABEL_UOM}" />
+                        </Column>
+                        <Column visible="{path : 'dcElementType', formatter : '.checkIfBatchRelevant'}">
+                            <Label text="{i18n>OEE_LABEL_BATCH_NUM}" />
+                        </Column>
+                        <Column visible="{path: 'dcElementType', formatter : '.checkIfSerialRelevant'}">
+                            <Label text="{i18n>OEE_LABEL_SERIAL_NUM}" />
+                        </Column>
+                        <Column visible = "false">
+                            <Label text="{i18n>OEE_LABEL_RC}" />
+                        </Column>
+                        <Column visible="false">
+                            <Label text="{i18n>OEE_LABEL_COMMENTS}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>OEE_LABEL_DETAILS}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>OEE_LABEL_REPORTED_QTY}" />
+                        </Column>
+                        <Column visible="false">
+                            <Label text="{i18n>OEE_LABEL_DATE_TIME_LAST_REPORTED}" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{description}" />
+                                <Input id= "inputQuantity" value="{quantity}" change="onChangeValidateQuantity" />
+                                <Input value="{uomText}" showSuggestion="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelpRequest" />
+                                <Input value="{batchNumber}" visible="{path : 'dcElementType' , formatter : '.checkIfBatchRelevant'}" />
+                                <Input value="{serialNumber}" visible="{path : 'dcElementType' , formatter : '.checkIfSerialRelevant'}" />
+                                <Button text="{i18n>OEE_BTN_ASSIGN}" tooltip="{i18n>OEE_BTN_ASSIGN}" icon="sap-icon://value-help" visible="true" press="onClickOpenReasonCodeUtilityPopup" width="7rem" />
+                                <Button text="{parts : [{path : 'i18n>OEE_BTN_ADD'},{path:'comments'}], formatter : 'sap.oee.ui.Formatter.reasonCodeButttonFormatter'}" tooltip="{i18n>OEE_BTN_ADD}" icon="sap-icon://comment" visible="{path : 'dcElementType', formatter : '.checkIfNotLossType'}" press="onClickAddComments" width="7rem" />
+                                <Button text="{i18n>OEE_LABEL_DETAILS}" icon="sap-icon://inspection" press="onClickShowListOfProductionData" />
+                                <Text text="{parts : [{path:'quantityReported'}, {path:'defaultUOMText'},{path : 'appData>/decimalPrecision'}], formatter : 'sap.oee.ui.Formatter.formatQuantityAndUOMText'}" />
+                                <Text text="{parts : [{path:'reportedByTimeStamp'}, {path: 'appData>/plantTimezoneOffset'}, {path: 'appData>/plantTimezoneKey'}], formatter : 'sap.oee.ui.Formatter.formatTimeStampWithoutLabel'}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </l:VerticalLayout>
+        </content>
+        <footer>
+            <Bar>
+                <contentRight>
+                    <Button text="{i18n>OEE_LABEL_ADD_MATERIAL}" visible="false" press="onClickOpenNewMaterial" />
+                    <Button text="{i18n>OEE_BTN_SAVE}" icon="sap-icon://save" press="onClickSaveReportedQuantity" visible="true"></Button>
+                </contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</core:View>

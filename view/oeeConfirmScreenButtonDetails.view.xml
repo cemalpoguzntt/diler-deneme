@@ -1,0 +1,89 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout" displayBlock="true" height="100%" controllerName="customActivity.controller.oeeConfirmScreenButtonDetails">
+    <Page>
+        <content>
+            <Table id="productionTableFragment" editable="false" items="{buttonDetailsModel>/}" mode="SingleSelectMaster">
+                <columns>
+                    <Column hAlign = "Center">
+                        <Label text="{i18n>OEE_LABEL_ROAD}" />
+                    </Column>
+                    <Column hAlign = "Center">
+                        <Label text="{i18n>OEE_LABEL_PARAMETER}" />
+                    </Column>
+                    <Column hAlign="Center" width = "45px">
+                        <Label text="SD" tooltip = "{i18n>OEE_LABEL_NON-STANDARD}"/>
+                    </Column>
+                    <Column hAlign="Center" width = "45px">
+                         <Label text="KK"  tooltip = "{i18n>OEE_LABEL_SHORT_BILLET}"/>
+                    </Column>
+                     <Column hAlign="Center" width = "45px">
+                        <Label text="SĞ" tooltip = "{i18n>OEE_LABEL_COLD_CHARGE}"/>
+                    </Column>
+                    <Column hAlign = "Center">
+                        <Label text="{i18n>OEE_LABEL_BLT_MIX_QUALITY}" />
+                    </Column>
+                    <Column hAlign = "Center">
+                        <Label text="{i18n>OEE_LABEL_QUANTITY_PRODUCED}" />
+                    </Column>
+                    <Column hAlign = "Center">
+                        <Label text="ÖB" />
+                    </Column>
+                    <Column hAlign = "Center">
+                        <Label text="{i18n>OEE_LABEL_REASON_OF_DEVIATION}" />
+                    </Column>
+                    <Column hAlign = "Center">
+                        <Label text="{i18n>OEE_LABEL_PRODUCTION_DATE}" />
+                    </Column>
+                    <Column hAlign = "Center">
+                        <Label text="{i18n>OEE_HEADING_USER}" />
+                    </Column>
+                    <Column hAlign = "Center">
+                        <Label text="{i18n>OEE_LABEL_STATUS}" />
+                    </Column>
+                    <Column hAlign = "Center">
+                        <Label text="{i18n>OEE_CONF_DETAIL_ERP_CONFNO}" />
+                    </Column>
+                    <Column hAlign = "Center">
+                        <Label text="{i18n>OEE_CONF_DETAIL_ERP_CONFCOUNTER}" />
+                    </Column>
+	
+		  <Column hAlign = "Center">
+                        <Label text="{i18n>OEE_BATCH_NO}" />
+                    </Column>
+		
+		  <Column hAlign = "Center">
+                        <Label text=" {i18n>OEE_CASTID}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{buttonDetailsModel>LINE}" />
+                            <Text text="{buttonDetailsModel>PARAMETERS}" />
+                            <CheckBox selected="{= ${buttonDetailsModel>NON_STANDARD} === '1' ? true : false }" enabled = "false"/>
+                            <CheckBox selected="{= ${buttonDetailsModel>SHORT_BILLET} === '1' ? true : false }" enabled = "false"/>
+                            <CheckBox selected="{= ${buttonDetailsModel>COLD_CHARGE} === '1' ? true : false }" enabled = "false"/>
+                            <Text text="{buttonDetailsModel>MIXED_BILLET}" />
+                            <Text text="{buttonDetailsModel>QUANTITY}" />
+                            <Text text="{buttonDetailsModel>UOM}" />
+                            <Text text="{buttonDetailsModel>DEFLECTION_REASON}" />
+                            <Text text="{buttonDetailsModel>DATETIME}" />
+                            <Text text="{buttonDetailsModel>CHANGED_BY}" />
+                            <Text text="{buttonDetailsModel>STATUS}" tooltip="{buttonDetailsModel>MESSAGE}" />
+                            <Text text="{buttonDetailsModel>CONF_NUMBER}" />
+                            <Text text="{buttonDetailsModel>CONF_COUNTER}" />
+		 <Text text="{buttonDetailsModel>BATCH_NO}" />
+		<Text text="{buttonDetailsModel>CASTID}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <Button text="{i18n>OEE_LABEL_REFRESH}" press="getTableDetails" type="Accept" icon="sap-icon://synchronize" />
+                <ToolbarSpacer />
+                <Button text="{i18n>OEE_BTN_DELETE}" press="onPressDeleteConfirmation" type="Reject" icon="sap-icon://delete" />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</core:View>

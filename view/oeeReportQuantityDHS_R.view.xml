@@ -1,0 +1,217 @@
+<core:View xmlns:core="sap.ui.core"
+    xmlns:suite="sap.suite.ui.commons"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:ui="sap.ui.table"
+    xmlns="sap.m" controllerName="customActivity/controller/oeeReportQuantityDHS_R">
+    <Page showHeader="false" showNavButton="false">
+        <FlexBox height="100%" width="100%" direction="Column" alignItems="Center">
+            <FlexBox height="22%" width="97%">
+                <Table id="orderInformations" items="{path: '/'}"  visible="true">
+                    <headerToolbar>
+                        <OverflowToolbar>
+                            <content>
+                                <Title text="Sipariş Bilgileri" titleStyle="H1"/>
+                            </content>
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column width="auto" hAlign="Center" vAlign="Middle" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                            <Label text="Sipariş" textAlign="Center"  />
+                        </Column>
+                        <Column width="auto" hAlign="Center" vAlign="Middle" >
+                            <Label text="Satış Sipariş" textAlign="Center" />
+                        </Column>
+                        <Column width="auto" hAlign="Center" vAlign="Middle" >
+                            <Label text="Kalem" textAlign="Center" />
+                        </Column>
+                        <Column width="auto" hAlign="Center" vAlign="Middle" >
+                            <Label text="Çap" maxLines="2" wrapping="true" textAlign="Center" />
+                        </Column>
+                        <Column width="auto" hAlign="Center" vAlign="Middle" >
+                            <Label text="Kalite" maxLines="2" wrapping="true" textAlign="Center" />
+                        </Column>
+                        <Column width="auto" hAlign="Center" vAlign="Middle" >
+                            <Label text="Roda Boy" maxLines="2" wrapping="true" textAlign="Center" />
+                        </Column>
+                        <Column width="auto" hAlign="Center" vAlign="Middle" >
+                            <Label text="Yükleme Sayısı" maxLines="2" wrapping="true" textAlign="Center" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <!-- <customData>
+                        <core:CustomData key="DELETED" value="{DELETED}" writeToDom="true"></core:CustomData>
+                    </customData> -->
+                            <cells>
+                                <Text text="{AUFNR}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                                <Text text="{KDAUF}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                                <Text text="{KDPOS}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                                <Text text="{CAP}" width="auto" maxLines="2" wrapping="true" textAlign="Center" textDirection="Inherit" visible="true"/>
+                                <Text text="{KALITE}" width="auto" maxLines="2" wrapping="true" textAlign="Center" textDirection="Inherit" visible="true"/>
+                                <Text text="{RODA_BOY}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                                <Text text="{YUK_SAY}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </FlexBox>
+            <FlexBox height="5%" width="100%" alignItems="Center" direction="Row" justifyContent="Start">
+                <FlexBox width="1.5%"/>
+                <FlexBox width="38.5%" alignItems="Center" direction="Row" justifyContent="Start">
+                    <Button id="generalInfos" text="Genel" press="generalInfos" icon="sap-icon://hint"/>
+                    <FlexBox width="10%"/>
+                    <Button id="confirmationInfos" text="Teyitler" press="confirmationInfos" icon="sap-icon://list"/>
+                </FlexBox>
+                <FlexBox id="batchFlexbox" height="5%" width="20%" alignItems="Center" direction="Row" justifyContent="SpaceAround">
+                    <Label text="Bileşen Okut" design="Bold"/>
+                    <Input id="idBatch" filterSuggests="false" liveChange="changeBarcodeInput"/>
+                    <!-- <Input id="idBatch" value="{batchNumber}" visible="{batchRelevant}" submit="changeBarcodeInput" /> -->
+                </FlexBox>
+            </FlexBox>
+            <FlexBox id="componentFlexbox" height="54%" width="97%">
+                <ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
+                    <Table id="componentsInformations" mode="SingleSelectLeft" items="{path: '/'}" select="selectionBarcodeControl"  visible="true">
+                        <headerToolbar>
+                            <OverflowToolbar>
+                                <content>
+                                    <Title text="Bileşen Bilgileri" titleStyle="H1"/>
+                                </content>
+                            </OverflowToolbar>
+                        </headerToolbar>
+                        <columns>
+                            <Column width="auto" hAlign="Center" vAlign="Middle" >
+                                <Label text="Parti" textAlign="Center"  />
+                            </Column>
+                            <Column width="auto" hAlign="Center" vAlign="Middle" >
+                                <Label text="Malzeme Kodu" textAlign="Center" />
+                            </Column>
+                            <Column width="auto" hAlign="Center" vAlign="Middle" >
+                                <Label text="Miktar" textAlign="Center" />
+                            </Column>
+                            <Column width="auto" hAlign="Center" vAlign="Middle" >
+                                <Label text="Kalan" maxLines="2" wrapping="true" textAlign="Center" />
+                            </Column>
+                            <Column width="auto" hAlign="Center" vAlign="Middle" >
+                                <Label text="Sil" maxLines="2" wrapping="true" textAlign="Center" />
+                            </Column>
+                            <Column width="auto" hAlign="Center" vAlign="Middle" >
+                                <Label text="Durum" maxLines="2" wrapping="true" textAlign="Center" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <customData>
+                                    <core:CustomData key="CT_REWORK" value="{CT_REWORK}" writeToDom="true"></core:CustomData>
+                                </customData>
+                                <cells>
+                                    <Text text="{PARTI}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                                    <Text text="{MALZEME}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                                    <Text text="{MIKTAR}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                                    <Text text="{KALAN}" width="auto" maxLines="2" wrapping="true" textAlign="Center" textDirection="Inherit" visible="true"/>
+                                    <Button press="deleteComponent" icon="sap-icon://delete"/>
+                                    <Text text="{STATUS}" width="auto" maxLines="2" wrapping="true" textAlign="Center" textDirection="Inherit" visible="true"/>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </ScrollContainer>
+            </FlexBox>
+            <FlexBox id="confirmationFlexbox" height="18%" width="97%" direction="Row">
+                <Table visible="true">
+                    <headerToolbar>
+                        <OverflowToolbar>
+                            <content>
+                                <Title text="Teyit Bilgileri" titleStyle="H1"/>
+                            </content>
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column width="auto" hAlign="Center" vAlign="Middle">
+                            <Label text="Malzeme" textAlign="Center"  />
+                        </Column>
+                        <Column width="auto" hAlign="Center" vAlign="Middle" >
+                            <Label text="" textAlign="Center" />
+                        </Column>
+                        <Column width="auto" hAlign="Center" vAlign="Middle" >
+                            <Label text="Sağlam Miktar" textAlign="Center" />
+                        </Column>
+                        <Column width="auto" hAlign="Center" vAlign="Middle" >
+                            <Label text="Birimi" maxLines="2" wrapping="true" textAlign="Center" />
+                        </Column>
+                        <Column width="auto" hAlign="Center" vAlign="Middle" >
+                            <Label text="Hurda" maxLines="2" wrapping="true" textAlign="Center" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text  id="producedMATNR" text="" width="auto" textAlign="Center"/>
+                                <Button id="onKantar" text="Kantar" press="onPressGetWeightDHS" icon="sap-icon://compare" />
+                                <Input id="teyitQuantity" text="" liveChange="isInputNumber" design="Bold" width="50%"/>
+                                <Text text="KG" width="auto"  wrapping="true" textAlign="Center" />
+                                <CheckBox id="idCheckbox"/>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </FlexBox>
+            <FlexBox id = "confirmationList" height="73%" width="97%" visible="false">
+                <ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
+                    <Table id="confirmationListTable" items="{path: '/'}" width="97%"  visible="true">
+                        <headerToolbar>
+                            <OverflowToolbar>
+                                <content>
+                                    <Title text="Teyitler" titleStyle="H1"/>
+                                </content>
+                            </OverflowToolbar>
+                        </headerToolbar>
+                        <columns>
+                            <Column width="auto" hAlign="Center" vAlign="Middle" >
+                                <Label text="Sıra No" textAlign="Center"  />
+                            </Column>
+                            <Column width="auto" hAlign="Center" vAlign="Middle" >
+                                <Label text="Parti No" textAlign="Center" />
+                            </Column>
+                            <Column width="auto" hAlign="Center" vAlign="Middle" >
+                                <Label text="MC Parti No" maxLines="2" wrapping="true" textAlign="Center" />
+                            </Column>
+                            <Column width="auto" hAlign="Center" vAlign="Middle" >
+                                <Label text="Ürün Tipi" maxLines="2" wrapping="true" textAlign="Center" />
+                            </Column>
+                            <Column width="auto" hAlign="Center" vAlign="Middle" >
+                                <Label text="Tonaj" maxLines="2" wrapping="true" textAlign="Center" />
+                            </Column>
+                            <Column width="auto" hAlign="Center" vAlign="Middle" >
+                                <Label text="Döküm No" maxLines="2" wrapping="true" textAlign="Center" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{ROWNUMBER}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                                    <Text text="{BATCH}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                                    <Text text="{BARCODE}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                                    <Text text="{PRODTYPE}" width="auto" maxLines="2" wrapping="true" textAlign="Center" textDirection="Inherit" visible="true"/>
+                                    <Text text="{QUANTITY}" width="auto" maxLines="2" wrapping="true" textAlign="Center" textDirection="Inherit" visible="true"/>
+                                    <Text text="{CASTNO}" width="auto" maxLines="2" wrapping="true" textAlign="Center" textDirection="Inherit" visible="true"/>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </ScrollContainer>
+            </FlexBox>
+            <FlexBox width="100%"   height="1%" /> 
+    </FlexBox>
+        <footer>
+            <Toolbar>
+                <ToolbarSpacer />
+                <Button id="openDatePicker" text="Geriye Dönük Teyit" type="Emphasized" icon="sap-icon://date-time" press="openDatePicker" visible="true"/>
+                <Button id="closeDatePicker" text="Kapat" type="Reject" icon="sap-icon://decline" press="closeDatePicker" visible="false"/>
+                <DateTimePicker id="DateTimePicker" width="10%" visible="false" change="handleChange" valueFormat="MM-dd-yyyy HH:mm:ss" displayFormat="dd-MM-yyyy HH:mm" />
+                <ToolbarSpacer />
+                <Button id="onSave" text="Sakla" press="onSave" type="Accept" icon="sap-icon://save" />
+            </Toolbar>
+        </footer>
+    </Page>
+</core:View>

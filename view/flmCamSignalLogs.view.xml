@@ -1,0 +1,79 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="customActivity.controller.flmCamSignalLogs">
+    <Page showHeader="false" showFooter="false" showNavButton="false">
+        <content>
+        	<FlexBox width="100%">
+            <FlexBox width="100%" direction="Row" justifyContent="Center">
+            <DatePicker xmlns="sap.m" id="picker0" width="auto"/>
+            <Button xmlns="sap.m" text="ARA" press="getModelData" id="button0" type="Emphasized"/>
+              </FlexBox>
+     <FlexBox width="100%"> 
+            <items>
+            <Button xmlns="sap.m" text="EXCELE AKTAR" press="onExport" id="button0_1640766068269" type="Accept" icon="sap-icon://excel-attachment"/>
+           
+            </items>
+               </FlexBox>
+ <Button xmlns="sap.m" text="Güncelleme Açık" id="guncelleme" type="Accept" press="stateChange"/>
+   
+            </FlexBox>
+            <Table width="auto" noDataText="No data" mode="None" items="{path: '/'}" id="table0" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin">
+                <infoToolbar>
+                    <Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+                        <content>
+                            <Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </content>
+                    </Toolbar>
+                </infoToolbar>
+                <headerToolbar/>
+                <columns>
+                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="ID" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="GÜNÜN KÜTÜK SAYISI" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="ADRESS" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="BARCODE" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="INSDATE" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                  
+                </columns>
+                <items>
+                    <ColumnListItem type="Active">
+                        <cells>
+                            <Text text="{ID}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{SIRA}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{ADRESS}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{BARCODE}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{INSDATE}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+
+        <headerContent/>
+        <subHeader/>
+        <customHeader/>
+    </Page>
+</mvc:View>

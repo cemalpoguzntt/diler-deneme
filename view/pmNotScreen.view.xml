@@ -1,0 +1,281 @@
+<mvc:View xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:m="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.f" xmlns:ui="sap.ui.table" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:micro="sap.suite.ui.microchart" xmlns:card="sap.f.cards" controllerName="customActivity.controller.pmNotScreen">
+
+
+
+    <html:style>
+.tdurus.sapMLabel {
+
+    color: #000000; !important ;
+    font-size: 30px !important;
+}
+
+.tdurus1.sapMText {
+
+    color: #000000; !important ;
+    font-size: 30px !important;
+}
+
+</html:style>
+
+
+    <Page id="page" title="PM Bildirim Ekranı" showHeader="false">
+        <content>
+
+            
+            <FlexBox direction="Row" width="100%">
+                <FlexBox width="5%">  </FlexBox>
+                <FlexBox direction="Row" width="17%">
+
+                 
+
+                        <DatePicker id="DP1" placeholder="Enter Date" change="handleChange" class="sapUiSmallMarginBottom"/>
+
+
+               
+
+                </FlexBox>
+
+                <FlexBox direction="Row" width="5%"/>
+
+                <FlexBox direction="Row" width="17%">
+
+                    <items>
+
+                        <ComboBox id="vardiyacb" placeholder="Vardiya" xmlns="sap.m"  maxWidth="95%">
+
+                            <items>
+                                <core:Item xmlns:core="sap.ui.core" key="1" text="1" id="vardiya1"/>
+                                <core:Item xmlns:core="sap.ui.core" key="2" text="2" id="vardiya2"/>
+                                <core:Item xmlns:core="sap.ui.core" key="3" text="3" id="vardiya3"/>
+                                                                                
+                            </items>
+	
+
+                        </ComboBox>
+
+                        <Button xmlns:u="sap.ui.unified" xmlns:m="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.f" xmlns:ui="sap.ui.table" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:micro="sap.suite.ui.microchart" xmlns:card="sap.f.cards" xmlns="sap.m" text="ARA" type="Accept" press="StartFunction" id="startxx_copy">
+
+                            </Button>
+
+                    </items>
+
+                </FlexBox>
+
+             
+                
+
+                <FlexBox width="25%" justifyContent="Center" alignItems="End">
+
+                <Label design="Bold" text="Vardiya 1:" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                 <Text id="tdurus1" text=" 0 Dakika" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                    </FlexBox>
+
+                <FlexBox width="25%" justifyContent="Center" alignItems="Center" direction="Column">
+                
+
+                      <FlexBox>
+
+                      <Label design="Bold" text="Toplam Duruş: " width="100%" required="false" textAlign="Begin" class="tdurus" textDirection="Inherit" visible="true"/>
+                         <Text id="topdurus" text=" 0 Dakika" renderWhitespace="true" maxLines="1" wrapping="false" textAlign="Begin" class="tdurus1" textDirection="Inherit" visible="true"/>
+                             </FlexBox>
+
+
+
+                            <FlexBox>
+
+                                     <Label design="Bold" text="Vardiya 2:" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        <Text id="tdurus2" text=" 0 Dakika" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+
+                                </FlexBox>
+
+
+
+
+
+
+
+                    </FlexBox>
+
+                <FlexBox width="25%" justifyContent="Center" alignItems="End">
+
+                <Label design="Bold" text="Vardiya 3:" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                 <Text id="tdurus3" text=" 0 Dakika" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                    </FlexBox>
+
+                    <FlexBox direction="Row" width="5%"/>
+
+                    <FlexBox id= "dokumnoflexbox" direction="Row" width="17%" visible = "false">
+
+                        <items>
+    
+                            <ComboBox id="dokumnofiltre" placeholder="Döküm No" xmlns="sap.m" items="{path:'/'}" maxWidth="95%">
+    
+                                    <core:Item key="{DOKUM_NO}" text="{DOKUM_NO}"/>
+              
+                            </ComboBox>
+    
+                            <Button xmlns:u="sap.ui.unified" xmlns:m="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.f" xmlns:ui="sap.ui.table" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:micro="sap.suite.ui.microchart" xmlns:card="sap.f.cards" xmlns="sap.m" text="Filtrele" type="Accept" press="dokumNoFilter">
+    
+                                </Button>
+    
+                        </items>
+    
+                    </FlexBox>
+
+                    <FlexBox direction="Row" width="5%"/>
+    
+
+
+            </FlexBox>
+            <Table renderWhitespace="true" width="99%" noDataText="No data" id="notificationTable" items="{path: '/'}" mode="MultiSelect" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin">
+                <infoToolbar>
+                    <Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+                        <content>
+                            <Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </content>
+                    </Toolbar>
+                </infoToolbar>
+                <headerToolbar/>
+                <columns>
+
+                    <Column id="dokumnocolumn" width="10%" hAlign="Center" visible="true" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="Döküm No" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+
+                    <Column width="10%" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="Bildirim Türü" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+
+                    <Column width="10%" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="Bildirim Numarası" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+
+                   
+                    <Column width="19%" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="Teknik Birim" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                   
+                    <Column width="15%" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="Sorumlu işyeri" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+
+                    <Column width="12%" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="Başlangıç Zamanı" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+
+                    <Column width="12%" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text=" Bitiş Zamanı" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+
+                    <Column width="9%" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="Arıza Süresi" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+
+                    <Column width="9%" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+
+                            <Text text="Vardiya" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+
+                    <Column width="9%" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+
+                            <Text text="OTO" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+
+                    <Column width="9%" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+
+                            <Text text="Detaylar" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+
+                </columns>
+                <items>
+                    <ColumnListItem>
+
+                        <customData>
+
+                            <core:CustomData key="NOTTYPE" value="{NOTTYPE2}" writeToDom="true"/>
+
+                        </customData>
+
+                        <cells>
+                            <Text text="{DOKUM_NO}" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{NOTTYPE2}" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{NOTNUM}" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{TECHUNIT}" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{PM_WORKCTR}" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{FACSTRTDATE2}" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{FACENDDATE2}" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{FACM2}" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{VARDIYA}" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                             <Text text="{OTO}" renderWhitespace="true" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Button text="Detaylar" icon="sap-icon://hint" press="ShowDetails" width="100%"/>
+
+
+
+
+                        </cells>
+                    </ColumnListItem>
+
+                </items>
+            </Table>
+
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <Button id="referenceCreateButton" visible="false" width="150px" text="Referansla Yarat" icon="sap-icon://copy" press="referenceCreateButton" class="sapUiTinyMarginBeginEnd"/>
+
+
+                <Button id="approveButtonNotification" visible="true" width="150px" text="Duruşu İkiye Böl" icon="sap-icon://resize" press="divideNotificationButton" class="sapUiTinyMarginBeginEnd"/>
+                <Button id="aggregateNotificationButton" visible="true" width="150px" text="Duruşları Birleştir" icon="sap-icon://combine" press="aggregateNotificationButton" class="sapUiTinyMarginBeginEnd"/>
+                <ToolbarSpacer/>
+                <Button id="deletedNot" visible="true" width="150px" text="Silinmiş Duruşlar" icon="sap-icon://fallback" press="showDeleted" class="sapUiTinyMarginBeginEnd"/>
+                
+
+                <Button id="divideNotificationButton" visible="false" width="150px" text="İşlemi Onayla" icon="sap-icon://approvals" type="Accept" press="approveButtonNotification" class="sapUiTinyMarginBeginEnd"/>
+                <ToolbarSeparator/>
+                <Button id="rejectButtonNotification" visible="false" width="150px" text="İşlemi Reddet" icon="sap-icon://sys-cancel" type="Reject" press="rejectButtonNotification" class="sapUiTinyMarginBeginEnd"/>
+                <ToolbarSeparator/>
+                <Button id="deleteButtonNotification" width="150px" text="Bildirimi Sil" icon="sap-icon://delete" press="deleteButtonNotification" class="sapUiTinyMarginBeginEnd"/>
+                <ToolbarSeparator/>
+                <Button id="syncButtonNotification" width="150px" text="Senkronize Et" icon="sap-icon://synchronize" press="syncButtonNotification" class="sapUiTinyMarginBeginEnd"/>
+                <ToolbarSeparator/>
+                <Button id="updateButtonNotification" width="150px" text="Bildirimi Düzenle" icon="sap-icon://eraser" press="updateButtonNotification2" class="sapUiTinyMarginBeginEnd"/>
+                <ToolbarSeparator/>
+                <Button id="reportButtonForNotification" width="150px" text="Yeni Bildirim Aç" visible="false" icon="sap-icon://add" press="reportButtonForNotification" class="sapUiTinyMarginBeginEnd"/>
+                <Button id="pmNEW" width="150px" text="Yeni Bildirim Aç" icon="sap-icon://add" press="pmNEW" class="sapUiTinyMarginBeginEnd"/>
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

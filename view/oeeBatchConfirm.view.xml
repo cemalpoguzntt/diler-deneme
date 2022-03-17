@@ -1,0 +1,68 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="customActivity/controller/oeeBatchConfirm"
+    xmlns="sap.m"
+    xmlns:my="customActivity.controls"
+    xmlns:core="sap.ui.core">
+    <Page id="batchConfirmPage" showHeader="false" showFooter="true" showNavButton="false">
+        <content>
+            <FlexBox justifyContent="Center" alignItems="Center" width="100%" class="sapUiLargeMarginTop">
+                <VBox alignItems="Center" justifyContent="Center">
+                    <VBox alignItems="Center" class="sapUiSmallMarginBottom">
+                        <Label design="Bold" text="Çevrim :">
+                            <customData>
+                                <core:CustomData key="can" value="TOP" writeToDom="true" />
+                            </customData>
+                        </Label>
+                        <Input id="idCycleNo" type="Text" width="90px" class="cycleBatchInput" />
+                    </VBox>
+
+                    <VBox alignItems="Center" class="sapUiSmallMarginBottom">
+                        <Label design="Bold" text="Parti Numarası :">
+                            <customData>
+                                <core:CustomData key="can" value="TOP" writeToDom="true" />
+                            </customData>
+                        </Label>
+                        <my:Input id="idBatch" type="Text" class="cycleBatchInput" submit="onSubmitBatch">
+                            <my:attributes>
+                                <core:CustomData key="inputmode" value="none" writeToDom="true"/>
+                            </my:attributes>
+                        </my:Input>
+                    </VBox>
+
+                    <VBox alignItems="Center" class="sapUiSmallMarginBottom">
+                        <Label design="Bold" text="Ağırlık :">
+                            <customData>
+                                <core:CustomData key="can" value="TOP" writeToDom="true" />
+                            </customData>
+                        </Label>
+                        <Input id="idQuantity" width="90px" type="Text" class="cycleBatchInput"/>
+                    </VBox>
+
+                 <VBox alignItems="Center" class="sapUiSmallMarginBottom">
+                    <Button id="idButton" press="onCheckBeforeConfirm" text="Kaydet" type="Accept" class="cycleBtnContent cycleBtnInner"/>
+                   
+                     
+                     </VBox>
+                    <VBox alignItems="Center" class="sapUiSmallMarginBottom">
+                      <Label design="Bold" text="Kalan Parti :">
+                            <customData>
+                                <core:CustomData key="can" value="TOP" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    <Input id="idRemainingBatch" width="90px" type="Text" editable="false" class="cycleBatchInput"/>
+                     </VBox>
+                </VBox>
+            </FlexBox>
+        </content>
+        <footer>
+            <OverflowToolbar width="100%" height="80px" design="Auto" enabled="true" visible="true">
+                <content>
+                    <Button id="idManageOrders" text="Sipariş Yönet" type="Back" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiTinyMargin cycleFooterBtnInner" press="onRedirectManageOrders"/>
+                    <ToolbarSpacer/>
+                    <Button text="Teyit Verilmeyen Parti Listesi" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiTinyMargin cycleFooterBtnInner" press="onPressNotConfirmedList" />
+                    <ToolbarSpacer/>
+                    <Button text="Çevrim Takip" press="navigateCevrim" width="auto" enabled="true" visible="true" iconDensityAware="false" class="cycleFooterBtnInner"/>
+                </content>
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

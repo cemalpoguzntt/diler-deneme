@@ -1,0 +1,376 @@
+<mvc:View xmlns="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:my="customActivity.controls" controllerName="customActivity/controller/firkete" displayBlock="true">
+    <m:Page id="page" showHeader="false">
+        <m:content>
+            <m:FlexBox id="MainBox1" width="100%" height="80%" direction="Column" visible="true">
+                <m:FlexBox width="100%" id="box0" height="auto" direction="Column" alignItems="Center" alignContent="Center" justifyContent="Center">
+                    <m:items>
+                        <m:Table xmlns="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:m="sap.m" noDataText="Kayıtlı veri bulunamadı" items="{/}" id="tableOrderInfo" class="sapUiSizeCompact">
+                            <m:items>
+                                <m:ColumnListItem type="Active" id="item0">
+                                    <m:cells>
+                                        <m:Text text="{= Math.round(${AUFNR})}" wrapping="true" id="text0"/>
+                                        <m:Text text="{KDAUF}" wrapping="true" id="text1"/>
+                                        <m:Text text="{= Math.round(${KDPOS})}" wrapping="true" id="text2"/>
+                                        <m:Text text="{LOT}" wrapping="true" id="text16"/>
+                                        <m:Text text="{MENGE}" wrapping="true" id="text3"/>
+                                    </m:cells>
+                                </m:ColumnListItem>
+                            </m:items>
+                            <m:columns>
+                                <m:Column id="column0" width="20%" hAlign="Center">
+                                    <m:header>
+                                        <m:Label design="Bold" text="Üretim Sip" id="label0"/>
+                                    </m:header>
+                                </m:Column>
+                                <m:Column id="column1" width="30%" hAlign="Center">
+                                    <m:header>
+                                        <m:Label design="Bold" text="Satış Sip" id="label1"/>
+                                    </m:header>
+                                </m:Column>
+                                <m:Column id="column2" width="13%" hAlign="Center">
+                                    <m:header>
+                                        <m:Label design="Bold" text="Kalem" id="label2"/>
+                                    </m:header>
+                                </m:Column>
+                                <m:Column id="column16" width="12%" hAlign="Center">
+                                    <m:header>
+                                        <m:Label design="Bold" text="Lot" id="label25"/>
+                                    </m:header>
+                                </m:Column>
+                                <m:Column id="column3" width="25%" hAlign="Center">
+                                    <m:header>
+                                        <m:Label design="Bold" text="Miktar(TON)" id="label3"/>
+                                    </m:header>
+                                </m:Column>
+                            </m:columns>
+                        </m:Table>
+                        <m:Table xmlns="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:m="sap.m" noDataText="Kayıtlı veri bulunamadı" items="{/}" id="tableOrderInfo2" class="sapUiSizeCompact">
+                            <m:items>
+                                <m:ColumnListItem type="Active" id="item2">
+                                    <m:cells>
+                                        <m:Text text="{Y_STANDART_FRK}" wrapping="true" id="text15"/>
+                                        <m:Text text="{Y_KALITE_FRK}" wrapping="true" id="text4"/>
+                                        <m:Text text="{Y_CAP_FRK_MM}" wrapping="true" id="text5"/>
+                                        <m:Text text="{Y_BOY_FRK_M}" wrapping="true" id="text6"/>
+                                    </m:cells>
+                                </m:ColumnListItem>
+                            </m:items>
+                            <m:columns>
+                                <m:Column id="column15" width="30%" hAlign="Center">
+                                    <m:header>
+                                        <m:Label design="Bold" text="Standart" id="label24"/>
+                                    </m:header>
+                                </m:Column>
+                                <m:Column id="column4" width="30%" hAlign="Center">
+                                    <m:header>
+                                        <m:Label design="Bold" text="Kalite" id="label4"/>
+                                    </m:header>
+                                </m:Column>
+                                <m:Column id="column5" width="20%" hAlign="Center">
+                                    <m:header>
+                                        <m:Label design="Bold" text="Çap" id="label5"/>
+                                    </m:header>
+                                </m:Column>
+                                <m:Column id="column6" width="20%" hAlign="Center">
+                                    <m:header>
+                                        <m:Label design="Bold" text="Boy" id="label6"/>
+                                    </m:header>
+                                </m:Column>
+                            </m:columns>
+                        </m:Table>
+                    </m:items>
+                </m:FlexBox>
+                <m:FlexBox width="auto" height="auto" id="box24" justifyContent="SpaceBetween" alignContent="Center" alignItems="Center" direction="Row">
+                    <m:FlexBox width="auto" id="box1" height="auto" direction="Column" alignItems="Start" alignContent="Center">
+                        <my:Input id="input0" description="Bağ-ID-Barkod" filterSuggests="false" submit="onSubmitBarcode" enableSuggestionsHighlighting="false">
+						    <my:attributes>
+							    <core:CustomData key="inputmode" value="none" writeToDom="true"/>
+						    </my:attributes>
+					    </my:Input>
+                        <m:FlexBox id="box20">
+                            <m:FlexBox xmlns="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:m="sap.m" width="auto" id="box3_copy3" justifyContent="Center" alignContent="Center" alignItems="Center">
+                                <m:items>
+                                    <m:Label text="Döküm No:   " id="label32" design="Bold"/>
+                                </m:items>
+                            </m:FlexBox>
+                            <m:Label text="" width="100%" id="label33" design="Bold">
+                                <m:customData>
+                                    <core:CustomData key="fir" value="BIG" writeToDom="true" />
+                                </m:customData>
+                            </m:Label>
+                        </m:FlexBox>
+                        <m:FlexBox id="box23">
+                            <m:FlexBox xmlns="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:m="sap.m" width="auto" id="box3_copy" justifyContent="Center" alignContent="Center" alignItems="Center">
+                                <m:items>
+                                    <m:Label text="Bağ-ID:   " id="label12" design="Bold"/>
+                                </m:items>
+                            </m:FlexBox>
+                            <m:Label text="" width="100%" id="input1" design="Bold">
+                                <m:customData>
+                                    <core:CustomData key="fir" value="BIG" writeToDom="true" />
+                                </m:customData>
+                            </m:Label>
+                        </m:FlexBox>
+                        <m:FlexBox id="box7">
+                            <m:FlexBox xmlns="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:m="sap.m" width="auto" id="box3_copy2" justifyContent="Center" alignContent="Center" alignItems="Center">
+                                <m:items>
+                                    <m:Label text="Miktar(TON):   " id="label13" design="Bold"/>
+                                </m:items>
+                            </m:FlexBox>
+                            <m:Label text="" width="100%" id="input2" design="Bold">
+                                <m:customData>
+                                    <core:CustomData key="fir" value="BIG" writeToDom="true" />
+                                </m:customData>
+                            </m:Label>
+                        </m:FlexBox>
+                        <m:FlexBox width="100%" id="box13" height="auto" direction="Row" alignItems="Center" alignContent="Center" justifyContent="SpaceAround">
+                            <m:items>
+                                <m:CheckBox id="checkBoxHurda" text="Hurda"/>
+                                <Button xmlns="sap.m" text="Kaydet" id="button0" press="insertConsumptionHairPin" icon="sap-icon://save" type="Emphasized"/>
+                            </m:items>
+                        </m:FlexBox>
+                    </m:FlexBox>
+                    <m:FlexBox width="auto" height="auto" id="box3" alignContent="Center" alignItems="Start" direction="Column">
+                        <m:items>
+                            <m:Button xmlns="sap.m" text="Döküm ile Teyit" id="button4" press="onPressShowTable2" icon="sap-icon://number-sign"/>
+                            <m:FlexBox id="box9" width="100%" justifyContent="SpaceBetween" alignContent="Center" alignItems="Center">
+                                <m:Label design="Bold" text="EWM-Depo: " id="label11"/>
+                                <Select xmlns="sap.m" id="select0" autoAdjustWidth="true" items="{path : '/'}" change="onChangeStorage">
+                                    <items>
+                                        <core:Item xmlns:core="sap.ui.core" key="{LGORT}" text="{LGOBE}" id="item1"/>
+                                    </items>
+                                </Select>
+                            </m:FlexBox>
+                            <m:FlexBox id="box10" width="100%" justifyContent="SpaceBetween" alignContent="Center" alignItems="Center">
+                                <m:Label design="Bold" text="İstif: " id="label14"/>
+                                <Select xmlns="sap.m" id="select1" autoAdjustWidth="true" items="{path : '/'}" change="onChangeBin">
+                                    <items>
+                                        <core:Item xmlns:core="sap.ui.core" key="{LGPLA}" text="{LGPLA}" id="item4"/>
+                                    </items>
+                                </Select>
+                            </m:FlexBox>
+                            <m:FlexBox id="box11" width="100%" justifyContent="SpaceBetween" alignContent="Center" alignItems="Center">
+                                <m:Label design="Bold" text="Sıra: " id="label15"/>
+                                <m:Input xmlns="sap.m" id="input3" type="Number" filterSuggests="false" enableSuggestionsHighlighting="false"/>
+                            </m:FlexBox>
+                        </m:items>
+                    </m:FlexBox>
+                </m:FlexBox>
+                <m:FlexBox width="100%" id="box4" height="auto" direction="Column" alignItems="Center">
+                    <m:FlexBox width="auto" id="box5" height="auto" direction="Column" alignItems="Center">
+                        <m:items>
+                            <m:Table noDataText="Kayıtlı veri bulunamadı" id="tableReportedTie" items="{/}" class="sapUiSizeCompact">
+                                <m:items>
+                                    <m:ColumnListItem type="Active" id="item3">
+                                        <m:customData>
+	                                        <core:CustomData key="STATUS" value="{STATUS}" writeToDom="true"></core:CustomData>
+                                        </m:customData>
+                                        <m:cells>
+                                            <m:Text text="{SCRAP}" wrapping="true" id="text26"/>
+                                            <m:Text text="{BAG_ID}" wrapping="true" id="text7"/>
+                                            <m:Text text="{BATCH_NO}" wrapping="true" id="text8"/>
+                                            <m:Text text="{CAST_NO}" wrapping="true" id="text22"/>
+                                            <m:Text text="{QUANTITY}" wrapping="true" id="text9"/>
+                                            <m:Text text="{END_TIME}" wrapping="true" id="text10"/>
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                                <m:columns>
+                                    <m:Column id="column26" hAlign="Center">
+                                    <m:header>
+                                        <m:Label design="Bold" text="Hurda" id="label37"/>
+                                    </m:header>
+                                </m:Column>
+                                    <m:Column id="column7" hAlign="Center">
+                                        <m:header>
+                                            <m:Label design="Bold" text="Bağ-ID" id="label7"/>
+                                        </m:header>
+                                    </m:Column>
+                                    <m:Column id="column8" hAlign="Center">
+                                        <m:header>
+                                            <m:Label design="Bold" text="Parti No" id="label8"/>
+                                        </m:header>
+                                    </m:Column>
+                                    <m:Column id="column22" hAlign="Center">
+                                        <m:header>
+                                            <m:Label design="Bold" text="Döküm No" id="label31"/>
+                                        </m:header>
+                                    </m:Column>
+                                    <m:Column id="column9" hAlign="Center">
+                                        <m:header>
+                                            <m:Label design="Bold" text="Miktar(TON)" id="label9"/>
+                                        </m:header>
+                                    </m:Column>
+                                    <m:Column id="column10" hAlign="Center">
+                                        <m:header>
+                                            <m:Label design="Bold" text="Kayıt Tarihi" id="label10"/>
+                                        </m:header>
+                                    </m:Column>
+                                </m:columns>
+                            </m:Table>
+                        </m:items>
+                    </m:FlexBox>
+                </m:FlexBox>
+                <m:FlexBox width="100%" id="box8" height="auto" direction="Row" alignItems="Center" alignContent="Center" justifyContent="SpaceBetween">
+                    <m:FlexBox width="auto" id="box12" height="auto" direction="Row" alignItems="Center" alignContent="Center" justifyContent="SpaceBetween">
+                        <m:items>
+                            <m:Label text="Toplam Adet" id="label17" design="Bold"/>
+                            <m:Label text="" width="100%" id="label16" design="Bold">
+                                <m:customData>
+                                    <core:CustomData key="fir" value="BIG" writeToDom="true" />
+                                </m:customData>
+                            </m:Label>
+                            <m:Label text="Toplam Miktar(TON)" id="label19" design="Bold"/>
+                            <m:Label text="" width="100%" id="label18" design="Bold">
+                                <m:customData>
+                                    <core:CustomData key="fir" value="BIG" writeToDom="true" />
+                                </m:customData>
+                            </m:Label>
+                            <m:Label text="Toplam Hurda(TON)" id="label38" design="Bold"/>
+                            <m:Label text="" width="100%" id="label39" design="Bold">
+                                <m:customData>
+                                    <core:CustomData key="fir" value="BIG" writeToDom="true" />
+                                </m:customData>
+                            </m:Label>
+                        </m:items>
+                    </m:FlexBox>
+                    <m:FlexBox width="auto" id="box14" height="auto" direction="Row" alignItems="Center" alignContent="Center" justifyContent="End">
+                        <m:items>
+                            <Button xmlns="sap.m" text="Göster" id="button1" press="onPressShowTable" icon="sap-icon://list" type="Accept"/>
+                        </m:items>
+                    </m:FlexBox>
+                </m:FlexBox>
+            </m:FlexBox>
+            <m:FlexBox id="MainBox2" width="100%" height="90%" direction="Column"  visible="false">
+                <m:FlexBox id="box15" height="auto" direction="Row" alignItems="Center" alignContent="Center" justifyContent="End">
+                    <m:items>
+                        <Button xmlns="sap.m" text="Gizle" id="button2" press="onPressHideTable" icon="sap-icon://list" type="Reject"/>
+                    </m:items>
+                </m:FlexBox>
+                <m:FlexBox width="auto" id="box16" height="auto" direction="Column" alignItems="Center">
+                    <m:items>
+                        <m:Table noDataText="Kayıtlı veri bulunamadı" id="tableReportedTie2" items="{/}" class="sapUiSizeCompact">
+                            <m:items>
+                                <m:ColumnListItem type="Active" id="item5">
+                                <m:customData>
+	                                        <core:CustomData key="STATUS" value="{STATUS}" writeToDom="true"></core:CustomData>
+                                        </m:customData>
+                                    <m:cells>
+                                        <m:Text text="{SCRAP}" wrapping="true" id="text25"/>
+                                        <m:Text text="{BAG_ID}" wrapping="true" id="text11"/>
+                                        <m:Text text="{BATCH_NO}" wrapping="true" id="text12"/>
+                                        <m:Text text="{CAST_NO}" wrapping="true" id="text21"/>
+                                        <m:Text text="{QUANTITY}" wrapping="true" id="text13"/>
+                                        <m:Text text="{END_TIME}" wrapping="true" id="text14"/>
+                                    </m:cells>
+                                </m:ColumnListItem>
+                            </m:items>
+                            <m:columns>
+                                <m:Column id="column25" hAlign="Center">
+                                    <m:header>
+                                        <m:Label design="Bold" text="Hurda" id="label36"/>
+                                    </m:header>
+                                </m:Column>
+                                <m:Column id="column11" hAlign="Center">
+                                    <m:header>
+                                        <m:Label design="Bold" text="Bağ-ID" id="label20"/>
+                                    </m:header>
+                                </m:Column>
+                                <m:Column id="column12" hAlign="Center">
+                                    <m:header>
+                                        <m:Label design="Bold" text="Parti No" id="label21"/>
+                                    </m:header>
+                                </m:Column>
+                                <m:Column id="column21" hAlign="Center">
+                                    <m:header>
+                                        <m:Label design="Bold" text="Döküm No" id="label30"/>
+                                    </m:header>
+                                </m:Column>
+                                <m:Column id="column13" hAlign="Center">
+                                    <m:header>
+                                        <m:Label design="Bold" text="Miktar(TON)" id="label22"/>
+                                    </m:header>
+                                </m:Column>
+                                <m:Column id="column14" hAlign="Center">
+                                    <m:header>
+                                        <m:Label design="Bold" text="Kayıt Tarihi" id="label23"/>
+                                    </m:header>
+                                </m:Column>
+                            </m:columns>
+                        </m:Table>
+                    </m:items>
+                </m:FlexBox>
+            </m:FlexBox>
+            <m:FlexBox id="MainBox3" width="100%" height="100%" direction="Column"  visible="false">
+                <m:FlexBox id="box17" height="auto" direction="Row" alignItems="Center" alignContent="Center" justifyContent="SpaceAround">
+                    <m:items>
+                        <m:Button xmlns="sap.m" text="Getir" id="button5" press="Execute" icon="sap-icon://search" type="Emphasized"/>
+                        <m:Input id="input4" placeholder="Döküm No"/>
+                        <m:Button xmlns="sap.m" text="Geri" id="button3" press="onPressHideTable2" icon="sap-icon://nav-back" type="Reject"/>
+                    </m:items>
+                </m:FlexBox>
+                <m:FlexBox id="box231" height="3%" > </m:FlexBox>
+                <m:FlexBox id="box32" height="auto" direction="Row" alignItems="Center" alignContent="Center" justifyContent="SpaceAround">
+                    <m:Button xmlns="sap.m" text="Filtrele" id="button99" press="DataFilter" icon="sap-icon://search" type="Emphasized"/>
+                    <m:Input id="input10" alignContent="Center" textAlign="Center" placeholder="Parti"/>
+                    <m:Input id="input11" alignContent="Center" textAlign="Center" placeholder="Döküm No"/>
+                    <m:Input id="input12" alignContent="Center" textAlign="Center" placeholder="Bağ"/>
+                    <m:Input id="input13" alignContent="Center" textAlign="Center" placeholder="Paket Ağırlığı"/>
+                    <m:Input id="input14" alignContent="Center" textAlign="Center" placeholder="Çubuk"/>
+                    <m:Input id="input15" alignContent="Center" textAlign="Center" placeholder="Boy"/>
+                </m:FlexBox>
+                <m:FlexBox id="box2315" height="5%" > </m:FlexBox>
+                <m:FlexBox width="auto" id="box19" height="auto" direction="Column" alignItems="Center">
+                    <m:items>
+                        <m:Table noDataText="Kayıtlı veri bulunamadı" id="tableReportedTie3" items="{/}"  mode="None" class="sapUiSizeCompact">
+                            <m:items>
+                                <m:ColumnListItem type="Active" id="item6">
+                                    <m:cells>
+                                        <m:Button text="{CHARG}" wrapping="true" press="getData" id="text17"/>
+                                        <m:Text text="{Y_DOKUMNO}" wrapping="true" id="text18"/>
+                                        <m:Text text="{BAG_SAYI}" wrapping="true" id="text19"/>
+                                        <m:Text text="{Y_PAKET_AGIRLIK_KG}" wrapping="true" id="text20"/>
+                                        <m:Text text="{Y_CUBUK_SAYISI}" wrapping="true" id="text23"/>
+                                        <m:Text text="{Y_BOY_CBK_M}" wrapping="true" id="text24"/>
+                                    </m:cells>
+                                </m:ColumnListItem>
+                            </m:items>
+                            <m:columns>
+                                <m:Column id="column17" hAlign="Center">
+                                    <m:header>
+                                        <m:Label design="Bold" text="Parti" id="label26"/>
+                                    </m:header>
+                                </m:Column>
+                                <m:Column id="column20" hAlign="Center">
+                                    <m:header>
+                                        <m:Label design="Bold" text="Döküm" id="label29"/>
+                                    </m:header>
+                                </m:Column>
+                                <m:Column id="column23" hAlign="Center">
+                                    <m:header>
+                                        <m:Label design="Bold" text="Bağ(#)" id="label34"/>
+                                    </m:header>
+                                </m:Column>
+                                <m:Column id="column24" hAlign="Center">
+                                    <m:header>
+                                        <m:Label design="Bold" text="Paket Ağırlık" id="label35"/>
+                                    </m:header>
+                                </m:Column>
+                                <m:Column id="column19" hAlign="Center">
+                                    <m:header>
+                                        <m:Label design="Bold" text="Çubuk(#)" id="label28"/>
+                                    </m:header>
+                                </m:Column>
+                                <m:Column id="column18" hAlign="Center">
+                                    <m:header>
+                                        <m:Label design="Bold" text="Boy" id="label27"/>
+                                    </m:header>
+                                </m:Column>
+                            </m:columns>
+                        </m:Table>
+                    </m:items>
+                </m:FlexBox>
+            </m:FlexBox>
+        </m:content>
+    </m:Page>
+</mvc:View>

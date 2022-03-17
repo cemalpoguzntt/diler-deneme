@@ -1,0 +1,181 @@
+<core:View xmlns:core="sap.ui.core" xmlns:suite="sap.suite.ui.commons" xmlns:l="sap.ui.layout" xmlns="sap.m" controllerName="customActivity.controller.oeeCreateCast">
+    <Page showHeader="false" showNavButton="false">
+        <content>
+            <l:VerticalLayout width="100%">
+
+                <Panel expandable="true" headerText="{i18n>OEE_LABEL_PRODUCTION_QUEUE}">
+                    <Table id="idOrdersTable" inset="false" items="{/}" mode="SingleSelectMaster" growingScrollToLoad="true" growingThreshold="100">
+                        <headerToolbar>
+                            <OverflowToolbar>
+                                <Label text="{i18n>OEE_LABEL_PLANING_TOTAL_QUANTITY} : {/SUMQUANTITY}" />
+                                <Label id="sumQuantity" />
+                                <ToolbarSpacer />
+                                <Input width="100px" liveChange="getOrderFilter" placeholder="{i18n>OEE_LABEL_MAT_FILTER}" />
+                                <Input width="100px" id="changeCast"   type="Number" placeholder="Döküm No" />
+                   		 <Button id="changeCastButton" text="Döküm No Değiştir" press="onPressChange" type="Reject" visible = "{= ${appData>/user/userID}=== 'iezer' ? true: (${appData>/user/userID}=== 'ogunerhan' ? true:(${appData>/user/userID}=== 'iakin' ? true:false))}"></Button>
+
+
+                            </OverflowToolbar>
+                        </headerToolbar>
+                        <columns>
+                            <Column width="2rem" mergeDuplicates="true" hAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_ORDER}" />
+                            </Column>
+                            <Column width="3rem" hAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_MATERIAL}" />
+                            </Column>
+                            <Column width="3rem" hAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_QUANTITY}" />
+                            </Column>
+                            <Column width="2rem" hAlign="Center" mergeDuplicates="true" mergeFunctionName="data#mergeKey">
+                                <Label text="Döküm Adeti" />
+                            </Column>
+                            <Column width="3rem" hAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_PLANNED_START}" />
+                            </Column>
+                            <Column width="2rem" hAlign="Center" visible="{= ${appData>/plant} === '2001' ? true : false }">
+                                <Label text="{i18n>OEE_LABEL_CASTNUMBER_TYPE}" />
+                            </Column>
+                            <Column width="3rem" hAlign="Center"  visible="{= ${appData>/plant} === '2001' ? true : false }">
+                                <Label text="{i18n>OEE_LABEL_VACUUM}" />
+                            </Column>
+                            <Column width="4rem" hAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_QUALITYS}" />
+                            </Column>
+                            <Column width="2rem" visible="{= (${visibleStatusModel>/Row/}).localArrFilter('Y_KALITE_FLM') }" hAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_CHANGE_LOG_MATNR}" />
+                            </Column>
+                            <Column width="2rem" hAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_SIZE}" />
+                            </Column>
+                            <Column width="2rem" hAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_LENGTH}" />
+                            </Column>
+                            <Column width="2rem" visible="true" hAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_ROAD_INFORMATION}" />
+                            </Column>
+                            <Column width="1rem" visible="false" hAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_NOTE}" />
+                            </Column>
+                            <Column width="2rem" visible="true" hAlign="Center">
+                                <Label text="Sip.Detay" />
+                            </Column>
+                            <Column width="5rem" hAlign="Center">
+                                <Label />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{AUFNR}" tooltip="{characteristic}" />
+                                    <Text text="{MATNR}" />
+                                    <Text text="{CREATEDOKTON} / {QUANTITY} TON" />
+                                   <!-- <Text text="{DOKUMADT} / {CREATEDOKUMADT}" />-->
+                                   <Text text=" {CREATEDOKUMADT} / {DOKUMADT}">
+                                    <customData>
+                                          <core:CustomData key="mergeKey" value="{DOKUMADT}+{AUFNR}"/>
+                                     </customData>
+                                </Text>
+                                    <Text text="{LASTDATE}" />
+                                    <Text text="{Y_DOKUM_TIPI}" />
+                                    <Text text="{Y_VAKUM}" />
+                                    <Text text="{Y_KALITE_KTK}" />
+                                    <Text text="{Y_KALITE_KTK}" />
+                                    <Text text="{Y_EBAT}" />
+                                    <Text text="{Y_BOY_KTK}" />
+                                    <Text text="{ZZYOL}" />
+                                    <Text text="{NOT}" />
+                                    <Button icon="sap-icon://display" press="onPressOpenCharacteristic" visible="true"></Button>
+                                    <Button text="Planlama Notu" press="onPressOpenDescription" width="9rem"  type="{= ${TDLINE} !=='' ? 'Reject':'Default'}" ></Button>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+
+                </Panel>
+                <Panel expandable="true" expanded="true" headerText="{i18n>OEE_LABEL_CASTINGMANAGEMENT}" width="auto">
+                    <Toolbar>
+                        <content>
+
+                            <SearchField visible="false" id="searchNotification" width="40%" enableSuggestions="true" search="onSearch" suggest="onSuggest" suggestionItems="{ProdOrder>/Row}" placeholder="sipariş no">
+                                <suggestionItems>
+                                    <SuggestionItem text="{ProdOrder>AUFNR}" />
+                                </suggestionItems>
+                            </SearchField>
+
+                            <Button press="onPressCraeteCasting" text="{i18n>OEE_LABEL_OPEN_CAST}" class="myCustomButtonStyle" type="Accept" width="20rem" />
+                            <ToolbarSpacer />
+                            <!-- <ToolbarSeparator /> -->
+                            <Button id="deleteButton" press="onPressDeleteList" text="{i18n>OEE_BTN_DELETE}" type="Reject" icon="sap-icon://delete" visible="false"></Button>
+                            <ComboBox id="filterMatnr" width="25%" items="{materialModel>/}" change="changeTable" placeholder="{i18n>OEE_LABEL_MAT_FILTER}">
+                                <core:Item key="{materialModel>MATNR}" text="{materialModel>MATNR}" />
+                            </ComboBox>
+                        </content>
+                    </Toolbar>
+                    <Table id="castTable" editable="false" items="{/0/Row}" mode="SingleSelectMaster">
+                        <columns>
+                            <Column hAlign="Center" mergeDuplicates="true">
+                                <Label text="{i18n>OEE_LABEL_ROWNUMBER}" />
+                            </Column>
+                            <Column hAlign="Center" mergeDuplicates="true">
+                                <Label text="{i18n>OEE_LABEL_CASTINGNUMBER}" />
+                            </Column>
+                            <Column hAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_DATE}" />
+                            </Column>
+                            <Column hAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_STATUS}" />
+                            </Column>
+                            <Column hAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_ORDER_NUMBER_SHORT}" />
+                            </Column>
+                            <Column hAlign="Start" visible="false">
+                                <Label text="{i18n>OEE_LABEL_MATERIAL}" />
+                            </Column>
+                            <Column hAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_QUALITYS}" />
+                            </Column>
+                            <Column hAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_SIZE}" />
+                            </Column>
+                            <Column hAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_LENGTH}" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{ROWNUMBER}" />
+                                    <Text text="{CASTID}" tooltip="{characteristic}" />
+                                    <Text text="{INSDATE}" />
+                                    <core:Icon tooltip="{SUP_AUFNR}" src="{= ${ERPSTATUS} === '10' ? 'sap-icon://circle-task-2'  : 'sap-icon://circle-task-2' }" color="{COLOR}" />
+                                    <Text text="{AUFNR}" />
+                                    <Text text="{MATNR}" />
+                                    <Text text="{Y_KALITE_KTK}" />
+                                    <Text text="{Y_EBAT}" />
+                                    <Text text="{Y_BOY_KTK}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </Panel>
+            </l:VerticalLayout>
+        </content>
+        <footer>
+            <Bar>
+                <contentLeft>
+                    <Button id="idRetryQueueCastNumber" text="{i18n>OEE_LABEL_RETRY_CAST}" visible="true" icon="sap-icon://donut-chart" press="pressRetryQueueCastNumber"></Button>
+                    <Button id="idDeleteCast" text="{i18n>OEE_BTN_DELETE}" visible="true" icon="sap-icon://delete" type="Reject" press="onPressCastDelete"></Button>
+                    <Button id="idOpenCoverQuanButton" text="{i18n>OEE_BTN_ADD_SECOND_QUALITY}" visible="false" icon="sap-icon://add" press="openCoverQuan"></Button>
+                    <Button id="idOpenQualityEntranceButton" text="{i18n>OEE_BTN_QUALITY_ENTRANCE}" visible="false" icon="sap-icon://add" press="openQualityEntrance"></Button>
+                    <Button id="idChangeOrder" text="{i18n>OEE_LABEL_CHANGE_ORDER}" visible="true" icon="sap-icon://journey-change" type="Default" press="openChangeOrder"></Button>
+                </contentLeft>
+                <contentRight>
+                    <Button id="refreshButton" text="{i18n>OEE_BTN_REFRESH}" icon="sap-icon://refresh" press="onSearch"></Button>
+                    <Button id="addButton" text="{i18n>OEE_BTN_ADD}" icon="sap-icon://add" press="onClickAddQuantity" visible="false"></Button>
+                    <Button id="deleteCastButton" text="{i18n>OEE_BTN_DELETE}" icon="sap-icon://delete" press="onPressDeleteRow" type="Reject" visible="false"></Button>
+                </contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</core:View>

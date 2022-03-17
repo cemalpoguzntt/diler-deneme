@@ -1,0 +1,332 @@
+<mvc:View xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:layout="sap.ui.layout" controllerName="customActivity.controller.fosrap">
+	<Page id="tablopage" title="" showNavButton="false" showFooter="true" showHeader="false">
+		<content>
+			<FlexBox width="100%" height="30%" alignItems="Center">
+				<FlexBox width="22%" height="100%" direction="Column">
+				<FlexBox width="100%" height="30%" justifyContent="Center" alignItems="Start">
+					<CheckBox xmlns="sap.m" text="Tümünü Seç" selected="true" id="selectall" select="Cal"/>
+					
+				
+				<items/>
+					
+				
+				</FlexBox>
+				
+				<items>
+				
+				    <FlexBox xmlns="sap.m" width="100%" height="50%" justifyContent="End" alignItems="End">
+				<DateRangeSelection change="_onDateRangeSelectionChange" class="sapUiResponsiveMargin" visible="true" enabled="true" valueStateText="Invalid entry" required="false" displayFormat="short" width="auto" dateValue="{staticDataModel>/sap_Responsive_Page_0-content-sap_m_DateRangeSelection-1625489109866/dateValue}" id="dateRange"/>
+				<items>
+				    <Button xmlns="sap.m" class="sapUiResponsiveMargin" visible="true" enabled="true" width="auto" iconDensityAware="false" iconFirst="true" type="Emphasized" text="Ara" press="Filter"/>
+				    <Button xmlns="sap.m" class="sapUiResponsiveMargin" visible="true" enabled="true" width="auto" iconDensityAware="false" iconFirst="true" type="Accept" text="Excel" press="onExport"/>
+				</items>
+				</FlexBox>
+				
+				</items>
+				
+				</FlexBox>
+				<FlexBox width="87%" height="100%" class = "sapUiSmallMarginTop">
+				
+				
+					<FlexBox height="100%" width="22%" direction="Column" alignContent="Center" alignItems="Center">
+						
+						<FlexBox height="10%" width="60%" alignContent="SpaceAround" alignItems="Center" justifyContent="End">
+								
+							
+						<items>
+								
+							
+						    <Label text="Asit Banyosu" class="telCekmeLabelRed" width="100%" id="label31" design="Bold"/>
+								
+							
+						</items>
+								
+							
+						</FlexBox>
+					<items>
+					    <FlexBox xmlns="sap.m" height="100%" width="20%">
+								<FlexBox width="10%" direction="Column">
+									<CheckBox xmlns="sap.m" text="Bekleme Süresi" selected="true" id="box1"/>
+									
+									<items>
+									
+									    <CheckBox xmlns="sap.m" text="% Konsantrasyon" selected="true" id="box2"/>
+									
+									    <CheckBox xmlns="sap.m" text="Demir Miktarı" selected="true" id="box3"/>
+									
+									<CheckBox xmlns="sap.m" text="Sıcaklık (oC)" selected="true" id="box4"/>
+									
+									</items>
+									
+									</FlexBox>
+								
+								</FlexBox>
+					</items>
+					</FlexBox>
+						
+							
+						<FlexBox height="100%" width="15%" direction="Column"> 
+							 <Label class="label1" text="Durulama 1" width="100%" design="Bold" textAlign="Center"/> 
+							 <CheckBox xmlns="sap.m" text="pH" selected="true" id="box5"/>
+							 <CheckBox xmlns="sap.m" text="Bekleme Süresi(dk)" selected="true" id="box6"/>
+							 
+							 
+							 <Label class = "label0" text="Durulama 2" width="100%" design="Bold" textAlign="Center"/> 
+							 <CheckBox xmlns="sap.m" text="pH" selected="true" id="box7"/>
+							 <CheckBox xmlns="sap.m" text="Bekleme Süresi(dk)" selected="true" id="box8"/>
+							 
+							   
+							 
+							 	
+							
+							 
+							
+							
+							</FlexBox>
+							
+							<FlexBox height="100%" width="15%" direction="Column"> 
+							 <Label class = "label3" text="Aktivasyon Banyosu" width="100%" design="Bold" textAlign="Center"/> 
+							 <CheckBox xmlns="sap.m" text="pH" selected="true" id="box9"/>
+							 <CheckBox xmlns="sap.m" text="Bekleme Süresi(dk)" selected="true" id="box10"/>
+							 
+							 
+							 <Label text="Fosfat Durulama" width="100%" design="Bold" textAlign="Center"/> 
+							 <CheckBox xmlns="sap.m" text="pH" selected="true" id="box11"/>
+							 <CheckBox xmlns="sap.m" text="Bekleme Süresi(dk)" selected="true" id="box12"/>
+							 
+							   
+							 
+							 	
+							
+							 
+							
+							
+							</FlexBox>
+							
+														<FlexBox height="100%" width="15%" direction="Column"> 
+							 <Label text="Nötralizasyon Banyosu" width="100%" design="Bold" textAlign="Center"/> 
+							 <CheckBox xmlns="sap.m" text="pH" selected="true" id="box13"/>
+							 <CheckBox xmlns="sap.m" text="Sıcaklık (oC)" selected="true" id="box14"/>
+							 <CheckBox xmlns="sap.m" text="Bekleme Süresi(dk)" selected="true" id="box15"/>
+							 
+							   
+							 
+							 	
+							
+							 
+							
+							
+							</FlexBox>
+							
+								<FlexBox height="100%" width="15%" direction="Column"> 
+							 <Label text="Sabun Banyosu" width="100%" design="Bold" textAlign="Center"/> 
+							 <CheckBox xmlns="sap.m" text="Toplam Asit(ml)" selected="true" id="box16"/>
+							 <CheckBox xmlns="sap.m" text="Serbest Asit(ml)" selected="true" id="box17"/>
+							 <CheckBox xmlns="sap.m" text="Sıcaklık (oC)" selected="true" id="box18"/>
+							 <CheckBox xmlns="sap.m" text="Bekleme Süresi(dk)" selected="true" id="box19"/>
+							 
+							   
+							 
+							 	
+							
+							 
+							
+							
+							</FlexBox>
+							
+							
+							<FlexBox height="100%" width="12%" direction="Column"> 
+							 <Label text="Fosfat Banyoları" width="100%" design="Bold" textAlign="Center"/> 
+							 <CheckBox xmlns="sap.m" text="Toplam Asist(ml)" selected="true" id="box20"/>
+							 <CheckBox xmlns="sap.m" text="Serbest Asit(ml)" selected="true" id="box21"/>
+							 <CheckBox xmlns="sap.m" text="Hızlandırıcı(ml)" selected="true" id="box22"/>
+							 <CheckBox xmlns="sap.m" text="Sıcaklık (oC)" selected="true" id="box23"/>
+							 <CheckBox xmlns="sap.m" text="Bekleme Süresi(dk)" selected="true" id="box24"/>
+							 
+							   
+							 
+							 	
+							
+							 
+							
+							
+							</FlexBox>
+							
+							
+						
+						
+					
+					</FlexBox>
+				
+			</FlexBox>
+			<ui:Table id="fosrap" selectionMode="None" width="100%" selectionBehavior="Row" enableColumnReordering="false" visibleRowCountMode="Auto" rows="{/}" class="sapUiResponsiveMargin">
+				<ui:columns>
+					<ui:Column  width="120px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="Tarih" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{DATE}" width="120px" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column  width="70px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="Vardiya" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{SHIFT}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					
+					
+					<ui:Column id = "s2" width="165px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="AB - %Konsantrasyon" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{A_KON}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					
+					<ui:Column id = "s3"  width="170px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="AB - Demir Miktarı (g/l)" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{A_DMR}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column id = "s4" width="140px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="AB - Sıcaklık (oC)" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{A_SIC}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column id = "s1" width="180px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="AB - Bekleme süresi (dk)" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{A_BKLM}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column id = "s5" width="75px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="D1 - pH" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{D1_PH}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column id = "s6" width="190px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="D1 - Bekleme Süresi (dk)" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{D1_BKLM}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column id = "s7" width="75px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="D2 - pH" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{D2_PH}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column id = "s8" width="190px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="D2 - Bekleme Süresi(dk)" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{D2_BKLM}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column id = "s9" width="85px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="AKB - pH" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{AB_PH}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column id = "s10" width="200px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="AKB - Bekleme Süresi (dk)" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{AB_BKLM}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column id = "s20" width="160px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="FB - Toplam Asit (ml)" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{FB_TA}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column id = "s21" width="160px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="FB - Serbest Asit(ml)" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{FB_SA}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column id = "s22" width="155px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="FB - Hızlandırıcı(ml)" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{FB_HIZ}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column  id = "s23" width="140px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="FB - Sıcaklık(oC)" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{FB_SIC}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column id = "s24" width="180px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="FB - Bekleme Süresi(dk)" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{FB_BKLM}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column id = "s11" width="75px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="FD - pH" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{FD_PH}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column id = "s12" width="180px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="FD - Bekleme Süresi(dk)" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{FD_BKLM}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column id = "s13" width="75px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="NB - pH" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{N_PH}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column id = "s14" width="140px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="NB - Sıcaklık (oC)" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{N_SIC}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column id = "s15" width="190px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="NB - Bekleme Süresi (dk)" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{N_BKLM}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column id = "s16" width="150px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="SB - Toplam Asit(ml)" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{SB_TA}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column id = "s17" width="160px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="SB - Serbest Asit(ml)" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{SB_SA}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column id = "s18" width="140px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="SB - Sıcaklık(oC)" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{SB_SIC}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column id = "s19" width="190px" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+						<Label text="SB - Bekleme Süresi(dk)" textAlign="Begin"/>
+						<ui:template>
+							<Text text="{SB_BKLM}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</ui:template>
+					</ui:Column>
+					
+				</ui:columns>
+			</ui:Table>
+		</content>
+		<footer/>
+		<headerContent/>
+		<subHeader/>
+		<customHeader/>
+	</Page>
+</mvc:View>

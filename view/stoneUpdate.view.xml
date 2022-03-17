@@ -1,0 +1,81 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.commons" controllerName="customActivity.controller.stoneUpdate" displayBlock="true" height="100%">
+
+<html:style>
+
+.DataMode {
+
+    color : red !important ;
+
+}
+
+.TextDataMode {
+
+    padding-bottom: 0.5ch !important;
+    padding-left : 1ch !important ;
+
+}
+
+.ButtonMode {
+
+
+    
+}
+
+</html:style>
+
+
+	<Page>
+		<content>
+			<Label text="Başlangıç Tarih-Zaman" design="Bold" width="auto" required="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginTop"/>
+				<DateTimePicker id="DTP1" placeholder="Enter Date" width="auto" change="handleChange" class="sapUiSmallMarginBottom"/>
+			<Label text="Bitiş Tarih-Zaman" design="Bold" width="auto" required="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginTop"/>
+	<DateTimePicker id="DTP2" width="auto" placeholder="Enter Date" change="handleChange" class="sapUiSmallMarginBottom"/>
+	<Button xmlns="sap.m" text="ARA" id="button0" type="Accept"/>
+			
+			
+			<Table id="idOrdersTable" inset="false" width="100%" sticky="ColumnHeaders" items="{path: '/'}" mode="SingleSelectMaster" growing="true" growingScrollToLoad="true" growingThreshold="100" contextualWidth="Auto" popinLayout="GridSmall">
+				<columns>
+
+					<Column width="auto" visible="true" hAlign="Center">
+						<Label text="Kayıt Tarihi"/>
+					</Column>
+
+
+					<Column width="auto" visible="true" hAlign="Center">
+						<Label text="TAŞ KODU"/>
+					</Column>
+					
+
+					<Column width="auto" visible="true" hAlign="Center">
+						<Label text="MENŞEİ"/>
+					</Column>
+
+					<Column width="auto" visible="true" hAlign="Center">
+						<Label text="TAŞ MODELİ"/>
+					</Column>
+				
+					<Column width="auto" visible="true" hAlign="Center">
+						<Label text="Üretilen Miktar (TON)"/>
+					</Column>
+
+
+				
+					
+				</columns>
+
+				<items>
+					<ColumnListItem>
+						<cells>
+
+                            <Text text="{INSDATE}" class="castingFont"/>
+							 <Text text="{STONE_CODE}" class="castingFont"/>
+							<Text text="{MENSEI}" class="castingFont"/>
+							<Text text="{MODEL}" visible="true"/>
+							<Text text="{TOPLAMU}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+</core:View>

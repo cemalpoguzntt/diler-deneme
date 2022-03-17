@@ -1,0 +1,140 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="customActivity.controller.oeeSelectOrderHH" xmlns:layout="sap.ui.layout" displayBlock="true" height="100%">
+    <Page>
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <SearchField width="100%" liveChange="onSearch" search="onSearch" id="orderSearch" />
+                </contentLeft>
+            </Bar>
+        </customHeader>
+        <subHeader>
+            <Toolbar id="statusBar">
+                <CheckBox text="{path : '/statusDetails/NEW', formatter : '.statusFormatter'}" id="idNewStatus" select="fetchOrdersBasedOnStatus" visible="{path : '/statusDetails/NEW', formatter : '.checkIfStatusPresent'}" />
+                <CheckBox text="{path : '/statusDetails/ACTIVE', formatter : '.statusFormatter'}" id="idActiveStatus" select="fetchOrdersBasedOnStatus" visible="{path : '/statusDetails/ACTIVE', formatter : '.checkIfStatusPresent'}" />
+                <CheckBox text="{path : '/statusDetails/HOLD', formatter : '.statusFormatter'}" id="idHoldStatus" select="fetchOrdersBasedOnStatus" visible="{path : '/statusDetails/HOLD', formatter : '.checkIfStatusPresent'}" />
+                <CheckBox text="{path : '/statusDetails/COMPLETED', formatter : '.statusFormatter'}" id="idCompletedStatus" select="fetchOrdersBasedOnStatus" visible="{path : '/statusDetails/COMPLETED', formatter : '.checkIfStatusPresent'}" />
+                <CheckBox text="{path : '/statusDetails/ABORTED', formatter : '.statusFormatter'}" id="idAbortedStatus" select="fetchOrdersBasedOnStatus" visible="{path : '/statusDetails/ABORTED', formatter : '.checkIfStatusPresent'}" />
+                <CheckBox text="{i18n>OEE_BTN_SHIFT}" id="idShiftCheckbox" select="fetchOrdersBasedOnStatus" visible="{path : '/statusDetails/SHIFT', formatter : '.checkIfStatusPresent'}" />
+                <ToolbarSpacer></ToolbarSpacer>
+                <core:Icon src="sap-icon://sort" press="sortOrderData" width="2rem"></core:Icon>
+                <core:Icon src="sap-icon://refresh" press="refreshOrderData" width="2rem"></core:Icon>
+            </Toolbar>
+        </subHeader>
+        <content>
+            <Table id="idOrdersTable" inset="false" width="100%" items="{path: '/orderDetails',  sorter: [{  path:  'ROW_NUM' , ascending: true}]}" growing="true" growingScrollToLoad="true" growingThreshold="100" contextualWidth="Auto" popinLayout="GridSmall">
+                <columns>
+                 <Column width="6%" minScreenWidth="tablet" demandPopin="true">
+                        <Label text=" {i18n>OEE_LABEL_ORDER_SEQ_NO}" />
+                    </Column>
+                    <Column  width="6%" minScreenWidth="tablet" demandPopin="true">
+                        <Label text=" {i18n>OEE_LABEL_WORKORDER}" />
+                    </Column>
+                    <Column  width="6%" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_OPERATION_PHASE}" />
+                    </Column>
+                    <Column  width="12%" visible="{= (${visibleStatusModel>/}).localArrFilter('MATNR') }"  minScreenWidth="tablet" demandPopin="true" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_MATERIAL}" />
+                    </Column>              
+                    <Column  width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_STANDART_CBK') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_STANDARD}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_KALITE_CBK') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_KALITE_PCW}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_CAP_CBK_MM') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_CAP_MM}" />
+                    </Column>
+                    <Column width="8%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_FATURALAMA') }">
+                        <Label text="{i18n>OEE_LABEL_BILLING}" />
+                    </Column>
+                    <Column  width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_BOY_CBK_M') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_LENGTH}" />
+                    </Column>
+                    <Column width="6%" minScreenWidth="phone" demandPopin="true" >
+                        <Label text="{i18n>OEE_LABEL_QUANTITY}" />
+                    </Column>
+                    <Column width="8%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_MARKA') }">
+                        <Label text="{i18n>OEE_LABEL_Y_MARKA}" />
+                    </Column>
+                    <Column  width="6%" >
+                        <Label text="{i18n>OEE_LABEL_Y_ULKE}" />
+                    </Column>
+                    <Column width="9%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_URETIM_YONTEMI') }">
+                        <Label text="{i18n>OEE_LABEL_PRODUCT_METHOD}" />
+                    </Column>
+                    <Column width="5%" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_STATUS}" />
+                    </Column>
+                    <Column width="14%" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_ORDER_ACTUAL_START} /{i18n>END_TIME_LABEL}" />
+                    </Column>
+                    <Column width="14%" minScreenWidth="tablet" demandPopin="true" visible="false">
+                        <Label text="{i18n>OEE_LABEL_PLANNED_START} /{i18n>END_TIME_LABEL}" />
+                    </Column>
+                    <Column width="4%"></Column>
+                    <Column width="4%">
+                        <Label text="{i18n>OEE_LABEL_DETAILS}" visible="false" />
+                    </Column>
+                    <Column hAlign="Left" width="8%" visible="false" id="productionActivityColumn">
+                        <Label text="{i18n>OEE_LABEL_ACTIVITY}" />
+                    </Column>
+                    <Column width="4%"></Column>
+                    <Column width="4%"></Column>
+                    <Column width="5%">
+                        <Label text="{i18n>OEE_LABEL_AUFNR_DETAILS}" visible="false" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('SDMFRAGCOLUMN') }">
+                        <Label visible="true" />
+                    </Column>
+                    <Column width="10%" visible="{= (${visibleStatusModel>/}).localArrFilter('COMPONENTS_COLUMN') }">
+                        <Label text="{i18n>OEE_LABEL_COMPONENTS}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                             <Text text="{ROW_NUM}"  />
+                            <Text text="{orderNo}" tooltip="{characteristic}" />
+                            <Text text="{parts :[{path:'routingOperNo'},{path :'operationDesc'},{path : 'parentOperNo'},{path : 'parentOperationDesc'}],formatter : 'sap.oee.ui.Formatter.formatOperationForSelectOrderScreen'}" />
+                            <Text text="{parts :[{path:'material'},{path :'materialDescription'}],formatter : 'sap.oee.ui.Formatter.formatMaterialForSelectOrderScreen'}" />
+                            <Text text="{Y_STANDART_CBK}" />
+                            <Text text="{Y_KALITE_CBK}" />
+                            <Text text="{=Math.round((${Y_CAP_CBK_MM})*10)/10}" />
+                            <Text text="{Y_FATURALAMA}" />     
+                            <Text text="{=Math.round((${Y_BOY_CBK_M})*10000)/10000}" />
+                            <Text text="{parts :[{path:'quantityReleased'},{path:'defaultUomText'},{path :'appData>/decimalPrecision'}],formatter : 'sap.oee.ui.Formatter.formatQuantityAndUOMText'}" />
+                            <Text text="{Y_MARKA}" />
+                            <Text text="{Y_ULKE}" />
+                            <Text text="{Y_URETIM_YONTEMI}" />
+                            <Text text="{statusDesc}" />
+                            <Text text="{parts :[{path:'startDate'},{path :'startTime'},{path :'endDate'},{path :'endTime'}],formatter : 'sap.oee.ui.Formatter.formatStartEndDateTimeForSelectOrderScreen'}" />
+                            <Text text="{parts :[{path:'plannedStartDate'},{path :'plannedStartTime'}, {path :'plannedFinishDate'}, {path :'plannedFinishTime'}],formatter : 'sap.oee.ui.Formatter.formatStartEndDateTimeForSelectOrderScreen'}" />
+
+                            <Button visible="{action1Visible}" text="{action1Label}" enabled="{action1Enabled}" press="action1" icon="{action1Icon}" width="2rem"  
+                              tooltip="{=${action1Icon} === 'sap-icon://fob-watch'? 'Başlat': ${action1Icon} === 'sap-icon://media-play' ? 'Devam Et': ${action1Icon} === 'sap-icon://media-pause' ? 'Beklet':''}"> 
+                                <customData>
+                                    <core:CustomData key="targetAction" value="{targetAction1}" />
+                                </customData>
+                            </Button>
+                            <Button id = "cmplButton" visible="{action2Visible}" text="{action2Label}" press="action2" enabled="{=${viewModel>/ISPERMITTED} === 1 &amp;&amp; ${action2Enabled}}" icon="{action2Icon}" width="2rem" tooltip="{i18n>OEE_LABEL_ORD_CMPL}">
+                                <customData>
+                                    <core:CustomData key="targetAction" value="{targetAction2}" />
+                                </customData>
+                            </Button>
+                            <Button visible="{action3Visible}" text="{action3Label}" press="action3" icon="{action3Icon}" width="2rem" enabled="{parts :[ {path :'action3Enabled'},{path:'appData>/plantTimezoneOffset'},{path:'appData>/shift/startTimestamp'},{path:'appData>/shift/endTimestamp'}] ,formatter : 'sap.oee.ui.Formatter.formatProductionActivityButton' }">
+                                <customData>
+                                    <core:CustomData key="targetAction" value="{targetAction3}" />
+                                </customData>
+                            </Button>
+                            <Button text="{i18n>OEE_LABEL_DETAILS}" tooltip="{i18n>OEE_LABEL_ORD_DETAILS}" icon="sap-icon://inspection" press="navigateToOrderDetails" width="2rem" visible="{detailsVisible}"></Button>
+                            <Button tooltip="{i18n>OEE_LABEL_ORD_CHAR}" icon="sap-icon://display" press="onPressOpenCharacteristic" width="2rem"></Button>
+                            <Button type="{descriptionBtnColor}" icon="sap-icon://notes" press="onPressOpenDescription" width="2rem"></Button>
+                            <Button icon="sap-icon://approvals" press="onPressContinuousCasting" width="2rem"></Button>
+                            <Button icon="sap-icon://shelf" press="onPressOpenComponents" width="2rem"></Button>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</core:View>

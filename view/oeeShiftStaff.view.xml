@@ -1,0 +1,64 @@
+<mvc:View controllerName="customActivity.controller.oeeShiftStaff"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <App>
+        <pages>
+            <Page showFooter="true" showHeader="true" showSubHeader="true">
+                <content>
+                    <FlexBox height="100px" alignItems="Center" justifyContent="Center">
+                        <items>
+                            <Input id="persNo" change="controlLoginUser" width="20rem" placeholder="Lütfen sicil no giriniz.." />
+                            <ToolbarSeparator/>
+                            <Button type="Emphasized" text="Giriş" press="insertStaffDetailData"/>
+                        </items>
+                    </FlexBox>
+                    <HBox height="80%" width="100%">
+                        <Table id="operatorTable" items="{currentShiftStaff>/Row}" mode="MultiSelect" selectionChange="staffSelected" inset="false">
+                            <columns>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                                    <Text text="SİCİL NO."/>
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                                    <Text text="ADI"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                                    <Text text="SOYADI"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                                    <Text text="GRUPLAR"/>
+                                </Column>
+                                <Column id="idWorkplace" minScreenWidth="Tablet" demandPopin="true" hAlign="Center" visible="false">
+                                    <Text text="İŞ YERİ"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                                    <Text text="GİRİŞ TARİHİ"/>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{currentShiftStaff>PERNR}"/>
+                                        <Text text="{currentShiftStaff>VORNA}"/>
+                                        <Text text="{currentShiftStaff>NACHN}"/>
+                                        <Text text="{currentShiftStaff>ZSHIFT}"/>
+                                        <Text text="{currentShiftStaff>NAME}"/>
+                                        <Text text="{currentShiftStaff>LOGIN_TIME}"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </HBox>
+                </content>
+                <footer>
+                    <OverflowToolbar>
+                        <Button type="Success" text="Yenile" press="getAllStaff" icon="sap-icon://refresh"/>
+                        <ToolbarSpacer />
+                        <Button press="logoutStaff" text="Çıkış Yap" icon="sap-icon://visits" visible="true"/>
+
+
+                    </OverflowToolbar>
+                </footer>
+            </Page>
+        </pages>
+    </App>
+</mvc:View>

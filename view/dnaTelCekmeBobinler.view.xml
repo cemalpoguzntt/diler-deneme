@@ -1,0 +1,64 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="customActivity.controller.dnaTelCekmeBobinler"  xmlns:ui="sap.ui.table" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+    <Page showHeader="true" title="Bobin Veri Giriş Ekranı" showFooter="true" showNavButton="true">
+        <content>
+            <FlexBox direction="Column" height="100%" width="100%" >
+                <FlexBox width="100%" direction="Row" height="12%" justifyContent="SpaceBetween">
+                    <FlexBox alignItems="Center" direction="Row" width="auto">
+                        <Label text="Bobin Ekle:" textAlign="Center"  class="sapUiSmallMargin"  maxLength="0" width="130%"/>
+                        <Input id="inputBobinEkle" liveChange="liveChange" class="sapUiResponsiveMargin" width="85%" />
+                        <Label text="Kaydet:" textAlign="Center" class="sapUiSmallMargin" maxLength="0" width="130%"/>
+                        <Button icon="sap-icon://save" id="idBobinEkleKaydet" class="sapUiResponsiveMargin" press="newBobinEkle"/>
+                    </FlexBox>
+                    <FlexBox alignItems="Center" direction="Row" width="auto">
+                        <Label text="Bobin No:" textAlign="Center" class="sapUiSmallMargin" maxLength="0" width="130%"/>
+                        <ComboBox id="idBobinNo" type="Number" forceSelection="false" width="80%" maxWidth="110%" class="sapUiResponsiveMargin" items="{path:'/'}" >
+                            <core:Item key="{BOBBINNO}" text="{BOBBINNO}"/>
+                        </ComboBox>
+                        <Label text="Ağırlık:" textAlign="End" class="sapUiSmallMarginBottomTopEnd sapUiTinyMarginBegin" maxLength="0" width="115%"/>
+                        <Input id="inputWeight" liveChange="liveChange2" width="85%" class="sapUiResponsiveMargin" />
+                        <Label text="Kantar Tartım:" textAlign="Center"  class="sapUiSmallMargin" maxLength="0" width="130%"/>
+                        <Button icon="sap-icon://compare" id="idKantar" class="sapUiResponsiveMargin" press="onPressKantarTartım"/>
+                        <Label text="Kaydet:" textAlign="Center"  class="sapUiSmallMargin" maxLength="0" width="130%"/>
+                        <Button icon="sap-icon://save" id="idBobinNoKaydet" class="sapUiResponsiveMargin" press="comboBoxBobinSave"/>
+                    </FlexBox>
+                </FlexBox>
+                <FlexBox justifyContent="Center" direction="Row" height="5%">
+                    <Label text="Aktif Bobin Ağırlık Tablosu" design="Bold" class="sapUiTinyMarginTop" maxLength="0" width="auto"/>
+                </FlexBox>
+                <FlexBox>
+                    <Table id="idAktifBobinWeight" mode="SingleSelectLeft" items="{path: '/'}" class="sapUiResponsiveMargin">
+                        <columns>
+                            <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                <Label text="Bobin No" textAlign="Begin"  />
+                            </Column>
+                            <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                <Label text="Ağırlık" textAlign="Begin" />
+                            </Column>
+                            <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                <Label text="Tarih" textAlign="Begin" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{BOBBINNO}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                    <Text text="{WEIGHT}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                    <Text text="{INSDATE}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </FlexBox>
+            </FlexBox>
+        </content>
+        <footer>
+            <Toolbar>
+                <Button id="idExcel" icon="sap-icon://excel-attachment" type="Accept" text="Excel" press="onExport"/>
+                <ToolbarSpacer/>
+                <Button id="idDelete" icon="sap-icon://delete" type="Reject" text="Sil" press="onPressDelete"/>
+                <ToolbarSpacer/>
+                <Button id="idHistory" icon="sap-icon://history" text="Geçmiş" press="onPressHistoryButton"/>
+            </Toolbar>
+        </footer>
+    </Page>
+</mvc:View>

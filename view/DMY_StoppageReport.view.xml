@@ -1,0 +1,225 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:table="sap.ui.table" controllerName="customActivity.controller.DMY_StoppageReport">
+
+    <Page showHeader="false" showFooter="false" showNavButton="false">
+
+        <content>
+            <FlexBox direction="Column" id="selectionScreen" busy="false">
+                <FlexBox justifyContent="Center" direction="Row">
+                    <items>
+                        <VBox>
+                            <Button text="Rapor Ekranına Dön" type="Accept" icon="sap-icon://forward" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="openReportScreen" />
+                            <Label text="Tarih" textAlign="Begin" />
+                            <DatePicker id="Date" width="100%" placeholder="Tarih aralığı belirtiniz..." valueFormat="yyyy-MM-dd" displayFormat="long" change="onDateChange" class="sapUiSmallMarginBottom" />
+                            <Label text="Üretim Yeri" textAlign="Begin" />
+                            <ComboBox id="idproduction" width="100%" placeholder="Üretim Yeri belirtiniz..." selectionChange="onProdPlace" items="{path: '/'}">
+                                <core:ListItem key="{URETIM_YERI}" text="{URETIM_YERI}" />
+                            </ComboBox>
+                            <Label text="İş Yeri" textAlign="Begin" />
+                            <ComboBox id="idworkplace" width="100%" placeholder="İş Yeri belirtiniz..." selectionChange="onWorkcenter" items="{path: '/'}">
+                                <core:ListItem key="{PP_ISYERI}" text="{PP_ISYERI}" />
+                            </ComboBox>
+                            <Label text="Duruş Ana Başlık" textAlign="Begin" />
+                            <ComboBox id="iddowntimegroup" width="100%" placeholder="Duruş Ana Başlığı belirtiniz..." selectionChange="onCatgroup" items="{path: '/'}">
+                                <core:ListItem key="{DURUS_ANA_BASLIK}" text="{DURUS_ANA_BASLIK}" />
+                            </ComboBox>
+                            <Label text="Duruş Nedeni" textAlign="Begin" />
+                            <ComboBox id="iddowntimereason" width="100%" placeholder="Duruş Nedeni belirtiniz..." items="{path: '/'}">
+                                <core:ListItem key="{DURUS_NEDENI}" text="{DURUS_NEDENI}" />
+                            </ComboBox>
+                            <HBox justifyContent="center" width="100%">
+                                <Button text="Filtrele" icon="sap-icon://search" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="searchData" />
+                            </HBox>
+                        </VBox>
+                    </items>
+                </FlexBox>
+            </FlexBox>
+            <FlexBox id="idflexbox" width="100%" height="80%" direction="Column" visible="false">
+                <FlexBox alignContent="Stretch" alignItems="Stretch" backgroundDesign="Transparent" direction="Row" displayInline="false" fitContainer="false" justifyContent="Start" renderType="Div" wrap="NoWrap">
+                    <items>
+                        <HBox>
+                            <Button text="Seçim Ekranı" id="MainPanel2" type="Back" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin" press="backMainPanel" />
+                            
+                        </HBox>
+                    </items>
+                </FlexBox>
+                <FlexBox width="100%" id="idflex" height="110%" direction="Column" alignItems="Center">
+                    <items>
+                        <VBox>
+                            <ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
+                                <table:Table id="Table" rows="{path: '/'}" alternateRowColors="true" visible="true" enableSelectAll="false" selectionMode= "None">
+                                    <table:columns>
+                                        <table:Column hAlign="Center" width="50px">
+                                            <Label text="Üretim Yeri" textAlign="Center" />
+                                            <table:template>
+                                                <Label text="{URETIM_YERI}" wrapping="false" />
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column hAlign="Center" width="50px">
+
+                                            <Label text="İş Yeri" textAlign="Center" />
+                                            <table:template>
+                                                <Label text="{PP_ISYERI}" wrapping="false" />
+                                            </table:template>
+
+                                        </table:Column>
+                                        <table:Column hAlign="Center" width="50px">
+
+                                            <Label text="Duruş Ana Başlık" textAlign="Center" />
+                                            <table:template>
+                                                <Label text="{DURUS_ANA_BASLIK}" wrapping="false" />
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column hAlign="Center" width="50px">
+
+                                            <Label text="Duruş Nedeni" textAlign="Center" />
+                                            <table:template>
+                                                <Label text="{DURUS_NEDENI}" wrapping="false" />
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column hAlign="Center" width="50px" id="vardiya" visible="false">
+
+                                            <Label text="Tekrar" textAlign="Center" />
+
+                                        </table:Column>
+                                        <table:Column id="dailyMultiheader">
+                                            <table:multiLabels>
+                                                <Label text="Günlük" textAlign="Center" width="100%" />
+                                                <Label text="Tekrar" textAlign="Center" width="100%" />
+                                            </table:multiLabels>
+                                            <table:template>
+                                                <Label text="{GUNLUK_TEKRAR}" wrapping="false" />
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column>
+                                            <table:multiLabels>
+                                                <Label text="Günlük" />
+                                                <Label text="Dakika" textAlign="Center" width="100%" />
+                                            </table:multiLabels>
+                                            <table:template>
+                                                <Label text="{GUNLUK_DAKIKA}" wrapping="false" />
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column>
+                                            <table:multiLabels>
+                                                <Label text="Günlük" />
+                                                <Label text="Dak / Dök" textAlign="Center" width="100%" />
+                                            </table:multiLabels>
+                                            <table:template>
+                                                <Label text="{GUNLUK_MIN_DOK}" wrapping="false" />
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column hAlign="Center" width="50px">
+                                            <table:multiLabels>
+                                                <Label text="Günlük" />
+                                                <Label text="Yüzdelik Dilim" textAlign="Center" width="100%" />
+                                            </table:multiLabels>
+                                            <table:template>
+                                                <Label text="{GUNLUK_PRECENT}" wrapping="false" />
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column id="monthlyMultiheader">
+                                            <table:multiLabels>
+                                                <Label text="Aylık" textAlign="Center" width="100%" />
+                                                <Label text="Tekrar" textAlign="Center" width="100%" />
+                                            </table:multiLabels>
+                                            <table:template>
+                                                <Label text="{AYLIK_TEKRAR}" wrapping="false" />
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column>
+                                            <table:multiLabels>
+                                                <Label text="Aylık" />
+                                                <Label text="Dakika" textAlign="Center" width="100%" />
+                                            </table:multiLabels>
+                                            <table:template>
+                                                <Label text="{AYLIK_DAKIKA}" wrapping="false" />
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column>
+                                            <table:multiLabels>
+                                                <Label text="Aylık" />
+                                                <Label text="Dak / Dök" textAlign="Center" width="100%" />
+                                            </table:multiLabels>
+                                            <table:template>
+                                                <Label text="{AYLIK_MIN_DOK}" wrapping="false" />
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column hAlign="Center" width="50px">
+                                            <table:multiLabels>
+                                                <Label text="Aylık" />
+                                                <Label text="Yüzdelik Dilim" textAlign="Center" width="100%" />
+                                            </table:multiLabels>
+                                            <table:template>
+                                                <Label text="{AYLIK_PRECENT}" wrapping="false" />
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column id="yearlyMultiheader">
+                                            <table:multiLabels>
+                                                <Label text="Yıllık" textAlign="Center" width="100%" />
+                                                <Label text="Tekrar" textAlign="Center" width="100%" />
+                                            </table:multiLabels>
+                                            <table:template>
+                                                <Label text="{YILLIK_TEKRAR}" wrapping="false" />
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column>
+                                            <table:multiLabels>
+                                                <Label text="Yıllık" />
+                                                <Label text="Dakika" textAlign="Center" width="100%" />
+                                            </table:multiLabels>
+                                            <table:template>
+                                                <Label text="{YILLIK_DAKIKA}" wrapping="false" />
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column>
+                                            <table:multiLabels>
+                                                <Label text="Yıllık" />
+                                                <Label text="Dak / Dök" textAlign="Center" width="100%" />
+                                            </table:multiLabels>
+                                            <table:template>
+                                                <Label text="{YILLIK_MIN_DOK}" wrapping="false" />
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column hAlign="Center" width="50px">
+                                            <table:multiLabels>
+                                                <Label text="Yıllık" />
+                                                <Label text="Yüzdelik Dilim" textAlign="Center" width="100%" />
+                                            </table:multiLabels>
+                                            <table:template>
+                                                <Label text="{YILLIK_PRECENT}" wrapping="false" />
+                                            </table:template>
+                                        </table:Column>
+                                    </table:columns>
+                                    <!-- <ColumnListItem vAlign="Middle">
+                                        <Text text="{URETIM_YERI}" width="100%" textAlign="Center" />
+                                        <Text text="{PP_ISYERI}" width="100%" textAlign="Center" />
+                                        <Text text="{DURUS_ANA_BASLIK}" width="100%" textAlign="Center" />
+                                        <Text text="{DURUS_NEDENI}" width="100%" textAlign="Center" />
+                                        <Text text="{GUNLUK_DAKIKA}" width="100%" textAlign="Center" /> 
+                                        <Text text="{GUNLUK_TEKRAR}" width="100%" textAlign="Center" />
+                                        <Text text="{GUNLUK_MIN_DOK}" width="100%" textAlign="Center" />
+                                        <Text text="{GUNLUK_PRECENT}" width="100%" textAlign="Center" />
+                                        <Text text="{GUNLUK_TOPLAMDAKIKA}" width="100%" textAlign="Center" />
+                                        <Text text="{GUNLUK_TOPLAMTEKRAR}" width="100%" textAlign="Center" />
+                                        <Text text="{AYLIK_DAKIKA}" width="100%" textAlign="Center" />
+                                        <Text text="{AYLIK_TEKRAR}" width="100%" textAlign="Center" />
+                                        <Text text="{AYLIK_MIN_DOK}" width="100%" textAlign="Center" />
+                                        <Text text="{AYLIK_PRECENT}" width="100%" textAlign="Center" />
+                                        <Text text="{AYLIK_TOPLAMDAKIKA}" width="100%" textAlign="Center" />
+                                        <Text text="{AYLIK_TOPLAMTEKRAR}" width="100%" textAlign="Center" />
+                                        <Text text="{YILLIK_DAKIKA}" width="100%" textAlign="Center" />
+                                        <Text text="{YILLIK_TEKRAR}" width="100%" textAlign="Center" />
+                                        <Text text="{YILLIK_MIN_DOK}" width="100%" textAlign="Center" />
+                                        <Text text="{YILLIK_PRECENT}" width="100%" textAlign="Center" />
+                                        <Text text="{YILLIK_TOPLAMDAKIKA}" width="100%" textAlign="Center" />
+                                        <Text text="{YILLIK_TOPLAMTEKRAR}" width="100%" textAlign="Center" />
+                                    </ColumnListItem> -->
+                                </table:Table>
+                            </ScrollContainer>
+                        </VBox>
+                    </items>
+                </FlexBox>
+            </FlexBox>
+        </content>
+    </Page>
+</mvc:View>

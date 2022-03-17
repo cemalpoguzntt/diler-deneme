@@ -1,0 +1,128 @@
+<core:View xmlns:core="sap.ui.core" xmlns:suite="sap.suite.ui.commons" xmlns:l="sap.ui.layout" xmlns="sap.m" controllerName="customActivity/controller/oeeReportQuantitySteelChrac">
+    <Page showHeader="false" showNavButton="false">
+        <content>
+            <l:VerticalLayout width="100%">
+                <core:Fragment fragmentName="customActivity.fragmentView.zorderCardCharacteristicFragmentSdm" type="XML" id="orderCardFragment" />
+                <Toolbar class="sapUiMediumMarginTop">
+                    <Label text="{i18n>OEE_LABEL_MIXED_BILLET} : " design="Bold" width="110px" />
+                    <CheckBox id="idCheckBox" select = "qualityCheckBox"/>
+                    <Label text="{i18n>OEE_LABEL_MIXED_BILLET_QUALITY} : " design="Bold" />
+                    <Select id="quality" items="{path: 'qualities>/'}" forceSelection="false" width="150px" change = "qualityChange">
+                        <core:Item key="{qualities>VALUE}" text="{qualities>VALUE}" />
+                    </Select>
+                    <ToolbarSpacer />
+                    <Label design="Bold" text="Standart Dışı Miktarı : " width="160px" />
+                    <Input value="{orderCharConfQryModel>/0/NON_STANDARD}" enabled="false" width="50px" />
+                    <Label design="Bold" text="Kısa Kütük Miktarı : " width="140px" />
+                    <Input value="{orderCharConfQryModel>/0/SHORT_BILLET}" enabled="false" width="50px" />
+                    <Label design="Bold" text="Soğuk Şarj Miktarı : " width="140px" />
+                    <Input value="{orderCharConfQryModel>/0/COLD_CHARGE}" enabled="false" width="50px" />
+                    <Label design="Bold" text="Sıcak Şarj Miktarı : " width="140px" />
+                    <Input value="{orderCharConfQryModel>/0/HOT_CHARGE}" enabled="false" width="50px" />
+                </Toolbar>
+                <Table id="reportProductionQuantityTable" editable="false" items="{/productionData}">
+                    <columns>
+                        <Column hAlign="Center" width="3%">
+                            <Label text="{i18n>OEE_LABEL_ROAD}" />
+                        </Column>
+                        <Column hAlign="Center" width="20%">
+                            <Label text="{i18n>OEE_LABEL_PARAMETER}" />
+                        </Column>
+                        <Column hAlign="Center" width="8%">
+                            <Label text="Std. Dışı" tooltip="{i18n>OEE_LABEL_NON-STANDARD}" />
+                        </Column>
+                        <Column hAlign="Center" width="4%">
+                            <Label text="KK" tooltip="{i18n>OEE_LABEL_SHORT_BILLET}" />
+                        </Column>
+                        <Column hAlign="Center" width="6.5%">
+                            <Label text="Sıcak / Soğuk"  />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="Miktar" />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_UOM}" />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="Tpl Mik. (ADT)" />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="Tpl. Mik. (TON)" />
+                        </Column>
+                        <Column visible="false">
+                            <Label text="{i18n>OEE_LABEL_COMMENTS}" />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_DETAILS}" />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="{i18n>OEE_BTN_DELETE}" />
+                        </Column>
+                        <Column hAlign="Center" visible="{= ${appData>/plant} === '2001' ? true : false }">
+                            <Label text="{i18n>OEE_LABEL_NOTE}" />
+                        </Column>
+                        <Column hAlign="Center"  visible="{= ${appData>/plant} === '3001' ? true : false }">
+                            <Label text="{i18n>OEE_LABEL_REASON_OF_DEVIATION}" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{LINE}" />
+                                <HBox alignItems="Center" justifyContent="Center">
+                                    <VBox width="80px">
+                                        <Text text=" {Y_EBAT} / " />
+                                    </VBox>
+                                    <VBox width="125px">
+                                        <ComboBox items="{path: 'lengths>/', templateShareable:false}" forceSelection="false" id="idLengths" selectedKey="{Y_BOY}" width="95px" change = "changeLength">
+                                            <core:Item key="{lengths>VALUE}" text="{lengths>VALUE}" />
+                                        </ComboBox>
+                                    </VBox>
+                                    <VBox width="50px">
+                                        <core:Icon src="{= ${NON_STANDARD_COLUMN} === 0 ? '': 'sap-icon://status-error'}" color="red" tooltip="{i18n>OEE_LABEL_NON-STANDARD}"></core:Icon>
+                                    </VBox>
+                                    <VBox width="50px">
+                                        <core:Icon src="{= ${SHORT_BILLE_COLUMN} === 0 ? '': 'sap-icon://less'}" color="red" tooltip="{i18n>OEE_LABEL_SHORT_BILLET}"></core:Icon>
+                                    </VBox>
+                                    <VBox width="50px">
+                                        <core:Icon src="{= ${COLD_CHARGE_COLUMN} === 0 ? '': 'sap-icon://heating-cooling'}" color="blue" tooltip="{i18n>OEE_LABEL_COLD_CHARGE}"></core:Icon>
+                                    </VBox>
+                                    <VBox width="50px">
+                                        <core:Icon src="{= ${HOT_CHARGE_COLUMN} === 0 ? '': 'sap-icon://color-fill'}" color="red" tooltip="{i18n>OEE_LABEL_HOT_CHARGE}"></core:Icon>
+                                    </VBox>
+                                </HBox>
+                                <CheckBox selected="{= ${KURZTEXT} === 'Standart Dışı' ? true : false }" enabled="{= ${KURZTEXTBOOLEAN} === 'Standart Dışı' ? false : true }" select="onClickNonStandard" />
+                                <CheckBox select="onClickShortBillet" />
+                                <HBox>
+                                    <CheckBox tooltip="Sıcak Kütük" id="hot" selected="{= ${HOT} === 'X' ? true : false }" enabled="{= ${HOTENABLED} === 'X' ? false : true}" select="onClickCharge" />
+                                    <CheckBox tooltip="Soğuk Kütük" id="cold" selected="{= ${COLD} === 'X' ? true : false }" enabled="{= ${COLDENABLED} === 'X' ? false : true}" select="onClickCharge" />
+                                </HBox>
+
+                                <Input value="{quantity}" liveChange="onChangeValidateQuantity" width="80px" />
+                                <Input value="{UOMTEXT}" showSuggestion="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelpRequest" width="80px" />
+                                <Text text="{SUM_QUANTITY}" />
+                                <Text text="{SUM_QUANTITYTON}" />
+                                <Button text="{parts : [{path : 'i18n>OEE_BTN_ADD'},{path:'comments'}], formatter : 'sap.oee.ui.Formatter.reasonCodeButttonFormatter'}" tooltip="{i18n>OEE_BTN_ADD}" icon="sap-icon://comment" visible="{path : 'dcElementType', formatter : '.checkIfNotLossType'}" press="onClickAddComments" width="7px" />
+                                <Button text="{i18n>OEE_LABEL_DETAILS}" icon="sap-icon://inspection"  enabled="{= ${SUM_QUANTITY} === 0 ? false: true}" press="onClickShowListOfProductionData" />
+            	          <Button text="{i18n>OEE_BTN_DELETE}" press="onPressDeleteConfirmation1" type="Reject" icon="sap-icon://delete" />
+                                <Button text="{BUTTONNAME}" icon="sap-icon://comment" width="7rem" press="onClickOpenNote" enabled="{= ${NOTEENABLED} === '0' ? false: true}"></Button>
+                               <Button text="{i18n>OEE_LABEL_REASON_OF_DEVIATION}" press = "onPressReasonDeviation"/>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </l:VerticalLayout>
+        </content>
+        <footer>
+            <Bar>              
+	  <contentLeft>
+                    <Button text="{i18n>OEE_LABEL_REFRESH}" type="Accept" press="refreshData" />
+  	 </contentLeft>
+                <contentRight>
+                    <Button text="{i18n>OEE_BTN_ATTACH}"  press="onPressNewCasting" visible="false" />
+                    <Button  id = "clickButton" text="{i18n>OEE_BTN_SAVE}"  type="Accept"  icon="sap-icon://save" press="onClickConfirm" visible="true"></Button>
+                </contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</core:View>

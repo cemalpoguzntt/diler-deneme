@@ -1,0 +1,250 @@
+<mvc:View xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:layout="sap.ui.layout" controllerName="customActivity.controller.counterData"><Page title="" showNavButton="false" showFooter="true" showHeader="true">
+
+    
+		
+    <content>
+          <FlexBox width="100%" id="box0" justifyContent="Center" height="100%" direction="Column">
+            <items>
+                                    
+                                    <FlexBox width="100%" id="box2" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+                                        <items>
+    
+                                        <FlexBox width="100%" id="box21" alignItems="Center"/>
+                                        <FlexBox width="100%" id="box22" alignItems="Center"/>
+                                        <FlexBox width="100%" id="box23" alignItems="Center"/>
+                                        <FlexBox width="100%" id="box24" alignItems="Center"/>
+                                        <FlexBox width="100%" id="box25" alignItems="Center"/>
+                                        
+    
+                                        </items>
+                                    </FlexBox>	
+                                    
+                                    <FlexBox width="100%" id="box3" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+                                        <items>
+    
+                                        <FlexBox width="100%" id="box31" alignItems="Center" justifyContent="End">
+    
+                                            <items>
+    
+                                                <Label xmlns="sap.m" text="Plant" width="100%" id="label0" design="Bold"/>
+    
+                                            </items>
+    
+                                        </FlexBox>
+                                        <FlexBox width="100%" id="box32" alignItems="Center" justifyContent="Center">
+                                            <items>
+                                                <ComboBox xmlns="sap.m" id="inputplant" selectionChange="SelectedPlant" items="{path : '/'}">
+                                                    <items>
+                                                        <core:ListItem key="{PLANT}" text="{PLANT}"/>
+                                                        </items>
+                                                    
+                                                </ComboBox>
+                                            </items>
+                                        </FlexBox>
+                                        <FlexBox width="100%" id="box33" alignItems="Center" justifyContent="End">
+                                        </FlexBox>
+                                        <FlexBox width="100%" id="box34" alignItems="Center" justifyContent="Center">
+                                        </FlexBox>
+                                        <FlexBox width="100%" id="box35" alignItems="Center"/>
+                                        
+    
+                                        </items>
+                                    </FlexBox>	
+                                    
+                                    <FlexBox width="100%" id="box4" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+                                        <items>
+    
+                                        <FlexBox width="100%" id="box41" alignItems="Center"/>
+                                        <FlexBox width="100%" id="box42" alignItems="Center"/>
+                                        <FlexBox width="100%" id="box43" alignItems="Center"/>
+                                        <FlexBox width="100%" id="box44" alignItems="Center"/>
+                                        <FlexBox width="100%" id="box45" alignItems="Center"/>
+                                        
+    
+                                        </items>
+                                    </FlexBox>	
+                                    
+                                    <FlexBox width="100%" id="box5" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+                                        <items>
+    
+                                        <FlexBox width="100%" id="box51" alignItems="Center" justifyContent="End">
+    
+                                            <items>
+    
+                                                <Label text="Sayaç Adı" width="100%" id="label0_1638366219139" design="Bold"/>
+    
+                                            </items>
+    
+                                        </FlexBox>
+                                        <FlexBox width="100%" id="box52" alignItems="End" alignContent="End" justifyContent="Center">
+                                            <items>
+                                                <ComboBox xmlns="sap.m" id="inputsayacadi" selectionChange="counterName" items="{path : '/'}">
+                                                    <items>
+                                                        <core:ListItem key="{COUNTER_NAME}" text="{COUNTER_NAME}"/>
+                                                        </items>
+                                                    
+                                                </ComboBox>
+                                            </items>
+                                        </FlexBox>
+                                        <FlexBox width="100%" id="box53" alignItems="Center" justifyContent="End">
+                                        </FlexBox>
+                                        <FlexBox width="100%" id="box54" alignItems="Center" justifyContent="Center">
+                                        <items>
+                                            <Button xmlns="sap.m" text="Kaydet" id="idkaydet" press="save" type="Emphasized"/>
+                                        </items>
+                                        </FlexBox>
+                                        <FlexBox width="100%" id="box55" alignItems="Center"/>
+                                        
+    
+                                        </items>
+                                    </FlexBox>	
+                                    
+                                    <FlexBox width="100%" id="box6" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+                                        <items>
+    
+                                        <FlexBox width="100%" id="box61" alignItems="Center"/>
+                                        <FlexBox width="100%" id="box62" alignItems="Center"/>
+                                        <FlexBox width="100%" id="box63" alignItems="Center"/>
+                                        <FlexBox width="100%" id="box64" alignItems="Center"/>
+                                        <FlexBox width="100%" id="box65" alignItems="Center"/>
+                                        
+    
+                                        </items>
+                                    </FlexBox>	
+                                    
+                                    <FlexBox width="100%" id="box7" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+                                        <items>
+    
+                                        <FlexBox width="100%" id="box71" alignItems="Center" justifyContent="End">
+    
+                                            <items>
+    
+                                                <Label text="Tarih" width="100%" id="label1012" design="Bold"/>
+    
+                                            </items>
+    
+                                        </FlexBox>
+                                        <FlexBox width="100%" id="box72" alignItems="Center" justifyContent="Center">
+                                            <items>
+                                                <DatePicker xmlns="sap.m" id="inputdatepicker" change="getData"/>
+                                            </items>
+                                        </FlexBox>
+                                        <FlexBox width="100%" id="box73" alignItems="Center">
+                                            <items>
+                                            </items>
+                                        </FlexBox>
+                                        <FlexBox width="100%" id="box74" alignItems="Center"/>
+                                        <FlexBox width="100%" id="box75" alignItems="Center"/>
+                                        
+    
+                                        </items>
+                                    </FlexBox>
+    
+    
+                                    <FlexBox width="97%" id="box14" justifyContent="Center" alignItems="Center" height="70%" direction="Row">
+    
+    
+                                        
+                         <ui:Table id="mainTable" selectionMode="Single" rowHeight="50%" width="98%" selectionBehavior="Row" minAutoRowCount = "8" enableColumnReordering="false" visibleRowCountMode="Auto" rows="{/}" class="sapUiResponsiveMargin">
+                         <ui:columns>
+    
+                             <ui:Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                     <Label text="Plant" textAlign="Begin"/>
+                                 <ui:template>
+                                      <Text text="{PLANT}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                 </ui:template>
+                             </ui:Column>
+    
+                             <ui:Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                     <Label text="Sayaç Adı" textAlign="Begin"/>
+                                 <ui:template>
+                                     <Text text="{COUNTER_NAME}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                 </ui:template>
+                             </ui:Column>
+    
+                             <ui:Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                     <Label text="Sayaç Açıklaması" textAlign="Begin"/>
+                                 <ui:template>
+                                     <Text text="{COUNTER_EXP}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                 </ui:template>
+                             </ui:Column>
+
+                             <ui:Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                     <Label text="Vard 1" textAlign="Begin"/>
+                                 <ui:template>
+                                     <Input value = "{VARDIYA1}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                 </ui:template>
+                             </ui:Column>
+
+                             <ui:Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                     <Label text="Vard 2" textAlign="Begin"/>
+                                 <ui:template>
+                                     <Input value = "{VARDIYA2}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                 </ui:template>
+                             </ui:Column>
+
+                             <ui:Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                     <Label text="Vard 3" textAlign="Begin"/>
+                                 <ui:template>
+                                     <Input value = "{VARDIYA3}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                 </ui:template>
+                             </ui:Column>
+    
+                              <ui:Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                     <Label text="Toplam(Gün)" textAlign="Begin"/>
+                                 <ui:template>
+                                     <Input text="{GUN}" value = "{GUN}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                 </ui:template>
+                             </ui:Column>
+
+                             <ui:Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                     <Label text="Ölçü Bir." textAlign="Begin"/>
+                                 <ui:template>
+                                     <Text text="{OLCU_BRM}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                 </ui:template>
+                             </ui:Column>
+
+
+                             <ui:Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                     <Label text="Aktarım" textAlign="Begin"/>
+                                 <ui:template>
+                                     <Text text="{ERP_SEN}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                 </ui:template>
+                             </ui:Column>
+
+                             <ui:Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                     <Label text="Durum" textAlign="Begin"/>
+                                 <ui:template>
+                                    <Text text="{ERP_SEND}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                 </ui:template>
+                             </ui:Column>
+                     
+                     
+                         </ui:columns>
+                      </ui:Table>
+    
+    
+    
+    
+    
+                                    </FlexBox>
+                                    
+                                    
+                                    
+                                    
+                                    
+            
+            
+                
+                
+                
+                
+                
+                
+                
+                
+            </items>
+        </FlexBox>
+    </content>
+        </Page>
+    </mvc:View>

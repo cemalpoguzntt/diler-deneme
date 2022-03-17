@@ -1,0 +1,379 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" controllerName="customActivity.controller.oeeBilletInsideFurnaceFLM">
+  <html:style>
+    .cNo {
+
+        font-size : 2.5rem !important; 
+
+    }
+
+    .oeeComponent .sapMLabel.labelcss {
+
+        
+        font-size: 1.5rem !important
+     
+      
+     }
+     
+     .oeeComponent .sapMLabel.textcss {
+     
+         font-size: 1.5rem !important;
+         color:red !important;
+     }
+html.sap-desktop .sapMDialog {
+    min-width: 112rem;
+}
+  .sapMListTbl .sapMText, .sapMListTbl .sapMLabel {
+    font-size: 1.2rem;
+    color: #0a64eb;
+    font-weight: normal;
+}   
+.sapMDialog>header.sapMDialogTitle .sapMTitle {
+    color: #ff0000;
+    margin: auto;
+    vertical-align: middle;
+}
+.sapMTitleStyleAuto {
+    font-size: 1.5rem;
+}
+.sapMListTbl th {
+    background: #efb40e9c;
+    border-bottom: 1px solid #33ef10;
+}
+
+
+  </html:style>
+
+
+<Page showNavButton="false" showHeader="false">
+        <content>
+            <FlexBox alignItems="Center" justifyContent="Start">
+                <items>
+                    <HBox justifyContent="Center" class="sapUiSmallMarginTop">
+                        <HBox alignItems="Center" justifyContent="End" width="auto" class="billetInsideFLMTitle">
+                            <Label text="FIRIN İÇİ(MII - HMI) " id="fl" />
+                            <Label width="1rem" text=" : "/>
+                            <Label id="idMainSum" width="auto" class="billetInsideFLMTitle" text="{= ${confirmBilletListBIF>/}.length === 0? 0: ${confirmBilletListBIF>/}.length}"/>
+                                <Label id="frcpconumber" width="auto" class="billetInsideFLMTitle" text=""/>   
+                        </HBox>
+                        <VBox class="sapUiSmallMarginBegin">
+                            <ComboBox id="searchFieldOrder" width="14rem" placeholder="{i18n>titleOrderNo}" items="{qualityFilterModel>/Row}" change="">
+                                <core:ListItem text="{qualityFilterModel>AUFNR}" key="{qualityFilterModel>AUFNR}"/>
+                            </ComboBox>
+                        </VBox>
+                        <VBox class="sapUiSmallMarginBegin">
+                            <ComboBox id="searchFieldQuality" width="14rem" placeholder="{i18n>OEE_LABEL_BILLET_QUALITY_FILTER}" items="{qualityFilterModel>/Row}" change="">
+                                <core:ListItem text="{qualityFilterModel>CHARC_VALUE}" key="{qualityFilterModel>CHARC_VALUE}"/>
+                            </ComboBox>
+                        </VBox>
+                        <VBox class="sapUiSmallMarginBegin">
+                            <ComboBox id="searchFieldCap" width="14rem" placeholder="{i18n>OEE_LABEL_BILLET_CAP_FILTER}" items="{capFilterModel>/Row}" change="">
+                                <core:ListItem text="{capFilterModel>CHARC_VALUE}" key="{capFilterModel>CHARC_VALUE}"/>
+                            </ComboBox>
+                        </VBox>
+                        <!-- <VBox class="sapUiSmallMarginBegin">
+                        <ComboBox width="12rem" id="listSignalPoint" placeholder="{i18n>titleSignalPoint}" selectionFinish="handleSelectionFinish" items="{signalPoints>/Row}">
+                            <core:ListItem key="{signalPoints>STATUS}" text="{signalPoints>DESCRIPTION}" />
+                        </ComboBox>
+                    </VBox>
+                    <VBox class="sapUiSmallMarginBegin">
+                        <DatePicker id="idDate" valueFormat="dd.MM.yyyy" displayFormat="dd.MM.yyyy" />
+                    </VBox> -->
+                        <VBox class="sapUiSmallMarginBegin">
+                            <!--     <DateRangeSelection visible="false" id="idDatePicker" valueFormat="dd.mm.yyyy" /> -->
+                            <Button text="{i18n>titleSearch}" press="getBilletList" class="sapUiSmallMarginBegin"/>
+                        </VBox>
+                    </HBox>
+
+                    <FlexBox width="50%">
+
+                            <FlexBox width="22%" justifyContent="Center">
+                                <Label text="Sipariş Numarası: " design="Bold" class = "labelcss"/>
+                                <Label id="sipno" text="{AUFNR}" class = "textcss"  />
+                                
+                         </FlexBox>
+
+                            <FlexBox justifyContent="Start" width="22%"> 
+                                <Label text="Malzeme Kodu: " design="Bold" class = "labelcss"/>
+                                <Label id="malzemekodu" text="{AUFNR}" class = "textcss"/>
+                                                               
+                          </FlexBox>
+
+                            <FlexBox justifyContent="Start" width="42%">
+
+                                <Label text="Kütük Detayı: " design="Bold" class = "labelcss"/>
+                                <Label id="filmkalite" text="{MAKTX}" class = "textcss"/>
+                          </FlexBox>
+
+                          <FlexBox justifyContent="Start" width="14%">
+
+                            <Label text="Planlanan-Üretilen-Kalan: " design="Bold" class = "labelcss"/>
+                            <Label id="uretimMiktar" text="" class = "textcss"/>
+                      </FlexBox>
+
+                        
+
+                            
+
+
+                    </FlexBox>
+                </items>
+            </FlexBox>
+            
+            <Table id="firstBillet" includeItemInSelection="false" sticky="HeaderToolbar,InfoToolbar,ColumnHeaders" items="{confirmBilletListBEF>/}" growing="true" growingScrollToLoad="true" growingThreshold="100">
+                <columns>
+                    <!-- <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_SALESORDER}" tooltip="SatÄ±Å SipariÅ NumarasÄ±"/>
+                    </Column> -->
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_WORKORDER}" tooltip="Sipariş Numarası"/>
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_ORDER_SEQ_NO}" tooltip="Sipariş Sırası"/>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_SEQ}" tooltip="Kütük Sırası"/>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_LOCATION}" tooltip="Lokasyon"/>
+                    </Column>
+                    <Column width="7rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_FURNACE_ENTRY_TIME}" tooltip="Fırın Giriş Zamanı"/>
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_FURNACE_TIME}" tooltip="Fırın İçinde Kalma Süresi"/>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_KTKID}" tooltip="Kütük ID"/>
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CAST_CASTING_NO}" tooltip="Döküm Numarası"/>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_ENTRY_WEIGHT}" tooltip="Gerçek Tartım Bilgisi"/>
+                    </Column>
+                      <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="Parti No" tooltip="PARTI"/>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_ORIGIN}" tooltip="Menşei"/>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_QUALITY}" tooltip="Kütük Kalitesi"/>
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_DIMENSION}" tooltip="Ebat"/>
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_HEIGHT}" tooltip="Boy"/>
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_VACUUM}" tooltip="Vakum"/>
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_GRINDING}" tooltip="Taşlama"/>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_PRODUCT_QUALITY}" tooltip="Mamul Kalitesi"/>
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_DIAMETER}" tooltip="Çap"/>
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_ND}" tooltip="Nervür Düz"/>
+                    </Column>
+                    <Column width="4rem" visible="false" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_TABLE}"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <!-- <Text text="{confirmBilletList>KDAUF}" /> -->
+                            <Text text="{confirmBilletListBEF>AUFNR}"/>
+                            <Text text="{confirmBilletListBEF>AUFNR_SEQ}"/>
+                            <Text text="{confirmBilletListBEF>BILLET_SEQ}"/>
+                            <Text text="{confirmBilletListBEF>SIGNAL_POINT}"/>
+                            <Text text="{confirmBilletListBEF>FURNACE_ENTRY_TIME}"/>
+                            <Text text="{confirmBilletListBEF>TIME_DIFF}"/>
+                            <Text text="{confirmBilletListBEF>KTKID}"/>
+                            <Text text="{confirmBilletListBEF>CASTID}"/>
+                            <Text text="{confirmBilletListBEF>ENTRY_WEIGHT}"/>
+                            <Text text="{confirmBilletListBEF>CHARG}"/>
+                            <Text text="{confirmBilletListBEF>Y_KUTUK_MENSEI}"/>
+                            <Text text="{confirmBilletListBEF>Y_KALITE_KTK}"/>
+                            <Text text="{confirmBilletListBEF>Y_EBAT}"/>
+                            <Text text="{confirmBilletListBEF>Y_BOY_KTK}"/>
+                            <Text text="{confirmBilletListBEF>Y_VAKUM}"/>
+                            <Text text="{= ${confirmBilletListBEF>Y_TASLAMA} === '' ? '---' : ${confirmBilletListBEF>Y_TASLAMA}}"/> 
+                            <Text text="{confirmBilletListBEF>Y_KALITE_FLM}"/>
+                            <Text text="{confirmBilletListBEF>Y_CAP_FLM_MM}"/>
+                            <Text text="{confirmBilletListBEF>Y_NERVUR_DUZ}"/>
+                            <Text text="{confirmBilletListBEF>BTABLE}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+      
+            <FlexBox backgroundDesign="Solid" height="30px" alignItems="Center" justifyContent="Center">
+            </FlexBox>
+
+            <ScrollContainer height="81%" vertical="true">
+            <Table id="tblBilletMaster" mode="MultiSelect" sticky="ColumnHeaders" selectionChange="billetItemSelected" includeItemInSelection="false" items="{confirmBilletList>/}" growing="true" growingScrollToLoad="true" growingThreshold="100">
+                <columns>
+                    <!-- <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_SALESORDER}" tooltip="SatÄ±Å SipariÅ NumarasÄ±"/>
+                    </Column> -->
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_WORKORDER}" tooltip="Sipariş Numarası"/>
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_ORDER_SEQ_NO}" tooltip="Sipariş Sırası"/>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_SEQ}" tooltip="Kütük Sırası"/>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_LOCATION}" tooltip="Lokasyon"/>
+                    </Column>
+                    <Column width="7rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_FURNACE_ENTRY_TIME}" tooltip="Fırın Giriş Zamanı"/>
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_FURNACE_TIME}" tooltip="Fırın İçinde Kalma Süresi"/>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_KTKID}" tooltip="Kütük ID"/>
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CAST_CASTING_NO}" tooltip="Döküm Numarası"/>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_ENTRY_WEIGHT}" tooltip="Gerçek Tartım Bilgisi"/>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="Parti No" tooltip="PARTI"/>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_ORIGIN}" tooltip="Menşei"/>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_QUALITY}" tooltip="Kütük Kalitesi"/>
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_DIMENSION}" tooltip="Ebat"/>
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_HEIGHT}" tooltip="Boy"/>
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_VACUUM}" tooltip="Vakum"/>
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_GRINDING}" tooltip="Taşlama"/>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_PRODUCT_QUALITY}" tooltip="Mamul Kalitesi"/>
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_DIAMETER}" tooltip="Çap"/>
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_ND}" tooltip="Nervür Düz"/>
+                    </Column>
+                    <Column width="4rem" visible="false" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_TABLE}"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <customData>
+                            <core:CustomData key="{confirmBilletList>MIN_ROW}" value="confirmBilletList&gt;MIN_ROW" writeToDom="true"/>
+                        </customData>                        
+                        <cells>
+                            <!-- <Text text="{confirmBilletList>KDAUF}" /> -->
+                            <Text text="{confirmBilletList>AUFNR}"/>
+                            <Text text="{confirmBilletList>AUFNR_SEQ}"/>
+                            <Text text="{confirmBilletList>BILLET_SEQ}"/>
+                            <Text text="{= ${confirmBilletList>MIN_ROW} === 'X' ? 'FIRIN ÇIKIŞI' : ${confirmBilletList>SIGNAL_POINT}}"/>
+                            <Text text="{confirmBilletList>FURNACE_ENTRY_TIME}"/>
+                            <Text text="{confirmBilletList>TIME_DIFF}"/>
+                            <Text text="{confirmBilletList>KTKID}"/>
+                            <Text text="{confirmBilletList>CASTID}"/>
+                            <Text text="{confirmBilletList>ENTRY_WEIGHT}"/>
+                            <Text text="{confirmBilletList>CHARG}"/>
+                            <Text text="{confirmBilletList>Y_KUTUK_MENSEI}"/>
+                            <Text text="{confirmBilletList>Y_KALITE_KTK}"/>
+                            <Text text="{confirmBilletList>Y_EBAT}"/>
+                            <Text text="{confirmBilletList>Y_BOY_KTK}"/>
+                            <Text text="{confirmBilletList>Y_VAKUM}"/>
+                            <Text text="{= ${confirmBilletList>Y_TASLAMA} === '' ? '---' : ${confirmBilletListBEF>Y_TASLAMA}}"/> 
+                            <Text text="{confirmBilletList>Y_KALITE_FLM}"/>
+                            <Text text="{confirmBilletList>Y_CAP_FLM_MM}"/>
+                            <Text text="{confirmBilletList>Y_NERVUR_DUZ}"/>
+                            <Text text="{confirmBilletList>BTABLE}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </ScrollContainer>
+        
+
+        
+        
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <OverflowToolbarButton press="refreshData" text="{i18n>titleBilletMonitorRefresh}" icon="sap-icon://synchronize" visible="false"/>
+                <Button  icon="sap-icon://product" width="auto" type="Default" text="Hata Mesajları" press="openFragment_errors" visible="true"/>
+                <Button id="chkIntervalState" text="Otomatik Güncelleme Açık" type="Accept" press="changeIntervalState" icon="sap-icon://fob-watch"/>
+                <Button type="Reject" id="btnRejected" text="{i18n>titleRejectedNotifs}" press="onOpenRejectDialog"/>
+                <Button type="Accept" id="btnozet" text="FIRIN OZET" press="summaryScreen"/>
+                <Button type="Emphasized" id="idYolVer"  visible="true"  text="YOL VER" press="onPressYolVer"/>
+                <ToolbarSpacer/>
+
+                <Label id="kantarDurumu"  text="Kantar Durumu: "/>
+                    <Button id="kantarDolu" text="Kantar Dolu" type="Accept"  visible = "true"/>
+                    <Button id="kantarBos" text="Kantar Boş" type="Reject"  visible = "false"/>
+                
+                    
+                    <ToolbarSpacer/>
+                    
+
+                    <Button id="btnEdit" text="{i18n>titleEdit}" press="openBarcodeEditDialog" icon="sap-icon://edit" visible="false"/>
+                        <Button id="btnNew" text="{i18n>titleLogErrorDetail}" press="openBarcodeLogDialog" icon="sap-icon://inspect" visible="false"/>
+                        <Button id="btnAdd" text="{i18n>titleAdd}" press="onOpenAddDialog" icon="sap-icon://add" visible="false"/>
+                        <Label text="{i18n>OEE_LABEL_INSIDE_FURNACE_SUM} : " class="whiteBoldText"/>
+                        <Label id="idMainSumFooter" class="whiteBoldText" text="{= ${confirmBilletListBIF>/}.length === 0 ? 0: ${confirmBilletListBIF>/}.length}"/>
+                    
+                    
+                    <ToolbarSpacer/>
+                <Label id="izinDurumu"  text="İzin Durumu: "/>
+                <core:Icon size="20px" id="icontrue" src="sap-icon://busy" color="#24ff56" visible="true" press = "fieldControl"/>
+                <core:Icon size="20px" id="iconfalse" src="sap-icon://busy" color="#e21d4b" visible="false" press = "fieldControl"/>
+
+
+                <ToolbarSpacer/>
+                <Label id="Otomatik" visible = "true" text="Otomatik: "/>
+                <Label id="Manuel" visible = "false" text="Manuel: "/>
+                <core:Icon size="20px" id="icontrue2" src="sap-icon://flag" color="#24ff56" visible="true" />
+                <core:Icon size="20px" id="iconfalse2" src="sap-icon://flag" color="#e21d4b" visible="false" />
+                
+                
+                <ToolbarSpacer/>
+                <Button id="izinGonder" text="Kantar İzin Gönder" type="Accept" press="izinVer"/>
+                <Button id="btnGetReturn" text="{i18n>OEE_SHOW_RETURNED}" type="Reject" press="openReturnedBilletList"/>
+                <Button id="addBillet" text="{i18n>OEE_LABEL_ADD_BILLET}" press="addBilletToFurnaceDialog" type="Accept" icon="sap-icon://add" visible="true"/>
+                <Button id="editBillet" text="{i18n>titleEdit}" press="onPressEditBilletDialog" icon="sap-icon://edit" visible="false"/>
+                <MenuButton id="btnManualActions" text="{i18n>titleEdit}" enabled="false" icon="sap-icon://edit">
+                    <Menu itemSelected="onMenuAction">
+                        <items>
+                            <MenuItem tooltip="0" text="{i18n>OEE_EDIT_LOCATION}" icon="sap-icon://save"/>
+                            <MenuItem tooltip="1" text="{i18n>OEE_EDIT_WEIGHT}" icon="sap-icon://open-folder"/>
+                        </items>
+                    </Menu>
+                </MenuButton>
+                <!--	<Switch id="idSwitchInternal" change="changeIntervalState" customTextOn="AÃ§Ä±k" customTextOff="KapalÄ±" state="true"/> -->
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

@@ -1,0 +1,44 @@
+<mvc:View xmlns="sap.ui.table" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:u="sap.ui.unified" 
+    xmlns:c="sap.ui.core" 
+    xmlns:m="sap.m" 
+    xmlns:l="sap.ui.layout" controllerName="customActivity.controller.oeePaksayTolerance" >
+    <m:Page id="page" title="Paket Ağırlık Tolerans Ekranı" showHeader="false">
+        <m:content>
+            <Table id="paksayTable" selectionMode="MultiToggle" alternateRowColors="true" rows="{/}" columnHeaderHeight="50px" rowHeight="40px"  visibleRowCountMode="Auto" >
+                <columns>
+                    <Column width="25%" hAlign="Center">
+                        <m:Label text="Paket Ağırlık" design="Bold"/>
+                        <template>
+                            <m:Text text="{WEIGHT}"/>
+                        </template>
+                    </Column>
+                    <Column width="25%" hAlign="Center">
+                        <m:Label text="Minimum Tolerans" design="Bold"/>
+                        <template>
+                            <m:Text text="{MIN}"/>
+                        </template>
+                    </Column>
+                    <Column width="15%" hAlign="Center">
+                        <m:Label text="Maksimum Tolerans" design="Bold"/>
+                        <template>
+                            <m:Text text="{MAX}"/>
+                        </template>
+                    </Column>        
+                </columns>
+            </Table>
+        </m:content>
+        <m:footer>
+            <m:OverflowToolbar>
+                <m:Button text="Ağırlık Girişi" id="idAddPaksay" icon="sap-icon://add" press="onPressAddPaksay" enabled="true" type="Transparent"/>
+                <m:ToolbarSpacer/>
+                <m:Button text="Ağırlık Düzenle" id="idEditPaksay" icon="sap-icon://edit" press="onPressEditPaksay" enabled="true" type="Transparent"/>
+                <m:ToolbarSpacer/>
+                <m:Button text="Ağırlık Sil" id="idDeletePaksay" icon="sap-icon://decline" press="onPressDeletePaksay" enabled="true" type="Transparent"/>
+                <m:ToolbarSpacer/>
+                <m:Button text="Güncelle" id="idRefresh"  press="onPressRefresh" enabled="true" type="Transparent"/>
+            </m:OverflowToolbar>
+        </m:footer>
+    </m:Page>
+</mvc:View>

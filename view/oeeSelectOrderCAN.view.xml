@@ -1,0 +1,524 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="customActivity/controller/oeeSelectOrderCAN"
+    xmlns="sap.m"
+    xmlns:my="customActivity.controls"
+    xmlns:core="sap.ui.core">
+    <Page id="idPage1" showHeader="false" showFooter="true" showNavButton="false" visible="true">
+        <content>
+            <Table id="idOrdersTable" selectionChange="onPressTableRow" items="{/}" width="100%" noDataText="No data" mode="SingleSelectMaster" showSeparators="All" inset="false" fixedLayout="false" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiLargeMarginBottom">
+                <infoToolbar>
+                    <Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+                        <content>
+                            <Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </content>
+                    </Toolbar>
+                </infoToolbar>
+                <headerToolbar/>
+                <columns>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="false"  class = "cNo" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Label design="Bold" text="Müşteri" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                                </customData>
+                            </Label>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Label design="Bold" text="Grup No" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                                </customData>
+                            </Label>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Label design="Bold" text="Sipariş" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                                </customData>
+                            </Label>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Label design="Bold" text="Açıklama" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                                </customData>
+                            </Label>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Label design="Bold" text="Çap" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                                </customData>
+                            </Label>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Label design="Bold" text="Flm. Klt." maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                                </customData>
+                            </Label>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Label design="Bold" text="Miktar" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                                </customData>
+                            </Label>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Label design="Bold" text="Paket Sayısı" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                                </customData>
+                            </Label>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <!--
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Label design="Bold" text="Malzeme" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                                </customData>
+                            </Label>
+                        </header>
+                        <footer/>
+                    </Column>
+                    -->
+
+                    <Column visible="true" width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Label design="Bold" text="Tav. Flm. Klt." maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                                </customData>
+                            </Label>
+                        </header>
+                        <footer/>
+                    </Column>
+
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Label design="Bold" text="Kütük Menşei" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                                </customData>
+                            </Label>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Label design="Bold" text="Paket Ağırlığı" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                                </customData>
+                            </Label>
+                        </header>
+                        <footer/>
+                    </Column>
+                     <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Label design="Bold" text="Üretim Statüsü" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                                </customData>
+                            </Label>
+                        </header>
+                        <footer/>
+                    </Column>
+
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Label design="Bold" text="AYT" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                                </customData>
+                            </Label>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Label design="Bold" text="Üretim Yöntemi" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                                </customData>
+                            </Label>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Label design="Bold" text="Aktif" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="HEADER" writeToDom="true" />
+                                </customData>
+                            </Label>
+                        </header>
+                        <footer/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Active">
+                        <cells>
+                            <Text text="{= ${customerName}!==null ? ${customerName} : ${Y_MUSTERI} }" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                            <Text text="{orderERPGroupNo}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                            <!--
+                            <Text text="{AUFNR}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                            -->
+                            <Button text="{AUFNR}" width="auto" wrapping="false" press="onPressAufnrDetails"/>
+                            <core:Icon size="15px" id="idAciklama" src="sap-icon://circle-task-2" color="{= ${ACIKLAMA} === true ? '#2196f3' : '#f44336' }"/>
+                            <Text text="{Y_CAP_FLM_MM}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                            <Text text="{Y_KALITE_FLM}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                            <Text text="{MIKTAR}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                            <Text text="{Y_URETILECEK_PAKSAY}">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+
+
+                            <!--
+                            <Text text="{MATNR}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                            -->
+
+                            <Text text="{Y_KALITE_TAVFLM}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+
+                            <Text text="{Y_KUTUK_MENSEI}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                            <Text text="{path:'Y_PAKET_AGIRLIK_KG', formatter:'.paketAgirlikTon'}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+
+                               <Text text="{STATUS}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                            
+                            <Text text="{Y_AYT}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+
+                            <Text text="{Y_URETIM_YONTEMI_FLM}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true">
+                                <customData>
+                                    <core:CustomData key="can" value="ROW" writeToDom="true" />
+                                </customData>
+                            </Text>
+                            <Button id="idButtonActive" press="onPressActive" text="Aktif Et" type="Accept" icon="sap-icon://begin" iconFirst="false" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <footer>
+            <OverflowToolbar width="100%" height="70px" design="Auto" enabled="true" visible="true" class="sapUiMediumMarginTop">
+                <content>
+                    <ToolbarSpacer/>
+                    <Button id="idConfirmBatch" text="Parti Teyit" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiTinyMargin cycleFooterBtnInner" press="onRedirectConfirmBatch"/>
+                    <ToolbarSpacer/>
+                    <Button text="Çevrim Takip" press="navigateCevrim" width="auto" enabled="true" visible="true" iconDensityAware="false" class="cycleFooterBtnInner"/>
+                </content>
+            </OverflowToolbar>
+        </footer>
+        <headerContent/>
+        <subHeader/>
+        <customHeader/>
+    </Page>
+    <Page id="idPage2" class = "cNo" showHeader="false" showFooter="true" showNavButton="false" visible="false">
+        <content>
+            <VBox alignItems="Center" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="SpaceAround" renderType="Div" visible="true" displayInline="false" class="sapUiLargeMarginBottom sapUiLargeMarginBegin sapUiLargeMarginEnd sapUiSmallMarginTop">
+                <HBox justifyContent="Center" class="sapUiLargeMarginBegin sapUiLargeMarginEnd">
+                    <VBox alignItems="Center" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false" class="sapUiMediumMarginEnd">
+                        <Label text="Müşteri" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                        <Label id="idCustomer" text="" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </VBox>
+                    <VBox alignItems="Center" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false" class="sapUiMediumMarginEnd">
+                        <Label text="Grup No" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                        <Label id="idGroup" text="" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </VBox>
+                    <VBox alignItems="Center" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false" class="sapUiMediumMarginEnd">
+                        <Label text="Sipariş Numarası" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                        <Label id="idAufnr" text="" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </VBox>
+                    <VBox alignItems="Center" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false" class="sapUiMediumMarginEnd">
+                        <Label text="Kalite" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                        <Label id="idKalite" text="" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </VBox>
+                    <VBox alignItems="Center" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false" class="sapUiMediumMarginEnd">
+                        <Label text="Miktar" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                        <Label id="idMiktar" text="" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </VBox>
+                    <VBox alignItems="Center" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false" class="sapUiMediumMarginEnd">
+                        <Label text="Paket Sayısı" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                        <Label id="idPaketSayisi" text="" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </VBox>
+                    <VBox alignItems="Center" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false" class="sapUiMediumMarginEnd">
+                        <Label text="Çap" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                        <Label id="idCap" text="" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </VBox>
+                    <VBox alignItems="Center" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false" class="sapUiMediumMarginEnd">
+                        <Label text="Filmaşin Menşei" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                        <Label id="idFMensei" text="" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </VBox>
+                    <VBox alignItems="Center" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false" class="sapUiMediumMarginEnd">
+                        <Label text="Kütük Menşei" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                        <Label id="idMensei" text="" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </VBox>
+                    <VBox alignItems="Center" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false" class="sapUiMediumMarginEnd">
+                        <Label text="Paket Ağırlık" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                        <Label id="idAgirlik" text="" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </VBox>
+                    <VBox alignItems="Center" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" displayInline="false">
+                        <Label text="Asit Temizleme" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                        <Label id="idAYT" text="" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </VBox>
+                    <VBox alignItems="Center" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" displayInline="false">
+                        <Label text="Üretim Yöntemi" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                        <Label id="idUretim" text="" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="HEADER" writeToDom="true" />
+                            </customData>
+                        </Label>
+                    </VBox>
+                </HBox>
+                <HBox justifyContent="Center" class="sapUiMediumMarginBottom">
+                    <VBox alignItems="Center" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false" class="sapUiMediumMarginEnd">
+                        <Label text="Kalan Parti Sayısı" design="Bold" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="TITLE" writeToDom="true" />
+                            </customData>
+                        </Label>
+                        <HBox>
+                            <Input id="idRemainingBatch" enabled="false" width="80px" type="Number" showValueHelp="false" class="cycleBatchInput"/>
+                        </HBox>
+                    </VBox>
+                    <VBox alignItems="Center" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false" class="sapUiMediumMarginEnd">
+                        <Label text="Çevrim" design="Bold" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="TITLE" writeToDom="true" />
+                            </customData>
+                        </Label>
+                        <HBox>
+                            <Input id="idCycleNo" enabled="true" width="80px" type="Number" showValueHelp="false" class="cycleBatchInput"/>
+                            <Button id="idCycleNoEdit" type="Accept" icon="sap-icon://edit" press="onPressEditCycleNo" visible="false"/>
+                            <Button id="idCycleNoConfirm" type="Accept" icon="sap-icon://accept" press="onPressSaveCycleNo" visible="false"/>
+                        </HBox>
+                    </VBox>
+                    <VBox alignItems="Center" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false" class="sapUiMediumMarginEnd">
+                        <Label text="Parti Numarası" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="TITLE" writeToDom="true" />
+                            </customData>
+                        </Label>
+                      
+
+                    <my:Input  id="idBatch" type="Text" width="120px" showValueHelp="false" enabled="true" submit="onSubmitPartiNo" class="cycleBatchInput">
+						<my:attributes>
+							<core:CustomData key="inputmode" value="none" writeToDom="true"/>
+						</my:attributes>
+					</my:Input>
+                    </VBox>
+                    <VBox alignItems="Center" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false" class="sapUiMediumMarginEnd">
+                        <Label text="Ağırlık" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="TITLE" writeToDom="true" />
+                            </customData>
+                        </Label>
+                        <Input id="idBatchWeight" type="Text" width="100px" showValueHelp="false" enabled="false" class="cycleBatchInput"/>
+                    </VBox>
+                    <VBox alignItems="Center" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Center" visible="true" clas="sapUiMediumMarginBottom">
+                        <Label text="Lokasyon" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="TITLE" writeToDom="true" />
+                            </customData>
+                        </Label>
+                        <RadioButtonGroup id="idRadioGroup" selectedIndex="-1" columns="3" select="onRadioGroupSelect" class="sapUiSmallMarginBottom">
+                            <RadioButton id="idRadioUst" text="UST" class="cycleRadioText"/>
+                            <RadioButton id="idRadioOrta" text="ORTA" class="cycleRadioText"/>
+                            <RadioButton id="idRadioAlt" text="ALT" class="cycleRadioText"/>
+                        </RadioButtonGroup>
+                    </VBox>
+                    <VBox alignItems="Center" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
+                        <Label text="Palet Numarası" design="Bold" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiSmallMarginBottom">
+                            <customData>
+                                <core:CustomData key="canBatch" value="TITLE" writeToDom="true" />
+                            </customData>
+                        </Label>
+                        <Input id="idPalet" textAlign="Center" type="Tel" maxLength="2" width="50px" showValueHelp="false" enabled="false" visible="true" valueHelpOnly="false" required="false" class="cycleBatchInput"/>
+                    </VBox>
+                    <VBox alignItems="Center" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Center" renderType="Div" visible="true" displayInline="false">
+                        <Button id="idSaveBatchButton" text="Sakla" type="Emphasized" icon="sap-icon://save" iconFirst="false" enabled="true" visible="true" iconDensityAware="false" press="onPressPartiSakla"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </content>
+        <footer>
+            <OverflowToolbar width="100%" height="70px" design="Auto" enabled="true" visible="true">
+                <content>
+                    <Button id="idManageOrders" text="Sipariş Yönet" type="Back" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiTinyMargin cycleFooterBtnInner" press="toOrdersPage"/>
+                    <ToolbarSpacer/>
+                    <Button id="idDeleteBatch" text="Parti Sil" type="Reject" icon="sap-icon://delete" iconFirst="false" width="10%" enabled="true" visible="true" iconDensityAware="false" press="onPressClearBatchFields"/>
+                    <ToolbarSpacer/>
+                    <Button text="Çevrim Takip" press="navigateCevrim" width="auto" enabled="true" visible="true" iconDensityAware="false" class="cycleFooterBtnInner"/>
+                </content>
+            </OverflowToolbar>
+        </footer>
+        <headerContent/>
+        <subHeader/>
+        <customHeader/>
+    </Page>
+</mvc:View>

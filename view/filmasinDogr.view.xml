@@ -1,0 +1,269 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:ui="sap.ui.table" controllerName="customActivity/controller/filmasinDogr" displayBlock="true">
+    <App id="app">
+        <pages>
+            <Page id="page" showHeader="false">
+                <content>
+                    <FlexBox width="100%" id="flexBox1" height="5%" justifyContent="Center">
+                        <items>
+                            <RadioButtonGroup id="radioButtonGroup1" select="getActiveOrder" columns="6" selectedIndex="0" valueState="None" width="auto" editable="true" enabled="true" textDirection="Inherit">
+                                <buttons>
+                                    <RadioButton id="radioButton1" text="D1" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false" />
+                                    <RadioButton id="radioButton2" text="D2" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false" />
+                                    <RadioButton id="radioButton3" text="D3" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false" />
+                                    <RadioButton id="radioButton4" text="D4" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false" />
+                                    <RadioButton id="radioButton5" text="D5" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false" />
+                                    <RadioButton id="radioButton6" text="D6" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false" />
+                                </buttons>
+                            </RadioButtonGroup>
+                        </items>
+                    </FlexBox>
+                    <FlexBox width="100%" id="flexBox2" height="10%" justifyContent="Center" alignContent="Center" alignItems="Center">
+                        <items>
+                            <ui:Table noData="Aktif Sipariş Bulunamadı" id="tableOrderInfo" selectionMode="None" visibleRowCount="1" rows="{/}">
+                                <ui:columns>
+                                    <ui:Column hAlign="Center" width="auto">
+                                        <Label text="Sipariş Numarası" design="Bold" />
+                                        <ui:template>
+                                            <Text text="{AUFNR}" />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column hAlign="Center" width="auto">
+                                        <Label text="Sipariş Miktari(TON)" design="Bold" />
+                                        <ui:template>
+                                            <Text text="{TOPLAMSIP}" />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column hAlign="Center" width="auto">
+                                        <Label text="Paket Sayısı" design="Bold" />
+                                        <ui:template>
+                                            <Text text="{Y_URETILECEK_PAKSAY}" />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column hAlign="Center" width="auto">
+                                        <Label text="Çap" design="Bold" />
+                                        <ui:template>
+                                            <Text text="{CAP}" />
+                                        </ui:template>
+                                    </ui:Column>
+
+
+                                    <ui:Column hAlign="Center" width="auto">
+                                        <Label text="Filmaşin Kalitesi" design="Bold" />
+                                        <ui:template>
+                                            <Text text="{Y_KALITE_FLM}" />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column hAlign="Center" width="auto">
+                                        <Label text="Standart" design="Bold" />
+                                        <ui:template>
+                                            <Text text="{STANDART}" />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column hAlign="Center" width="auto">
+                                        <Label text="Çubuk Boyu" design="Bold" />
+                                        <ui:template>
+                                            <Text text="{Y_BOY_CBK_M}" />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column hAlign="Center" width="auto">
+                                        <Label text="Marka" design="Bold" />
+                                        <ui:template>
+                                            <Text text="{Y_MARKA}" />
+                                        </ui:template>
+                                    </ui:Column>
+
+
+                                    <ui:Column hAlign="Center" width="auto">
+                                        <Label text="Ülke" design="Bold" />
+                                        <ui:template>
+                                            <Text text="{Y_ULKE}" />
+                                        </ui:template>
+                                    </ui:Column>
+
+
+                                    <ui:Column hAlign="Center" width="auto">
+                                        <Label text="Çubuk Sayısı" design="Bold" />
+                                        <ui:template>
+                                            <Text text="{Y_CUBUK_SAYISI}" />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column hAlign="Center" width="auto">
+                                        <Label text="Paketleme" design="Bold" />
+                                        <ui:template>
+                                            <Text text="{Y_PAKETLEME_KDOG}" />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                    <ui:Column hAlign="Center" width="auto">
+                                        <Label text="Boyama" design="Bold" />
+                                        <ui:template>
+                                            <Text text="{BOYAMA}" />
+                                        </ui:template>
+                                    </ui:Column>
+
+                                </ui:columns>
+                            </ui:Table>
+                        </items>
+                    </FlexBox>
+                    <FlexBox width="100%" id="flexBox3" justifyContent="Center" height="5%" alignContent="Center" alignItems="Center">
+                        <items>
+                            <Input xmlns="sap.m" id="input0" submit="onChangeBarcode" placeholder="Parti No" />
+                        </items>
+                    </FlexBox>
+                    <FlexBox width="100%" id="flexBox4" height="10%">
+                        <items>
+                            <FlexBox width="100%" id="flexBox11" justifyContent="End">
+                                <FlexBox width="70%" id="flexBox5" alignItems="Center" justifyContent="End">
+                                    <items>
+                                        <ui:Table noData="Aktif Filmaşin Bulunamadı" class="cNo" id="tableFilmasin" selectionMode="None" visibleRowCount="1" rows="{/}">
+                                            <ui:columns>
+                                                <ui:Column hAlign="Center" width="10%">
+                                                    <Label text="FLM AĞIRLIK (KG)" design="Bold" />
+                                                    <ui:template>
+                                                        <Text text="{GELEN}" />
+                                                    </ui:template>
+                                                </ui:Column>
+                                                <ui:Column hAlign="Center" width="10%">
+                                                    <Label text="TÜKETİLEN" design="Bold" />
+                                                    <ui:template>
+                                                        <Text text="{GIDEN}" />
+                                                    </ui:template>
+                                                </ui:Column>
+                                                <ui:Column hAlign="Center" width="10%">
+                                                    <Label text="KALAN" design="Bold" />
+                                                    <ui:template>
+                                                        <Text text="{KALAN}" />
+                                                    </ui:template>
+                                                </ui:Column>
+                                                <ui:Column hAlign="Center" width="30%">
+                                                    <Label text="HATTA AKTİF FİLMAŞIN" design="Bold" />
+                                                    <ui:template>
+                                                        <Text text="{CHARG}" />
+                                                    </ui:template>
+                                                </ui:Column>
+                                            </ui:columns>
+                                        </ui:Table>
+                                    </items>
+                                </FlexBox>
+                            </FlexBox>
+                            <FlexBox xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" width="30%" id="flexBox6" alignItems="Center">
+                                <items>
+                                    <Button xmlns="sap.m" text="Bitir" press="onCompleteActiveFLM" id="button5" icon="sap-icon://accept" type="Accept" />
+                                    <Button xmlns="sap.m" text="İptal" press="onCancelActiveFLM" id="button6" icon="sap-icon://cancel" type="Reject" />
+                                </items>
+                            </FlexBox>
+                        </items>
+                    </FlexBox>
+                    <FlexBox width="100%" id="flexBox7" alignItems="Center" alignContent="Center" justifyContent="Center" height="15%" direction="Column">
+                        <FlexBox width="70%" id="flexBox8" alignItems="Center" alignContent="Center" justifyContent="Center">
+                            <items>
+                                <ui:Table id="tableProduction" selectionMode="None" enableColumnReordering="false" visibleRowCount="1" rows="{/}">
+                                    <ui:columns>
+                                        <ui:Column hAlign="Center" width="30%" visible="true">
+                                            <Label text="Tür" design="Bold" />
+                                            <ui:template>
+                                                <Select xmlns="sap.m" id="select0" change="onChangeSelectedType" width="80%">
+                                                    <items>
+                                                        <core:Item xmlns:core="sap.ui.core" key="CUBUK" text="Çubuk" id="item0" />
+                                                        <core:Item xmlns:core="sap.ui.core" key="STD_DISI" text="Standart Dışı" id="item1" />
+                                                        <core:Item xmlns:core="sap.ui.core" key="HURDA" text="Hurda" id="item2" />
+                                                    </items>
+                                                </Select>
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column hAlign="Center" width="30%" visible="true">
+                                            <Label text="Adet" design="Bold" />
+                                            <ui:template>
+                                                <Input xmlns="sap.m" id="input1" placeholder="Adet Giriniz..." width="80%" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column hAlign="Center" width="30%" visible="false">
+                                            <Label text="Boy" design="Bold" />
+                                            <ui:template>
+                                                <Input xmlns="sap.m" id="input2" placeholder="Boy Giriniz..." width="80%" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column hAlign="Center" width="30%" visible="false">
+                                            <Label text="Miktar" design="Bold" />
+                                            <ui:template>
+                                                <Input xmlns="sap.m" id="input3" placeholder="Miktar Giriniz..." enabled="false" width="80%" />
+                                            </ui:template>
+                                        </ui:Column>
+                                    </ui:columns>
+                                </ui:Table>
+                                <Button xmlns="sap.m" text="Kaydet" press="onSaveProdTable" id="button7" icon="sap-icon://accept" type="Emphasized" />
+                            </items>
+                        </FlexBox>
+                        <DatePicker xmlns="sap.m" id="picker0" />
+                        <items />
+                    </FlexBox>
+                    <FlexBox width="100%" id="flexBox12" justifyContent="Center" height="45%">
+                        <FlexBox width="80%" id="flexBox9">
+                            <items>
+                                <ui:Table id="tableDogrultma" selectionMode="MultiToggle" selectionBehavior="Row" enableColumnReordering="false" visibleRowCount="10" rows="{/}">
+                                    <ui:columns>
+                                        <ui:Column hAlign="Center" width="10%">
+                                            <Label text="Filmaşin No" design="Bold" />
+                                            <ui:template>
+                                                <Text text="{BARCODE}" class="aaFLMagirlik" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column hAlign="Center" width="30%">
+                                            <Label text="Kayıt Türü" design="Bold" />
+                                            <ui:template>
+                                                <Text text="{TYPE}" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column hAlign="Center" width="30%">
+                                            <Label text="Adet" design="Bold" />
+                                            <ui:template>
+                                                <Text text="{ADET}" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column hAlign="Center" width="30%">
+                                            <Label text="Teorik Ağırlık(KG)" design="Bold" />
+                                            <ui:template>
+                                                <Text text="{QUANTITY}" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column hAlign="Center" width="30%">
+                                            <Label text="Tarih" design="Bold" />
+                                            <ui:template>
+                                                <Text text="{TARIH}" />
+                                            </ui:template>
+                                        </ui:Column>
+                                        <ui:Column hAlign="Center" width="10%">
+                                            <Label text="İptal" design="Bold" />
+                                            <ui:template>
+                                                <Button xmlns="sap.m" press="onDeleteProdTable" icon="sap-icon://sys-cancel-2" id="button11" />
+                                            </ui:template>
+                                        </ui:Column>
+                                    </ui:columns>
+                                </ui:Table>
+                            </items>
+                        </FlexBox>
+                    </FlexBox>
+                    <FlexBox width="100%" id="flexBox10" height="5%" justifyContent="Center" alignContent="Center" alignItems="Center"></FlexBox>
+                </content>
+                <footer>
+                    <Toolbar>
+                        <ToolbarSpacer />
+                        <Button xmlns="sap.m" text="Teyit Ver" press="hesitate" id="button8" />
+                        <ToolbarSpacer />
+                        <!-- <Button xmlns="sap.m" text="Hurda" press="onSaveScrap" id="button9"/>
+                        <ToolbarSpacer/>
+                        <Button xmlns="sap.m" text="Standart-Dışı Paket" press="onSaveCreateNonStandardPackage" id="button10"/>
+                        <ToolbarSpacer/> -->
+                    </Toolbar>
+                </footer>
+            </Page>
+        </pages>
+    </App>
+</mvc:View>

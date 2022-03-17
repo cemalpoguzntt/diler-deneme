@@ -1,0 +1,195 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core" controllerName="customActivity.controller.oeeBilletInsideFurnaceFLMsum">
+    <Page showNavButton="false" showHeader="false">
+        <content>
+        <FlexBox backgroundDesign="Transparent" height="10px" alignItems="Center" justifyContent="SpaceAround">
+                  
+         
+                  
+            </FlexBox>
+        	 <FlexBox backgroundDesign="Solid" height="20px" alignItems="Center" justifyContent="SpaceAround">
+                  
+            <items>
+                  
+                <Label text="Label" width="1px" id="label13_1634283497565"/>
+                  
+                <Label xmlns:core="sap.ui.core" xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core" xmlns="sap.m" text="Label" width="auto" design="Bold" id="label13"/>
+                  
+                <Label text="" width="100%" id="label15"/>
+                  
+                <Label text="" width="1px" id="label14"/>
+                  
+            </items>
+                  
+            </FlexBox>
+             <Table mode="None" includeItemInSelection="false" items="{confirmBilletListOUT>/}" growing="true" growingScrollToLoad="true" growingThreshold="100" headerText="FIRIN ÇIKIŞI">
+                <columns>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_WORKORDER}" tooltip="Sipariş Numarası"/>
+                    </Column>
+                     <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <Label text="KTKID" tooltip="KTKID"/>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="KÜTÜK KALİTE" tooltip="Mamul Kalitesi"/>
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_DIAMETER}" tooltip="Çap"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem visible="false">
+                     
+                    </ColumnListItem>
+                </items>
+            </Table>
+            <Table id="tblBilletMasterOut" mode="None" selectionChange="billetItemSelected" includeItemInSelection="false" items="{confirmBilletListOUT>/}" growing="true" growingScrollToLoad="true" growingThreshold="100">
+                <columns>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                     <Column width="3rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{confirmBilletListOUT>AUFNR}"/> 
+                            <Text text="{confirmBilletListOUT>KTKID}"/>                                                    
+                            <Text text="{confirmBilletListOUT>Y_KALITE_KTK}"/>                           
+                            <Text text="{confirmBilletListOUT>Y_CAP_FLM_MM}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        	  <FlexBox backgroundDesign="Transparent" height="40px" alignItems="Center" justifyContent="SpaceAround">
+                  
+         
+                  
+            </FlexBox>
+          
+           <FlexBox backgroundDesign="Solid" height="40px" alignItems="Center" justifyContent="SpaceAround">
+            <items>
+            <Label text="" width="1px" id="label12_1634283489969"/>
+            <Label text="" width="100%" id="label12" design="Bold"/>
+            <Label text="" width="100%" id="label14_1634283509923"/>
+            <Label text="" width="1px" id="label13_1634282776174"/>
+            </items>
+            </FlexBox>
+            <FlexBox backgroundDesign="Transparent" height="40px" alignItems="Center" justifyContent="SpaceAround">
+                  
+         
+                  
+            </FlexBox>
+             <Table id="tblBilletMasterfake" mode="None" selectionChange="billetItemSelected" includeItemInSelection="false" items="{confirmBilletList2>/}" growing="true" growingScrollToLoad="true" growingThreshold="100" headerText="FIRIN İÇİ">
+                <columns>
+                   <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_WORKORDER}" tooltip="Sipariş Numarası"/>
+                    </Column>
+                  
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="KÜTÜK KALİTE" tooltip="Mamul Kalitesi"/>
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_DIAMETER}" tooltip="Çap"/>
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <Label text="ADET" tooltip="ADET"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem visible="false">
+                       
+                    </ColumnListItem>
+                </items>
+            </Table>
+            <Table id="tblBilletMaster" mode="None" selectionChange="billetItemSelected" includeItemInSelection="false" items="{confirmBilletList2>/}" growing="true" growingScrollToLoad="true" growingThreshold="100">
+                <columns>
+                   <Column width="4rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                             <Text text="{confirmBilletList2>AUFNR}"/>
+                            <Text text="{confirmBilletList2>Y_KALITE_KTK}"/>
+                            <Text text="{confirmBilletList2>Y_CAP_FLM_MM}"/>
+                            <Text text="{confirmBilletList2>ADET}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+            <FlexBox backgroundDesign="Transparent" height="30px" alignItems="Center" justifyContent="SpaceAround">    
+            </FlexBox>
+
+            <FlexBox backgroundDesign="Transparent" height="30px" alignItems="Center" justifyContent="SpaceAround">
+            </FlexBox>
+             <Table id="firstBilletFake" includeItemInSelection="false" items="{confirmBilletListBEF>/}" growing="true" growingScrollToLoad="true" growingThreshold="100" headerText="FIRIN GİRİŞİ">
+                <columns>
+               
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_WORKORDER}" tooltip="Sipariş Numarası"/>
+                    </Column>
+                     <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <Label text="KTKID" tooltip="KTKID"/>
+                    </Column>
+                  
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="KÜTÜK KALİTE" tooltip="Mamul Kalitesi"/>
+                    </Column> 
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_DIAMETER}" tooltip="Çap"/>
+                    </Column>
+                    
+                </columns>
+                <items>
+                    <ColumnListItem>
+
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+            <Table id="firstBillet" includeItemInSelection="false" items="{confirmBilletListBEF>/}" growing="true" growingScrollToLoad="true" growingThreshold="100">
+                <columns>
+               
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                     <Column width="3rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                  
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                    </Column> 
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <!-- <Text text="{confirmBilletList>KDAUF}" /> -->
+                            <Text text="{confirmBilletListBEF>AUFNR}"/> 
+                            <Text text="{confirmBilletListBEF>KTKID}"/>                                                   
+                            <Text text="{confirmBilletListBEF>Y_KALITE_KTK}"/>                           
+                            <Text text="{confirmBilletListBEF>Y_CAP_FLM_MM}"/>
+                            
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+           
+           
+        </content>
+        <footer>
+           
+        </footer>
+    </Page>
+</mvc:View>

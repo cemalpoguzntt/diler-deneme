@@ -1,0 +1,147 @@
+<core:View xmlns:ui="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified"
+	xmlns:core="sap.ui.core"
+	xmlns:suite="sap.suite.ui.commons"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m"
+    xmlns:my="customActivity.controls"
+	controllerName="customActivity/controller/oeeReportComponentsTAS"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	>
+	<html:style>
+ .test  {
+            background-color: #f7f7f7;
+             color: red !important;
+             font-size: 5.2rem !important; }
+
+}
+             	</html:style>
+             
+	<Page id="idPage" showHeader="false" showNavButton="false">
+		<content>
+		 <Label text="KAYIT TARİHİ :  " width="auto" design="Bold" id="labelx" visible="false"/>
+        <DatePicker xmlns="sap.m" width="auto" onchange="dateChange" change="dateChange" visible="false" id="pickerx"/>
+			<FlexBox class="sapUiMediumMarginTop" width="100%" id="box0" direction="Row" alignItems="Center" alignContent="Center" justifyContent="Center">
+				<items>	
+				 
+					<Table noDataText="Kayıtlı veri bulunamadı" items="{/}" id="tableOrderInfo">
+						<items>
+							<ColumnListItem type="Active" id="item0">
+								<cells>
+									<Text text="{AUFNR}" wrapping="true" id="text0"/>
+									<!-- <Text text="{QTY_RELEASED}" wrapping="true" id="text1"/> -->
+									<Text text="{PLANADET} / {URETIM}" wrapping="true" id="text2"/>
+									<Text text="{Y_EBAT}" wrapping="true" id="text3"/>
+									<Text text="{Y_BOY_KTK}" wrapping="true" id="text4"/>
+									<Text text="{Y_KALITE_KTK}" wrapping="true" id="text5"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+						<columns>
+							<Column id="column0" hAlign="Center">
+								<header>
+									<Label design="Bold" text="Üretim Sip" id="label0"/>
+								</header>
+							</Column>
+							<!-- <Column id="column1" hAlign="Center" visible = "false">
+								<header>
+									<Label design="Bold" text="Planlı Miktar" id="label1"/>
+								</header>
+							</Column> -->
+							<Column id="column2" hAlign="Center">
+								<header>
+									<Label design="Bold" text="Planlanan Üretim/Üretlien" id="label2"/>
+								</header>
+							</Column>
+							<Column id="column3" hAlign="Center">
+								<header>
+									<Label design="Bold" text="Ebat" id="label3"/>
+								</header>
+							</Column>
+							<Column id="column4" hAlign="Center">
+								<header>
+									<Label design="Bold" text="Boy" id="label4"/>
+								</header>
+							</Column>
+							<Column id="column5" hAlign="Center">
+								<header>
+									<Label design="Bold" text="Kalite" id="label5"/>
+								</header>
+							</Column>
+
+						</columns>
+					</Table>
+				</items>
+			</FlexBox>
+			<FlexBox id="box1" class="sapUiMediumMarginTop" alignContent="Center" alignItems="Center" justifyContent="SpaceAround">
+				<items>
+                
+                 <Button text="" type="Emphasized" press="openfragment" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"  activeIcon="sap-icon://activities" icon="sap-icon://activities"/>
+                             
+					<Label text="ÜRETİM" width="100%" id="labelProd" design="Bold" visible="false">
+						<customData>
+							<core:CustomData key="tas" value="URT" writeToDom="true"/>
+						</customData>
+					</Label>
+					<Label text="KUTUK ŞARJ" width="100%" id="labelCons" design="Bold">
+						<customData>
+							<core:CustomData key="tas" value="TUK" writeToDom="true"/>
+						</customData>
+					</Label>
+					<Button xmlns="sap.m" id="button2" press="onPressChangeType" icon="sap-icon://synchronize" type="Emphasized"/>
+				</items>
+			</FlexBox>
+			<FlexBox id="box2" class="sapUiMediumMarginTop" alignContent="Center" alignItems="Center" justifyContent="Center">
+				<FlexBox id="box3" justifyContent="Center" alignItems="Center" visible="true">
+					<Label class = "test" design="Bold" text="Bileşen Okut" textAlign="Center"/>
+					<my:Input id="idBatch" submit="onSubmitBatch">
+						<my:attributes>
+							<core:CustomData key="inputmode" value="none" writeToDom="true"/>
+						</my:attributes>
+					</my:Input>
+				</FlexBox>
+				<FlexBox id="box4" justifyContent="Center" alignItems="Center" visible="false">
+					<Label design="Bold" text="Teyit Gönder"/>
+					<my:Input id="idBatch2" submit="onSubmitConfirm">
+						<my:attributes>
+							<core:CustomData key="inputmode" value="none" writeToDom="true"/>
+						</my:attributes>
+					</my:Input>
+				</FlexBox>
+			</FlexBox>
+			<FlexBox id="box5" class="sapUiMediumMarginTop" alignContent="Center" alignItems="Center" justifyContent="Center">
+				<Table id="componentsTable" items="{/}">
+					<columns>
+
+						<Column hAlign="Center">
+							<Label text="SIRA-ID"/>
+						</Column>
+
+						<Column hAlign="Center">
+							<Label text="Parti"/>
+						</Column>
+
+						<Column hAlign="Center">
+							<!-- <Label text="SIRA-ID"/> -->
+						</Column>
+
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+
+								<Text text="{NUMBER}"/>
+								<Text text="{BARCODE}"/>
+								<Button activeIcon="" enabled="true" icon="sap-icon://delete" iconDensityAware="true" iconFirst="true" text="" textDirection="Inherit" type="Default" width="" press="onDeleteKTK">
+								</Button>
+							</cells>
+						</ColumnListItem>
+					</items>                                                          
+				</Table>
+			</FlexBox>
+	<Label visible="false" id="aufnr" width="auto" text=""/>
+		</content>
+		<footer/>
+	</Page>
+</core:View>

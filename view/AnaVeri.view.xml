@@ -1,0 +1,1504 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="customActivity.controller.AnaVeri">
+
+    <Page showHeader="false" showFooter="false" showNavButton="false">
+
+        <content>
+            <FlexBox direction="Row" width="100%" id="box14" alignItems="Start" justifyContent="SpaceAround">
+                <RadioButtonGroup xmlns="sap.m" columns="4" change="handleChange" select="handleChange" onChange="handleChange" role="group0" id="group0">
+                    <buttons>
+                        <RadioButton text="TAV FIRIN" id="button5" />
+                        <RadioButton text="ÜRETİM HATTI" id="button6" />
+                        <RadioButton text="PAKETLEME HATTI" id="button7" />
+                        <RadioButton text="TÜM VERİLER" id="button8" />
+                    </buttons>
+
+                </RadioButtonGroup>
+
+                <FlexBox direction="Row" width="auto" id="box143" alignItems="Start">
+
+                    <ComboBox xmlns="sap.m" id="ktkid" items="{path:'/'}" selectionChange = "onSearch" placeholder="KTKID FILTRESI" maxWidth="85%" >
+                        <items>
+                            <core:Item xmlns:core="sap.ui.core" key="{KTKID}" text="{KTKID}" />
+                        </items>
+                    </ComboBox>
+
+                    <Label text="Tarih Aralığı  :  " class="anaVeri" width="100%" id="label121" design="Bold" />
+                    <DateRangeSelection visible="true" id="datePicker" valueFormat="dd.MM.yyyy" delimiter="-" displayFormat="dd.MM.yyyy" />
+                    <Button xmlns="sap.m" text="ARA" id="button0" press="getModelData" type="Emphasized" />
+
+                </FlexBox>
+                <Button text="EXCEL'E AKTAR " press="onExport" design="Bold" type="Accept" width="auto" />
+                <items />
+            </FlexBox>
+            <FlexBox direction="Column" height="94%" width="104%" id="box1">
+                <items>
+                    <ScrollContainer height="100%" width="96%" horizontal="true" vertical="true" focusable="true">
+                        <Table growing="true" growingScrollToLoad="true" items="{path: '/'}" growingThreshold="100" width="200%" popinLayout="GridSmall" id="table0">
+                            <items>
+                                <ColumnListItem type="Active" id="item0">
+                                    <cells>
+
+                                        <Text text="{FURNACE_ENTRY_TIME}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FURNACE_EXIT_TIME}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KTKID}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CASTID}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{Y_CAP_FLM_MM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{Y_KALITE_KTK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{Y_KALITE_FLM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_IC_BASINCI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_O2_SEVIYESI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_1_BOLGE_SICAKLIK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_2_BOLGE_SICAKLIK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_3_BOLGE_SICAKLIK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_4_BOLGE_SICAKLIK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_5_BOLGE_SICAKLIK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_6_BOLGE_SICAKLIK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_7_BOLGE_SICAKLIK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_CIKIS_SICAKLIK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+
+
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                            <columns>
+                                <Column>
+                                    <header>
+                                        <Label text="Firin Giriş Tarih" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Firin Çıkış Tarih" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KTKID" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Dokum No" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Çap" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Kütük Kalitesi" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Mamül Kalitesi" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="FIRIN İÇ BASINCI (bar)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="FIRIN O2  SEVİYESİ" width="auto" />
+                                    </header>
+                                </Column>
+
+                                <Column>
+                                    <header>
+                                        <Label text="FIRIN 1.BÖLGE SICAKLIK(C°)" width="auto" />
+                                    </header>
+                                </Column>
+
+                                <Column>
+                                    <header>
+                                        <Label text="FIRIN 2.BÖLGE SICAKLIK(C°)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="FIRIN 3.BÖLGE SICAKLIK(C°)" width="auto" />
+                                    </header>
+                                </Column>
+
+                                <Column>
+                                    <header>
+                                        <Label text="FIRIN 4.BÖLGE SICAKLIK(C°)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="FIRIN 5.BÖLGE SICAKLIK(C°)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="FIRIN 6.BÖLGE SICAKLIK(C°)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="FIRIN 7.BÖLGE SICAKLIK(C°)" width="auto" />
+                                    </header>
+                                </Column>
+
+                                <Column>
+                                    <header>
+                                        <Label text="Fırın Çıkış Sıcaklığı(C°)" width="auto" />
+                                    </header>
+                                </Column>
+
+
+                            </columns>
+                        </Table>
+                    </ScrollContainer>
+
+                    <FlexBox justifyContent="SpaceAround" direction="Row" width="20%"></FlexBox>
+
+                </items>
+            </FlexBox>
+            <FlexBox direction="Column" height="94%" width="104%" id="box2">
+                <items>
+                    <ScrollContainer height="100%" width="96%" horizontal="true" vertical="true" focusable="true">
+                        <Table growing="true" growingScrollToLoad="true" items="{path: '/'}" growingThreshold="100" width="600%" popinLayout="GridSmall" id="table1">
+                            <items>
+                                <ColumnListItem type="Active" id="item1">
+                                    <cells>
+                                        <Text text="{FURNACE_ENTRY_TIME}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FURNACE_EXIT_TIME}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KTKID}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CASTID}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{Y_CAP_FLM_MM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{Y_KALITE_KTK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{Y_KALITE_FLM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_IC_BASINCI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{TURBO_SERME_KAFA_DEVREDE_STATUS}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{STANDART_SERME_KAFA_DEVREDE_STATUS}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{NORMALIZING_ROLLING_STATUS}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{LOW_TEMPERATURE_ROLLING_STATUS}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{DESCALER_SU_BASINCI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_CIKIS_SICAKLIK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{M1_KAFA_KESIM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{M1_KUYRUK_KESIM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{M2_KAFA_KESIM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{M2_KUYRUK_KESIM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{M3_KAFA_KESIM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{M3_KUYRUK_KESIM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{M4_KAFA_KESIM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{M4_KUYRUK_KESIM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{HADDE_FINIS_HIZI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{MONOBLOK_GIRIS_SICAKLIGI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{HADDELEME_SURESI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{MONOBLOK_HIZI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB01_ACTUALFLOW}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB01_ENTERPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB01_OUTPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB02_ACTUALFLOW}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB02_ENTERPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB02_OUTPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB03_ACTUALFLOW}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB03_ENTERPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB03_OUTPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB04_ACTUALFLOW}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB04_ENTERPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB04_OUTPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB05_ACTUALFLOW}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB05_ENTERPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB05_OUTPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB06_ACTUALFLOW}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB06_ENTERPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB06_OUTPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{TMB4_MODUL_HIZI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{TMB_MODUL_SICAKLIK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{MHIZLI_ENABLE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{MHIZLI_KAFA_KESIM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{MHIZLI_KUYRUK_KESIM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+
+
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                            <columns>
+                                <Column>
+                                    <header>
+                                        <Label text="Firin Giriş Tarih " width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Firin Çıkış Tarih" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KTKID" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Dokum No" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Çap" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Kütük Kalitesi" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Mamül Kalitesi" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="FIRIN DOGALGAZ SAYAC" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="TURBO SERME KAFA" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="STANDART SERME KAFA" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="NORMALİZİNG ROLLİNG" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="LOW_TEMPERATURE ROLLİNG" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="DESCALER SU BASINCI(bar)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="FIRIN CIKIS Sıcaklığı(C°)MAX" width="auto" />
+                                    </header>
+                                </Column>
+
+                                <Column>
+                                    <header>
+                                        <Label text="M1KAFAKESIM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="M1KUYRUKKESIM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="M2KAFAKESIM" width="auto" />
+                                    </header>
+                                </Column>
+
+                                <Column>
+                                    <header>
+                                        <Label text="M2KUYRUKKESIM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="M2KUYRUKKESIM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="M3KAFAKESIM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="M3KUYRUKKESIM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="M4KAFAKESIM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="M4KUYRUKKESIM" width="auto" />
+                                    </header>
+                                </Column>
+
+
+                                <Column>
+                                    <header>
+                                        <Label text="HADDE FİNİŞ HIZI(m/s)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <Column>
+                                        <header>
+                                            <Label text="MONOBLOK GIRIŞ SICAKLIGI(C°)" width="auto" />
+                                        </header>
+                                    </Column>
+                                    <header>
+                                        <Label text="HADDELEME SURESI(m/s)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Monoblok Hızı(m/s)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB01_ACTUALFLOW" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB01_ENTERPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB01_OUTPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+
+
+                                <Column>
+                                    <header>
+                                        <Label text="WB02_ACTUALFLOW " width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB02_ENTERPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB02_OUTPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB03_ACTUALFLOW " width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB03_ENTERPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB03_OUTPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB04_ACTUALFLOW " width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB04_ENTERPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB04_OUTPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB05_ACTUALFLOW " width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB05_ENTERPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB05_OUTPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB06_ACTUALFLOW " width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB06_ENTERPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB06_OUTPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+
+
+                                <Column>
+                                    <header>
+                                        <Label text="TMB4 Modül Hızı (m/s)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="TMB Modul Sıcaklık(C°)" width="auto" />
+                                    </header>
+                                </Column>
+
+
+                                <Column>
+                                    <header>
+                                        <Label text="MHIZLIENABLE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="MHIZLIKAFAKESIM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="MHIZLIKUYRUKKESIM" width="auto" />
+                                    </header>
+                                </Column>
+
+
+                            </columns>
+                        </Table>
+                    </ScrollContainer>
+                    <FlexBox justifyContent="SpaceAround" direction="Row" width="20%"></FlexBox>
+                </items>
+            </FlexBox>
+            <FlexBox direction="Column" height="94%" width="104%" id="box3">
+                <items>
+                    <ScrollContainer height="100%" width="96%" horizontal="true" vertical="true" focusable="true">
+                        <Table growing="true" growingScrollToLoad="true" items="{path: '/'}" growingThreshold="100" width="580%" popinLayout="GridSmall" id="table2">
+                            <items>
+                                <ColumnListItem type="Active" id="item2">
+                                    <cells>
+                                        <Text text="{FURNACE_ENTRY_TIME}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FURNACE_EXIT_TIME}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KTKID}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CASTID}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{Y_CAP_FLM_MM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{Y_KALITE_KTK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{Y_KALITE_FLM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{ROLEYOLU_BASLANGIC_HIZI_X0020_MSN}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_1}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_2}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_3}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_4}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_5}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_6}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_7}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_8}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_9}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_10}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_11}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_12}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_13}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_14}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_15}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_16}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_17}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_18}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_1_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_2_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_3_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_4_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_5_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_6_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_7_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_8_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_9_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_10_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_11_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_12_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_13_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_14_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_15_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_16_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_17_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_18_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_19_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_20_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_21_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_22_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_23_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_24_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_25_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_26_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_27_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_28_DURUM}" textAlign="Begin" textDirection="Inherit" visible="true" />
+
+
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                            <columns>
+                                <Column>
+                                    <header>
+                                        <Label text="Firin Giriş Tarih " width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Firin Çıkış Tarih" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KTKID" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Dokum No" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Çap" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Kütük Kalitesi" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Mamül Kalitesi" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="ROLE_STARTHIZI(m/sn)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_1" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_2" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_3" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_4" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_5" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_6" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_7" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_8" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_9" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_10" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_11" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_12" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_13" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_14" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_15" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_16" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_17" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_18" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_1_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_2_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_3_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_4_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_5_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_6_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_7_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_8_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_9_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_10_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_11_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_12_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_13_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_14_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_15_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_16_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_17_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_18_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_19_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_20_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_21_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_22_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_23_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_24_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_25_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_26_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_27_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_28_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+
+                            </columns>
+                        </Table>
+                    </ScrollContainer>
+                    <FlexBox justifyContent="SpaceAround" direction="Row" width="20%"></FlexBox>
+
+
+                </items>
+            </FlexBox>
+
+            <FlexBox direction="Column" height="94%" width="104%" id="box4">
+                <items>
+                    <ScrollContainer height="100%" width="96%" horizontal="true" vertical="true" focusable="true">
+                        <Table growing="true" growingScrollToLoad="true" items="{path: '/'}" growingThreshold="100" width="1100%" popinLayout="GridSmall" id="table3">
+                            <items>
+                                <ColumnListItem type="Active">
+                                    <cells>
+
+                                        <Text text="{FURNACE_ENTRY_TIME}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FURNACE_EXIT_TIME}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KTKID}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CASTID}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{Y_CAP_FLM_MM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{Y_KALITE_KTK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{Y_KALITE_FLM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_IC_BASINCI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_O2_SEVIYESI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_1_BOLGE_SICAKLIK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_2_BOLGE_SICAKLIK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_3_BOLGE_SICAKLIK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_4_BOLGE_SICAKLIK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_5_BOLGE_SICAKLIK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_6_BOLGE_SICAKLIK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_7_BOLGE_SICAKLIK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_CIKIS_SICAKLIK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_DOGALGAZ_SAYAC}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{FIRIN_IC_BASINCI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{TURBO_SERME_KAFA_DEVREDE_STATUS}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{STANDART_SERME_KAFA_DEVREDE_STATUS}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{NORMALIZING_ROLLING_STATUS}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{LOW_TEMPERATURE_ROLLING_STATUS}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{DESCALER_SU_BASINCI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                       
+                                        <Text text="{M1_KAFA_KESIM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{M1_KUYRUK_KESIM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{M2_KAFA_KESIM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{M2_KUYRUK_KESIM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{M3_KAFA_KESIM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{M3_KUYRUK_KESIM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{M4_KAFA_KESIM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{M4_KUYRUK_KESIM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{HADDE_FINIS_HIZI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{MONOBLOK_GIRIS_SICAKLIGI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{HADDELEME_SURESI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{MONOBLOK_HIZI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB01_ACTUALFLOW}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB01_ENTERPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB01_OUTPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB02_ACTUALFLOW}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB02_ENTERPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB02_OUTPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB03_ACTUALFLOW}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB03_ENTERPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB03_OUTPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB04_ACTUALFLOW}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB04_ENTERPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB04_OUTPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB05_ACTUALFLOW}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB05_ENTERPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB05_OUTPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB06_ACTUALFLOW}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB06_ENTERPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{WB06_OUTPRES_SURE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{TMB4_MODUL_HIZI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{TMB_MODUL_SICAKLIK}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{MHIZLI_ENABLE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{MHIZLI_KAFA_KESIM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{MHIZLI_KUYRUK_KESIM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{ROLEYOLU_BASLANGIC_HIZI_X0020_MSN}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_1}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_2}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_3}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_4}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_5}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_6}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_7}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_8}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_9}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_10}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_11}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_12}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_13}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_14}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_15}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_16}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_17}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{CALISANFAN_18}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_1_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_2_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_3_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_4_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_5_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_6_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_7_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_8_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_9_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_10_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_11_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_12_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_13_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_14_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_15_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_16_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_17_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_18_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_19_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_20_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_21_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_22_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_23_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_24_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_25_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_26_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_27_DURUM}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" />
+                                        <Text text="{KAPAK_28_DURUM}" textAlign="Begin" textDirection="Inherit" visible="true" />
+
+
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                            <columns>
+                                <Column>
+                                    <header>
+                                        <Label text="Firin Giriş Tarih" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Firin Çıkış Tarih" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KTKID" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Dokum No" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Çap" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Kütük Kalitesi" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Mamül Kalitesi" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="FIRIN İÇ BASINCI (bar)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="FIRIN O2  SEVİYESİ" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="FIRIN 1.BÖLGE SICAKLIK(C°)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="FIRIN 2.BÖLGE SICAKLIK(C°)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="FIRIN 3.BÖLGE SICAKLIK(C°)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="FIRIN 4.BÖLGE SICAKLIK(C°)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="FIRIN 5.BÖLGE SICAKLIK(C°)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="FIRIN 6.BÖLGE SICAKLIK(C°)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="FIRIN 7.BÖLGE SICAKLIK(C°)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Fırın Çıkış Sıcaklığı(C°)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="FIRIN DOGALGAZ SAYAC" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="TURBO SERME KAFA" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="STANDART SERME KAFA" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="NORMALİZİNG ROLLİNG" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="LOW_TEMPERATURE ROLLİNG" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="DESCALER SU BASINCI(bar)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="FIRIN CIKIS Sıcaklığı(C°)MAX" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="M1KAFAKESIM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="M1KUYRUKKESIM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="M2KAFAKESIM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="M2KUYRUKKESIM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="M3KAFAKESIM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="M3KUYRUKKESIM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="M4KAFAKESIM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="M4KUYRUKKESIM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="HADDE FİNİŞ HIZI(m/s)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="MONOBLOK GIRIŞ SICAKLIGI(C°)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="HADDELEME SURESI(m/s)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="Monoblok Hızı(m/s)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB01_ACTUALFLOW" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB01_ENTERPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB01_OUTPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB02_ACTUALFLOW " width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB02_ENTERPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB02_OUTPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB03_ACTUALFLOW " width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB03_ENTERPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB03_OUTPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB04_ACTUALFLOW " width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB04_ENTERPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB04_OUTPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB05_ACTUALFLOW " width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB05_ENTERPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB05_OUTPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB06_ACTUALFLOW " width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB06_ENTERPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="WB06_OUTPRESSURE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="TMB4 Modül Hızı (m/s)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="TMB Modul Sıcaklık(C°)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="MHIZLIENABLE" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="MHIZLIKAFAKESIM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="MHIZLIKUYRUKKESIM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="ROLE_STARTHIZI(m/sn)" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_1" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_2" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_3" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_4" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_5" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_6" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_7" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_8" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_9" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_10" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_11" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_12" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_13" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_14" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_15" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_16" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_17" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="CALISANFAN_18" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_1_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_2_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_3_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_4_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_5_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_6_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_7_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_8_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_9_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_10_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_11_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_12_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_13_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_14_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_15_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_16_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_17_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_18_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_19_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_20_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_21_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_22_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_23_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_24_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_25_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_26_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_27_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+                                <Column>
+                                    <header>
+                                        <Label text="KAPAK_28_DURUM" width="auto" />
+                                    </header>
+                                </Column>
+
+
+                            </columns>
+                        </Table>
+                    </ScrollContainer>
+
+                    <FlexBox justifyContent="SpaceAround" direction="Row" width="20%"></FlexBox>
+
+                </items>
+            </FlexBox>
+
+        </content>
+    </Page>
+</mvc:View>

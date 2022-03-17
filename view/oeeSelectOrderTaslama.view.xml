@@ -1,0 +1,187 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.commons" controllerName="customActivity.controller.oeeSelectOrderTaslama" displayBlock="true" height="100%">
+
+<html:style>
+
+.DataMode {
+
+    color : red !important ;
+
+}
+
+.TextDataMode {
+
+    padding-bottom: 0.5ch !important;
+    padding-left : 1ch !important ;
+
+}
+
+.ButtonMode {
+
+
+    
+}
+
+</html:style>
+
+
+	<Page>
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<SearchField width="100%" liveChange="onSearch" search="onSearch" id="orderSearch"/>
+				</contentLeft>
+			</Bar>
+		</customHeader>
+		<subHeader>
+			<Toolbar id="statusBar">
+				<RadioButtonGroup id="idRadioGroup" selectedIndex="1" columns="4" select="getTableModel">
+					<RadioButton text="Yeni" id="idNewStatus"/>
+					<RadioButton text="Aktif" id="idActiveStatus"/>
+					<RadioButton text="Beklet" id="idHoldStatus"/>
+					<RadioButton text="Tamamlanmış" id="idCompletedStatus"/>
+				</RadioButtonGroup>
+
+               <FlexBox width="8%" alignItems="Center" justifyContent="End"/>
+
+
+                 
+               <FlexBox width="20%" alignItems="Center" justifyContent="Center">
+                    <Label design="Bold" class="DataMode" text="Taş Kodu: "/>
+                    <Text text="{STONE_CODE}" id="stonecode" class="TextDataMode" visible="true" textAlign="Left"/>
+               </FlexBox>
+
+
+                 
+               <FlexBox width="20%" alignItems="Center" justifyContent="Center">
+                    <Label design="Bold" class="DataMode" text="Mensei: "/>
+                    <Text text="{MENSEI}" id = "stonemensei" class="TextDataMode"  visible="true" textAlign="Left"/>
+            
+               </FlexBox>
+                    
+
+
+               <FlexBox width="20%" alignItems="Center" justifyContent="Center">
+
+                    <Label design="Bold" class="DataMode" text="Model: "/>
+                    <Text text="{MODEL}" id = "stonemodel" class="TextDataMode" visible="true" textAlign="Left"/>
+               
+               </FlexBox>
+               
+
+
+               <FlexBox width="12%" alignItems="Center" justifyContent="SpaceAround">
+
+               <items>
+
+                   <Button xmlns="sap.m" class = "ButtonMode" text="Yeni Taş Bilgileri" id="button0" icon="sap-icon://accelerated" iconDensityAware="false" width="100%" type="Emphasized" press = "openTasFrag"/>
+
+               </items>
+
+               </FlexBox>
+										
+				<!-- <core:Icon src="sap-icon://sort" press="sortOrderData" width="2rem"></core:Icon>
+                <core:Icon src="sap-icon://refresh" press="refreshOrderData" width="2rem"></core:Icon> -->
+			</Toolbar>
+		</subHeader>
+		<content>
+			<Table id="idOrdersTable" inset="false" width="100%" sticky="ColumnHeaders" items="{path: '/', sorter: [{  path:  'SIRA' , ascending: true}]}" mode="SingleSelectMaster" growing="true" growingScrollToLoad="true" growingThreshold="100" contextualWidth="Auto" popinLayout="GridSmall">
+				<columns>
+
+<Column width="auto" visible="true">
+						<Label text="SIRA"/>
+					</Column>
+					<Column width="auto" visible="true">
+						<Label text="Üretim Sip."/>
+					</Column>
+
+					<Column width="220px" visible="true">
+						<Label text="Planlı Miktar"/>
+					</Column>
+					<Column width="auto" visible="true">
+						<Label text="Üretim Birimi"/>
+					</Column>
+				
+					<Column width="auto" visible="true">
+						<Label text="Y_KESME_SEKLI"/>
+					</Column>
+
+
+					<Column width="auto" visible="true">
+						<Label text="Ktk-Menş"/>
+					</Column>
+					<Column width="auto" visible="true">
+						<Label text="Ülke"/>
+					</Column>
+					<Column width="auto" visible="true">
+						<Label text="Ktk-Klt"/>
+					</Column>
+					<Column width="auto" visible="true">
+						<Label text="Ebat"/>
+					</Column>
+					<Column width="auto" visible="true">
+						<Label text="Boy"/>
+					</Column>
+					<Column width="auto" visible="true">
+						<Label text="Vak"/>
+					</Column>
+                    <Column width="auto" visible="true">
+						<Label text="PARTİ NO"/>
+					</Column>
+                    <Column width="auto" visible="true">
+						<Label text="KÜTÜK TİPİ"/>
+					</Column>
+					<Column id="idColumnBaslat" width="auto">
+						<Label text="Başlat"/>
+					</Column>
+					<Column id="idColumnDevam" width="auto">
+						<Label text="Devam Ettir"/>
+					</Column>
+					<Column id="idColumnBeklet" width="auto">
+						<Label text="Beklet"/>
+					</Column>
+					<Column id="idColumnTekrarHold" width="auto">
+						<Label text="Tekrar Hold"/>
+					</Column>
+					<Column id="idColumnTamamla" width="auto">
+						<Label text="Tamamlanmış"/>
+					</Column>
+
+					<Column width="auto" visible="true">
+						<Label text="Açıklama"/>
+					</Column>
+				</columns>
+
+				<items>
+					<ColumnListItem>
+						<cells>
+                                                                                      <Text text="{SIRA}" class="castingFont"/>
+							<Text text="{AUFNR}" class="castingFont"/>
+							
+
+							<Text text="{QTY_RELEASED}" visible="true"/>
+							<Text text="{BIRIM}" class="castingFont"/>
+							<Text text="{Y_KESME_SEKLI}" class="castingFont"/>
+							<Text text="{Y_KUTUK_MENSEI}"/>
+							<Text text="{Y_ULKE}"/>
+							<Text text="{Y_KALITE_KTK}"/>
+							<Text text="{Y_EBAT}"/>
+							<Text text="{Y_BOY_KTK}"/>
+							<Text text="{Y_VAKUM}"/>
+							<Text text="{CHARG}"/>
+							<Text text="{SORTF}"/>
+
+							<Button id="idStart" icon="sap-icon://begin" press="newStartButton" width="2rem"/>
+							<Button id="idResume" icon="sap-icon://begin" press="newResumeButton" width="2rem"/>
+							<Button id="idHold" icon="sap-icon://fob-watch" press="newHoldButton" width="2rem"/>
+							<Button id="idTekrarHoldAlma" icon="sap-icon://fob-watch" press="newTekrarHoldAlma" width="2rem"/>
+							<Button id="idBitir" icon="sap-icon://complete" press="newBitirButton" width="2rem"/>
+							<Button id="idInfo" type="{descriptionBtnColor}" icon="sap-icon://notes" press="onPressOpenInfo" width="2rem"/>
+
+							<!-- <Button width="2rem" visible="true"></Button> -->
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+</core:View>

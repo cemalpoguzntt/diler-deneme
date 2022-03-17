@@ -1,0 +1,93 @@
+<core:View xmlns:core="sap.ui.core"
+    xmlns:suite="sap.suite.ui.commons"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:ui="sap.ui.table"
+    xmlns="sap.m" controllerName="customActivity/controller/pastActivityAccess">
+    <FlexBox height="100%" width="100%" direction="Column">
+        <FlexBox height="2%" />
+        <FlexBox  height="16%" justifyContent="Center" alignItems="Center" direction="Row">
+            <FlexBox width="25%"/>
+            <FlexBox height="100%" width="50%" justifyContent="Center" alignItems="Center" direction="Column">
+                <FlexBox direction="Row" alignItems="Center" justifyContent="Center" height="34%" width="100%">
+                    <FlexBox height="100%" width="50%" alignItems="Center" justifyContent="Center">
+                        <Label text="Plant" design="Bold"/>
+                    </FlexBox>
+                    <FlexBox height="100%" width="50%" alignItems="Center" justifyContent="Center">
+                        <Select id="plantSelectBox" autoAdjustWidth="true" forceSelection="false" items="{path:'/'}" change="plantChange">
+                            <core:Item key="{PLANT}" text="{PLANT}"/>
+                        </Select>
+                    </FlexBox>
+                </FlexBox>
+                <FlexBox direction="Row" alignItems="Center" justifyContent="Center" height="33%" width="100%">
+                    <FlexBox height="100%" width="50%" alignItems="Center" justifyContent="Center">
+                        <Label text="İş Yeri" design="Bold"/>
+                    </FlexBox>
+                    <FlexBox height="100%" width="50%" alignItems="Center" justifyContent="Center">
+                        <Select id="isyeriSelectBox" autoAdjustWidth="true" forceSelection="false" items="{path:'/'}" change="workPlaceChange">
+                            <core:Item key="{NAME}" text="{NAME}"/>
+                        </Select>
+                    </FlexBox>
+                </FlexBox>
+                <!-- <FlexBox direction="Row" alignItems="Center" justifyContent="Center" height="25%" width="100%">
+                    <FlexBox height="100%" width="50%" alignItems="Center" justifyContent="Center">
+                        <Label text="İşlem" design="Bold"/>
+                    </FlexBox>
+                    <FlexBox height="100%" width="50%" alignItems="Center" justifyContent="Center">
+                        <ComboBox id="islemComboBox" autoAdjustWidth="true" >
+                            <core:Item key="Geriye Dönük Teyit" text="Geriye Dönük Teyit"/>
+                            <core:Item key="Teyit Iptal" text="Teyit Iptal"/>
+                            
+                        </ComboBox>
+                    </FlexBox>
+                </FlexBox> -->
+                <FlexBox direction="Row" alignItems="Center" justifyContent="SpaceAround" height="33%" width="100%">
+                    <FlexBox height="100%" width="50%" alignItems="Center" justifyContent="Center">
+                        <Label text="Tarih" design="Bold"/>
+                    </FlexBox>
+                    <FlexBox height="100%" width="50%" alignItems="Center" justifyContent="Center">
+                        <DatePicker  id="DateTimePicker" width="auto" change="handleChange" valueFormat="dd-MM-yyyy" displayFormat="dd-MM-yyyy" />
+                    </FlexBox>
+                </FlexBox>
+            </FlexBox>
+            <FlexBox width="25%" alignItems="Center" justifyContent="Center">
+                <Button text="Günü Kapat" type="Emphasized" press="onSaveData"/>
+            </FlexBox>
+        </FlexBox>
+        <FlexBox height="2%" />
+        <FlexBox height="80%" width="100%" justifyContent="Center" direction="Row" alignItems="Center">
+            <ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
+                <Table id="pastActivityInfos" items="{path: '/'}" width="100%" visible="true">                    
+                    <columns>
+                        <Column width="auto" hAlign="Center" vAlign="Middle">
+                            <Label text="İptal" textAlign="Center"  />
+                        </Column>
+                        <Column width="auto" hAlign="Center" vAlign="Middle" >
+                            <Label text="Tarih" textAlign="Center" />
+                        </Column>
+                        <Column width="auto" hAlign="Center" vAlign="Middle" >
+                            <Label text="Plant" textAlign="Center" />
+                        </Column>
+                        <Column width="auto" hAlign="Center" vAlign="Middle" >
+                            <Label text="İş Yeri" maxLines="2" wrapping="true" textAlign="Center" />
+                        </Column>
+                        <Column width="auto" hAlign="Center" vAlign="Middle" visible="false" >
+                            <Label text="İşlem" maxLines="2" wrapping="true" textAlign="Center" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <core:Icon size="20px" src="sap-icon://sys-cancel-2" hoverColor="orange" color="red" press="onDelete"/>
+                                <Text text="{DATE}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                                <Text text="{PLANT}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                                <Text text="{ISYERI}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                                <!-- <Text text="{ISLEM}" width="auto" maxLines="2" wrapping="true" textAlign="Center" textDirection="Inherit" visible="true"/> -->
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </ScrollContainer>
+        </FlexBox>
+    </FlexBox>
+</core:View>

@@ -1,0 +1,574 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="customActivity.controller.oeeChemicalAnalysis" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core">
+    <Page title="{i18n>titleBilletList}" icon="sap-icon://action" class="sapUiStdPage sapUiContentPadding" showNavButton="false" navButtonPress="onNavBack">
+        <content>
+            <Panel>
+                <FlexBox alignItems="Center" justifyContent="Start" height="50px">
+                    <items>
+                        <VBox width="90px" design="Bold">
+                            <Label text="{i18n>OEE_LABEL_CASTINGNUMBER} : " design="Bold" />
+                        </VBox>
+                        <VBox width="50px">
+                            <Button type="Reject" press="onChangeCastNumber" icon="sap-icon://less" />
+                        </VBox>
+                        <VBox width="150px">
+                           
+                            <ComboBox  id="castID" width="130px" items="{castList>/Row}"  forceSelection="true" change="loadTables">
+                                <core:Item text="{castList>CASTID}" key="{castList>CASTID}" />
+                            </ComboBox>
+                        </VBox>
+                        <VBox width="100px">
+                            <Button type="Accept" press="onChangeCastNumber" icon="sap-icon://add" />
+                        </VBox>
+                    </items>
+                    	<Button text="Getir" press="refreshFunction" />
+                </FlexBox>
+            </Panel>
+
+            <FlexBox alignItems="Start" justifyContent="Start" width="60%" class="flexBox">
+                <Table id="chargeTable1" editable="false" items="{castDetailsTable>/}" mode="SingleSelectMaster">
+                    <headerToolbar>
+                        <OverflowToolbar class="tableHeaderPurple">
+                            <ToolbarSpacer />
+                            <HBox height="0px">
+                                <Label text="{i18n>OEE_LABEL_CAST_DETAILS}" class="labelWhite" />
+                            </HBox>
+                            <ToolbarSpacer />
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_CASTING_DATE}" width="102%" class="colourColumnBlue" />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_QUALITY}" width="102%" class="colourColumnBlue" />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_LENGTH}" width="102%" class="colourColumnBlue" />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_BILLET_DIMENSION}" width="102%" class="colourColumnBlue" />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_PIECE}" width="102%" class="colourColumnBlue" />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_CHARACTERISTIC_DESCRIPTION}" width="102%" class="colourColumnBlue" />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_ORDER_NUMBER}" width="102%" class="colourColumnBlue" />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_SUGGEST_QUALITY}" width="102%" class="colourColumnBlue" />
+                        </Column>
+                        <Column hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_NEW_QUALITY}" width="102%" class="colourColumnBlue" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{castDetailsTable>INSDATE}" />
+                                <Text text="{castDetailsTable>Y_KALITE_KTK}" />
+                                <Text text="{castDetailsTable>Y_BOY_KTK}" />
+                                <Text text="{castDetailsTable>Y_EBAT}" />
+                                <Text text="{castDetailsTable>ADET}" />
+                                <Text text="{castDetailsTable>KURZTEXT}" />
+                                <Text text="{castDetailsTable>AUFNR}" />
+                                <Text text="{castDetailsTable>KALITE}" />
+                                <Text text="{castDetailsTable>KALITE_KTK}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </FlexBox>
+
+            <Table items="{tableDataMinMax>/}">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <ToolbarSpacer />
+                        <HBox height="0px">
+                            <Label text="{i18n>OEE_LABEL_MIN_MAX_VALUES}" design="Bold" class="labelRed" />
+                        </HBox>
+                        <ToolbarSpacer />
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column hAlign="Center">
+                        <Label text="" width="115%" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="C" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Si" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="S" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="P" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Mn" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Ni" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Cr" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Mo" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="V" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Cu" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="W" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Ti" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Sn" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Co" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Al" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="ALsol" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Alo" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Pb" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="B" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Sb" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Nb" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Ca" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Zn" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="N" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Fe" width="115%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="CEQ" width="115%" class="colourColumnBlue" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{tableDataMinMax>TYPE}" />
+                            <Text text="{tableDataMinMax>%C}" />
+                            <Text text="{tableDataMinMax>%Si}" />
+                            <Text text="{tableDataMinMax>%S}" />
+                            <Text text="{tableDataMinMax>%P}" />
+                            <Text text="{tableDataMinMax>%Mn}" />
+                            <Text text="{tableDataMinMax>%Ni}" />
+                            <Text text="{tableDataMinMax>%Cr}" />
+                            <Text text="{tableDataMinMax>%Mo}" />
+                            <Text text="{tableDataMinMax>%V}" />
+                            <Text text="{tableDataMinMax>%Cu}" />
+                            <Text text="{tableDataMinMax>%W}" />
+                            <Text text="{tableDataMinMax>%Ti}" />
+                            <Text text="{tableDataMinMax>%Sn}" />
+                            <Text text="{tableDataMinMax>%Co}" />
+                            <Text text="{tableDataMinMax>%Al}" />
+                            <Text text="{tableDataMinMax>%Alsol}" />
+                            <Text text="{tableDataMinMax>AlO}" />
+                            <Text text="{tableDataMinMax>%Pb}" />
+                            <Text text="{tableDataMinMax>%B}" />
+                            <Text text="{tableDataMinMax>%Sb}" />
+                            <Text text="{tableDataMinMax>%Nb}" />
+                            <Text text="{tableDataMinMax>%Ca}" />
+                            <Text text="{tableDataMinMax>%Zn}" />
+                            <Text text="{tableDataMinMax>%N}" />
+                            <Text text="{tableDataMinMax>%Fe}" />
+                            <Text text="{tableDataMinMax>%Ceq}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+            <Table id="tablesData1" items="{/}" sort="USERC1">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <ToolbarSpacer />
+                        <HBox></HBox>
+                        <ToolbarSpacer />
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column width="7rem" hAlign="Center" sortProperty="USERC1">
+                        <Label text="{i18n>OEE_LABEL_LOCATION}" width="105%" class="colourColumnBlue" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_CASTINGNUMBER}" width="105%" class="colourColumnBlue" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center" visible="false">
+                        <Label text="{i18n>titleSpecimen}" width="105%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="C" width="105%" class="colourColumnYellow" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Si" width="105%" class="colourColumnYellow" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="S" width="105%" class="colourColumnYellow" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="P" width="105%" class="colourColumnYellow" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Mn" width="105%" class="colourColumnYellow" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Ni" width="105%" class="colourColumnYellow" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Cr" width="105%" class="colourColumnOrange" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Mo" width="105%" class="colourColumnOrange" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="V" width="105%" class="colourColumnOrange" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Cu" width="105%" class="colourColumnOrange" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="W" width="105%" class="colourColumnOrange" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Sn" width="105%" class="colourColumnOrange" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Co" width="105%" class="colourColumnGreen" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Al" width="105%" class="colourColumnGreen" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Alsol" width="105%" class="colourColumnGreen" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Alinsol" width="105%" class="colourColumnGreen" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Pb" width="105%" class="colourColumnGreen" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Alsol / Al" width="105%" class="colourColumnBlueTwo" />
+                    </Column>
+                    <Column hAlign="Center" visible="false">
+                        <Label text="Ract" width="105%" class="colourColumnBlue" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <customData>
+
+                            <core:CustomData key="{USERC1}" value="Hello" writeToDom="true" />
+                
+                                        </customData>
+                        <cells>
+                            <Text text="{USERC1}" />
+                            <Text text="{ZZDOKNO}" />
+                            <Text text="{SINGLE_INSPSAMPLE}" />
+                            <Text text="{%C}" />
+                            <Text text="{%Si}" />
+                            <Text text="{%S}" />
+                            <Text text="{%P}" />
+                            <Text text="{%Mn}" />
+                            <Text text="{%Ni}" />
+                            <Text text="{%Cr}" />
+                            <Text text="{%Mo}" />
+                            <Text text="{%V}" />
+                            <Text text="{%Cu}" />
+                            <Text text="{%W}" />
+                            <Text text="{%Sn}" />
+                            <Text text="{%Co}" />
+                            <Text text="{%Al}" />
+                            <Text text="{%Alsol}" />
+                            <Text text="{%Alinsol}" />
+                            <Text text="{%Pb}" />
+                            <Text text="{Alsol Al}" />
+                            <Text text="{%Ract}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+            <Table id="tablesData2" items="{/}">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <ToolbarSpacer />
+                        <HBox></HBox>
+                        <ToolbarSpacer />
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column width="7rem">
+                        <Label text="{i18n>OEE_LABEL_LOCATION}" width="104%" class="colourColumnBlue" />
+                    </Column>
+                    <Column width="7rem">
+                        <Label text="{i18n>OEE_LABEL_CASTINGNUMBER}" width="104%" class="colourColumnBlue" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center" visible="false">
+                        <Label text="Numune" width="105%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="B" width="104%" class="colourColumnGreen" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Bsol" width="104%" class="colourColumnBlueTwo" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Binsol" width="104%" class="colourColumnBlueTwo" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Sb" width="104%" class="colourColumnBlueTwo" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Nb" width="104%" class="colourColumnBlueTwo" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Ca" width="104%" class="colourColumnBlueTwo" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Casol" width="104%" class="colourColumnBlueTwo" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Cainsol" width="104%" class="colourColumnYellow" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Zn" width="104%" class="colourColumnYellow" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="N" width="104%" class="colourColumnYellow" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Ti" width="104%" class="colourColumnYellow" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Tisol" width="104%" class="colourColumnYellow" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Tinsol" width="104%" class="colourColumnYellow" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="As" width="104%" class="colourColumnGreen" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Zr" width="104%" class="colourColumnGreen" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Bi" width="104%" class="colourColumnGreen" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="O" width="104%" class="colourColumnGreen" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Fe%" width="104%" class="colourColumnGreen" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="CEQ" width="104%" class="colourColumnGreen" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="CEQ1" width="104%" class="colourColumnGreen" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="CEQ2" width="104%" class="colourColumnGreen" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Tliq" width="104%" class="colourColumnGreen" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Cu+8Sn" width="114%" class="colourColumnYellow" />
+                    </Column>
+                    <Column hAlign="Center" visible="false">
+                        <Label text="Ract" width="104%" class="colourColumnBlue" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                   
+                        <cells>
+                            <Text text="{USERC1}" />
+                            <Text text="{ZZDOKNO}" />
+                            <Text text="{SINGLE_INSPSAMPLE}" />
+                            <Text text="{%B}" />
+                            <Text text="{%Bsol}" />
+                            <Text text="{%Binsol}" />
+                            <Text text="{%Sb}" />
+                            <Text text="{%Nb}" />
+                            <Text text="{%Ca}" />
+                            <Text text="{%Casol}" />
+                            <Text text="{%Cainsol}" />
+                            <Text text="{%Zn}" />
+                            <Text text="{%N}" />
+                            <Text text="{%Ti}" />
+                            <Text text="{%Tisol}" />
+                            <Text text="{%Tiinsol}" />
+                            <Text text="{%As}" />
+                            <Text text="{%Zr}" />
+                            <Text text="{%Bi}" />
+                            <Text text="{%O}" />
+                            <Text text="{%Fe}" />
+                            <Text text="{%Ceq}" />
+                            <Text text="{%Ceq1}" />
+                            <Text text="{%Ceq2}" />
+                            <Text text="{Tliq}" />
+                            <Text text="{Cu+8Sn}" />
+                            <Text text="{%Ract}" />
+                        </cells>
+    <customData>
+
+            <core:CustomData key="{USERC1}" value="Hello" writeToDom="true" />
+
+                        </customData>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+            <Table id="tablesData3" items="{/}">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <ToolbarSpacer />
+                        <HBox></HBox>
+                        <ToolbarSpacer />
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column width="7rem">
+                        <Label text="{i18n>OEE_LABEL_LOCATION}" width="104%" class="colourColumnBlue" />
+                    </Column>
+                    <Column width="7rem">
+                        <Label text="{i18n>OEE_LABEL_CASTINGNUMBER}" width="104%" class="colourColumnBlue" />
+                    </Column>
+                    <Column width="7rem" hAlign="Center" visible="false">
+                        <Label text="Numune" width="105%" class="colourColumnBlue" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Cu+Cr+Ni" width="104%" class="colourColumnYellow" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="AlCaO" width="104%" class="colourColumnBlueTwo" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="AlMgO" width="104%" class="colourColumnBlueTwo" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="AlSiO" width="104%" class="colourColumnBlueTwo" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="AlTiO" width="104%" class="colourColumnBlueTwo" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="AlCa" width="104%" class="colourColumnBlueTwo" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="AlO" width="104%" class="colourColumnBlueTwo" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="CaO" width="104%" class="colourColumnYellow" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="CaS" width="104%" class="colourColumnYellow" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="TiO" width="104%" class="colourColumnYellow" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="TiAI" width="104%" class="colourColumnYellow" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="MnS" width="104%" class="colourColumnYellow" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="MgO" width="104%" class="colourColumnYellow" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="ZrO" width="104%" class="colourColumnGreen" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="SiO" width="104%" class="colourColumnGreen" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="CuEQ" width="104%" class="colourColumnPink" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Mn/S" width="104%" class="colourColumnPink" />
+                    </Column>
+                    <Column hAlign="Center">
+                        <Label text="Mn/Si" width="104%" class="colourColumnPink" />
+                    </Column>
+                    <Column hAlign="Center" visible="false">
+                        <Label text="Ract" width="104%" class="colourColumnBlue" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                     <customData>
+
+            <core:CustomData key="{USERC1}" value="Hello" writeToDom="true" />
+
+                        </customData>
+                        <cells>
+                            <Text text="{USERC1}" />
+                            <Text text="{ZZDOKNO}" />
+                            <Text text="{SINGLE_INSPSAMPLE}" />
+                            <Text text="{%Cu+Cr+Ni}" />
+                            <Text text="{AlCaO}" />
+                            <Text text="{AlMgO}" />
+                            <Text text="{AlSiO}" />
+                            <Text text="{AlTiO}" />
+                            <Text text="{AlCa}" />
+                            <Text text="{AlO}" />
+                            <Text text="{CaO}" />
+                            <Text text="{CaS}" />
+                            <Text text="{TiO}" />
+                            <Text text="{TiAl}" />
+                            <Text text="{MnS}" />
+                            <Text text="{MgO}" />
+                            <Text text="{ZrO}" />
+                            <Text text="{SiO}" />
+                            <Text text="{CuEQ}" />
+                            <Text text="{Mn S}" />
+                            <Text text="{Mn Si}" />
+                            <Text text="{%Ract}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <ToolbarSpacer />
+                <Button text="{i18n>OEE_LABEL_QUALITY_CHANGE_DECISION}" press="onClickQualityChange" visible="{= ${appData>/visibleJSON/QUALITY_CHANGE_BUTTON} === 'QUALITY_CHANGE_BUTTON' ? true : false }" />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

@@ -1,0 +1,707 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="customActivity.controller.oeeSelectOrder" xmlns:layout="sap.ui.layout" displayBlock="true" height="100%">
+    <Page>
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <SearchField width="100%" liveChange="onSearch" search="onSearch" id="orderSearch" />
+                </contentLeft>
+            </Bar>
+        </customHeader>
+        <subHeader>
+            <Toolbar id="statusBar">
+                <CheckBox text="{path : '/statusDetails/NEW', formatter : '.statusFormatter'}" id="idNewStatus" selected="true"  select="fetchOrdersBasedOnStatus" visible="{path : '/statusDetails/NEW', formatter : '.checkIfStatusPresent'}" />
+                <CheckBox text="{path : '/statusDetails/ACTIVE', formatter : '.statusFormatter'}" id="idActiveStatus"  selected="true" select="fetchOrdersBasedOnStatus" visible="{path : '/statusDetails/ACTIVE', formatter : '.checkIfStatusPresent'}" />
+                <CheckBox text="{path : '/statusDetails/HOLD', formatter : '.statusFormatter'}" id="idHoldStatus" selected="true"  select="fetchOrdersBasedOnStatus" visible="{path : '/statusDetails/HOLD', formatter : '.checkIfStatusPresent'}" />
+                <CheckBox text="{path : '/statusDetails/COMPLETED', formatter : '.statusFormatter'}" id="idCompletedStatus" select="fetchOrdersBasedOnStatus" visible="{path : '/statusDetails/COMPLETED', formatter : '.checkIfStatusPresent'}" />
+                <CheckBox text="{path : '/statusDetails/ABORTED', formatter : '.statusFormatter'}" id="idAbortedStatus" select="fetchOrdersBasedOnStatus" visible="{path : '/statusDetails/ABORTED', formatter : '.checkIfStatusPresent'}" />
+                <CheckBox text="{i18n>OEE_BTN_SHIFT}" id="idShiftCheckbox" select="fetchOrdersBasedOnStatus" visible="{path : '/statusDetails/SHIFT', formatter : '.checkIfStatusPresent'}" />
+                <ToolbarSpacer></ToolbarSpacer>
+                <core:Icon src="sap-icon://sort" press="sortOrderData" width="2rem"></core:Icon>
+                <core:Icon src="sap-icon://refresh" press="refreshOrderData" width="2rem"></core:Icon>
+            </Toolbar>
+        </subHeader>
+        <content>
+            <Table  inset="false"  showNoData="false" width="100%" items="{path: '/orderDetails',  sorter: [{  path:  'ROW_NUM' , ascending: true}]}" growing="true" growingScrollToLoad="true" growingThreshold="100" contextualWidth="Auto" popinLayout="GridSmall">
+                <columns>
+	
+                    <Column width="5%" minScreenWidth="tablet" demandPopin="true" visible="true">
+                        <Label text="{i18n>OEE_LABEL_STATUS}" />
+                    </Column>
+                    <Column width="10%" visible="{= (${visibleStatusModel>/}).localArrFilter('TOP_AUFNR') }" hAlign = "Center">
+                        <Label text="{i18n>OEE_LABEL_TOP_AUFNR}" />
+                    </Column>
+                    <Column width="10%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_DOKUM') }">
+                        <Label text="{i18n>OEE_LABEL_CASTINGNUMBER}" />
+                    </Column>
+                    <Column width="8%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_MUSTERI') }">
+                        <Label text="{i18n>OEE_LABEL_CUSTOMER}" />
+                    </Column>
+                    <Column width="7%" minScreenWidth="tablet" demandPopin="true" visible="{= (${visibleStatusModel>/}).localArrFilter('GRUP_NO') }">
+                        <Label text="{i18n>OEE_ERP_GROUP_NO}" />
+                    </Column>
+                    <Column width="8%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_KALITE_TAVFLM') }">
+                        <Label text="{i18n>OEE_LABEL_QUALITY}" />
+                    </Column>
+                    <Column width="6rem" minScreenWidth="tablet" demandPopin="true">
+                        <Label text=" {i18n>OEE_LABEL_WORKORDER}" />
+                    </Column>
+                    <Column width="6%" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_OPERATION_PHASE}" />
+                    </Column>
+                    <Column width="6rem" visible="{= (${visibleStatusModel>/}).localArrFilter('KDAUF') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_KDAUF}" />
+                    </Column>
+                    <Column width="12%" visible="{= (${visibleStatusModel>/}).localArrFilter('MATNR_KTK') }"  minScreenWidth="tablet" demandPopin="true" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_MATERIAL}" />
+                    </Column>
+                    <Column width="12%" visible="{= (${visibleStatusModel>/}).localArrFilter('MATNR') }"  minScreenWidth="tablet" demandPopin="true" hAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_MATERIAL}" />
+                    </Column>
+                    <Column width="12%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_STANDART_FRK') }"  minScreenWidth="tablet" demandPopin="true" hAlign="Center">
+                        <Label text="Standart" />
+                    </Column>
+                    <Column width="12%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_KALITE_FRK') }"  minScreenWidth="tablet" demandPopin="true" hAlign="Center">
+                        <Label text="Kalite" />
+                    </Column>
+                    <Column width="12%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_CAP_FRK_MM') }"  minScreenWidth="tablet" demandPopin="true" hAlign="Center">
+                        <Label text="Çap" />
+                    </Column>
+                    <Column width="3%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_CAP_PCS_MM') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_DIAMETER}" />
+                    </Column>
+                    <Column width="4%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_SARIM_YONU') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_DIRECT}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_MIKTAR_TON') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_AIM_PRODUCT_QUANTITY}" />
+                    </Column>
+                    <Column width="7%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_MERKEZ_TEL_CAP') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_CENTER_WIRE_DIAMETER}" />
+                    </Column>
+                    <Column width="7%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_CEVRE_TEL_CAP') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_ENVIRONMENT_WIRE_DIAMETER}" />
+                    </Column>
+                    <Column width="8%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_MERKEZ_TEL_METRAJ') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_MTEL_METERAGE}" />
+                    </Column>
+                    <Column width="8%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_CEVRE_TEL_METRAJ') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_CTEL_METERAGE}" />
+                    </Column>
+                    <Column width="8%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_KALITE_PCS') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_QUALITY}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_STANDART_PCW') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_STANDARD_PCW}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_KALITE_PCW') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_KALITE_PCW}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_STANDART_CBK') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_STANDARD}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_KALITE_CBK') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_KALITE_PCW}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_CAP_CBK_MM') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_CAP_MM}" />
+                    </Column>
+
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_CAP_PCW_MM') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_CAP_PCW_MM}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_ADET_TEL_BOBINI') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_QTY_TEL_BOBBIN}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_METRAJ_PCW') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_METERAGE_PCW}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_KANGAL_AGIRLIK') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_KNGL_WEI}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_YUZEY_PCW') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_SURF_PCW}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_CENTIK_TIPI') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_CENTIK_TYPE}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_PCW_CBK_UZN') }">
+                        <Label text="{i18n>OEE_LABEL_PCW_CBK_UZN}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_PAKET_AGIRLIK') }">
+                        <Label text="{i18n>OEE_LABEL_PACK_WEI}" />
+                    </Column>
+                    <Column width="8%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_RODA_BOYU') }">
+                        <Label text="{i18n>OEE_LABEL_RODA_LENGTH}" />
+                    </Column>
+                    <Column width="8%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_FATURALAMA') }">
+                        <Label text="{i18n>OEE_LABEL_BILLING}" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_MENSEI_FLM') }">
+                        <Label text="{i18n>OEE_LABEL_ORIGIN}" />
+                    </Column>
+                    <Column width="4%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_TEL_CAP_MM_SC') }">
+                        <Label text="{i18n>OEE_LABEL_WIRE_DIAMETER_MM_T}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_CAP_FLM_MM') }">
+                        <Label text="{i18n>OEE_LABEL_WIRE_DIAMETER_MM}" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_STANDART_SC') }">
+                        <Label text="{i18n>OEE_LABEL_STANDARD}" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_KALITE_SC') }">
+                        <Label text="{i18n>OEE_LABEL_QUALITYS_SC}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_STANDART_FLM') }">
+                        <Label text="{i18n>OEE_LABEL_STANDARD}" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_KALITE_FLM') }">
+                        <Label text="{i18n>OEE_LABEL_QUALITYS_FF}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_BOY_CBK_M') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_LENGTH}" />
+                    </Column>
+                    <Column width="6%" minScreenWidth="phone" demandPopin="true" visible="{= ${appData>/plant} === '2002'}">
+                        <Label text="{i18n>OEE_LABEL_QUANTITY}" />
+                    </Column>
+                    <Column width="9%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_URETILECEK_PAKSAY') }">
+                        <Label text="{i18n>OEE_LABEL_PAKSAY}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_MARKA') }">
+                        <Label text="{i18n>OEE_LABEL_Y_MARKA}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_CUBUK_SAYISI') }">
+                        <Label text="{i18n>OEE_LABEL_Y_CUBUK_SAY}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_PAKETLEME_KDOG') }">
+                        <Label text="{i18n>OEE_LABEL_Y_PAKETLEME_KDOG}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_BOYAMA') }">
+                        <Label text="{i18n>OEE_LABEL_Y_BOYAMA}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_ETIKET') }">
+                        <Label text="{i18n>OEE_LABEL_Y_ETIKET}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_BOY_TOLERANS_MM_MIN') }">
+                        <Label text="{i18n>OEE_LABEL_Y_BOY_TOLERANS_MIN}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_BOY_TOLERANS_MM_MAX') }">
+                        <Label text="{i18n>OEE_LABEL_Y_BOY_TOLERANS_MAX}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_ULKE') }">
+                        <Label text="{i18n>OEE_LABEL_Y_ULKE}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_ACIKLAMA') }">
+                        <Label text="{i18n>OEE_LABEL_Y_ACIKLAMA}" />
+                    </Column>
+                    <Column width="8%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_KUTUK_MENSEI') &amp;&amp; ${appData>/plant} === '2002'}">
+                        <Label text="{i18n>OEE_LABEL_CLOG_ORIGIN}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_PAKET_AGIRLIK_KG') }">
+                        <Label text="{i18n>OEE_LABEL_PACK_WEI}" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_AYT') }">
+                        <Label text="{i18n>OEE_LABEL_ACID_SURFACE_CLEANING}" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('COLUMN_BOM') &amp;&amp; ${appData>/plant} !== '3001'&amp;&amp; ${appData>/plant} !== '2001' }">
+                        <Label text="{i18n>OEE_LABEL_QUALITYS_KTK}" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('COLUMN_BOM') &amp;&amp; ${appData>/plant} !== '3001'&amp;&amp; ${appData>/plant} !== '2001' }">
+                        <Label text="{i18n>OEE_LABEL_QUALITYS_KTK}" />
+                    </Column>
+                    <Column width="9%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_KALITE_KTK') &amp;&amp; ${appData>/plant} !== '3001'&amp;&amp; ${appData>/plant} !== '2001' }">
+                        <Label text="{i18n>OEE_LABEL_QUALITYS_KTK}" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_EBAT') }">
+                        <Label text="{i18n>OEE_LABEL_SIZE}" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_BOY_KTK') }">
+                        <Label text="{i18n>OEE_LABEL_LENGTH}" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_VAKUM') &amp;&amp; ${appData>/plant} === '2002' }">
+                        <Label text="{i18n>OEE_LABEL_VACUUM}" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_TASLAMA') }">
+                        <Label text="{i18n>OEE_LABEL_GRINDING}" />
+                    </Column>
+                    <Column width="7%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_DOKUM_TIPI') }">
+                        <Label text="{i18n>OEE_LABEL_CASTNUMBER_TYPE}" />
+                    </Column>
+                    <Column width="8%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_VAKUM') &amp;&amp; ${appData>/plant} !== '2002' }">
+                        <Label text="{i18n>OEE_LABEL_VACUUM}" />
+                    </Column>
+                    <Column width="8%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_KUTUK_MENSEI') &amp;&amp; ${appData>/plant} !== '3001'&amp;&amp; ${appData>/plant} !== '2001' }">
+                        <Label text="{i18n>OEE_LABEL_CLOG_ORIGIN}" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_METRAJ') }">
+                        <Label text="{i18n>OEE_LABEL_BOBBIN_METERAGE}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_BOBIN_AGIRLIK') }">
+                        <Label text="{i18n>OEE_LABEL_BOBBIN_WEIGHT}" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_BOBIN_ADET') }">
+                        <Label text="{i18n>OEE_LABEL_BOBBIN_QUANTITY}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_MERKEZ_CEVRE') }">
+                        <Label text="{i18n>OEE_LABEL_CENTER_SPHERE_WIRE}" />
+                    </Column>
+                    <Column width="6%" minScreenWidth="phone" demandPopin="true" visible="{= ${appData>/plant} !== '2002'}">
+                        <Label text="{i18n>OEE_LABEL_QUANTITY}" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_HEDEF_MIKTAR') }">
+                        <Label text="{i18n>OEE_LABEL_TARGET_QUANTITY}" />
+                    </Column>
+                    <Column width="9%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_YUKLEME_SAYISI') }">
+                        <Label text="{i18n>OEE_LABAL_UPLOAD_QUANTITY}" />
+                    </Column>
+                    <Column width="9%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_NERVUR_DUZ') }">
+                        <Label text="{i18n>OEE_LABEL_ND}" />
+                    </Column>
+                    <Column width="9%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_ROTOR_TIPI') }">
+                        <Label text="{i18n>OEE_LABEL_ROTOR}" />
+                    </Column>
+                    <Column width="9%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_URETIM_YONTEMI_FLM') }">
+                        <Label text="{i18n>OEE_LABEL_PRODUCT_METHOD}" />
+                    </Column>
+                    <Column width="9%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_PAKETLEME_FLM') }">
+                        <Label text="{i18n>OEE_LABEL_FLM_PACKING}" />
+                    </Column>
+                    <Column width="9%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_URETIM_YONTEMI') }">
+                        <Label text="{i18n>OEE_LABEL_PRODUCT_METHOD}" />
+                    </Column>
+                    <Column width="9%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_URETILECEK_PAKTON') &amp;&amp; ${appData>/plant} !== '2002'}">
+                        <Label text="{i18n>OEE_LABEL_ORDER_TONNAGEACT}" />
+                    </Column>
+                    <Column width="5%" minScreenWidth="tablet" demandPopin="true" visible="{= ${appData>/plant} !== '2002'}">
+                        <Label text="{i18n>OEE_LABEL_STATUS}" />
+                    </Column>
+                    <Column width="14%" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_ORDER_ACTUAL_START} /{i18n>END_TIME_LABEL}" />
+                    </Column>
+                    <Column width="14%" minScreenWidth="tablet" demandPopin="true" visible="false">
+                        <Label text="{i18n>OEE_LABEL_PLANNED_START} /{i18n>END_TIME_LABEL}" />
+                    </Column>
+                    <Column width="4%"></Column>
+                    <Column width="4%">
+                        <Label text="{i18n>OEE_LABEL_DETAILS}" visible="false" />
+                    </Column>
+                    <Column hAlign="Left" width="8%" visible="false" id="productionActivityColumn">
+                        <Label text="{i18n>OEE_LABEL_ACTIVITY}" />
+                    </Column>
+                    <Column width="4%"></Column>
+                    <Column width="4%"></Column>
+                    <Column width="5%">
+                        <Label text="{i18n>OEE_LABEL_AUFNR_DETAILS}" visible="false" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('SDMFRAGCOLUMN') }">
+                        <Label visible="true" />
+                    </Column>
+                    <Column width="10%" visible="{= (${visibleStatusModel>/}).localArrFilter('COMPONENTS_COLUMN') }">
+                        <Label text="{i18n>OEE_LABEL_COMPONENTS}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+                        <ScrollContainer height="90%" width="100%" horizontal="true" vertical="true">
+                            <HBox  height="90%" alignItems="Inherit" width="100%" justifyContent="SpaceAround">
+            <Table id="idOrdersTable" inset="false" width="100%" items="{path: '/orderDetails',  sorter: [{  path:  'ROW_NUM' , ascending: true}]}" growing="true" growingScrollToLoad="true" growingThreshold="100" contextualWidth="Auto" popinLayout="GridSmall">
+                <columns>
+	
+                    <Column width="5%" minScreenWidth="tablet" demandPopin="true" visible="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="10%" visible="{= (${visibleStatusModel>/}).localArrFilter('TOP_AUFNR') }" hAlign = "Center">
+                        <Label text="" />
+                    </Column>
+                    <Column width="10%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_DOKUM') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="8%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_MUSTERI') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="7%" minScreenWidth="tablet" demandPopin="true" visible="{= (${visibleStatusModel>/}).localArrFilter('GRUP_NO') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="8%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_KALITE_TAVFLM') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6rem" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6rem" visible="{= (${visibleStatusModel>/}).localArrFilter('KDAUF') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="12%" visible="{= (${visibleStatusModel>/}).localArrFilter('MATNR_KTK') }"  minScreenWidth="tablet" demandPopin="true" hAlign="Center">
+                        <Label text="" />
+                    </Column>
+                    <Column width="12%" visible="{= (${visibleStatusModel>/}).localArrFilter('MATNR') }"  minScreenWidth="tablet" demandPopin="true" hAlign="Center">
+                        <Label text="" />
+                    </Column>
+                    <Column width="12%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_STANDART_FRK') }"  minScreenWidth="tablet" demandPopin="true" hAlign="Center">
+                        <Label text="Standart" />
+                    </Column>
+                    <Column width="12%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_KALITE_FRK') }"  minScreenWidth="tablet" demandPopin="true" hAlign="Center">
+                        <Label text="" />
+                    </Column>
+                    <Column width="12%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_CAP_FRK_MM') }"  minScreenWidth="tablet" demandPopin="true" hAlign="Center">
+                        <Label text="" />
+                    </Column>
+                    <Column width="3%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_CAP_PCS_MM') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="4%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_SARIM_YONU') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_MIKTAR_TON') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="7%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_MERKEZ_TEL_CAP') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="7%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_CEVRE_TEL_CAP') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="8%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_MERKEZ_TEL_METRAJ') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="8%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_CEVRE_TEL_METRAJ') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="8%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_KALITE_PCS') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_STANDART_PCW') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_KALITE_PCW') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_STANDART_CBK') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_KALITE_CBK') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_CAP_CBK_MM') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="{i18n>OEE_LABEL_CAP_MM}" />
+                    </Column>
+
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_CAP_PCW_MM') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_ADET_TEL_BOBINI') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_METRAJ_PCW') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_KANGAL_AGIRLIK') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_YUZEY_PCW') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_CENTIK_TIPI') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_PCW_CBK_UZN') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_PAKET_AGIRLIK') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="8%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_RODA_BOYU') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="8%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_FATURALAMA') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_MENSEI_FLM') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="4%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_TEL_CAP_MM_SC') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_CAP_FLM_MM') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_STANDART_SC') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_KALITE_SC') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_STANDART_FLM') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_KALITE_FLM') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_BOY_CBK_M') }" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" minScreenWidth="phone" demandPopin="true" visible="{= ${appData>/plant} === '2002'}">
+                        <Label text="" />
+                    </Column>
+                    <Column width="9%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_URETILECEK_PAKSAY') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_MARKA') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_CUBUK_SAYISI') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_PAKETLEME_KDOG') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_BOYAMA') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_ETIKET') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_BOY_TOLERANS_MM_MIN') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_BOY_TOLERANS_MM_MAX') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_ULKE') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_ACIKLAMA') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="8%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_KUTUK_MENSEI') &amp;&amp; ${appData>/plant} === '2002'}">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_PAKET_AGIRLIK_KG') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_AYT') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('COLUMN_BOM') &amp;&amp; ${appData>/plant} !== '3001'&amp;&amp; ${appData>/plant} !== '2001' }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('COLUMN_BOM') &amp;&amp; ${appData>/plant} !== '3001'&amp;&amp; ${appData>/plant} !== '2001' }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="9%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_KALITE_KTK') &amp;&amp; ${appData>/plant} !== '3001'&amp;&amp; ${appData>/plant} !== '2001' }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_EBAT') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_BOY_KTK') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_VAKUM') &amp;&amp; ${appData>/plant} === '2002' }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_TASLAMA') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="7%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_DOKUM_TIPI') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="8%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_VAKUM') &amp;&amp; ${appData>/plant} !== '2002' }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="8%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_KUTUK_MENSEI') &amp;&amp; ${appData>/plant} !== '3001'&amp;&amp; ${appData>/plant} !== '2001' }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_METRAJ') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_BOBIN_AGIRLIK') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_BOBIN_ADET') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_MERKEZ_CEVRE') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" minScreenWidth="phone" demandPopin="true" visible="{= ${appData>/plant} !== '2002'}">
+                        <Label text="" />
+                    </Column>
+                    <Column width="6%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_HEDEF_MIKTAR') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="9%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_YUKLEME_SAYISI') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="9%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_NERVUR_DUZ') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="9%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_ROTOR_TIPI') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="9%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_URETIM_YONTEMI_FLM') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="9%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_PAKETLEME_FLM') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="9%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_URETIM_YONTEMI') }">
+                        <Label text="" />
+                    </Column>
+                    <Column width="9%" visible="{= (${visibleStatusModel>/}).localArrFilter('Y_URETILECEK_PAKTON') &amp;&amp; ${appData>/plant} !== '2002'}">
+                        <Label text="" />
+                    </Column>
+                    <Column width="5%" minScreenWidth="tablet" demandPopin="true" visible="{= ${appData>/plant} !== '2002'}">
+                        <Label text="" />
+                    </Column>
+                    <Column width="14%" minScreenWidth="tablet" demandPopin="true">
+                        <Label text="" />
+                    </Column>
+                    <Column width="14%" minScreenWidth="tablet" demandPopin="true" visible="false">
+                        <Label text="" />
+                    </Column>
+                    <Column width="4%"></Column>
+                    <Column width="4%">
+                        <Label text="" visible="false" />
+                    </Column>
+                    <Column hAlign="Left" width="8%" visible="false" >
+                        <Label text="" />
+                    </Column>
+                    <Column width="4%"></Column>
+                    <Column width="4%"></Column>
+                    <Column width="5%">
+                        <Label text="" visible="false" />
+                    </Column>
+                    <Column width="5%" visible="{= (${visibleStatusModel>/}).localArrFilter('SDMFRAGCOLUMN') }">
+                        <Label visible="true" />
+                    </Column>
+                    <Column width="10%" visible="{= (${visibleStatusModel>/}).localArrFilter('COMPONENTS_COLUMN') }">
+                        <Label text="" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+		   <core:Icon src="sap-icon://circle-task-2" color = "{= ${statusDesc} === 'Yeni' ? 'Yellow' : ${statusDesc} === 'Aktif' ? 'Green' :'Blue' }" />
+                            <Text text="{TOPAUFNR}"/>
+                            <Text text="{castingNumber}" class="castingFont" />
+                            <Text text="{Y_MUSTERI}" />
+                            <Text text="{orderERPGroupNo}" />
+                            <Text text="{Y_KALITE_TAVFLM}" />
+                            <Text text="{orderNo}" tooltip="{characteristic}" />
+                            <Text text="{parts :[{path:'routingOperNo'},{path :'operationDesc'},{path : 'parentOperNo'},{path : 'parentOperationDesc'}],formatter : 'sap.oee.ui.Formatter.formatOperationForSelectOrderScreen'}" />
+                            <Text text="{salesOrderNumber}" />
+                             <Text text="{Y_SIPARIS_MALZEME}" />
+                            <Text text="{parts :[{path:'material'},{path :'materialDescription'}],formatter : 'sap.oee.ui.Formatter.formatMaterialForSelectOrderScreen'}" />
+                            <Text text="{Y_STANDART_FRK}" />
+                            <Text text="{Y_KALITE_FRK}" />
+                            <Text text="{Y_CAP_FRK_MM}" />
+                            <Text text="{Y_CAP_PCS_MM}" />
+                            <Text text="{Y_SARIM_YONU}" />
+                            <Text text="{Y_MIKTAR_TON}" />
+                            <Text text="{Y_MERKEZ_TEL_CAP}" />
+                            <Text text="{Y_CEVRE_TEL_CAP}" />
+                            <Text text="{Y_MERKEZ_TEL_METRAJ}" />
+                            <Text text="{Y_CEVRE_TEL_METRAJ}" />
+                            <Text text="{Y_KALITE_PCS}" />
+                            <Text text="{Y_STANDART_PCW}" />
+                            <Text text="{Y_KALITE_PCW}" />
+                            <Text text="{Y_STANDART_CBK}" />
+                            <Text text="{Y_KALITE_CBK}" />
+                            <Text text="{Y_CAP_CBK_MM}" />
+                            <Text text="{Y_CAP_PCW_MM}" />
+                            <Text text="{Y_ADET_TEL_BOBINI}" />
+                            <Text text="{Y_METRAJ_PCW}" />
+                            <Text text="{Y_KANGAL_AGIRLIK}" />
+                            <Text text="{Y_YUZEY_PCW}" />
+                            <Text text="{Y_CENTIK_TIPI}" />
+                            <Text text="{Y_PCW_CBK_UZN}" />
+                            <Text text="{Y_PAKET_AGIRLIK}" />
+                            <Text text="{Y_RODA_BOYU}" />
+                            <Text text="{Y_FATURALAMA}" />
+                            <Text text="{Y_MENSEI_FLM}" />
+                            <Text text="{Y_TEL_CAP_MM_SC}" />
+                            <Text text="{Y_CAP_FLM_MM}" />
+                            <Text text="{Y_STANDART_SC}" />
+                            <Text text="{Y_KALITE_SC}" />
+                            <Text text="{Y_STANDART_FLM}" />
+                            <Text text="{Y_KALITE_FLM}" />
+                            <Text text="{Y_BOY_CBK_M}" />
+                            <Text text="{parts :[{path:'quantityReleased'},{path:'defaultUomText'},{path :'appData>/decimalPrecision'}],formatter : 'sap.oee.ui.Formatter.formatQuantityAndUOMText'}" />
+                            <Text text="{Y_URETILECEK_PAKSAY}" />
+                            <Text text="{Y_MARKA}" />
+                            <Text text="{Y_CUBUK_SAYISI}" />
+                            <Text text="{Y_PAKETLEME_KDOG}" />
+                            <Text text="{Y_BOYAMA}" />
+                            <Text text="{Y_ETIKET}" />
+                            <Text text="{Y_BOY_TOLERANS_MM_MIN}" />
+                            <Text text="{Y_BOY_TOLERANS_MM_MAX}" />
+                            <Text text="{Y_ULKE}" />
+                            <Text text="{Y_ACIKLAMA}" />
+                            <Text text="{Y_KUTUK_MENSEI}" />
+                            <Text text="{Y_PAKET_AGIRLIK_KG}" />
+                            <Text text="{Y_AYT}" />
+                            <Text text="{BOM}" />
+                            <Text text="{Y_BOM_KTK}" />
+                            <Text text="{Y_KALITE_KTK}" />
+                            <Text text="{Y_EBAT}" />
+                            <Text text="{Y_BOY_KTK}" />
+                            <Text text="{Y_VAKUM}" />
+                            <Text text="{Y_TASLAMA}" />
+                            <Text text="{Y_DOKUM_TIPI}" />
+                            <Text text="{Y_VAKUM}" />
+                            <Text text="{Y_KUTUK_MENSEI}" />
+                            <Text text="{Y_METRAJ}" />
+                            <Text text="{Y_BOBIN_AGIRLIK}" />
+                            <Text text="{Y_BOBIN_ADET}" />
+                            <Text text="{CEVRE_MERKEZ}" />
+                            <Text text="{parts :[{path:'quantityReleased'},{path:'defaultUomText'},{path :'appData>/decimalPrecision'}],formatter : 'sap.oee.ui.Formatter.formatQuantityAndUOMText'}" />
+                            <Text text="{Y_HEDEF_MIKTAR}" />
+                            <Text text="{Y_YUKLEME_SAYISI}" />
+                            <Text text="{Y_NERVUR_DUZ}" />
+                            <Text text="{Y_ROTOR_TIPI}" />
+                            <Text text="{Y_URETIM_YONTEMI_FLM}" />
+                            <Text text="{Y_PAKETLEME_FLM}" />
+                            <Text text="{Y_URETIM_YONTEMI}" />
+                            <Text text="{Y_URETILECEK_PAKTON}" />
+                            <Text text="{statusDesc}" />
+                            <Text text="{parts :[{path:'startDate'},{path :'startTime'},{path :'endDate'},{path :'endTime'}],formatter : 'sap.oee.ui.Formatter.formatStartEndDateTimeForSelectOrderScreen'}" />
+                            <Text text="{parts :[{path:'plannedStartDate'},{path :'plannedStartTime'}, {path :'plannedFinishDate'}, {path :'plannedFinishTime'}],formatter : 'sap.oee.ui.Formatter.formatStartEndDateTimeForSelectOrderScreen'}" />
+
+                            <!--<Button visible="{action1Visible}" text="{action1Label}" enabled="{action1Enabled}" press="action1" icon="{action1Icon}" width="2rem" tooltip="{i18n>OEE_LABEL_ORD_PAU}">-->
+                            <Button visible="{action1Visible}" text="{action1Label}" enabled="{action1Enabled}" press="action1" icon="{action1Icon}" width="2rem" tooltip="{action1Label}">
+                                <customData>
+                                    <core:CustomData key="targetAction" value="{targetAction1}" />
+                                </customData>
+                            </Button>
+                            <Button id = "cmplButton" visible="{action2Visible}" text="{action2Label}" press="action2" enabled="{=${viewModel>/ISPERMITTED} === 1 &amp;&amp; ${action2Enabled}}" icon="{action2Icon}" width="2rem" tooltip="{i18n>OEE_LABEL_ORD_CMPL}">
+                                <customData>
+                                    <core:CustomData key="targetAction" value="{targetAction2}" />
+                                </customData>
+                            </Button>
+                            <Button visible="{action3Visible}" text="{action3Label}" press="action3" icon="{action3Icon}" width="2rem" enabled="{parts :[ {path :'action3Enabled'},{path:'appData>/plantTimezoneOffset'},{path:'appData>/shift/startTimestamp'},{path:'appData>/shift/endTimestamp'}] ,formatter : 'sap.oee.ui.Formatter.formatProductionActivityButton' }">
+                                <customData>
+                                    <core:CustomData key="targetAction" value="{targetAction3}" />
+                                </customData>
+                            </Button>
+                            <Button text="{i18n>OEE_LABEL_DETAILS}" tooltip="{i18n>OEE_LABEL_ORD_DETAILS}" icon="sap-icon://inspection" press="navigateToOrderDetails" width="2rem" visible="{detailsVisible}"></Button>
+                            <Button tooltip="{i18n>OEE_LABEL_ORD_CHAR}" icon="sap-icon://display" press="onPressOpenCharacteristic" width="2rem"></Button>
+                            <Button type="{descriptionBtnColor}" icon="sap-icon://notes" press="onPressOpenDescription" width="2rem"></Button>
+                            <Button icon="sap-icon://approvals" press="onPressContinuousCasting" width="2rem"></Button>
+                            <Button icon="sap-icon://shelf" press="onPressOpenComponents" width="2rem"></Button>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+    </HBox>
+   </ScrollContainer>
+        </content>
+    </Page>
+</core:View>

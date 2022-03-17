@@ -1,0 +1,63 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="customActivity/controller/sayacScreen">
+    <Page showHeader="false"  showFooter="true" showNavButton="false">
+        <content>
+        	 
+<DatePicker xmlns="sap.m" change="dayCounter" onchange="dayCounter" width="14%" id="picker0" />
+<Input  id="idadetinput" liveChange="liveChange" showValueHelp="false" enabled="false" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Gün sayısı giriniz"  />
+<Button text="GÖNDER" type="Emphasized" press="kaydetfonk" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+            <Table width="auto" noDataText="No data" id="table1" mode="MultiSelect" items="{path: '/'}" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true"  itemPress="_onTableItemPress">
+                <infoToolbar>
+                    <Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+                        <content>
+                            <Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </content>
+                    </Toolbar>
+                </infoToolbar>
+                <headerToolbar>
+                    <OverflowToolbar width="auto" height="auto" design="Solid" visible="true" enabled="true">
+                        <content>
+                            <Title text="" titleStyle="Auto" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="DEVICE ID" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="NAME" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="PLANT" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Active">
+                        <cells>
+                            <Text text="{DEVICE_ID}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{NAME}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{PLANT}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+            <OverflowToolbar width="100%" height="46px" design="Auto" enabled="true" visible="true">
+                <content>
+		<Button text="Excel Aktar" type="Default" press="onExport" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                    <Button type="Accept" icon="sap-icon://excel-attachment" text="Excel'e Aktar" press="onExport" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin"/>
+                    <Button text="Yeni Kayıt" type="Emphasized" icon="sap-icon://add" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="openFragment"/>
+                    <Button text="Kayıt Sil" type="Error" press="onDelete" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                </content>
+            </OverflowToolbar>
+        </content>
+    </Page>
+</mvc:View>

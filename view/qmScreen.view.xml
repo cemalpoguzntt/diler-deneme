@@ -1,0 +1,125 @@
+<mvc:View xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m" controllerName="customActivity.controller.qmScreen"
+    xmlns:html="http://www.w3.org/1999/xhtml">
+    <App>
+        <pages>
+            <Page showHeader="false" showFooter="true">
+                <content>
+                    <FlexBox id="idFlexBox1" height="100%" width="100%" alignItems="Center" justifyContent="Center" direction="Column">
+                        <FlexBox id="idFlexBox2" height="10%" width="100%"/>
+                        <FlexBox id="idFlexBox3" height="90%" width="95%" alignItems="Center" justifyContent="Center">
+                            <ScrollContainer height="100%" width="100%">
+                                <Table items="{confirmationList>/}" noDataText="Veri bulunamadı" id="tableConfirmed" mode="None">
+                                    <columns>
+                                        <Column hAlign="Center" vAlign="Middle" width="5%">
+                                            <header>
+                                                <Label text="Sipariş No"/>
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle" width="3%">
+                                            <header>
+                                                <Label text="İşlem" />
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle" width="10%">
+                                            <header>
+                                                <Label text="Malzeme" />
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle" width="6%">
+                                            <header>
+                                                <Label text="Parti No" />
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle" width="3%">
+                                            <header>
+                                                <Label text="Miktar" />
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle" width="5%">
+                                            <header>
+                                                <Label text="Ölçü Birimi" />
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle" width="5%">
+                                            <header>
+                                                <Label text="Teyit No" />
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle" width="5%">
+                                            <header>
+                                                <Label text="Teyit Sayaç" />
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle" width="5%">
+                                            <header>
+                                                <Label text="Tarih" />
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle" id="idConfNo">
+                                            <header>
+                                                <Label text="Eski Teyit" />
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle">
+                                            <header>
+                                                <Label text="Tür" />
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle">
+                                            <header>
+                                                <Label text="Kod Grubu" />
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle">
+                                            <header>
+                                                <Label text="Kod" />
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle">
+                                            <header>
+                                                <Label text="" />
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle" width="5%">
+                                            <header>
+                                                <Label text="Mesaj"/>
+                                            </header>
+                                        </Column>
+                                    </columns>
+                                    <ColumnListItem>
+                                        <cells>
+                                            <Text text="{confirmationList>AUFNR}"/>
+                                            <Text text="{confirmationList>ROUTING_OPER_NO}"/>
+                                            <Text text="{confirmationList>MATNR}"/>
+                                            <Text text="{confirmationList>BATCH_NO}"/>
+                                            <Text text="{confirmationList>QUANTITY}"/>
+                                            <Text text="{confirmationList>UOM}"/>
+                                            <Text text="{confirmationList>CONF_NUMBER}"/>
+                                            <Text text="{confirmationList>CONF_COUNTER}"/>
+                                            <Text text="{confirmationList>START_DATE}"/>
+                                            <Button text="Teyidi İptal Et" type="Emphasized" icon="sap-icon://decline" enabled = "{= ${confirmationList>OLD_CONF_DELETED} === 'F' ? true : false}" press="cancelOldConfirmation"></Button>
+                                            <Text text="{confirmationList>TYPE}"/>
+                                            <Text text="{confirmationList>CODE_GROUP}"/>
+                                            <Text text="{confirmationList>CODE}"/>
+                                            <Button text="Teyit Gönder" icon="sap-icon://settings" type="Emphasized" enabled = "{= ${confirmationList>OLD_CONF_DELETED} === 'F' || ${confirmationList>STATUS} === 'QUEUED' || ${confirmationList>STATUS} === 'RETRY' ? false : true}" press="sendQMConfirmation"></Button>
+                                            <Text text="{= ${confirmationList>STATUS} === 'FAILED' ? ${confirmationList>MESSAGE} : ''}"/>
+                                        </cells>
+                                    </ColumnListItem>
+                                </Table>
+                            </ScrollContainer>
+                        </FlexBox>
+                    </FlexBox>
+                </content>
+                <footer>
+                    <Bar>
+                        <contentRight>
+                            <Button id="idQMRSB" text="Otomatik Güncellemeyi Kapat" type="Reject" press="refreshStatus" />
+                        </contentRight>
+                    </Bar>
+                </footer>
+            </Page>
+        </pages>
+    </App>
+</mvc:View>

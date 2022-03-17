@@ -1,0 +1,220 @@
+<mvc:View xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:layout="sap.ui.layout" controllerName="customActivity.controller.dexcell">
+
+    <Page title="" showNavButton="false" showFooter="true" showHeader="true">
+
+
+        <content>
+            <FlexBox width="100%" id="box0" justifyContent="Center" height="100%" direction="Column">
+                <items>
+
+
+                    <FlexBox width="100%" id="box01" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+                        <items>
+
+                        <FlexBox width="100%" id="box011" alignItems="Center" justifyContent="End">
+
+                            <items>
+
+                                <Label text="Plant" width="100%" id="label1_1644304516755"/>
+
+                            </items>
+
+                        </FlexBox>
+                        <FlexBox width="100%" id="box012" alignItems="Center">
+                            <items>
+                                <ComboBox id="plant" textAlign="Center" selectionChange="plantSelected" placeholder="Plant" items="{path:'/',length : '500'}" showValueHelp="false" maxLength="0" class="sapUiMediumMarginTop sapUiMediumMarginBottom sapUiMediumMarginBegin sapUiMediumMarginEnd">            
+        
+                                    <core:Item key="{URETIM_YERI}" text="{URETIM_YERI}"/>
+                                </ComboBox> 
+                            </items>
+                        </FlexBox>
+                        <FlexBox width="100%" id="box013" alignItems="Center"/>
+                        <FlexBox width="100%" id="box014" alignItems="Center"/>
+                        <FlexBox width="100%" id="box015" alignItems="Center"/>
+                        
+
+                        </items>
+                    </FlexBox>
+                    <FlexBox width="100%" id="box2" justifyContent="Center" alignItems="Center" height="5%" direction="Row"/>
+
+                    <FlexBox width="100%" id="box3" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+                        <items>
+
+                            <FlexBox width="100%" id="box31" alignItems="Center" justifyContent="End">
+
+                                <items>
+
+                                    <Label text="PP Isyeri" width="100%" id="label0"/>
+
+                                </items>
+
+                            </FlexBox>
+
+                            <FlexBox width="100%" id="box32" alignItems="Center">
+                                <items>
+                                    <ComboBox id="ppIsyeri" textAlign="Center" selectionChange="ppSelected" placeholder="PP Isyeri" items="{path:'/',length : '500'}" showValueHelp="false" maxLength="0" class="sapUiMediumMarginTop sapUiMediumMarginBottom sapUiMediumMarginBegin sapUiMediumMarginEnd">            
+            
+                                        <core:Item key="{PP_ISYERI}" text="{PP_ISYERI}"/>
+                                    </ComboBox> 
+                                </items>
+                            </FlexBox>
+                            <FlexBox width="100%" id="box33" alignItems="Center" justifyContent="End">
+                            </FlexBox>
+                            <FlexBox width="100%" id="box34" alignItems="Center">
+                            </FlexBox>
+                            <FlexBox width="100%" id="box35" alignItems="Center"/>
+
+
+                        </items>
+                    </FlexBox>
+
+                    <FlexBox width="100%" id="box4" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+                        <items/>
+                    </FlexBox>
+
+                    <FlexBox width="100%" id="box5" justifyContent="Center" alignItems="Center" height="5%" direction="Row">
+                        <items>
+
+                            <FlexBox width="100%" id="box51" alignItems="Center" justifyContent="End">
+
+                                <items>
+
+                                    <Label text="Duruş Nedeni" width="100%" id="label1"/>
+
+                                </items>
+
+                            </FlexBox>
+                            <FlexBox width="100%" id="box52" alignItems="Center">
+                                <items>
+                                    <ComboBox id="dn" selectionChange="dnSelected" textAlign="Center" placeholder="Duruş Nedeni" items="{path:'/',length : '500'}"  class="sapUiMediumMarginTop sapUiMediumMarginBottom sapUiMediumMarginBegin sapUiMediumMarginEnd">            
+            
+                                        <core:Item key="{DURUS_NEDENI}" text="{DURUS_NEDENI}"/>
+                                    </ComboBox> 
+                                </items>
+                            </FlexBox>
+                            <FlexBox width="100%" id="box53" alignItems="Center" justifyContent="End">
+                            </FlexBox>
+                            <FlexBox width="100%" id="box54" alignItems="Center">
+                            </FlexBox>
+                            <FlexBox width="100%" id="box55" alignItems="Center"/>
+
+                        </items>
+                    </FlexBox>
+
+                    <FlexBox width="100%" id="box6" justifyContent="Center" alignItems="Center" height="5%" direction="Row"/>
+                    <FlexBox width="100%" id="box20" justifyContent="Center" alignItems="Start" height="65%" direction="Row">
+
+                        <Table width="auto" noDataText="No data" id="notificationTable" items="{path: '/'}" mode="SingleSelectLeft" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin">
+                            <infoToolbar>
+                                <Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+                                    <content>
+                                        <Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                    </content>
+                                </Toolbar>
+                            </infoToolbar>
+                            <headerToolbar/>
+                            <columns>
+                                <Column width="10%" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                    <header>
+                                        <Text text="T.B. Kodu" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                    </header>
+                                    <footer/>
+                                </Column>
+                                <Column width="10%" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                    <header>
+                                        <Text text="T.B. Tanımı" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                    </header>
+                                    <footer/>
+                                </Column>
+                                <Column width="19%" hAlign="Center" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                    <header>
+                                        <Text text="Durus A.B. Kodu" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                    </header>
+                                    <footer/>
+                                </Column>
+                                <Column width="12%" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                    <header>
+                                        <Text text="Durus A.B." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                    </header>
+                                    <footer/>
+                                </Column>
+                                <Column width="19%" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                    <header>
+                                        <Text text="Durus Kodu" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                    </header>
+                                    <footer/>
+                                </Column>
+                               
+                                <Column width="12%" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                    <header>
+                                        <Text text="Durus Nedeni" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                    </header>
+                                    <footer/>
+                                </Column>
+            
+                                <Column width="9%" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                    <header>
+                                        <Text text=" Pm Bildirimi" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                    </header>
+                                    <footer/>
+                                </Column>
+            
+                                <Column width="9%" hAlign="Center" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                    <header>
+                                        <Text text="PM Isyeri" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                    </header>
+                                    <footer/>
+                                </Column>    
+                                
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+            
+                                <customData>
+            
+                             <core:CustomData key="NOTTYPE" value="{NOTTYPE2}" writeToDom="true"/>
+            
+                                    </customData>
+            
+                                    <cells>
+                                        
+                                        <Text text="{TEKNIK_BIRIM_KODU}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        <Text text="{TEKNIK_BIRIM_TANIMI}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        <Text text="{DURUS_ANA_BASLIK_KODU}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        <Text text="{DURUS_ANA_BASLIK}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        <Text text="{DURUS_KODU}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        <Text text="{DURUS_NEDENI}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        <Text text="{PM_BILDIRIMI}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        <Text text="{PM_ISYERI}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                        
+                                        
+            
+                                        
+                                        
+                                    </cells>
+                                </ColumnListItem>
+                            
+                            </items>
+                        </Table>
+                        
+
+                     
+
+
+
+
+                    </FlexBox>
+                </items>
+            </FlexBox>
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <Button id="arrange" width="150px" text="Düzenle" icon="sap-icon://copy" type="Accept" press="arrangeLine" class="sapUiTinyMarginBeginEnd"/>
+                <ToolbarSpacer/>
+                <Button id="create" visible="true" width="150px" text="Oluştur" icon="sap-icon://add" type="Accept" press="createLine" class="sapUiTinyMarginBeginEnd"/>
+                <ToolbarSeparator/>
+               
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

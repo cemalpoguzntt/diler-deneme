@@ -1,0 +1,249 @@
+<mvc:View xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:m="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:html="http://www.w3.org/1999/xhtml" controllerName="customActivity.controller.oeeRefractoryDataInput"
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.commons"
+    xmlns:t="sap.ui.table">
+    <SplitApp id="workListSplit" initialDetail="detail" initialMaster="master">
+        <!--  MASTER PAGE  -->
+        <masterPages>
+            <Page id="master" icon="sap-icon://action" class="sapUiStdPage" showHeader="true" showNavButton="false">
+                <headerContent>
+                    <Button visible="false" icon="sap-icon://menu2" tooltip="menu2" press="onPressShowHide" />
+                </headerContent>
+                <content>
+                    <l:VerticalLayout width="100%">
+                        <FlexBox height="60px" alignItems="Center" justifyContent="Center">
+                            <items>
+                                <HBox height="60px" alignItems="Center" justifyContent="Center">
+                                    <DatePicker id="idDatePicker" width="25rem" valueFormat="yyyy-MM-dd" displayFormat="dd.MM.yyyy" change= "changeDatePicker" class="sapUiSmallMarginBottom"/>
+                                </HBox>
+                            </items>
+                        </FlexBox>
+                    </l:VerticalLayout>
+                    <List id="masterList" mode="SingleSelectLeft" includeItemInSelection="true" items="{castNoList>/}" select="selectedCastNo">
+                        <items>
+                            <ObjectListItem intro="{i18n>OEE_LABEL_SO_CAST_NO}" title="{castNoList>CASTID}" selected="false">
+                                <attributes>
+                                    <ObjectAttribute text="{i18n>OEE_LABEL_CHANGE_LOG_BMENGE} : {castNoList>QTY_RELEASED} {castNoList>UOM}" visible="true" />
+                                    <ObjectAttribute text="{i18n>OEE_LABEL_NUMBER} : {castNoList>DESCRIPTION}" visible="true" />
+                                </attributes>
+                                <firstStatus>
+                                    <ObjectStatus text="{{i18n>OEE_LABEL_NUMBER} : {castNoList>DESCRIPTION}" state="Success" visible="false" />
+                                </firstStatus>
+                            </ObjectListItem>
+                        </items>
+                    </List>
+                </content>
+                <footer>
+                    <OverflowToolbar>
+                        <!--<Button id="nextCastNo" text="{i18n>OEE_LABEL_NEXT_CAST_NO}" type="Accept" width="150px" press="onPressNextCastNo" visible="true" icon="sap-icon://open-command-field" />-->
+                        <ToolbarSpacer />
+                        <Button id="refreshCastNo" text="" type="Default" width="50px" press="onPressRefreshCastNo" visible="true" icon="sap-icon://refresh" />
+                    </OverflowToolbar>
+                </footer>
+            </Page>
+        </masterPages>
+        <!--  DETAIL PAGE  -->
+        <detailPages>
+            <Page id="detail" showHeader="true" showNavButton="false" icon="sap-icon://action" class="sapUiStdPage">
+                <content>
+                    <!-- DATA INPUT AREA -->
+                    <l:VerticalLayout id="containerLayout" width="100%">
+                        <l:BlockLayout id="BlockLayout" background="{/selectedBackground}">
+                            <l:BlockLayoutRow accentCells="Accent1">
+                                <!-- DATA INPUT LEFT SIDE -->
+                                <l:BlockLayoutCell id="Accent1" width="1" title="">
+                                    <FlexBox height="40px" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                            <HBox height="40px" alignItems="Center" justifyContent="Center">
+                                                <Label text="{i18n>OEE_LABEL_CAST_ID} : " width="160px" />
+                                                <Text id="castNo" width="190px" />
+                                            </HBox>
+                                        </items>
+                                    </FlexBox>
+                                    <FlexBox height="40px" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                            <HBox height="40px" alignItems="Center" justifyContent="Center">
+                                                <Label text="{i18n>OEE_LABEL_EQUIPMENT_OBJTYPE} : " width="160px" />
+                                                <ComboBox id="idEquipmentObjType" width="190px" change="changeEquipmentObjType" items="{equipmentObjType>/}" class="sapUiSmallMarginEnd" forceSelection="true">
+                                                    <core:Item text="{equipmentObjType>EQART}" key="{equipmentObjType>EQART}"/>
+                                                </ComboBox>
+                                            </HBox>
+                                        </items>
+                                    </FlexBox>
+                                    <FlexBox height="40px" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                            <HBox height="40px" alignItems="Center" justifyContent="Center">
+                                                <Label text="{i18n>OEE_LABEL_EQUIPMENT_NUMBER} : " width="160px" />
+                                                <ComboBox id="idEquipmentNumber" width="190px" change="changeEquipmentNumber" showSecondaryValues= "true"
+                                                          items="{equipmentNumber>/}" class="sapUiSmallMarginEnd" forceSelection="true">
+                                                    <core:ListItem text="{equipmentNumber>DESCRIPTION}" additionalText = "{equipmentNumber>EQUIPMENT}" key="{equipmentNumber>EQUIPMENT}"/>
+                                                </ComboBox>
+                                            </HBox>
+                                        </items>
+                                    </FlexBox>
+                                    <FlexBox height="40px" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                            <HBox height="40px" alignItems="Center" justifyContent="Center">
+                                                <Label text="{i18n>OEE_LABEL_MAT_INFO} : " width="160px" />
+                                                <ComboBox id="idMaterialInfo" width="190px" change="changeMaterialInfo" items="{materialInfo>/}" class="sapUiSmallMarginEnd" forceSelection="true">
+                                                    <core:Item text="{materialInfo>ZREFMLZ}" key="{materialInfo>ZREFMLZ}"/>
+                                                </ComboBox>
+                                            </HBox>
+                                        </items>
+                                    </FlexBox>
+                                    <FlexBox height="40px" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                            <HBox height="40px" alignItems="Center" justifyContent="Center">
+                                                <Label text="{i18n>OEE_LABEL_REFRAC_STATUS} : " width="160px" />
+                                                <ComboBox  id="idRefracStatus" width="190px" change="changeRefracStatus" items="{refracSatus>/}" class="sapUiSmallMarginEnd" forceSelection="true">
+                                                    <core:Item text="{refracSatus>DESCRIPTION}" key="{refracSatus>USAGE_STATUS_CODE}"/>
+                                                </ComboBox>
+                                            </HBox>
+                                        </items>
+                                    </FlexBox>
+                                    <FlexBox height="40px" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                            <HBox height="40px" alignItems="Center" justifyContent="Center">
+                                                <Label text="{i18n>OEE_LABEL_COMPANY} : " width="160px" />
+                                                <ComboBox id="idCompany" width="190px" change="changeCompany" items="{companyList>/}" class="sapUiSmallMarginEnd" forceSelection="true">
+                                                    <core:Item text="{companyList>ZREFVNDR}" key="{companyList>ZREFVNDR}"/>
+                                                </ComboBox>
+                                            </HBox>
+                                        </items>
+                                    </FlexBox>
+                                    <FlexBox height="40px" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                            <HBox height="40px" alignItems="Center" justifyContent="Center">
+                                                <Label text="{i18n>OEE_LABEL_REFRAC_QUALITY} : " width="160px"/>
+                                                <Input id="idRefracQuality" width="190px" type="Text" maxLength="40" class="sapUiSmallMarginEnd" />
+                                            </HBox>
+                                        </items>
+                                    </FlexBox>
+                                </l:BlockLayoutCell>
+
+                                <!-- DATA INPUT RIGHT SIDE -->
+                                <l:BlockLayoutCell id="Accent2" width="1" title="">
+                                    <FlexBox height="40px" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                            <HBox height="40px" alignItems="Center" justifyContent="Center">
+                                                <Label text="{i18n>OEE_LABEL_REFRAC_STAFF} : " width="160px" />
+                                                <ComboBox id="idFormen" width="190px" items="{formen>/}" class="sapUiSmallMarginEnd" forceSelection="true">
+                                                    <core:Item text="{formen>ENAME}" key="{formen>PERSNO}"/>
+                                                </ComboBox>
+                                            </HBox>
+                                        </items>
+                                    </FlexBox>
+                                    <FlexBox height="40px" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                            <HBox height="40px" alignItems="Center" justifyContent="Center">
+                                                <Label text="{i18n>OEE_LABEL_REFRAC_DESCRIPTION} : " width="160px"/>
+                                                <Input id="idRefracDescription" width="190px" type="Text" maxLength="200" class="sapUiSmallMarginEnd" />
+                                            </HBox>
+                                        </items>
+                                    </FlexBox>
+                                    <FlexBox height="40px" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                            <HBox height="40px" alignItems="Center" justifyContent="Center">
+                                                <Label text="{i18n>OEE_LABEL_REFRAC_Date} : " width="160px"/>
+                                                <DatePicker id="idRefracDate" width="190px" valueFormat="yyyy-MM-dd" displayFormat="dd.MM.yyyy" class="sapUiSmallMarginEnd"/>
+                                            </HBox>
+                                        </items>
+                                    </FlexBox>
+                                    <FlexBox visible="false" id="idRefracControl" height="40px" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                            <HBox height="40px" alignItems="Center" justifyContent="Center">
+                                                <Label text="{i18n>OEE_LABEL_REFRAC_LINE} : " width="160px" />
+                                                <ComboBox id="idRefracLine" width="190px" items="{lineList>/}" class="sapUiSmallMarginEnd" forceSelection="true">
+                                                    <core:Item text="{lineList>LINE}" key="{lineList>LINE}"/>
+                                                </ComboBox>
+                                            </HBox>
+                                        </items>
+                                    </FlexBox>
+                                    <FlexBox visible="false" id="idRefracQty" height="40px" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                            <HBox height="40px" alignItems="Center" justifyContent="Center">
+                                                <Label text="{i18n>OEE_LABEL_REFRAC_QUANTITY} : " width="160px" />
+                                                <Input id="idRefracQuantity" width="190px" type="Number"/>
+                                            </HBox>
+                                        </items>
+                                    </FlexBox>
+                                    <FlexBox visible="false" id="idRefracUnit" height="40px" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                            <HBox height="40px" alignItems="Center" justifyContent="Center">
+                                                <Label text="{i18n>OEE_LABEL_REFRAC_OB} : " width="160px" />
+                                                <ComboBox id="idQuantityOB" width="190px" items="{unitList>/}" class="sapUiSmallMarginEnd" forceSelection="true">
+                                                    <core:Item text="{unitList>UNIT}" key="{unitList>UNIT}"/>
+                                                </ComboBox>
+                                            </HBox>
+                                        </items>
+                                    </FlexBox>
+                                    <FlexBox visible="false" id="idTarih" height="40px" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                            <HBox height="40px" alignItems="Center" justifyContent="Center">
+                                                <Label width="160px" text="Devreye Alınma Tarihi : "  />
+                                                <Label text="{dateModel>/TARIH}" width="160px" />
+                                            </HBox>
+                                        </items>
+                                    </FlexBox>
+                                    <FlexBox visible="false" id="idSaat" height="40px" alignItems="Start" justifyContent="Start">
+                                        <items>
+                                            <HBox height="40px" alignItems="Center" justifyContent="Center">
+                                                <Label  width="160px" text="Devreye Alınma Saati : " />
+                                                <Label text="{dateModel>/SAAT}" width="160px" />
+                                            </HBox>
+                                        </items>
+                                    </FlexBox>
+                                </l:BlockLayoutCell>
+                            </l:BlockLayoutRow>
+                        </l:BlockLayout>
+                    </l:VerticalLayout>
+    	<Panel visible="false" expandable="true" id="idMiktarPanel" headerText="MİKTAR DETAYLARI" width="auto" class="sapUiResponsiveMargin">
+	    	<content>
+			  <Table id="idQuantityTable" items="{/}">
+                            <columns>
+                                <Column>
+                                    <Text text="Döküm No" />
+                                </Column>
+                                <Column>
+                                    <Text text="Malzeme" />
+                                </Column>
+                                <Column>
+                                    <Text text="Miktar" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem vAlign="Middle">
+                                    <cells>
+                                        <Text text="{CAST_ID}" />
+                                        <Text text="{ZREFMLZ}" />
+                                        <Text text="{QUANTITY}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+          </content>
+	    </Panel>
+                    <!-- TABLE AREA -->
+                    <!-- <Table id="idRefractoryReportTable" inset="false" width="100%" 
+                         items="{refractoryReport>/}" growing="true" growingScrollToLoad="true" 
+                         growingThreshold="100" contextualWidth="Auto" popinLayout="GridSmall"> -->
+                    <t:Table enableColumnReordering="false" visibleRowCount="10" id="idReportTable"></t:Table>
+
+                </content>
+                <footer>
+                    <OverflowToolbar id="otbFooter">
+                     <Button id="showDetail" text="Görüntüle" width="140px" type="Emphasized" press="showDetail" class="sapUiSmallMarginEnd" icon="sap-icon://display"/>
+                     <Button id="refreshTable" text="Tabloyu Yenile" width="140px" type="Critical" press="refreshTable" class="sapUiSmallMarginEnd" icon="sap-icon://refresh"/>
+                        <ToolbarSpacer />
+                        <Button id="saveRefractory" text="{i18n>OEE_LABEL_SO_SAVE}" width="140px" type="Accept" press="saveRefractory" class="sapUiSmallMarginEnd" icon="sap-icon://save"/>
+                    </OverflowToolbar>
+                </footer>
+            </Page>
+        </detailPages>
+    </SplitApp>
+</mvc:View>

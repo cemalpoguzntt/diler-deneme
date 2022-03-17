@@ -1,0 +1,233 @@
+<core:View xmlns:core="sap.ui.core" xmlns:suite="sap.suite.ui.commons" xmlns:l="sap.ui.layout" xmlns="sap.m" controllerName="customActivity.controller.oeeReportScreen">
+    <Page showHeader="false" showNavButton="false">
+        <content>
+            <l:VerticalLayout width="100%">
+
+                <OverflowToolbar>
+                    <VBox width="90px" design="Bold">
+
+                        <Label text="{i18n>OEE_LABEL_CAST_ID} :  " design="Bold" />
+                    </VBox>
+                    <VBox width="50px">
+                        <Button type="Reject" press="onChangeCastNumber" icon="sap-icon://less" />
+                    </VBox>
+                    <VBox width="150px">
+                        <Select items="{path: 'castListModel>/'}" forceSelection="false" change="changeCastingNumber" width="140px" id="idSelectCast">
+                            <core:Item key="{castListModel>SUP_AUFNR}" text="{castListModel>CASTID}" tooltip="{castListModel>IS_CLOSED}" />
+                        </Select>
+                    </VBox>
+                    <VBox width="100px">
+                        <Button type="Accept" press="onChangeCastNumber" icon="sap-icon://add" />
+                    </VBox>
+                    <VBox>
+                        <DateRangeSelection id="idDatePicker" valueFormat="dd.MM.yyyy" delimiter="-" displayFormat="dd.MM.yyyy" change="getCastList" />
+                    </VBox>
+                    <ToolbarSpacer />
+                    <HBox alignItems="Center" justifyContent="Start">
+                        <VBox design="Bold" alignItems="Center" justifyContent="Start">
+                            <Label width="200px" text="{i18n>OEE_LABEL_Y_DOKUM_TIPI} :  {screenCharacteristicModel>/0/Y_DOKUM_TIPI}" design="Bold" />
+                            <Label width="200px" text="{i18n>OEE_LABEL_Y_BOY_KTK} :  {screenCharacteristicModel>/0/Y_BOY_KTK}" design="Bold" />
+                        </VBox>
+                    </HBox>
+                    <HBox alignItems="Center" justifyContent="Start">
+                        <VBox design="Bold" alignItems="Center" justifyContent="Start">
+                            <Label width="200px" text="{i18n>OEE_LABEL_Y_EBAT} :  {screenCharacteristicModel>/0/Y_EBAT}" design="Bold" />
+                            <Label width="200px" text="{i18n>OEE_LABEL_Y_PAKETLEME_KTK} :  {screenCharacteristicModel>/0/Y_PAKETLEME_KTK}" design="Bold" />
+                        </VBox>
+                    </HBox>
+                    <HBox alignItems="Center" justifyContent="Start">
+                        <VBox design="Bold" alignItems="Center" justifyContent="Start">
+                            <Label width="200px" text="{i18n>OEE_LABEL_Y_KUTUK_MENSEI} :  {screenCharacteristicModel>/0/Y_KUTUK_MENSEI}" design="Bold" />
+                            <Label width="200px" text="{i18n>OEE_LABEL_Y_VAKUM} :  {screenCharacteristicModel>/0/Y_VAKUM}" design="Bold" />
+                        </VBox>
+                    </HBox>
+                    <HBox alignItems="Center" justifyContent="Start">
+                        <VBox design="Bold" alignItems="Center" justifyContent="Start">
+                            <Label width="200px" text="{i18n>OEE_LABEL_LAST_QUALITY} :" design="Bold" />
+                            <Label width="200px" text="{i18n>OEE_LABEL_Y_KALITE_KTK} :  {screenCharacteristicModel>/0/Y_KALITE_KTK}" design="Bold" />
+                        </VBox>
+                    </HBox>
+                    <HBox alignItems="Center" justifyContent="Start">
+                        <VBox design="Bold" alignItems="Center" justifyContent="Start">
+                            <Label width="200px" text="{i18n>OEE_LABEL_Y_KESME_SEKLI} :  {screenCharacteristicModel>/0/Y_KESME_SEKLI}" design="Bold" />
+                        </VBox>
+                    </HBox>
+                </OverflowToolbar>
+
+                <Table id="idActivities" items="{activitiesModel>/}" headerText="{i18n>OEE_LABEL_ACTIVITIES}">
+                    <columns>
+                        <Column width="2rem">
+                            <Label text="{i18n>OEE_LABEL_ORDER_NUMBER}" />
+                        </Column>
+                        <Column width="2rem">
+                            <Label text="{i18n>OEE_LABEL_Z_OPERATION}" />
+                        </Column>
+                        <Column width="2rem">
+                            <Label text="{i18n>OEE_LABEL_WORKCENTER}" />
+                        </Column>
+                        <Column width="2rem">
+                            <Label text="{i18n>START_TIME_LABEL}" />
+                        </Column>
+                        <Column width="2rem">
+                            <Label text="{i18n>OEE_LABEL_END_TIME}" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{activitiesModel>AUFNR}" />
+                                <Text text="{activitiesModel>ROUTING_OPER_NO}" />
+                                <Text text="{activitiesModel>NAME}" />
+                                <Text text="{activitiesModel>START_TIMESTAMP}" />
+                                <Text text="{activitiesModel>END_TIMESTAMP}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+                <Table id="idProduction" items="{productionModel>/}" headerText="{i18n>OEE_LABEL_PROD}">
+                    <columns>
+                        <Column width="2rem" hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_ROAD}" />
+                        </Column>
+                        <Column width="4rem" hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_DC_NAME}" />
+                        </Column>
+                        <Column hAlign="Center" width="4%">
+                            <Label text="Std. Dışı" tooltip="{i18n>OEE_LABEL_NON-STANDARD}" />
+                        </Column>
+                        <Column hAlign="Center" width="4%">
+                            <Label text="KK" tooltip="{i18n>OEE_LABEL_SHORT_BILLET}" />
+                        </Column>
+                        <Column hAlign="Center" width="6.5%">
+                            <Label text="Sıcak / Soğuk" />
+                        </Column>
+                        <Column width="2rem" hAlign="Center">
+                            <Label text="{i18n>OEE_LABEL_QUANTITY}" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{productionModel>LINE}" />
+                                <Text text="{productionModel>Y_DOKUM_TIPI} / {productionModel>Y_KALITE_KTK} / {productionModel>Y_EBAT} / {productionModel>Y_BOY}" />
+                                <CheckBox enabled="false" selected="{= ${productionModel>NON_STANDARD} === 0 ? false : true }" />
+                                <CheckBox enabled="false" selected="{= ${productionModel>SHORT_BILLET} === 0 ? false : true }" />
+                                <HBox justifyContent="Center">
+                                    <CheckBox enabled="false" selected="{= ${productionModel>HOT_CHARGE} === 0 ? false : true }" />
+                                    <CheckBox enabled="false" selected="{= ${productionModel>COLD_CHARGE} === 0 ? false : true }" />
+                                </HBox>
+                                <Text text="{productionModel>SUM_QUANTITY}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+
+                <FlexBox justifyContent="End">
+                    <Label text="Toplam : "></Label>
+                    <Label text="{productionModel>/0/SUM_TABLE_QUANTITY} "></Label>
+                </FlexBox>
+                <Table id="idProductionLiquidSteel" items="{productionLiquidSteelModel>/}" headerText="{i18n>OEE_LABEL_PRODUCTION_LIQUID_STEEL}">
+                    <columns>
+                        <Column width="2rem">
+                            <Label text="{i18n>OEE_LABEL_PARAMETER}" />
+                        </Column>
+                        <Column width="2rem">
+                            <Label text="{i18n>OEE_LABEL_CAST_ID}" />
+                        </Column>
+                        <Column width="2rem">
+                            <Label text="{i18n>OEE_LABEL_PRD_QTY_IN_STD_RATE_UOM}" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{productionLiquidSteelModel>MATNR}" />
+                                <Text text="{productionLiquidSteelModel>BATCH_NO}" />
+                                <Text text="{productionLiquidSteelModel>QUANTITY}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+                <FlexBox justifyContent="End">
+                    <Label text="Toplam : "></Label>
+                    <Label text="{productionLiquidSteelModel>/0/SUMQUANTITY} "></Label>
+                </FlexBox>
+
+                <Table id="idScrap" items="{scrapModel>/}" headerText="{i18n>OEE_LABEL_SCRAP}">
+                    <columns>
+                        <Column width="2rem">
+                            <Label text="{i18n>OEE_LABEL_SCRAP_TYPE}" />
+                        </Column>
+                        <Column width="2rem">
+                            <Label text="{i18n>OEE_LABEL_CHARGING1}" />
+                        </Column>
+                        <Column width="2rem">
+                            <Label text="{i18n>OEE_LABEL_CHARGING2}" />
+                        </Column>
+                        <Column width="2rem">
+                            <Label text="{i18n>OEE_LABEL_CHARGING3}" />
+                        </Column>
+                        <Column width="2rem">
+                            <Label text="{i18n>OEE_LABEL_CHARGING4}" />
+                        </Column>
+                        <Column width="2rem">
+                            <Label text="{i18n>OEE_LABEL_CHARGING5}" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{scrapModel>MATNR}" />
+                                <Text text="{scrapModel>CHARGE1}" />
+                                <Text text="{scrapModel>CHARGE2}" />
+                                <Text text="{scrapModel>CHARGE3}" />
+                                <Text text="{scrapModel>CHARGE4}" />
+                                <Text text="{scrapModel>CHARGE5}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+                <FlexBox justifyContent="End">
+                    <Label text="Toplam : "></Label>
+                    <Label text="{scrapModel>/0/SUM_QUANTITY} "></Label>
+                </FlexBox>
+                <Table id="idConsumption" items="{consumptionModel>/}" headerText="{i18n>OEE_LABEL_CONSUMPTIONS}">
+                    <columns>
+                        <Column width="2rem">
+                            <Label text="{i18n>OEE_LABEL_WORKCENTER}" />
+                        </Column>
+                        <Column width="2rem">
+                            <Label text="{i18n>OEE_LABEL_SO_MAT}" />
+                        </Column>
+                        <Column width="2rem">
+                            <Label text="{i18n>OEE_LABEL_CAST_ID}" />
+                        </Column>
+                        <Column width="2rem">
+                            <Label text="{i18n>OEE_LABEL_ACTUAL_QTY}" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{consumptionModel>NAME}" />
+                                <Text text="{consumptionModel>MATNR}" />
+                                <Text text="{consumptionModel>BATCH_NO}" />
+                                <Text text="{consumptionModel>QUANTITY}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+                <FlexBox justifyContent="End">
+                    <Label text="Toplam : "></Label>
+                    <Label text="{consumptionModel>/0/SUM_QUANTITY} "></Label>
+                </FlexBox>
+            </l:VerticalLayout>
+        </content>
+        <footer>
+            <Bar>
+                <contentLeft></contentLeft>
+                <contentRight></contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</core:View>

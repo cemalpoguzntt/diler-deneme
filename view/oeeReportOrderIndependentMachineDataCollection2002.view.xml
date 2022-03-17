@@ -1,0 +1,90 @@
+<core:View controllerName="customActivity.controller.oeeReportOrderIndependentMachineDataCollection2002"
+	xmlns:suite="sap.suite.ui.commons" xmlns:l="sap.ui.layout" xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout">
+	<SplitContainer>
+		<masterPages showHeader="false">
+			<core:Fragment fragmentName='sap.oee.ui.fragments.machineList'
+				type='XML' id="machineListFragment" />
+		</masterPages>
+		<detailPages>
+			<Page showHeader="false" showNavButton="false">
+				<content>
+					<l:VerticalLayout width="100%">
+						<Bar>
+							<contentRight>
+								<Button icon="sap-icon://refresh" press="onClickRefreshScreen"></Button>
+							</contentRight>
+						</Bar>
+						<Table id="reportOrderIndependentDataCollectionTableQuantityType"
+							editable="false" items="{/genericDataCollectionDataQuantityType}">
+							<columns>
+								<Column>
+									<Label text="{i18n>OEE_LABEL_PARAMETER}" />
+								</Column>
+								<Column>
+									<Label text="{i18n>OEE_LABEL_QUANTITY}" />
+								</Column>
+								<Column>
+									<Label text="{i18n>OEE_LABEL_UOM}" />
+								</Column>
+								<Column id="reasonCodeColumnForQuantityType">
+									<Label text="{i18n>OEE_BTN_REASONCODE}" />
+								</Column>
+								<Column>
+									<Label text="{i18n>OEE_LABEL_COMMENTS}" />
+								</Column>
+								<Column>
+									<Label text="{i18n>OEE_LABEL_DETAILS}" />
+								</Column>
+								<Column>
+									<Label text="{i18n>OEE_LABEL_DATE_TIME_LAST_REPORTED}" />
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{description}" />
+										<Input value="{quantityReported}" liveChange="onChangeReportedQuantity"></Input>
+										<Input value="{defaultUOMText}" showSuggestion="true"
+											showValueHelp="true" valueHelpOnly = "true" valueHelpRequest="handleValueHelpRequest"
+											suggestionItems="{uomModel>/uomList}">
+											<suggestionItems>
+												<core:Item text="{description}" />
+											</suggestionItems>
+											<customData>
+												<core:CustomData key="uom" value="{uom}" />
+											</customData>
+										</Input>
+										<Button icon="sap-icon://value-help" text="{assignRCLink}"
+											visible="{path : 'timeElementcategory', formatter : '.checkIfNotLossType'}"
+											press="onClickReasonCode" />
+										<Button
+											text="{parts : [{path : 'i18n>OEE_BTN_ADD'},{path:'comments'}], formatter : 'sap.oee.ui.Formatter.reasonCodeButttonFormatter'}"
+											visible="{path : 'timeElementcategory', formatter : '.checkIfNotLossType'}"
+											icon="sap-icon://comment" press="onPressAddComments" />
+										<Button text="{i18n>OEE_LABEL_DETAILS}"
+											enabled="{path : 'lastReportedDateTime', formatter : '.checkIfValueReported'}"
+											icon="sap-icon://inspection" press="onPressDetails" />
+										<Text
+											text="{parts : [{path:'lastReportedDateTime'},{path: 'appData>/plantTimezoneOffset'}, {path: 'appData>/plantTimezoneKey'}], formatter : 'sap.oee.ui.Formatter.formatTimeStampWithoutLabel'}" />
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+
+					</l:VerticalLayout>
+				</content>
+				<footer>
+					<Bar>
+						<contentRight>
+							<Button id="genericDataSaveButton" text="{i18n>OEE_BTN_SAVE}"
+								icon="sap-icon://save" press="reportData" enabled="false" />
+						</contentRight>
+					</Bar>
+				</footer>
+			</Page>
+		</detailPages>
+
+	</SplitContainer>
+
+</core:View>

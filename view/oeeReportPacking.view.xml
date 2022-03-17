@@ -1,0 +1,110 @@
+<core:View xmlns:core="sap.ui.core" xmlns:suite="sap.suite.ui.commons" xmlns:l="sap.ui.layout" xmlns="sap.m"
+	controllerName="customActivity.controller.oeeReportPacking">
+	<Page showHeader = "false" showNavButton="false">
+		<content>
+	<l:VerticalLayout width="100%">
+	<core:Fragment fragmentName='sap.oee.ui.fragments.orderCardFragment' type='XML' id= "orderCardFragment"/>
+	<Toolbar>
+		<content>
+			<SearchField id="searchNotification" liveChange="onSearch" width="40%" />
+		</content>
+	</Toolbar>
+	<Table id="confirmTable" editable="false" items ="{/0/Row}">
+		<columns>
+			<Column>
+				<Label text=""/>
+			</Column>
+			<Column>
+				 <Label text="" />
+			</Column>
+			<Column>
+				 <Label text="{i18n>OEE_LABEL_ORDER_NUMBER_SHORT}" />
+			</Column>
+			<Column>
+				 <Label text="{i18n>OEE_LABEL_MII_ID}" />
+			</Column>
+			<Column>
+				<Label text="{i18n>OEE_LABEL_LOCATION}"/>
+			</Column>
+			<Column visible="{path: 'ColumnVisibleModel>/KALITE1', formatter: '.formatter.packingColumnVisible'}">
+				<Label text="{i18n>OEE_LABEL_FIRST_QUALITY}"/>
+			</Column>
+			<Column  visible="{path: 'ColumnVisibleModel>/KALITE2', formatter: '.formatter.packingColumnVisible'}">
+				<Label text="{i18n>OEE_LABEL_SECOND_QUALITY}"/>
+			</Column>
+			<Column visible="{path: 'ColumnVisibleModel>/TASNIF', formatter: '.formatter.packingColumnVisible'}">
+				<Label text="{i18n>OEE_LABEL_CLASSIFICATION}"/>
+			</Column>
+			<Column  visible="{path: 'ColumnVisibleModel>/KAPAK', formatter: '.formatter.packingColumnVisible'}">
+				<Label text="{i18n>OEE_LABEL_COVER}"/>
+			</Column>
+			<Column  visible="{path: 'ColumnVisibleModel>/HURDA', formatter: '.formatter.packingColumnVisible'}">
+				<Label text="{i18n>OEE_LABEL_SCRAP}"/>
+			</Column>
+			<Column visible="{path: 'ColumnVisibleModel>/TASNIF2K', formatter: '.formatter.packingColumnVisible'}">
+				<Label text="{i18n>OEE_LABEL_CLASSIFICATION2K}"/>
+			</Column>
+			<!-- <Column>
+				<Label text="{i18n>OEE_LABEL_RC}"/>
+			</Column> -->
+			<Column>
+				<Label text="{i18n>OEE_LABEL_PACKAGE}"/>
+			</Column>
+			<Column>
+				<Label text="{i18n>OEE_LABEL_HU_NO}"/>
+			</Column>
+			<Column>
+				<Label text="{i18n>OEE_LABEL_HU_DATE}"/>
+			</Column>
+			<Column>
+				<Label text="{i18n>OEE_LABEL_TAG}"/>
+			</Column>
+
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Button enabled="false" icon="{STATUSICON}" color="{COLORCODE}" type="{= ${STATUS} !== '10'?'Accept':'Reject' }"/>
+					<HBox>
+						<Button press="onClickEditQuantity" visible="{= ${STATUS} === '10'}" icon="sap-icon://edit" class="sapUiSmallMarginEnd"/>
+						<Button press="onClickRemove" visible="{= ${STATUS} === '10'}" icon="sap-icon://decline"/>
+					</HBox>
+					<Text text="{AUFNR}" />
+					<Text text="{PACKID}" />
+					<Text text="{LOCATION}"/>
+					<Input valueState="{= ${STATUS} !== '10'?'Success':'Error' }" value="{QUANTITY1}" editable="{= ${STATUS} === '10'}" enabled="false" visible="{path: 'ColumnVisibleModel>/KALITE1', formatter: '.formatter.packingColumnVisible'}"/>
+					<Input valueState="{= ${STATUS} !== '10'?'Success':'Error' }" value="{QUANTITY2}" editable="{= ${STATUS} === '10'}" enabled="false" visible="{path: 'ColumnVisibleModel>/KALITE2', formatter: '.formatter.packingColumnVisible'}"/>
+					<Input valueState="{= ${STATUS} !== '10'?'Success':'Error' }" value="{QUANTITY3}" editable="{= ${STATUS} === '10'}" enabled="false" visible="{path: 'ColumnVisibleModel>/TASNIF', formatter: '.formatter.packingColumnVisible'}" />
+					<Input valueState="{= ${STATUS} !== '10'?'Success':'Error' }" value="{QUANTITY4}" editable="{= ${STATUS} === '10'}" enabled="false"  visible="{path: 'ColumnVisibleModel>/KAPAK', formatter: '.formatter.packingColumnVisible'}"/>
+					<Input valueState="{= ${STATUS} !== '10'?'Success':'Error' }" value="{SCRAP}" editable="{= ${STATUS} === '10'}" textAlign="Left" enabled="false" visible="{path: 'ColumnVisibleModel>/HURDA', formatter: '.formatter.packingColumnVisible'}"/>
+					<Input valueState="{= ${STATUS} !== '10'?'Success':'Error' }" value="{QUANTITY5}" editable="{= ${STATUS} === '10'}" enabled="false" visible="{path: 'ColumnVisibleModel>/TASNIF2K', formatter: '.formatter.packingColumnVisible'}" />
+					<!-- <Button text="{i18n>OEE_BTN_ASSIGN}" tooltip ="{i18n>OEE_BTN_ASSIGN}" icon="sap-icon://value-help" enabled="{= ${STATUS} === '10'}" visible="{= ${SCRAP} > '0'}"  press="onClickOpenReasonCodeUtilityPopup" width = "7rem"  /> -->
+					<core:Icon size="20px" src="{STATUSICON}" color="{COLORCODE}" /> <!-- sap-icon://accept -->
+					<Text text="{HUNUMBER}"/>
+					<Text text="{UPDDATE}"/>
+					<HBox>
+					<Button text="{i18n>OEE_BUTTON_WRITE}" press="onClickConfirm" visible="{= ${STATUS} === '10'}" icon="sap-icon://print"/>
+					<Button text="{i18n>OEE_BUTTON_REWRITE}" press="onClickRePrint" visible="{= ${STATUS} === '20' &amp;&amp; ${viewModel>/ISPERMITTED} === 1}" icon="sap-icon://synchronize"/>
+					</HBox>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+	</l:VerticalLayout>
+		</content>
+		<footer>
+                <Bar>
+                	 <contentLeft>
+			<Button id = "idOpenCoverQuanButton"  text = "{i18n>OEE_BTN_ADD_SECOND_QUALITY}" visible="{= ${ColumnVisibleModel>/LINE} ===  'MELAMIN' }" icon="sap-icon://add" press="openCoverQuan"></Button>
+                		<Button id = "idOpenQualityEntranceButton"  text = "{i18n>OEE_BTN_QUALITY_ENTRANCE}" visible= "{= ${ColumnVisibleModel>/LINE} ===  'MELAMIN' || ${ColumnVisibleModel>/LINE} ===  'ZIMPARA'}"  icon="sap-icon://add" press="openQualityEntrance"></Button>
+                           </contentLeft>
+                	 <contentRight>
+			<Button id = "refreshButton"  text = "{i18n>OEE_BTN_REFRESH}" icon="sap-icon://refresh" press="getPackingDetails"></Button>
+			<Button id = "addButton"  text = "{i18n>OEE_BTN_ADD}" icon="sap-icon://add" press="onClickAddQuantity"></Button>
+			<!-- <Button id = "saveButton"  text = "{i18n>OEE_BTN_SAVE}" icon="sap-icon://save" press="onClickReportQuantity"></Button>
+ -->
+                	</contentRight>
+                </Bar>
+        </footer>		
+</Page>
+</core:View>

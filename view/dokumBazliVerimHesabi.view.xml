@@ -1,0 +1,82 @@
+<mvc:View
+xmlns:core="sap.ui.core"
+xmlns:mvc="sap.ui.core.mvc"
+xmlns:c="sap.ui.commons"
+xmlns="sap.m"
+xmlns:m="sap.m"
+xmlns:l="sap.ui.layout"
+xmlns:html="http://www.w3.org/1999/xhtml"
+xmlns:ui="sap.ui.table"
+xmlns:f="sap.ui.layout.form"
+xmlns:u="sap.ui.unified"
+xmlns:tnt="sap.tnt"
+height="100%" controllerName="customActivity.controller.dokumBazliVerimHesabi">
+    <App>
+        <pages>
+            <Page showHeader="false">
+            <content>
+                <HBox justifyContent="Center" alignItems="Center" width="100%">
+                    <l:VerticalLayout width="100%">
+                        <FlexBox height="60px" alignItems="Center" justifyContent="Center">
+                            <items>
+                <HBox height="60px" alignItems="Center" justifyContent="Center">
+                    <Label width="100px" text="Tarih Aralığı: " design="Bold"></Label>
+                    <DateRangeSelection displayFormat="YYYY/MM/dd" id="idDateRangeSelection" width="15rem"  change= "getCastNoList" class="sapUiSmallMarginBottom sapUiSmallMarginEnd"/>
+                </HBox>
+                <HBox height="60px" alignItems="Center" justifyContent="Center">
+                    <Label width="100px" text="Döküm No:" design="Bold"></Label>
+                    <ComboBox  showSecondaryValues="true" width="200px" id="startCast"  items="{path: 'castIds>/'}" selectionChange="changeStartCast" class="sapUiSmallMarginEnd">
+                        <core:ListItem key="tam" text="TÜMÜ"/>
+                        <core:ListItem key="{castIds>CASTID}" text="{castIds>CASTID}"/>
+                    </ComboBox>
+                </HBox>
+                <VBox width="100%">
+                    <HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+                        <Button type="Accept" width="150px" text="Tabloyu Getir" icon="sap-icon://search" press="onPressSearchFilter"></Button>
+                    </HBox>
+                </VBox>
+            </items>
+        </FlexBox>
+    </l:VerticalLayout>
+</HBox>
+<!-- <t:Table visibleRowCount="10" id="idFragmentTable"></t:Table> -->
+<ui:Table id="idReportTable" width="100%" rows="{/}" rowCount="20" visibleRowCount="20" alternateRowColors="true" selectionMode="Single" selectionBehavior="RowOnly" >
+
+<ui:columns>
+<ui:Column hAlign="Center" sortProperty="CASTID" filterProperty="CASTID" filterType="sap.ui.model.type.String">
+<Label text="CASTID" design="Bold"/>
+<ui:template>
+<Text text="{CASTID}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="KUTUK" filterProperty="KUTUK" filterType="sap.ui.model.type.String">
+<Label text="KUTUK" design="Bold"/>
+<ui:template>
+<Text text="{KUTUK}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="HURDA" filterProperty="HURDA" filterType="sap.ui.model.type.String">
+<Label text="HURDA" design="Bold"/>
+<ui:template>
+<Text text="{HURDA}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="ORAN" filterProperty="ORAN" filterType="sap.ui.model.type.String">
+<Label text="ORAN" design="Bold"/>
+<ui:template>
+<Text text="{ORAN}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<!-- <ui:Column hAlign="Center" sortProperty="MATNR" filterProperty="MATNR" filterType="sap.ui.model.type.String">
+<Label text="Malzeme No" design="Bold"/>
+<ui:template>
+<Text text="{MATNR}" wrapping="false"/>
+</ui:template>
+</ui:Column> -->
+</ui:columns>
+</ui:Table>
+</content>
+            </Page>
+        </pages>
+    </App>
+</mvc:View>

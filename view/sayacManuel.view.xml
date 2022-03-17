@@ -1,0 +1,86 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="customActivity.controller.sayacManuel" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+    <Page showHeader="true" title="Manuel Veri Giriş Ekranı" showFooter="true" showNavButton="true">
+        <content>
+            <form:Form width="auto" editable="true" visible="true" class="sapUiLargeMargin">
+                <form:title/>
+                <form:formContainers>
+                    <form:FormContainer visible="true">
+                        <form:formElements>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="Kayıt Tarihi" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <DatePicker id="datePicker" width="39%" displayFormat="medium" required="false" valueStateText="Invalid entry" enabled="true" visible="true" valueFormat="ddMMyyyy"/>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="Plant" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <ComboBox id="idComboBox" editable="true" enabled="true" visible="true" width="auto"  selectionChange = "bagIdModel" valueState="None" maxWidth="39%">
+                                        <items>
+                                            <core:Item text="2001" enabled="true" key="2001"/>
+                                            <core:Item text="2002" enabled="true" key="2002"/>
+                                            <core:Item text="3001" enabled="true" key="3001"/>
+                                            <core:Item text="3007" enabled="true" key="3007"/>
+                                        </items>
+                                    </ComboBox>
+                                    
+                                </form:fields>
+                            </form:FormElement>
+
+                            <form:FormElement visible="true">
+                                <form:label>
+                                <Label text="Tag ID ve Açıklaması" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                <ComboBox id="idComboBoxTag" editable="true" enabled="true" visible="true" width="auto"   items="{path : '/'}" valueState="None" maxWidth="39%">
+                                    <items>
+                                        <core:ListItem key="{DEVICE_ID}" text="{DEVICE_ID} - {NAME}"/>
+                                    </items>
+                                </ComboBox>
+                            </form:fields>
+                            </form:FormElement>
+                            <form:FormElement visible="true">
+  
+                                <form:fields>
+                                    <Text id="idTagText" text="" width="auto" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="Sayaç Değeri" design="Bold" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <Hbox>
+                                        <Input id="idSayac1" type="Number" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="0"/>
+                                        <Text text="," width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true" class="sapUiTinyMargin"/>
+                                        <Input id="idSayac2" type="Number" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="0"/>
+                                    </Hbox>
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                        <form:title/>
+                    </form:FormContainer>
+                </form:formContainers>
+                <form:layout>
+                    <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="3" labelSpanL="3" columnsM="1" labelSpanM="1" labelSpanS="12"/>
+                </form:layout>
+            </form:Form>
+        </content>
+        <footer>
+            <OverflowToolbar width="100%" height="46px" design="Auto" enabled="true" visible="true">
+                <content>
+                    <ToolbarSpacer width=""/>
+                    <Button text="Save" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="kaydet"/>
+                    <!-- <Button text="Cancel" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/> -->
+                </content>
+            </OverflowToolbar>
+        </footer>
+        <headerContent/>
+        <subHeader/>
+        <customHeader/>
+    </Page>
+</mvc:View>

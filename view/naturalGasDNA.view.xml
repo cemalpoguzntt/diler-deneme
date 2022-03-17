@@ -1,0 +1,101 @@
+<mvc:View xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m" controllerName="customActivity.controller.naturalGasDNA"
+    xmlns:html="http://www.w3.org/1999/xhtml">
+    <App>
+        <pages>
+            <Page showHeader="false" showFooter="true">
+                <content>
+                    <FlexBox id="idFlexBox1" height="100%" width="100%" alignItems="Center" justifyContent="Center" direction="Column">
+                        <FlexBox id="idFlexBox2" height="10%" width="100%"/>
+                        <FlexBox id="idFlexBox3" height="90%" width="95%" alignItems="Center" justifyContent="Center">
+                            <ScrollContainer height="100%" width="100%" vertical="true">
+                                <Table items="{naturalGasDataList>/}" noDataText="Veri bulunamadı" id="tableDataList" mode="None">
+                                    <columns>
+                                        <Column hAlign="Center" vAlign="Middle">
+                                            <header>
+                                                <Label text="Tarih"/>
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle">
+                                            <header>
+                                                <Label text="Sayaç ID" />
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle">
+                                            <header>
+                                                <Label text="Sayaç Tanım" />
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle">
+                                            <header>
+                                                <Label text="Kümülatif Değer" />
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle">
+                                            <header>
+                                                <Label text="Günlük Değer" />
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle">
+                                            <header>
+                                                <Label text="DüzeltilmemişHc1" />
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle">
+                                            <header>
+                                                <Label text="Sıcaklık" />
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle">
+                                            <header>
+                                                <Label text="Basınç" />
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle">
+                                            <header>
+                                                <Label text="Okuma Tarihi" />
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle">
+                                            <header>
+                                                <Label text="Durum" />
+                                            </header>
+                                        </Column>
+                                        <Column hAlign="Center" vAlign="Middle">
+                                            <header>
+                                                <Label text="" />
+                                            </header>
+                                        </Column>
+                                    </columns>
+                                    <ColumnListItem>
+                                        <cells>
+                                            <Text text="{naturalGasDataList>DATE}"/>
+                                            <Text text="{naturalGasDataList>COUNTER_ID}"/>
+                                            <Text text="{naturalGasDataList>COUNTER_EXP}"/>
+                                            <Text text="{naturalGasDataList>NEW_CUMULATIVE_VALUE}"/>
+                                            <Text text="{naturalGasDataList>NET_VALUE}"/>
+                                            <Text text="{naturalGasDataList>DHC1}"/>
+                                            <Text text="{naturalGasDataList>TEMPERATURE}"/>
+                                            <Text text="{naturalGasDataList>PRESSURE}"/>
+                                            <Text text="{naturalGasDataList>INSDATE}"/>
+                                            <Text text="{naturalGasDataList>ERROR_MESSAGE}"/>
+                                            <Button text="ERP Gönder" type="Emphasized" icon="sap-icon://synchronize" visible = "{= ${naturalGasDataList>ERP_SENT} === 'X' ? false : true}" press="retrySendERP"></Button>
+                                        </cells>
+                                    </ColumnListItem>
+                                </Table>
+                            </ScrollContainer>
+                        </FlexBox>
+                    </FlexBox>
+                </content>
+                <footer>
+                    <Bar>
+                        <contentRight>
+                            <Button id="idQMRSB" text="Otomatik Güncellemeyi Kapat" type="Reject" press="refreshStatus" />
+                        </contentRight>
+                    </Bar>
+                </footer>
+            </Page>
+        </pages>
+    </App>
+</mvc:View>

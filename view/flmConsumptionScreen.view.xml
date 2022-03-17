@@ -1,0 +1,142 @@
+<mvc:View xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:m="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:html="http://www.w3.org/1999/xhtml" controllerName="customActivity.controller.flmConsumptionScreen"
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.commons">
+    <SplitApp id="workListSplit" initialDetail="detail" initialMaster="master" >
+        <masterPages >
+            <Page id="master" icon="sap-icon://action" class="sapUiStdPage" showHeader="false" showNavButton="false">
+                <content>
+                    <l:VerticalLayout width="100%" >
+                        <FlexBox height="60px" alignItems="Center" justifyContent="Center">
+                            <items>
+                                <HBox height="60px" alignItems="Center" justifyContent="Center">
+                                    <DateRangeSelection visible="true" id="idDatePicker" valueFormat="dd.MM.yyyy" delimiter = "-" displayFormat= "dd.MM.yyyy" />
+                                    <Button text="{i18n>titleSearch}" press="getBilletYieldList" class="sapUiTinyMarginBegin" />
+                                </HBox>
+                            </items>
+                        </FlexBox>
+                    </l:VerticalLayout>
+                    <List id="masterList" mode="SingleSelectLeft" includeItemInSelection="true" items="{confirmBilletYieldList>/}" select="getBilletYieldData">
+                        <items>
+                            <ObjectListItem intro="{i18n>OEE_LABEL_Y_ORDER_NO}" title="{confirmBilletYieldList>AUFNR}" selected="false" number="% {confirmBilletYieldList>EFFICIENCY}" numberUnit="{i18n>OEE_LABEL_Y_AVG_YIELD_RATE}" type="Navigate">
+                                <!-- numberState = "{confirmBilletYieldList>EFFICIENCY_TYPE}" yazılacak -->
+                                <firstStatus>
+                                    <ObjectStatus class="setLeftContent" title="{i18n>OEE_LABEL_Y_MATERIAL}" text="{confirmBilletYieldList>MAKTX}" state="Success" inverted="true" visible="true" />
+                                </firstStatus>
+                                <!-- <secondStatus>
+                                    <ObjectStatus class="setLeftContent" title="{i18n>OEE_LABEL_Y_DATE}" text="{confirmBilletYieldList>EXIT_DATE}" state="Information" inverted="true" visible="true" />
+                                </secondStatus> -->
+                            </ObjectListItem>
+                        </items>
+                    </List>
+                </content>
+                <footer>
+                </footer>
+            </Page>
+        </masterPages>
+        <!-- Sağ Sayfa-->
+        <detailPages>
+            <Page id="detail" showHeader="false" showNavButton="false" icon="sap-icon://action" class="sapUiStdPage">
+                <content>
+                    <FlexBox width="100%" height="6%">
+                        <DatePicker id="DatePicker" width="auto" visible="true" change="handleChange" valueFormat="yyyy-MM-dd" displayFormat="dd-MM-yyyy" />
+                    </FlexBox>
+                    <Table id="tblBilletYield" selectionChange="billetItemSelected" includeItemInSelection="false" items="{confirmBilletYield>/}" noDataText= "">
+                        <columns>
+                            <Column width="5rem" hAlign="Center" vAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_Y_CAST_NO}" tooltip="Döküm Numarası"/>
+                            </Column>
+                            <Column width="4rem" hAlign="Center" vAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_Y_STATUS}" tooltip="Durum"/>
+                            </Column>
+                            <Column width="5rem" hAlign="Center" vAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_Y_BILLET_ID}" tooltip="Kütük ID"/>
+                            </Column>
+                            <Column width="5rem" hAlign="Center" vAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_Y_FUR_ENTRY_WEIGHT}" tooltip="Fırın Giriş Ağırlığı" />
+                            </Column>
+                            <Column width="5rem" hAlign="Center" vAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_Y_BILLET_TEORIC_WEIGHT}" tooltip="Kütük Ağırlığı (Etiket)" />
+                            </Column>
+                            <Column width="5rem" hAlign="Center" vAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_Y_BILLET_WEIGHT}" tooltip="Kangal Ağırlığı" />
+                            </Column>
+                            <Column width="4rem" hAlign="Center" vAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_Y_WEIGHT_UNIT}" tooltip="Birim" />
+                            </Column>
+                            <Column width="4rem" hAlign="Center" vAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_Y_BILLET_STATUS}" tooltip="Standart" />
+                            </Column>
+                            <Column width="5rem" hAlign="Center" vAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_Y_UCBAS_UCKUYRUK}" tooltip="Uçbaş + Uçkuyruk(Kg)" />
+                            </Column>
+                            <Column width="5rem" hAlign="Center" vAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_Y_HB}" tooltip="Hadde Bozuğu (Kg)" />
+                            </Column>
+                            <Column width="4rem" hAlign="Center" vAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_YIELD}" tooltip="Verim (%)" />
+                            </Column>
+                            <Column width="4rem" hAlign="Center" vAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_M_YIELD}" tooltip="Malzeme Verim (%)" />
+                            </Column>
+                            <Column width="4rem" hAlign="Center" vAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_FLM_CONFIRM}" tooltip="Teyit" />
+                            </Column>
+                            <Column width="6rem" hAlign="Center" vAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_CONF_STATUS}" tooltip="Teyit Durumu" />
+                            </Column>
+                            <Column width="4rem" hAlign="Center" vAlign="Center">
+                                <Label text="{i18n>OEE_LABEL_FLM_CONF_CANCEL}" tooltip="Teyit İptal" />
+                            </Column>
+                            <Column width="4rem" hAlign="Center" vAlign="Center">
+                                <Label text="Yeniden Dene" tooltip="Teyiti Tekrar Gönder" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <customData>
+                                    <core:CustomData key="{confirmBilletYield>TEYIT_ONAY}" value="confirmBilletYield>TEYIT_ONAY" writeToDom="true"></core:CustomData>
+                                </customData>
+                                <cells>
+                                    <Text text="{confirmBilletYield>CASTID}"  />
+                                    <Text text="{confirmBilletYield>STATUS}"  />
+                                    <Text text="{confirmBilletYield>KTKID}"  />
+                                    <Text text="{confirmBilletYield>ENTRY_WEIGHT}"  />
+                                    <Text text="{confirmBilletYield>THEORETICAL_QUANTITY}"  />
+                                    <!-- <Input id="idTeoWeight" value="{confirmBilletYield>THEORETICAL_QUANTITY}" liveChange="onChangeTeoWeight" visible="true"/> -->
+                                    <Text text="{confirmBilletYield>YIELD}"  />
+                                    <Text text="KG" />
+                                    <Text text="{confirmBilletYield>BILLET_STATUS}"  />
+                                    <Input id = "idUBUK" value="{confirmBilletYield>UBUK}" liveChange = "onChangeUBUK" visible="true"/>
+                                    <Input id = "idHB" value="{confirmBilletYield>HB_TON}" liveChange= "onChangeHB"  visible="true"/>
+                                    <Text text="{confirmBilletYield>EFFICIENCY}"  />
+                                    <Text text="{confirmBilletYield>M_EFFICIENCY}"  />
+                                    <Button id="billetConfirm" text="{= ${confirmBilletYield>TEYIT_ONAY} === 'CONFIRMED'? ${i18n>OEE_BT_FLM_RESEND_CONFIRM}:${i18n>OEE_BT_FLM_CONFIRM_ACCEPT}}" visible="{= ${confirmBilletYield>TEYIT_ONAY} ==='CONFIRMED'? false:true}" type="Accept" press="sendYieldConfirmation" />
+                                    <Text text="{confirmBilletYield>MESSAGE}"  />
+                                    <!-- <Button id="billetConfirm" text="{= ${confirmBilletYield>CONF_STATUS} === 'FAILED'? ${i18n>OEE_BT_FLM_RESEND_CONFIRM}:${i18n>OEE_BT_FLM_CONFIRM_ACCEPT}}" visible="{= ${confirmBilletYield>CONF_STATUS} ==='PASSED'? false:true}" type="{= ${confirmBilletYield>CONF_STATUS}==='FAILED' ? 'Reject':'Accept'}" press="sendYieldConfirmation" />
+                                    <Text text="{confirmBilletYield>MESSAGE}"  /> -->
+                                    <!-- <core:Icon color="{= ${confirmBilletYield>SUCCESS} !== 'FAILED'? 'green':'red'  }" src="sap-icon://circle-task-2" />-->
+                                    <Button id="billetConfirmCancel" text="{i18n>OEE_BT_FLM_CONFIRM_CANCEL}" visible="{= ${confirmBilletYield>TYPE} === '261'? true:false}" type="Emphasized" press="cancelYieldConfirmation" />
+                                    <Button id="billetConfirmRetry" text="Tekrar Gönder" visible="{= ${confirmBilletYield>MSG_STATUS} ==='FAILED'? true:false}" type="Reject" press="retryYieldConfirmation" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </content>
+                <footer>
+                    <OverflowToolbar class="sapUiMediumMarginTop">
+                        <Button id="btnRefresh" press="refreshData" text="{i18n>titleBilletMonitorRefresh}" icon="sap-icon://refresh" />
+                        <!-- <Button id="btnFilterYield" press="getUnsuitableYieldData" text="{i18n>OEE_LABEL_Y_INAPPRO_YIELD}" type="Reject"/> -->
+                        <Button id="btnUnconfirmedYield" press="getUnconfirmedYieldData" text="Teyidi Verilmeyenler" type="Reject"/>
+                        <!-- <ToolbarSpacer />
+                        <Button id="btnYieldConfirm" text="{i18n>OEE_BTN_Y_CONFIRM_YIELD}" visible="false" type="Accept" press = "onConfirmBilletYield" /> -->
+                    </OverflowToolbar>
+                </footer>
+            </Page>
+        </detailPages>
+    </SplitApp>
+</mvc:View>

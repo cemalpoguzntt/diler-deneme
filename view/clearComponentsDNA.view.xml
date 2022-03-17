@@ -1,0 +1,99 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="customActivity.controller.clearComponentsDNA" xmlns:html="http://www.w3.org/1999/xhtml">
+    <App id="app">
+        <Page id="page" showFooter="false" showHeader="false">
+            <content>
+                <FlexBox width="100%" id="box0" alignItems="Center" alignContent="Center" justifyContent="SpaceAround">
+                    <items>
+                        <Button xmlns="sap.m" press="getComponents" text="Güncelle" id="getComponents" type="Emphasized"/>
+                    </items>
+                </FlexBox>
+                <FlexBox width="100%" id="box1">
+                    <items>
+                        <Table noDataText="Kayıtlı veri bulunamadı" id="componentsTable" items="{/}" mode="SingleSelectLeft">
+                            <items>
+                                <ColumnListItem type="Active" id="item0">
+                                    <customData>
+                                        <core:CustomData key="CONSUMPTIONTYPE" value="{CONSUMPTIONTYPE}" writeToDom="true"></core:CustomData>
+                                    </customData>
+                                    <cells>
+                                        <Text text="{BARCODE}" wrapping="true" id="text0"/>
+                                        <Text text="{QUANTITY}" wrapping="true" id="text1"/>
+                                        <Text text="{MATNR}" wrapping="true" id="text2"/>
+                                        <Text text="{= ${CONSUMPTIONTYPE} === '20' ? 'TUKETIM KAYDI VAR' : '' }" wrapping="true" id="text3"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                            <columns>
+                                <Column id="column0" hAlign="Center">
+                                    <header>
+                                        <Label design="Bold" text="Parti" id="label0"/>
+                                    </header>
+                                </Column>
+                                <Column id="column1" hAlign="Center">
+                                    <header>
+                                        <Label design="Bold" text="Miktar" id="label1"/>
+                                    </header>
+                                </Column>
+                                <Column id="column2" hAlign="Center">
+                                    <header>
+                                        <Label design="Bold" text="Malzeme" id="label2"/>
+                                    </header>
+                                </Column>                                
+                                <Column hAlign="Center">
+                                    <header>
+                                        <Label design="Bold" text=""/>
+                                    </header>
+                                </Column>
+                            </columns>
+                        </Table>
+                    </items>
+                </FlexBox>
+                <FlexBox width="100%" id="box2" alignContent="Center" alignItems="Center" justifyContent="SpaceAround">
+                    <items>
+                        <Button xmlns="sap.m" press="onPressDelete" text="Sil" id="deleteComponentButton" icon="sap-icon://sys-cancel-2" type="Reject"/>
+                    </items>
+                </FlexBox>
+                <FlexBox width="100%" id="box3" height="30%" alignContent="Center" alignItems="End" justifyContent="Center">
+                    <items>
+                        <Text text="Tüketim kaydı olan bileşenleri sadece, ÇEVRE-MERKEZ ve sipariş geçişinde silmelisiniz." class="clearComponentWarning"/>
+                    </items>
+                </FlexBox>
+                <FlexBox width="100%" id="box6" height="10%"/>
+                <FlexBox width="100%" id="box4">
+                    <items>
+                        <Table noDataText="Veri bulunamadı" id="oldComponentsTable" items="{/}" mode="SingleSelectLeft">
+                            <items>
+                                <ColumnListItem type="Active" id="item1">
+                                    <customData>
+                                        <core:CustomData key="CONSUMPTIONTYPE" value="{CONSUMPTIONTYPE}" writeToDom="true"></core:CustomData>
+                                    </customData>
+                                    <cells>
+                                        <Text text="{BARCODE}" wrapping="true" id="text4"/>
+                                        <Text text="{MATNR}" wrapping="true" id="text6"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                            <columns>
+                                <Column id="column4" hAlign="Center">
+                                    <header>
+                                        <Label design="Bold" text="Parti" id="label4"/>
+                                    </header>
+                                </Column>
+                                <Column id="column6" hAlign="Center">
+                                    <header>
+                                        <Label design="Bold" text="Malzeme" id="label6"/>
+                                    </header>
+                                </Column>
+                            </columns>
+                        </Table>
+                    </items>
+                </FlexBox>
+                <FlexBox width="100%" id="box5" alignContent="Center" alignItems="Center" justifyContent="SpaceAround">
+                    <items>
+                        <Button xmlns="sap.m" press="onPressUndo" text="Geri Al" id="undoButton" icon="sap-icon://undo" type="Accept"/>
+                    </items>
+                </FlexBox>
+            </content>
+        </Page>
+    </App>
+</mvc:View>

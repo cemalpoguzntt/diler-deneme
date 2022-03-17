@@ -1,0 +1,290 @@
+<mvc:View xmlns:core="sap.ui.core"
+    xmlns:ui="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc" controllerName="customActivity.controller.oeeBilletMonitorFLMNew"
+    xmlns="sap.m"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.core">
+    <Page id = "pageid" showNavButton="false" showHeader="false">
+        <content>
+            <FlexBox alignItems="Center" justifyContent="Center">
+                <items>
+
+                    <HBox justifyContent="Center" class="sapUiSmallMarginTop sapUiSmallMarginBottom">
+                        <VBox class="sapUiSmallMarginBegin">
+                            <ComboBox id="searchFieldKTKID" width="12rem" placeholder="{i18n>titleKtkID}" change="onKTKIDSelectionChange2" items="{/}">
+                                <core:ListItem text="{KTKID}" key="{KTKID}" />
+                            </ComboBox>
+                        </VBox>
+                        <VBox class="sapUiSmallMarginBegin">
+                            <ComboBox id="searchFieldOrder" width="12rem" placeholder="{i18n>titleOrderNo}" change="onAufnrSelectionChange2" items="{/}">
+                                <core:ListItem text="{AUFNR}" key="{AUFNR}" />
+                            </ComboBox>
+                        </VBox>
+                        <VBox class="sapUiSmallMarginBegin">
+                            <ComboBox id="searchFieldCastNo" width="12rem" placeholder="Döküm No" change="onCastNoSelectionChange2" items="{/}">
+                                <core:ListItem text="{CASTID}" key="{CASTID}" />
+                            </ComboBox>
+                        </VBox>
+                        <VBox class="sapUiSmallMarginBegin">
+                            <ComboBox id="searchFieldCap" width="12rem" placeholder="Çap" change="onCapSelectionChange2" items="{/}">
+                                <core:ListItem text="{Y_CAP_FLM_MM}" key="{Y_CAP_FLM_MM}" />
+                            </ComboBox>
+                        </VBox>
+                        <VBox class="sapUiSmallMarginBegin">
+                            <ComboBox id="searchFieldMQuality" width="12rem" placeholder="Kalite" change="onMQualitySelectionChange2" items="{/}">
+                                <core:ListItem text="{Y_KALITE_FLM}" key="{Y_KALITE_FLM}" />
+                            </ComboBox>
+                        </VBox>
+                        <VBox class="sapUiSmallMarginBegin">
+                            <ComboBox id="searchFieldKQuality" width="12rem" placeholder="KTK Kalite" change="onKQualitySelectionChange2" items="{/}">
+                                <core:ListItem text="{Y_KALITE_KTK}" key="{Y_KALITE_KTK}" />
+                            </ComboBox>
+                        </VBox>
+                        <!--       <VBox class="sapUiSmallMarginBegin">
+                            <ComboBox width="12rem" id="listSignalPoint" placeholder="{i18n>titleSignalPoint}" selectionFinish="handleSelectionFinish" items="{signalPoints>/Row}">
+                                <core:ListItem key="{signalPoints>STATUS}" text="{signalPoints>DESCRIPTION}" />
+                            </ComboBox>
+                        </VBox> -->
+                        <VBox class="sapUiSmallMarginBegin">
+                            <DateRangeSelection visible="true" id="idDatePicker" valueFormat="dd.MM.yyyy" delimiter = "-" displayFormat= "dd.MM.yyyy" change="datePickerTrigger" />
+                        </VBox>
+                        <VBox class="sapUiSmallMarginBegin">
+                            <Button text="{i18n>titleSearch}" press="getBilletList" class="sapUiSmallMarginBegin" />
+                        </VBox>
+                        <VBox class="sapUiSmallMarginBegin">
+                            <Button text="Filtre Sıfırla" press="onPressResetFilters" class="sapUiTinyMarginBegin" />
+                        </VBox>
+
+                    </HBox>
+                </items>
+            </FlexBox>
+            <Table id="tblBilletMasterfake" showNoData="false" mode="MultiSelect" selectionChange="billetItemSelected" includeItemInSelection="false" items="{/}" >
+                <columns>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <Label text="Sinyal" tooltip="Vardiya"/>
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_HAND}" tooltip="Vardiya"/>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_WORKORDER}" tooltip="Sipariş Numarası"/>
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_ORDER_SEQ_NO}" tooltip="Sipariş Sırası"/>
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_KTKID}" tooltip="Kütük ID"/>
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="OTOID" tooltip="Otomasyon ID"/>
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_DIAMETER}" tooltip="Çap Bilgisi"/>
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_PRODUCT_QUALITY}" tooltip="Mamul Kalitesi"/>
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_ORIGIN}" tooltip="Menşei"/>
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_QUALITY}" tooltip="Kütük Kalitesi"/>
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_DIMENSION}" tooltip="Ebat"/>
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_HEIGHT}" tooltip="Boy"/>
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_DNO}" tooltip="Döküm Numarası"/>
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_STATUS}" tooltip="Durum"/>
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_ND}" tooltip="Nervür Düz Bilgisi"/>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_ENTRY_WEIGHT}" tooltip="Gerçek Tartım"/>
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_PRODUCT_METHOD}" tooltip="Üretim Yöntemi"/>
+                    </Column>
+                    <Column width="7rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_FURNACE_ENTRY_TIME}" tooltip="Fırın Giriş Zamanı"/>
+                    </Column>
+                    <Column width="7rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_FURNACE_EXIT_TIME}" tooltip="Fırın Çıkış Zamanı"/>
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_HB}" tooltip="Hadde Bozuğu"/>
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BILLET_UB_UK}" tooltip="Uçbaş + Uçkuyruk"/>
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_RCODE}" tooltip="Hata Kodu"/>
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_ERROR_DETAIL}" tooltip="Hata Detayı"/>
+                    </Column>
+
+                </columns>
+                <items>
+                    <ColumnListItem>
+                   
+                        <!-- <cells>
+                            <Text text="{SIGNAL_POINT}" />
+                            <Text text="{SHIFT}" />
+                            <Text text="{AUFNR}" />
+                            <Text text="{AUFNR_SEQ}" />
+                            <Text text="{KTKID}" />
+                            <Text text="{OTOID}" />
+                            <Text text="{Y_CAP_FLM_MM}" />
+                            <Text text="{Y_KALITE_FLM}" />
+                            <Text text="{Y_KUTUK_MENSEI}" />
+                            <Text text="{Y_KALITE_KTK}" />
+                            <Text text="{Y_EBAT}" />
+                            <Text text="{Y_BOY_KTK}" />
+                            <Text text="{CASTID}" />
+                            <Text text="{PRODUCT_STATUS}" />
+                            <Text text="{Y_NERVUR_DUZ}" />
+                            <Text text="{ENTRY_WEIGHT}" />
+                            <Text text="{Y_URETIM_YONTEMI_FLM}" />
+                            <Text text="{FURNACE_ENTRY_TIME}" />
+                            <Text text="{FURNACE_EXIT_TIME}" />
+                            <Text text="{ path:'HB', formatter: '.multipleThousand'}" />
+                            <Text text="{ path:'UBUK' , formatter: '.multipleThousand'}" />
+                            <Text text="{REASONCODE}" />
+                            <Button text="{i18n>OEE_LABEL_DETAIL}"  press = "onOpenBilletRejectDialog"  visible = "{= ${REASON_TYPE} ===  'STNDRT' ? false: true }"/>
+                        </cells> -->
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+
+
+
+
+
+
+
+
+
+
+
+ <ScrollContainer height="88%"  vertical="true" focusable="true">
+
+            <Table id="tblBilletMaster"  enableBusyIndicator = "true" mode="MultiSelect" selectionChange="billetItemSelected" includeItemInSelection="false" items="{/}" growing="true" growingScrollToLoad="true" growingThreshold="50">
+                <columns>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                   </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="3rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="7rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="7rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="6rem" hAlign="Center" vAlign="Center">
+                    </Column>
+                    <Column width="4rem" hAlign="Center" vAlign="Center">
+                    </Column>
+
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <customData>
+                            <core:CustomData key="SIGNAL_POINT" value="{SIGNAL_POINT}" writeToDom="true"></core:CustomData>
+                            </customData>
+                        <cells>
+                            <Text text="{SIGNAL_POINT}" />
+                            <Text text="{SHIFT}" />
+                            <Text text="{AUFNR}" />
+                            <Text text="{AUFNR_SEQ}" />
+                            <Text text="{KTKID}" />
+                            <Text text="{OTOID}" />
+                            <Text text="{Y_CAP_FLM_MM}" />
+                            <Text text="{Y_KALITE_FLM}" />
+                            <Text text="{Y_KUTUK_MENSEI}" />
+                            <Text text="{Y_KALITE_KTK}" />
+                            <Text text="{Y_EBAT}" />
+                            <Text text="{Y_BOY_KTK}" />
+                            <Text text="{CASTID}" />
+                            <Text text="{PRODUCT_STATUS}" />
+                            <Text text="{Y_NERVUR_DUZ}" />
+                            <Text text="{ENTRY_WEIGHT}" />
+                            <Text text="{Y_URETIM_YONTEMI_FLM}" />
+                            <Text text="{FURNACE_ENTRY_TIME}" />
+                            <Text text="{FURNACE_EXIT_TIME}" />
+                            <Text text="{HB}" />
+                            <Text text="{UBUK}" />
+                            <Text text="{REASONCODE}" />
+                            <Button text="{i18n>OEE_LABEL_DETAIL}"  press = "onOpenBilletRejectDialog"  visible = "{= ${REASON_TYPE} ===  'STNDRT' ? false: true }"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+         </ScrollContainer>
+
+        </content>
+        <footer>
+            <OverflowToolbar class="sapUiMediumMarginTop">
+                <Button id="chkIntervalState" text="Otomatik Güncelleme Açık" type="Accept" press = "changeIntervalState" icon="sap-icon://fob-watch" />
+                <Button id="btnReject" text="Hata Bildir" type="Reject" press = "onOpenRejectDialog" icon="sap-icon://message-error" />
+                <Button id="btnRefresh" press="refreshData" text="{i18n>titleBilletMonitorRefresh}" icon="sap-icon://refresh" />
+                <ToolbarSpacer />
+                <Button id="pmNavigate" press="pmNavigate" text="PM Duruş Bildilrim Ekranına Git" icon="sap-icon://arrow-right" />
+                <ToolbarSpacer />
+                <Button id="btnGetReturn" text="{i18n>OEE_SHOW_RETURNED}" type="Reject" press = "openReturnedBilletList" />
+                <Button icon="sap-icon://excel-attachment" text="{i18n>OEE_LABEL_EXPORT_EXCEL}" press="onDataExport" class="sapUiSmallMarginBegin" type="Accept" />
+                <Button id="btnEdit" text="Düzenle" press="openBarcodeEditDialog" icon="sap-icon://edit" visible="false" />
+                <Button id="btnNew" text="{i18n>titleLogErrorDetail}" press="openBarcodeLogDialog" icon="sap-icon://inspect" visible="false" />
+                <Button id="btnAdd" text="{i18n>titleAdd}" press="onOpenAddDialog" icon="sap-icon://add" visible="false" />
+                <MenuButton id="btnManualActions" text="{i18n>titleEdit}" enabled="false" icon="sap-icon://edit">
+                    <Menu itemSelected="onMenuAction">
+                        <items>
+                            <MenuItem tooltip="0" text="{i18n>OEE_LABEL_RLY_ROLEWAY}" icon="sap-icon://save" />
+                            <MenuItem tooltip="1" text="{i18n>OEE_LABEL_PLT_DOWN}" icon="sap-icon://open-folder" />
+                        </items>
+                    </Menu>
+                </MenuButton>
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

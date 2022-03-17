@@ -1,0 +1,64 @@
+<core:View xmlns:core="sap.ui.core"
+    xmlns:suite="sap.suite.ui.commons"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns="sap.m" controllerName="customActivity/controller/oeeReportQuantityTAS">
+    <Page showHeader="false" showNavButton="false">
+        <content>
+            <VBox justifyContent="Center" alignItems="Center">
+                <VBox>
+                    <FlexBox alignItems="Center" justifyContent="Center" direction="Row">
+                        <VBox alignItems="Center" justifyContent="Center" class="sapUiSmallMarginEnd">
+                            <Label text="Sipariş Numarası" design="Bold" />
+                            <Text id="idAufnr" text="{aufnrModel>AUFNR}" />
+                        </VBox>
+                        <VBox alignItems="Center" justifyContent="Center" class="sapUiSmallMarginEnd">
+                            <Label text="Satış Siparişi" design="Bold" />
+                            <Text id="idKdauf" text="{aufnrModel>KDAUF}" />
+                        </VBox>
+                        <VBox alignItems="Center" justifyContent="Center" class="sapUiSmallMarginEnd">
+                            <Label text="Malzeme" design="Bold" />
+                            <Text id="idMalzeme" text="{aufnrModel>MALZEME}" />
+                        </VBox>
+                    </FlexBox>
+                    <FlexBox alignItems="Center" justifyContent="Center" direction="Row">
+                        <VBox alignItems="Center" justifyContent="Center" class="sapUiSmallMarginEnd">
+                            <Label text="Menşei" design="Bold" />
+                            <Text id="idMensei" text="{aufnrModel>MENSEI}" />
+                        </VBox>
+                        <VBox alignItems="Center" justifyContent="Center" class="sapUiSmallMarginEnd">
+                            <Label text="Kalite" design="Bold" />
+                            <Text id="idKalite" text="{aufnrModel>KALITE}" />
+                        </VBox>
+                        <VBox alignItems="Center" justifyContent="Center" class="sapUiSmallMarginEnd">
+                            <Label text="Ebat" design="Bold" />
+                            <Text id="idEbat" text="{aufnrModel>EBAT}" />
+                        </VBox>
+                        <VBox alignItems="Center" justifyContent="Center" class="sapUiSmallMarginEnd">
+                            <Label text="Boy" design="Bold" />
+                            <Text id="idBoy" text="{aufnrModel>BOY}" />
+                        </VBox>
+                        <VBox alignItems="Center" justifyContent="Center" class="sapUiSmallMarginEnd">
+                            <Label text="Vakum" design="Bold" />
+                            <Text id="idVakum" text="{aufnrModel>VAKUM}" />
+                        </VBox>
+                    </FlexBox>
+                </VBox>
+                <VBox class="sapUiMediumMarginTop" alignItems="Center">
+                    <Label design="Bold" text="Parti Numarası"/>
+                    <Input id="idBatch" submit="onSubmitBatch" />
+                    <Label design="Bold" text="Sağlam Miktar(TON)" />
+                    <Input id="idQuantity" />
+                </VBox>
+                <Button text="{i18n>OEE_BTN_SAVE}" press="insertConsumption" type="Accept" visible="true"/>
+            </VBox>
+        </content>
+        <footer>
+            <Toolbar>
+                <ToolbarSpacer />
+                <Button id="idNotConfirmed" text="Okutulmayan Parti Listesi" press="onPressNotConfirmedBatchList"></Button>
+                <ToolbarSpacer />
+            </Toolbar>
+        </footer>
+    </Page>
+</core:View>

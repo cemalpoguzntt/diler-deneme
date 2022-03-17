@@ -1,0 +1,68 @@
+<mvc:View xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:m="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:html="http://www.w3.org/1999/xhtml" controllerName="customActivity.controller.oeeRefracterFactoryReport"
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.commons"
+    xmlns:t="sap.ui.table">
+    <App>
+		<pages>
+			<Page showHeader="false">
+             
+				<content>
+                    <Panel id="expandablePanel" expandable="false" expand="onExpand" width="auto" class="sapUiResponsiveMargin">
+                        <headerToolbar>
+                            <OverflowToolbar active="true" press="onOverflowToolbarPress">
+                                <Title text="Filtreleme Seçenekleri"/>
+                            </OverflowToolbar>
+                        </headerToolbar>
+                        <content>
+                            <HBox alignItems="Center" width="100%">
+                                    <l:VerticalLayout width="100%">
+                                        <FlexBox height="60px" alignItems="Center" justifyContent="Center">
+                                            <items>
+                                                <HBox height="60px" alignItems="Center" justifyContent="Center">
+                                                    <Label width="100px" text="Başlangıç Tarihi" design="Bold"></Label>
+                                                    <DatePicker id="idStartDatePicker" width="15rem" valueFormat="yyyy-MM-dd" displayFormat="dd.MM.yyyy" class="sapUiSmallMarginEnd"/>
+                                                </HBox>
+                                                <HBox height="60px" alignItems="Center" justifyContent="Center">
+                                                    <Label width="100px" text="Bitiş Tarihi" design="Bold"></Label>
+                                                    <DatePicker id="idEndDatePicker" width="15rem" valueFormat="yyyy-MM-dd" displayFormat="dd.MM.yyyy" class="sapUiSmallMarginEnd"/>
+                                                </HBox> 
+                                                <HBox height="60px" alignItems="Center" justifyContent="Center">
+                                                    <Label width="100px" text="T. Nesne Türü" design="Bold"></Label>
+                                                    <ComboBox id="idEquipmentObjType" width="190px" change="changeTechnicalObjectType" items="{equipmentObjType>/}" class="sapUiSmallMarginEnd" forceSelection="true">
+                                                        <core:Item text="{equipmentObjType>EQART}" key="{equipmentObjType>EQART}"/>
+                                                    </ComboBox>
+                                                </HBox>
+                                                <HBox height="60px" alignItems="Center" justifyContent="Center">
+                                                    <Label width="100px" text="Malzeme Tanımı" design="Bold"></Label>
+                                                    <ComboBox id="idMaterialInfo" width="190px" change="changeMaterialInfo" items="{materialInfo>/}" class="sapUiSmallMarginEnd" forceSelection="true">
+                                                        <core:Item text="{materialInfo>ZREFMLZ}" key="{materialInfo>ZREFMLZ}"/>
+                                                    </ComboBox>
+                                                </HBox>
+                                            </items>
+                                        </FlexBox>
+                                    </l:VerticalLayout>
+                                <VBox width="100%">
+                                    <HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+                                        <Button type="Reject" width="150px" text="Temizle" icon="sap-icon://delete" press="onPressCleanFilter"></Button>
+                                    </HBox>
+                                    <HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+                                        <Button type="Accept" width="150px" text="Ara" icon="sap-icon://search" press="onPressSearchFilter"></Button>
+                                    </HBox>
+                                </VBox>
+                            </HBox>
+                        </content>
+                    </Panel>
+					
+                            <t:Table enableColumnReordering="false" visibleRowCount="10" id="idReportTable"></t:Table>
+					
+				</content>
+			</Page>
+		</pages>
+	</App>
+           
+</mvc:View>

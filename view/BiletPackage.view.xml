@@ -1,0 +1,167 @@
+<View xmlns:mvc="sap.ui.core.mvc" controllerName="customActivity.controller.BiletPackage" xmlns="sap.m" xmlns:layout="sap.ui.layout">
+	<Page showHeader="true" showFooter="true" showNavButton="false">
+		<content>
+			<FlexBox id="idFlexBox1" width="100%" height="10%" justifyContent="SpaceAround" alignItems="Center">
+				<DateTimePicker id="datePicker" width="auto" displayFormat="medium" required="false" valueStateText="Invalid entry" enabled="true" visible="true" valueFormat="yyyyMMddHHmmss" />
+                <DateTimePicker id="datePicker2" width="auto" displayFormat="medium" required="false" valueStateText="Invalid entry" enabled="true" visible="true" valueFormat="yyyyMMddHHmmss" />
+				<Button id="idSearchButton" text="ARA" press="getModelData" type="Default" iconFirst="true" width="174.00001525878906px" enabled="true" visible="true" iconDensityAware="false" />
+			</FlexBox>
+			<FlexBox id="idFlexBox2" width="100%" height="90%" justifyContent="Center" alignItems="Start">
+				<Table width="auto" items="{path: '/'}" id="reporttable" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin">
+					<columns>
+						<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="Paket ID" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+							</header>
+							<footer />
+						</Column>
+						<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="Paket No" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+							</header>
+							<footer />
+						</Column>
+						<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="KTKID" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+							</header>
+							<footer />
+						</Column>
+						<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="Paket Dara" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+							</header>
+							<footer />
+						</Column>
+						<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="Paket Net Ağırlık" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+							</header>
+							<footer />
+						</Column>
+						<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="BILLET STATUS" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+							</header>
+							<footer />
+						</Column>
+						<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="LABEL WEIGHT" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+							</header>
+							<footer />
+						</Column>
+						<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="LABEL STATUS" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+							</header>
+							<footer />
+						</Column>
+						<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="USER" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+							</header>
+							<footer />
+						</Column>
+						<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="DATE" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+							</header>
+							<footer />
+						</Column>
+						<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="USER" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+							</header>
+							<footer />
+						</Column>
+						<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="DATE" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+							</header>
+							<footer />
+						</Column>
+						<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="IS DELETED" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+							</header>
+							<footer />
+						</Column>
+						<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="CLIENT" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+							</header>
+							<footer />
+						</Column>
+						<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="WERKS" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+							</header>
+							<footer />
+						</Column>
+						<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="Wrkcntr ID" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+							</header>
+							<footer />
+						</Column>
+						<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="ENTRY ID" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+							</header>
+							<footer />
+						</Column>
+						<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="SUCCESS" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+							</header>
+							<footer />
+						</Column>
+						<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="BATCH NO" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+							</header>
+							<footer />
+						</Column>
+						<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+							<header>
+								<Text text="SHIFT" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true" />
+							</header>
+							<footer />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem type="Active">
+							<cells>
+								<Text text="{PACKAGE_ID}" wrapping="true" id="text0" />
+								<Text text="{PACKAGE_NUMBER}" wrapping="true" id="text1" />
+								<Text text="{KTKID}" wrapping="true" id="text2" />
+								<Text text="{PACKAGE_TARE_WEIGHT}" wrapping="true" id="text3" />
+								<Text text="{PACKAGE_NET_WEIGHT}" wrapping="true" id="text4" />
+								<Text text="{BILLET_STATUS}" wrapping="true" id="text5" />
+								<Text text="{LABEL_WEIGHT}" wrapping="true" id="text6" />
+								<Text text="{LABEL_STATUS}" wrapping="true" id="text7" />
+								<Text text="{INSUSER}" wrapping="true" id="text8" />
+								<Text text="{INSDATE}" wrapping="true" id="text9" />
+								<Text text="{UPDUSER}" wrapping="true" id="text10" />
+								<Text text="{UPDDATE}" wrapping="true" id="text11" />
+								<Text text="{IS_DELETED}" wrapping="true" id="text12" />
+								<Text text="{CLIENT}" wrapping="true" id="text13" />
+								<Text text="{WERKS}" wrapping="true" id="text14" />
+								<Text text="{WORKCENTER_ID}" wrapping="true" id="text15" />
+								<Text text="{ENTRY_ID}" wrapping="true" id="text16" />
+								<Text text="{SUCCES}" wrapping="true" id="text17" />
+								<Text text="{BATCH_NO}" wrapping="true" id="text18" />
+								<Text text="{SHIFT}" wrapping="true" id="text19" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</FlexBox>
+		</content>
+		<footer />
+		<headerContent />
+		<subHeader />
+		<customHeader />
+	</Page>
+</View>

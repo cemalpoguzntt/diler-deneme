@@ -1,0 +1,592 @@
+<mvc:View xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:layout="sap.ui.layout" controllerName="customActivity.controller.tum_raporlar" >
+    <App id="app" width="500%">
+        <pages>
+            <Page showHeader="true" title="" width="500%"  showFooter="true" showNavButton="false">
+                <content>
+                    <FlexBox id="outerBox0" width="100%" height="100%" direction="Column">
+                        <FlexBox id="innerBox0" width="100%" height="10%">
+                            <DateRangeSelection   id="datePicker"  placeholder="Tarih" width="300px" displayFormat="long"  enabled="true" visible="true" class="sapUiResponsiveMargin" />
+                            <Button text="" type="Accept" icon="sap-icon://search" iconFirst="true" width="70px" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin" press="searchData" />
+                            <Button type="Accept" icon="sap-icon://excel-attachment"  text="Excel'e Aktar" press="onExport" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin"/>
+                        </FlexBox>
+                        <FlexBox id="innerBox1" width="100%" height="90%" >
+                            <FlexBox id="tableBox1" width="20%" height="100%" direction="Column">
+                                <FlexBox justifyContent="Center" alignItems="Center" height="5%">
+                                    <Label design="Bold" width="auto" text="Fosfatlama"/>
+                                </FlexBox>
+                                <FlexBox  justifyContent="SpaceAround" alignItems="Center" height="5%" direction="Row">
+                                    <Label text="Fosfat Toplam Üretim (ton):" design="Bold" width="auto" />
+                                    <Label id="toplamUretimFosfat" text="0.000" design="Bold" width="auto" />
+                                    <Label text="Fosfat Toplam Tüketim (ton):" design="Bold" width="auto" />
+                                    <Label id="toplamTuketimFosfat" text="0.000" design="Bold" width="auto" />
+                                    <Label text="Fosfat Toplam % Fire:" design="Bold" width="auto" />
+                                    <Label id="toplamFireFosfat" text="0.000" design="Bold" width="auto" />
+                                </FlexBox>
+                                <FlexBox  justifyContent="SpaceAround" alignItems="Center" height="5%" direction="Row">
+                                    <Label text="AYT Toplam Üretim (ton):" design="Bold" width="auto" />
+                                    <Label id="toplamUretimAYT" text="0.000" design="Bold" width="auto" />
+                                    <Label text="AYT Toplam Tüketim (ton):" design="Bold" width="auto" />
+                                    <Label id="toplamTuketimAYT" text="0.000" design="Bold" width="auto" />
+                                    <Label text="AYT Toplam % Fire:" design="Bold" width="auto" />
+                                    <Label id="toplamFireAYT" text="0.000" design="Bold" width="auto" />
+                                </FlexBox>
+                                <FlexBox  justifyContent="SpaceAround" alignItems="Center" height="5%" direction="Row">
+                                    <Label text="Rework Toplam Üretim (ton):" design="Bold" width="auto" />
+                                    <Label id="toplamUretimRW" text="0.000" design="Bold" width="auto" />
+                                    <Label text="Rework Toplam Tüketim (ton):" design="Bold" width="auto" />
+                                    <Label id="toplamTuketimRW" text="0.000" design="Bold" width="auto" />
+                                    <Label text="Rework Toplam % Fire:" design="Bold" width="auto" />
+                                    <Label id="toplamFireRW" text="0.000" design="Bold" width="auto" />
+                                </FlexBox>
+                                <FlexBox  height="80%">
+                                    <ui:Table id="FosfatReport" selectionMode="None" selectionBehavior="Row" enableColumnReordering="false" visibleRowCountMode="Auto" rows="{/}" class="sapUiResponsiveMargin">
+                                        <ui:columns>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Tarih" textAlign="Begin"  />
+                                                <ui:template>
+                                                    <Text text="{FS_TARIH}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Vardiya" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{FS_VARDIYA}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Satış Sip No." textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{FS_SATIS_SIP}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Üretim Sip No." textAlign="Begin"/>
+                                                <ui:template>
+                                                    <Text text="{FS_URETIM_SIP}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="11%" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Rework - AYT" textAlign="Begin"/>
+                                                <ui:template>
+                                                    <Text text="{FS_RW_AYT}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Filmaşin Kalite" maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{FS_KALITE}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Filmaşin Kalite Değişim" maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{FS_KALITE_DEGISIM}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Filmaşin Çap (mm)" maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{FS_CAP}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Fosfatlı Filmaşin Üretim (ton)" maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{FS_TOPLAM_URETIM}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Filmaşin Sarf (ton)" maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{FS_TOPLAM_TUKETIM}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Üretim (adet)" textAlign="Begin"/>
+                                                <ui:template>
+                                                    <Text text="{FS_URETIM_ADEDI}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="% fire" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{FS_FIRE}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                        </ui:columns>
+                                    </ui:Table>
+                                </FlexBox>
+                            </FlexBox>
+                            <FlexBox id="tableBox2" width="20%" height="100%" direction="Column">
+                                <FlexBox justifyContent="Center" alignItems="Center" height="5%">
+                                    <Label design="Bold" width="auto" text="Tel Çekme"/>
+                                </FlexBox>
+                                <FlexBox  justifyContent="SpaceAround" alignItems="Center" height="5%" direction="Row">
+                                    <Label text="Toplam Üretim (Ton):" design="Bold" />
+                                    <Label id="toplamUretimTelCekme" text="0.000" design="Bold" />
+                                    <Label text="Toplam Tüketim (Ton):" design="Bold" />
+                                    <Label id="toplamTuketimTelCekme" text="0.000" design="Bold" />
+                                    <Label text="Toplam Hurda (Ton):" design="Bold" />
+                                    <Label id="farkTelCekme" text="0.000" design="Bold" />
+                                    <Label text="Toplam % Fire:" design="Bold"   />
+                                    <Label id="toplamFireTelCekme" text="0.000" design="Bold"   />
+                                </FlexBox>
+                                <FlexBox  justifyContent="SpaceAround" alignItems="Center" height="5%" direction="Row">
+                                    <Label text="Standart Dışı Üretim (ton):" design="Bold" />
+                                    <Label id="stddisiUretimSCT" text="0.000" design="Bold" />
+                                    <Label text="Standart Dışı Üretim (%):" design="Bold" />
+                                    <Label id="stddisiUretimPercntSCT" text="0.000" design="Bold" />
+                                    <Label text="Sapma Üretim (ton):" design="Bold" />
+                                    <Label id="sapmaUretimSCT" text="0.000" design="Bold" />
+                                    <Label text="Sapma Üretim (%):" design="Bold"   />
+                                    <Label id="sapmaUretimPercntSCT" text="0.000" design="Bold"   />
+                                </FlexBox>
+                                <FlexBox  justifyContent="SpaceAround" alignItems="Center" height="5%" direction="Row">
+                                    
+                                </FlexBox>
+                                <FlexBox  height="80%">
+                                    <ui:Table id="TelCekmeReport" selectionMode="None" selectionBehavior="Row" enableColumnReordering="false" visibleRowCountMode="Auto" rows="{/}" class="sapUiResponsiveMargin">
+                                        <ui:columns>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Tarih" textAlign="Begin"  />
+                                                <ui:template>
+                                                    <Text text="{SCTEL_TARIH}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Vardiya" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{SCTEL_VARDIYA}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Makine No" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{SCTEL_MAKINA}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Satış Sip No." textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{SCTEL_SATIS_SIP}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Üretim Sip No." textAlign="Begin"/>
+                                                <ui:template>
+                                                    <Text text="{SCTEL_URETIM_SIPARISI}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="8%" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Sarf Edilen Filmaşin Kalitesi" maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{SCTEL_KALITE}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Kalite Değişimi" maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{SCTEL_DEGISIM_KALITE}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Sarf Edilen Filmaşin Çap (mm)" maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{SCTEL_CAP}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Sarf Edilen Filmaşın Miktarı  (Ton)" maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{SCTEL_CONS_QUANTITY}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Tel Çapı (mm)" maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{SCTEL_TEL_CAP}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Üretilen Miktar (Ton)" maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{SCTEL_URETIM}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Üretim (Adet)" textAlign="Begin"/>
+                                                <ui:template>
+                                                    <Text text="{SCTEL_ADET}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="% Fire" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{SCTEL_FIRE}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Standart Dışı - Sapma" wrapping="true" textAlign="Begin"/>
+                                                <ui:template>
+                                                    <Text text="{SCT_PROD_TYPE}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                        </ui:columns>
+                                    </ui:Table>
+                                </FlexBox>
+                            </FlexBox>
+                            <FlexBox id="tableBox3" width="20%" height="100%" direction="Column">
+                                <FlexBox justifyContent="Center" alignItems="Center" height="5%">
+                                    <Label design="Bold" width="auto" text="PC Strand"/>
+                                </FlexBox>
+                                <FlexBox  justifyContent="SpaceAround" alignItems="Center" height="5%" direction="Row">
+                                    <Label text="Toplam Üretim (ton):" design="Bold" />
+                                    <Label id="toplamUretimPC" text="0.000" design="Bold" />
+                                    <Label text="Toplam Tüketim (ton):" design="Bold" />
+                                    <Label id="toplamTuketimPC" text="0.000" design="Bold" />
+                                    <Label text="Toplam Hurda (ton):" design="Bold" />
+                                    <Label id="toplamHurdaPC" text="0.000" design="Bold" />
+                                    <Label text="Toplam % Fire:" design="Bold"   />
+                                    <Label id="toplamFirePC" text="0.000" design="Bold"   />
+                                </FlexBox>
+                                <FlexBox  justifyContent="SpaceAround" alignItems="Center" height="5%" direction="Row">
+                                    <Label text="Standart Dışı Üretim (ton):" design="Bold" />
+                                    <Label id="stddisiUretimPCS" text="0.000" design="Bold" />
+                                    <Label text="Standart Dışı Üretim (%):" design="Bold" />
+                                    <Label id="stddisiUretimPercntPCS" text="0.000" design="Bold" />
+                                    <Label text="Sapma Üretim (ton):" design="Bold" />
+                                    <Label id="sapmaUretimPCS" text="0.000" design="Bold" />
+                                    <Label text="Sapma Üretim (%):" design="Bold"   />
+                                    <Label id="sapmaUretimPercntPCS" text="0.000" design="Bold"   />
+                                </FlexBox>
+                                <FlexBox  justifyContent="SpaceAround" alignItems="Center" height="5%" direction="Row">
+                                    
+                                </FlexBox>
+                                <FlexBox  height="80%">
+                                    <ui:Table id="pcStrand" selectionMode="None" selectionBehavior="Row" enableColumnReordering="false" visibleRowCountMode="Auto" rows="{/}" class="sapUiResponsiveMargin">
+                                        <ui:columns>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Tarih" textAlign="Begin"  />
+                                                <ui:template>
+                                                    <Text text="{PCS_TARIH}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Vardiya" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{PCS_VARDIYA}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Satış Sip No." wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{PCS_SATIS_SIPNO}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Üretim Sip No." wrapping="true" textAlign="Begin"/>
+                                                <ui:template>
+                                                    <Text text="{PCS_URETIM_SIPNO}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Merkez Tel(mm)"  wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{PCS_Y_MERKEZ_TEL_CAP}" width="auto"  wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Çevre Tel(mm)"  wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{PCS_Y_CEVRE_TEL_CAP}" width="auto"  wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="8%" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="PC Strand Standart"  wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{PCS_Y_STANDART_PCS}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="PC Strand Çap (mm-inch)"  wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{PCS_PC_STRAND_CAP}" width="auto"  wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="PC Strand Kalite"  wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{PCS_Y_KALITE_PCS}" width="auto" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Tüketim (ton)" wrapping="true" textAlign="Begin"/>
+                                                <ui:template>
+                                                    <Text text="{PCS_TOPLAM_TUKETIM}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Mamul Üretim (ton)" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{PCS_TOPLAM_URETIM}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Kangal Adet" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{PCS_KANGAL_ADET}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Hurda(ton)" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{PCS_TOPLAM_HURDA}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="%Fire" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{PCS_FIRE}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Standart Dışı - Sapma" wrapping="true" textAlign="Begin"/>
+                                                <ui:template>
+                                                    <Text text="{PCS_PROD_TYPE}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                        </ui:columns>
+                                    </ui:Table>
+                                </FlexBox>
+                            </FlexBox>
+                            <FlexBox id="tableBox4" width="20%" height="100%" direction="Column">
+                                <FlexBox justifyContent="Center" alignItems="Center" height="5%">
+                                    <Label design="Bold" width="auto" text="PC Wire"/>
+                                </FlexBox>
+                                <FlexBox  justifyContent="SpaceAround" alignItems="Center" height="5%" direction="Row">
+                                    <Label text="Toplam Üretim (ton):" design="Bold" />
+                                    <Label id="toplamUretimPCW" text="0.000" design="Bold" />
+                                    <Label text="Toplam Tüketim (ton):" design="Bold" />
+                                    <Label id="toplamTuketimPCW" text="0.000" design="Bold" />
+                                    <Label text="Toplam Hurda (ton):" design="Bold" />
+                                    <Label id="toplamHurdaPCW" text="0.000" design="Bold" />
+                                    <Label text="Toplam % Fire:" design="Bold"   />
+                                    <Label id="toplamFirePCW" text="0.000" design="Bold"   />
+                                </FlexBox>
+                                <FlexBox  justifyContent="SpaceAround" alignItems="Center" height="5%" direction="Row">
+                                    <Label text="Standart Dışı Üretim (ton):" design="Bold" />
+                                    <Label id="stddisiUretimPCW" text="0.000" design="Bold" />
+                                    <Label text="Standart Dışı Üretim (%):" design="Bold" />
+                                    <Label id="stddisiUretimPercntPCW" text="0.000" design="Bold" />
+                                    <Label text="Sapma Üretim (ton):" design="Bold" />
+                                    <Label id="sapmaUretimPCW" text="0.000" design="Bold" />
+                                    <Label text="Sapma Üretim (%):" design="Bold"   />
+                                    <Label id="sapmaUretimPercntPCW" text="0.000" design="Bold"   />
+                                </FlexBox>
+                                <FlexBox  justifyContent="SpaceAround" alignItems="Center" height="5%" direction="Row">
+                                    
+                                </FlexBox>
+                                <FlexBox  height="80%">
+                                    <ui:Table id="pcWireReport" selectionMode="None" selectionBehavior="Row" enableColumnReordering="false" visibleRowCountMode="Auto" rows="{/}" class="sapUiResponsiveMargin">
+                                        <ui:columns>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Tarih" textAlign="Begin"  />
+                                                <ui:template>
+                                                    <Text text="{PCW_TARIH}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Vardiya" maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{PCW_VARDIYA}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Satış Sip No." maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{PCW_SATIS_SIP}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Üretim Sip No." maxLines="2" wrapping="true" textAlign="Begin"/>
+                                                <ui:template>
+                                                    <Text text="{PCW_URETIM_SIP}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Kullanılan S. Tel Çap (mm)" maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{PCW_TELCAP}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Sarf S. Tel Miktar (ton)" maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{PCW_SARF_TEL_MIKTAR}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Paket Tipi" maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{PCW_PAKET_TIP}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Yüzey Tipi" maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{PCW_YUZEY_TIP}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Çentik Tipi" maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{PCW_CENTIK_TIP}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="140px" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="PC Wire Standart" maxLines="2" wrapping="true" textAlign="Begin"/>
+                                                <ui:template>
+                                                    <Text text="{PCW_PC_WIRE}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="PC Wire Çap (mm)" maxLines="2" wrapping="true" textAlign="Begin"/>
+                                                <ui:template>
+                                                    <Text text="{PCW_PC_WIRE_CAP}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="PC Wire Kalite" maxLines="2" wrapping="true" textAlign="Begin"/>
+                                                <ui:template>
+                                                    <Text text="{PCW_PC_WIRE_KALITE}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Mamül Üretim (ton)" maxLines="2" wrapping="true" textAlign="Begin"/>
+                                                <ui:template>
+                                                    <Text text="{PCW_MAMUL_URETIM}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="60px" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Paket (adet)" maxLines="2" wrapping="true" textAlign="Begin"/>
+                                                <ui:template>
+                                                    <Text text="{PCW_PAKET_ADET}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="60px" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="% fire" maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{PCW_FIRE}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Standart Dışı - Sapma" wrapping="true" textAlign="Begin"/>
+                                                <ui:template>
+                                                    <Text text="{PCW_PROD_TYPE}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                        </ui:columns>
+                                    </ui:Table>
+                                </FlexBox>
+                            </FlexBox>
+                            <FlexBox id="tableBox5" width="20%" height="100%" direction="Column">
+                                <FlexBox justifyContent="Center" alignItems="Center" height="5%">
+                                    <Label design="Bold" width="auto" text="SkinPass"/>
+                                </FlexBox>
+                                <FlexBox  justifyContent="SpaceAround" alignItems="Center" height="5%" direction="Row">
+                                    <Label text="Toplam Üretim (ton):" design="Bold"   />
+                                    <Label id="toplamUretimSKP" text="0.000" design="Bold"   />
+                                    <Label text="Toplam Tüketim (ton):" design="Bold"   />
+                                    <Label id="toplamTuketimSKP" text="0.000" design="Bold"   />
+                                    <Label text="Toplam Hurda (ton):" design="Bold"   />
+                                    <Label id="toplamHurdaSKP" text="0.000" design="Bold"   />
+                                    <Label text="Toplam % Fire:" design="Bold"   />
+                                    <Label id="toplamFireSKP" text="0.000" design="Bold"   />
+                                </FlexBox>
+                                <FlexBox  justifyContent="SpaceAround" alignItems="Center" height="5%" direction="Row">
+                                    <Label text="Standart Dışı Üretim (ton):" design="Bold" />
+                                    <Label id="stddisiUretimSKP" text="0.000" design="Bold" />
+                                    <Label text="Standart Dışı Üretim (%):" design="Bold" />
+                                    <Label id="stddisiUretimPercntSKP" text="0.000" design="Bold" />
+                                    <Label text="Sapma Üretim (ton):" design="Bold" />
+                                    <Label id="sapmaUretimSKP" text="0.000" design="Bold" />
+                                    <Label text="Sapma Üretim (%):" design="Bold"   />
+                                    <Label id="sapmaUretimPercntSKP" text="0.000" design="Bold"   />
+                                </FlexBox>
+                                <FlexBox  justifyContent="SpaceAround" alignItems="Center" height="5%" direction="Row">
+                                    
+                                </FlexBox>
+                                <FlexBox  height="80%">
+                                    <ui:Table id="SKPReport" selectionMode="None" selectionBehavior="Row" enableColumnReordering="false" visibleRowCountMode="Auto" rows="{/}" class="sapUiResponsiveMargin">
+                                        <ui:columns>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Tarih" textAlign="Begin"  />
+                                                <ui:template>
+                                                    <Text text="{SKP_TARIH}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Vardiya" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{SKP_VARDIYA}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Satış Sip No." textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{SKP_SATIS_SIP}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Üretim Sip No." textAlign="Begin"/>
+                                                <ui:template>
+                                                    <Text text="{SKP_URETIM_SIP}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="11%" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="SkinPass Üretim (ton)" textAlign="Begin"/>
+                                                <ui:template>
+                                                    <Text text="{SKP_TOPLAM_URETIM}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Filmaşin Sarf (ton)" maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{SKP_TOPLAM_TUKETIM}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Üretim (adet)" maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{SKP_URETIM_ADEDI}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Hurda (ton)" maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{SKP_TOPLAM_HURDA}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Fire (%)" maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{SKP_FIRE}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                                                <Label text="Standart Dışı - Sapma" maxLines="2" wrapping="true" textAlign="Begin" />
+                                                <ui:template>
+                                                    <Text text="{SKP_PROD_TYPE}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                        </ui:columns>
+                                    </ui:Table>
+                                </FlexBox>
+                            </FlexBox>
+                        </FlexBox>
+                    </FlexBox>
+                </content>
+            </Page>
+        </pages>
+    </App>
+</mvc:View>

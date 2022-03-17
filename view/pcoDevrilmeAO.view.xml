@@ -1,0 +1,166 @@
+<mvc:View
+xmlns:core="sap.ui.core"
+xmlns:mvc="sap.ui.core.mvc"
+xmlns:c="sap.ui.commons"
+xmlns="sap.m"
+xmlns:m="sap.m"
+xmlns:l="sap.ui.layout"
+xmlns:html="http://www.w3.org/1999/xhtml"
+xmlns:ui="sap.ui.table"
+xmlns:f="sap.ui.layout.form"
+xmlns:u="sap.ui.unified"
+xmlns:tnt="sap.tnt"
+height="100%" controllerName="customActivity.controller.pcoDevrilmeAO">
+    <App>
+        <pages>
+            <Page showHeader="false">
+            <content>
+                <HBox justifyContent="Center" alignItems="Center" width="100%">
+                    <l:VerticalLayout width="100%">
+                        <FlexBox height="60px" alignItems="Center" justifyContent="Center">
+                            <items>
+                <HBox height="60px" alignItems="Center" justifyContent="Center">
+                    <Label width="100px" text="Tarih Aralığı: " design="Bold"></Label>
+                    <DateRangeSelection displayFormat="YYYY/MM/dd" id="idDateRangeSelection" width="17rem"  change= "getCastNoList" class="sapUiSmallMarginBottom sapUiSmallMarginEnd"/>
+                </HBox>
+                <HBox height="60px" alignItems="Center" justifyContent="Center">
+                    <Label width="100px" text="Döküm No:" design="Bold"></Label>
+                    <ComboBox  showSecondaryValues="true" width="200px" id="startCast"  items="{path: 'castIds>/'}" selectionChange="changeStartCast" class="sapUiSmallMarginEnd">
+                        <core:ListItem key="tam" text="TÜMÜ"/>
+                        <core:ListItem key="{castIds>CASTID}" text="{castIds>CASTID}"/>
+                    </ComboBox>
+                </HBox>
+                <VBox width="100%">
+                    <HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+                        <Button type="Accept" width="150px" text="Tabloyu Getir" icon="sap-icon://search" press="onPressSearchFilter"></Button>
+                    </HBox>
+                </VBox>
+            </items>
+        </FlexBox>
+    </l:VerticalLayout>
+</HBox>
+<!-- <t:Table visibleRowCount="10" id="idFragmentTable"></t:Table> -->
+<ui:Table id="idReportTable" width="100%" rows="{/}" rowCount="16" visibleRowCount="16" alternateRowColors="true" selectionMode="Single" selectionBehavior="RowOnly" >
+
+<ui:columns>
+<ui:Column hAlign="Center" sortProperty="PLANT" filterProperty="PLANT" filterType="sap.ui.model.type.String">
+<Label text="PLANT" design="Bold"/>
+<ui:template>
+<Text text="{PLANT}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="CASTNO" filterProperty="CASTNO" filterType="sap.ui.model.type.String">
+<Label text="CASTNO" design="Bold"/>
+<ui:template>
+<Text text="{CASTNO}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="AO_DOKUM_DEVRILME" filterProperty="AO_DOKUM_DEVRILME" filterType="sap.ui.model.type.String">
+<Label text="AO_DOKUM_DEVRILME" design="Bold"/>
+<ui:template>
+<Text text="{AO_DOKUM_DEVRILME}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" width="150px" sortProperty="INSDATE" filterProperty="INSDATE" filterType="sap.ui.model.type.String">
+<Label text="INSDATE" design="Bold"/>
+<ui:template>
+<Text text="{INSDATE}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="BRL_DGAZ" filterProperty="BRL_DGAZ" filterType="sap.ui.model.type.String">
+<Label text="BRL_DGAZ" design="Bold"/>
+<ui:template>
+<Text text="{BRL_DGAZ}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="BRL_O2" filterProperty="BRL_O2" filterType="sap.ui.model.type.String">
+<Label text="BRL_O2" design="Bold"/>
+<ui:template>
+<Text text="{BRL_O2}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="DOKUM_SURESI" filterProperty="DOKUM_SURESI" filterType="sap.ui.model.type.String">
+<Label text="DOKUM_SURESI" design="Bold"/>
+<ui:template>
+<Text text="{DOKUM_SURESI}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="ELTI_O2" filterProperty="BRL_O2" filterType="sap.ui.model.type.String">
+<Label text="ELTI_O2" design="Bold"/>
+<ui:template>
+<Text text="{ELTI_O2}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="ENERJI" filterProperty="ENERJI" filterType="sap.ui.model.type.String">
+<Label text="ENERJI" design="Bold"/>
+<ui:template>
+<Text text="{ENERJI}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="ENERJILI_SURE" filterProperty="ENERJILI_SURE" filterType="sap.ui.model.type.String">
+<Label text="ENERJILI_SURE" design="Bold"/>
+<ui:template>
+<Text text="{ENERJILI_SURE}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="ENERJISIZ_SURE" filterProperty="ENERJISIZ_SURE" filterType="sap.ui.model.type.String">
+<Label text="ENERJISIZ_SURE" design="Bold"/>
+<ui:template>
+<Text text="{ENERJISIZ_SURE}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="GUC" filterProperty="GUC" filterType="sap.ui.model.type.String">
+<Label text="GUC" design="Bold"/>
+<ui:template>
+<Text text="{GUC}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="OFF_SURE" filterProperty="OFF_SURE" filterType="sap.ui.model.type.String">
+<Label text="OFF_SURE" design="Bold"/>
+<ui:template>
+<Text text="{OFF_SURE}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="ON_OFF" filterProperty="ON_OFF" filterType="sap.ui.model.type.String">
+<Label text="ON_OFF" design="Bold"/>
+<ui:template>
+<Text text="{ON_OFF}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="PC_DGAZ" filterProperty="PC_DGAZ" filterType="sap.ui.model.type.String">
+<Label text="PC_DGAZ" design="Bold"/>
+<ui:template>
+<Text text="{PC_DGAZ}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="RCB_BRL_DGAZ" filterProperty="RCB_BRL_DGAZ" filterType="sap.ui.model.type.String">
+<Label text="RCB_BRL_DGAZ" design="Bold"/>
+<ui:template>
+<Text text="{RCB_BRL_DGAZ}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="RCB_BRL_O2" filterProperty="RCB_BRL_O2" filterType="sap.ui.model.type.String">
+<Label text="RCB_BRL_O2" design="Bold"/>
+<ui:template>
+<Text text="{RCB_BRL_O2}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="RCB_REF_O2" filterProperty="RCB_REF_O2" filterType="sap.ui.model.type.String">
+<Label text="RCB_REF_O2" design="Bold"/>
+<ui:template>
+<Text text="{RCB_REF_O2}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<!-- <ui:Column hAlign="Center" sortProperty="MATNR" filterProperty="MATNR" filterType="sap.ui.model.type.String">
+<Label text="Malzeme No" design="Bold"/>
+<ui:template>
+<Text text="{MATNR}" wrapping="false"/>
+</ui:template>
+</ui:Column> -->
+</ui:columns>
+</ui:Table>
+</content>
+            </Page>
+        </pages>
+    </App>
+</mvc:View>

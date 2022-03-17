@@ -1,0 +1,254 @@
+<mvc:View xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:layout="sap.ui.layout" controllerName="customActivity.controller.firketeReportScreen" >
+    <DateTimePicker  id="DateTimePicker1" change="handleChange1" valueFormat="yyyy-MM-dd HH:mm" displayFormat="dd-MM-yyyy HH:mm" width="300px" class="sapUiResponsiveMargin" />
+    <DateTimePicker  id="DateTimePicker2" change="handleChange2" valueFormat="yyyy-MM-dd HH:mm" displayFormat="dd-MM-yyyy HH:mm" width="300px" class="sapUiResponsiveMargin" /> 
+    <Button text="" type="Accept" icon="sap-icon://search" iconFirst="true" width="70px" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin" press="searchData" />
+    <Label text="Toplam Üretim (ton):" design="Bold" width="auto" required="false" textAlign="Begin" textDirection="Inherit" visible="true" class="sapUiMediumMargin"/>
+    <Label id="toplamUretim" text="Label" design="Bold" width="auto" required="false" textAlign="Begin" textDirection="Inherit" visible="true" class="sapUiMediumMargin"/>
+    <Label text="Toplam Adet:" design="Bold" width="auto" required="false" textAlign="Begin" textDirection="Inherit" visible="true" class="sapUiMediumMargin"/>
+    <Label id="toplamAdet" text="Label" design="Bold" width="auto" required="false" textAlign="Begin" textDirection="Inherit" visible="true" class="sapUiMediumMargin"/>
+    <Button type="Accept" icon="sap-icon://excel-attachment"  text="Excel Export" press="onExport" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin"/>
+    <ui:Table id="firketeReport" width="250%" selectionMode="None" selectionBehavior="Row" enableColumnReordering="false" visibleRowCountMode="Auto" rows="{/}" class="sapUiResponsiveMargin">
+        <ui:columns>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center">
+                <Label text="Tarih" textAlign="Center"  />
+                <ui:template>
+                    <Text text="{TARIH}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Vardiya" maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{VARDIYA}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="İş Yeri" maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{ISYERI}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Satış Sip No." maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{SIPARIS_NO}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Toplam Üretim" maxLines="2" wrapping="true" textAlign="Center"/>
+                <ui:template>
+                    <Text text="{TOPLAM_URETIM}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Birim" maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{BIRIM}" width="auto" maxLines="2" wrapping="true" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Üretim Adet" maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{URETIM_ADET}" width="auto" maxLines="2" wrapping="true" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Belge türü" maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{BELGETURU}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Üretim Yönetimi" maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{URETIM_YONETIMI}" width="auto" maxLines="2" wrapping="true" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Boyama" maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{BOYAMA}" width="auto" maxLines="2" wrapping="true" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Üretim Şekli" maxLines="2" wrapping="true" textAlign="Center"/>
+                <ui:template>
+                    <Text text="{URETIM_SEKLI}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Faturalama" maxLines="2" wrapping="true" textAlign="Center"/>
+                <ui:template>
+                    <Text text="{FATURALAMA}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Nervuz Düz" maxLines="2" wrapping="true" textAlign="Center"/>
+                <ui:template>
+                    <Text text="{NERVUR_DUZ}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Üretim Yeri" maxLines="2" wrapping="true" textAlign="Center"/>
+                <ui:template>
+                    <Text text="{URETIMYERI}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Üretim Yeri Sip." maxLines="2" wrapping="true" textAlign="Center"/>
+                <ui:template>
+                    <Text text="{URETIMYERI_SIPARIS}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Kütük Menşei" maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{KUTUK_MENSEI}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Miktar (ton)" maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{MIKTAR_TON}" width="auto" maxLines="2" wrapping="true" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Ülke" maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{ULKE}" width="auto" maxLines="2" wrapping="true" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Hedef Üretim Miktar" maxLines="2" wrapping="true" textAlign="Center"/>
+                <ui:template>
+                    <Text text="{HEDEF_URETIM_MIKTAR}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Miktar Ton Sip." maxLines="2" wrapping="true" textAlign="Center"/>
+                <ui:template>
+                    <Text text="{MIKTAR_TON_SIPARIS}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="STDHADDE Tol Max" maxLines="2" wrapping="true" textAlign="Center"/>
+                <ui:template>
+                    <Text text="{STDHADDE_TOL_MAX}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="STDHADDE Tol Min" maxLines="2" wrapping="true" textAlign="Center"/>
+                <ui:template>
+                    <Text text="{STDHADDE_TOL_MIN}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="HADDE Tol Max Hedef" maxLines="2" wrapping="true" textAlign="Center"/>
+                <ui:template>
+                    <Text text="{HADDE_TOL_MAX_HEDEF}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="HADDE Tol Min Hedef" maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{HADDE_TOL_MIN_HEDEF}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Birim Ağırlık Kg M Nom" maxLines="2" wrapping="true" textAlign="Center"/>
+                <ui:template>
+                    <Text text="{BIRIM_AGIRLIK_KG_M_NOM}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Marka" maxLines="2" wrapping="true" textAlign="Center"/>
+                <ui:template>
+                    <Text text="{MARKA}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Müşteri" maxLines="2" wrapping="true" textAlign="Center"/>
+                <ui:template>
+                    <Text text="{MUSTERI}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Sipariş Malzeme" maxLines="2" wrapping="true" textAlign="Center"/>
+                <ui:template>
+                    <Text text="{SIPARIS_MALZEME}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Standart FRK" maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{STANDART_FRK}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Kalite FRK" maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{KALITE_FRK}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="CBK KDOG" maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{CBK_KDOG}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="FIRK Süre" maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{FIRK_SURE}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Birim Ağırlık Hedef Min" maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{BIRIM_AGIRLIK_HEDEF_MIN}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Birim Ağırlık Hedef Max" maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{BIRIM_AGIRLIK_HEDEF_MAX}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Çap FRK MM" maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{CAP_FRK_MM}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Boy FRK M" maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{BOY_FRK_M}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Birim Ağırlık KG M Max" maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{BIRIM_AGIRLIK_KG_M_MAX}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Birim Ağırlık KG M Min" maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{BIRIM_AGIRLIK_KG_M_MIN}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Çubuk Sayısı" maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{CUBUK_SAYISI}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+            <ui:Column width="auto" hAlign="Center" vAlign="Center" >
+                <Label text="Paket Ağırlık KG" maxLines="2" wrapping="true" textAlign="Center" />
+                <ui:template>
+                    <Text text="{PAKET_AGIRLIK_KG}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </ui:template>
+            </ui:Column>
+        </ui:columns>
+    </ui:Table>
+</mvc:View>

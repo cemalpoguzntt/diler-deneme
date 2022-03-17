@@ -1,0 +1,152 @@
+<core:View xmlns:core="sap.ui.core" xmlns:suite="sap.suite.ui.commons" xmlns:l="sap.ui.layout" xmlns="sap.m" controllerName="customActivity.controller.oeeDowntimeList">
+    <Page showHeader="false" showNavButton="false">
+        <subHeader>
+            <Toolbar>
+                <SearchField width="100%" liveChange="onSearch" id="downsSearch" search="onSearch" />
+            </Toolbar>
+        </subHeader>
+        <content>
+            <l:VerticalLayout width="100%">
+                <core:Fragment fragmentName='customActivity.fragmentView.zorderCardCharacteristicFragment' type='XML' id= "orderCardFragment"/>
+                <IconTabBar id="dtListIconTabBar" expanded="true" expandable="false" items="{/dtListModes}" select="onSelectDtListTab" selectedKey="BREAKDOWN" class="dtListTab">
+                    <items>
+                        <IconTabFilter icon="{dtListIconType}" text="{dtListTypeText}" key="{dtListMode}" />
+                    </items>
+                </IconTabBar>
+                <Toolbar class="whiteBackGround">
+                    <CheckBox id="openDowns" text="{i18n>OEE_LABEL_OPEN_DOWNTIMES}" selected="false" select='onSelectCheckBoxFilters' />
+                    <CheckBox id="bottleneck" text="{i18n>OEE_LABEL_BOTTLENECK}" selected="false" select='onSelectCheckBoxFilters' />
+                    <CheckBox id="untagged" text="{i18n>OEE_LABEL_UNTAGGED}" selected="false" select='onSelectCheckBoxFilters' />
+                    <ToolbarSpacer></ToolbarSpacer>
+                    <core:Icon src="sap-icon://sort" press="sortDowntimes" width="2rem"></core:Icon>
+                    <core:Icon src="sap-icon://refresh" press="refreshDowntimes" width="2rem"></core:Icon>
+                </Toolbar>
+                <HBox justifyContent="Center" alignItems="Center" id="downtimesBusyIndicator" visible="false">
+                    <BusyIndicator size="4.6em" />
+                </HBox>
+                <Table id="downtimesTable" editable="false" items="{/downs}" mode="SingleSelectLeft" selectionChange="onDowntimeSelect">
+                    <columns>
+                        <Column>
+                            <Label text="{i18n>WORKUNIT_LABEL}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>OEE_LABEL_START_TIME}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>OEE_LABEL_END_TIME}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>DURATION_LABEL}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>DOWNTIME_TYPE}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>REASON_CODE_LABEL}" />
+                        </Column>
+                        <Column id="rootCauseMachineForDowntimeColumn">
+                            <Label text="{i18n>ROOT_CAUSE_MACHINE_LABEL}" />
+                        </Column>
+                        <Column id="assignedOrderColumn">
+                            <Label text="{i18n>OEE_LABEL_ASSIGN_TO_ORDER_OPER}" />
+                        </Column>
+                        <Column id="notificationIconLabel">
+                            <Label text="{i18n>OEE_LABEL_NOTIFICATION}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>OEE_LABEL_DETAILS}" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{ioProductionRunDowntime/nodeDescription}" />
+                                <Text text="{parts : [{path : 'ioProductionRunDowntime/startTimestamp'},{path : 'ioProductionRunDowntime/endTimestamp'},{path:'appData>/plantTimezoneOffset'},{path:'appData>/plantTimezoneKey'}], formatter : 'sap.oee.ui.Formatter.formatDowntimeForDurationBased'}" />
+                                <Text text="{parts : [{path : 'ioProductionRunDowntime/endTimestamp'},{path : 'ioProductionRunDowntime/startTimestamp'},{path:'appData>/plantTimezoneOffset'},{path:'appData>/plantTimezoneKey'}], formatter : 'sap.oee.ui.Formatter.formatDowntimeForDurationBased'}" />
+                                <Text text="{parts : [{path:'ioProductionRunDowntime/effectiveDuration'}], formatter : 'sap.oee.ui.Formatter.formatDuration'}" visible="{parts : [{path:'ioProductionRunDowntime/endTimestamp'}], formatter : '.showDuration'}" />
+                                <Text text="{ioProductionRunDowntime/descriptionOfDcElement}" />
+                                <Button icon="sap-icon://value-help" width="75%" text="{parts : [{path : 'i18n>OEE_BTN_ASSIGN'},{path:'ioProductionRunDowntime/descriptionOfReasonCode'}], formatter : 'sap.oee.ui.Formatter.reasonCodeButttonFormatter'}" press="onClickReasonCode" />
+                                <Button icon="sap-icon://value-help" text="{parts : [{path : 'i18n>OEE_BTN_ASSIGN'},{path:'ioProductionRunDowntime'}], formatter : '.rootCauseMachineButtonFormatter'}" type="{parts : [{path : 'i18n>OEE_BTN_MACHINE_ID'},{path:'ioProductionRunDowntime'}], formatter : '.rootCauseMachineButtonStyleFormatter'}" press="openRootCauseMachineDialog" />
+                                <Button id="assignedOrderButton" press="onPressAssignToOrder" text="{parts : [{path : 'i18n>OEE_TEXT_MULTIPLE'},{path:'orderReferences'}], formatter : '.assignedToOrderButtonFormatter'}" />
+                                <Button id="notificationIcon" icon="sap-icon://notification" press="onPressPMNotificationIcon" enabled="{path : 'notificationIcon', formatter : '.checkIfNotificationReported'}" />
+                                <Button id="downtimeDetails" icon="sap-icon://detail-view" press="onPressDetails" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+                <Table id="microDowntimesTable" editable="false" mode="SingleSelectLeft" items="{/aggregatedDowns}" selectionChange="onDowntimeSelect">
+                    <columns>
+                        <Column>
+                            <Label text="{i18n>WORKUNIT_LABEL}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>DURATION_LABEL}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>REASON_CODE_LABEL}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>DETAILS_LABEL}" />
+                        </Column>
+
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{nodeDescription}" />
+                                <Text text="{parts : [{path:'totalDuration'}], formatter : 'sap.oee.ui.Formatter.formatDuration'}" />
+                                <Button icon="sap-icon://value-help" text="{parts : [{path : 'i18n>OEE_BTN_ASSIGN'},{path:'reasonCodeDescription'}], formatter : 'sap.oee.ui.Formatter.reasonCodeButttonFormatter'}" press="assignReasonCodeToBatch" />
+                                <Button icon="sap-icon://inspection" text="{i18n>OEE_LABEL_DETAILS}" press="showEventsComprisingMicroStoppages" />
+
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+                <Table id="breakScheduleTable" editable="false" mode="SingleSelectLeft" items="{/breaks}">
+                    <columns>
+                        <Column>
+                            <Label text="{i18n>OEE_LABEL_DESCRIPTION}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>OEE_LABEL_START_TIME}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>OEE_LABEL_END_TIME}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>DURATION_LABEL}" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{breakScheduleDescription}" />
+                                <Text text="{parts : [{path : 'breakStartTimestamp'},{path:'appData>/plantTimezoneOffset'}, {path: 'appData>/plantTimezoneKey'}], formatter : 'sap.oee.ui.Formatter.formatTimeStampWithoutLabel'}" />
+                                <Text text="{parts : [{path : 'breakEndTimestamp'},{path:'appData>/plantTimezoneOffset'}, {path: 'appData>/plantTimezoneKey'}], formatter : 'sap.oee.ui.Formatter.formatTimeStampWithoutLabel'}" />
+
+                                <Text text="{parts : [{path:'breakLengthInSeconds'}], formatter : 'sap.oee.ui.Formatter.formatDuration'}" />
+
+
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </l:VerticalLayout>
+        </content>
+        <footer id="oeeDowntimeListFooter">
+            <Bar>
+
+                <contentRight>
+                    <Button id="reportButtonForNotification" text="{i18n>OEE_BTN_ADD_NOTIFICATION}" icon="sap-icon://add" press="onPressReportNotification"></Button>
+                    <Button id="assignToOrderButtonForDowntime" text="{i18n>OEE_BTN_ASSIGN_TO_ORDER}" icon="sap-icon://attachment" press="onPressAssignToOrder" visible="true"></Button>
+                    <Button id="splitButtonForDowntime" text="{i18n>OEE_BUTTON_SPLIT}" icon="sap-icon://dimension" press="onPressSplit" visible="true"></Button>
+                    <Button id="reportUpButtonForDowntime" text="{i18n>OEE__BUTTON_REPORT_UP}" icon="sap-icon://arrow-top" press="onPressReportUptime" enabled="false"></Button>
+                    <Button id="deleteButtonForDowntime" text="{i18n>OEE_BTN_DELETE}" icon="sap-icon://sys-cancel" press="onPressDeleteDowntime" enabled="false"></Button>
+                    <Button id="EditButtonForDowntime" text="{i18n>OEE_BTN_EDIT}" icon="sap-icon://edit" press="onPressEditDowntime" enabled="false"></Button>
+                    <Button id="reportButtonForDowntime" text="{i18n>OEE_BTN_REPORT_NEW}" icon="sap-icon://add" press="onPressReportDowntime"></Button>
+
+                </contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</core:View>

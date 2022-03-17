@@ -1,0 +1,351 @@
+<View controllerName="customActivity.controller.YieldReportScreen" 
+xmlns:mvc="sap.ui.core.mvc" 
+xmlns:core="sap.ui.core" 
+xmlns:form="sap.ui.layout.form"
+xmlns:table="sap.ui.table"
+xmlns:c="sap.ui.commons" 
+xmlns="sap.m" 
+xmlns:html="http://www.w3.org/1999/xhtml" 
+xmlns:ui="sap.ui.table" 
+xmlns:f="sap.ui.layout.form" 
+xmlns:u="sap.ui.unified" 
+xmlns:tnt="sap.tnt"
+xmlns:l="sap.ui.layout">
+	<l:VerticalLayout id="containerLayout" width="100%">
+		<l:BlockLayout id="BlockLayout" background="{/selectedBackground}">
+			<l:BlockLayoutRow>
+				<l:BlockLayoutCell>
+					<VBox>
+						<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+							<Label text="Üretim Yeri:" width="87px" design="Bold">
+							</Label>
+                            <ComboBox
+                            id="plantCB"
+		                    width="245px"
+                            items="{/}"
+                            change="getNameQry">
+                            <core:Item key="{PLANT}" text="{PLANT}" />
+                        </ComboBox>
+						</HBox>
+					</VBox>
+					<VBox>
+						<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+							<Label text="İş Yeri:" width="80px" design="Bold">
+							</Label>
+                        <l:VerticalLayout
+                            class="sapUiContentPadding"
+                            width="100%">
+                            <MultiComboBox
+                                selectionChange="handleSelectionChange"
+                                selectionFinish="handleSelectionFinish"
+                                width="245px"
+                                id="isYeriMCB"
+                                items="{/}">
+                                <core:Item key="{NAME}" text="{NAME}" />
+                            </MultiComboBox>
+                        </l:VerticalLayout>
+						</HBox>
+					</VBox>
+					<VBox>
+						<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+							<Label text="Tarih:" width="80px" design="Bold" labelFor="DP1" />
+							<DatePicker displayFormat="dd/MM/YYYY" valueFormat="dd.MM.YYYY" id="DP1" width="245px" placeholder="Tarih Giriniz..." change="handleChange" class="sapUiSmallMarginBottom" />
+						</HBox>
+					</VBox>
+					<VBox width="100%">
+						<HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+							<Button type="Accept" width="150px" text="Tabloyu Getir" icon="sap-icon://search" press="onPressSearchFilter">
+							</Button>
+						</HBox>
+					</VBox>
+				</l:BlockLayoutCell>
+				<l:BlockLayoutCell>
+					<Label width="1000px" text="Kısa Parça Rapor" design="Bold">
+					</Label>
+					<table:Table id="idKisaParcaTable" width="100%" rows="{/}" items="{/}" rowCount="5" visibleRowCount="5" alternateRowColors="true" selectionMode="Single" selectionBehavior="RowOnly">
+						<table:columns>
+							<table:Column hAlign="Center" sortProperty="VARDIYA" filterProperty="VARDIYA" filterType="sap.ui.model.type.String">
+								<Label text="VARDIYA" design="Bold" />
+								<table:template>
+									<Text text="{VARDIYA}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="TEORİK_KISA_PARCA__TON_" filterProperty="TEORİK_KISA_PARCA__TON_" filterType="sap.ui.model.type.String">
+								<Label text="FIILI KISA PARCA (TON)" design="Bold" />
+								<table:template>
+									<Text text="{TEORİK_KISA_PARCA__TON_}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="FİİLİ_KISA_PARÇA__TON_" filterProperty="FİİLİ_KISA_PARÇA__TON_" filterType="sap.ui.model.type.String">
+								<Label text="TEORIK KISA PARCA(TON)" design="Bold" />
+								<table:template>
+									<Text text="{FİİLİ_KISA_PARÇA__TON_}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<!--
+							<ui:Column hAlign="Center" sortProperty="MATNR" filterProperty="MATNR" filterType="sap.ui.model.type.String">
+							<Label text="Malzeme No" design="Bold"/>
+							<ui:template>
+							<Text text="{MATNR}" wrapping="false"/>
+							</ui:template>
+							</ui:Column>
+							-->
+						</table:columns>
+					</table:Table>
+				</l:BlockLayoutCell>
+			</l:BlockLayoutRow>
+			<l:BlockLayoutRow>
+				<l:BlockLayoutCell>
+					<Label width="1000px" text="Sipariş Bazında Rapor" design="Bold">
+					</Label>
+					<table:Table id="idSiparisBazindaTable" width="100%" rows="{/}" rowCount="5" visibleRowCount="5" alternateRowColors="true" selectionMode="Single" selectionBehavior="RowOnly">
+						<table:columns>
+							<table:Column hAlign="Center" sortProperty="UY" filterProperty="UY" filterType="sap.ui.model.type.String">
+								<Label text="UY" design="Bold" />
+								<table:template>
+									<Text text="{UY}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="SIPARIS" filterProperty="SIPARIS" filterType="sap.ui.model.type.String">
+								<Label text="SIPARIS" design="Bold" />
+								<table:template>
+									<Text text="{SIPARIS}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="IS_YERI" filterProperty="IS_YERI" filterType="sap.ui.model.type.String">
+								<Label text="IS_YERI" design="Bold" />
+								<table:template>
+									<Text text="{IS_YERI}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="VARDIYA" filterProperty="VARDIYA" filterType="sap.ui.model.type.String">
+								<Label text="VARDIYA" design="Bold" />
+								<table:template>
+									<Text text="{VARDIYA}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="KTK_ADET" filterProperty="KTK_ADET" filterType="sap.ui.model.type.String">
+								<Label text="KTK_ADET" design="Bold" />
+								<table:template>
+									<Text text="{KTK_ADET}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="FIILI_KTK_TON)" filterProperty="FIILI_KTK_TON" filterType="sap.ui.model.type.String">
+								<Label text="FIILI_KTK_TON" design="Bold" />
+								<table:template>
+									<Text text="{FIILI_KTK_TON}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="TEO_KTK_TON" filterProperty="TEO_KTK_TON" filterType="sap.ui.model.type.String">
+								<Label text="TEO_KTK_TON" design="Bold" />
+								<table:template>
+									<Text text="{TEO_KTK_TON}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="MAMUL_ADET" filterProperty="MAMUL_ADET" filterType="sap.ui.model.type.String">
+								<Label text="MAMUL_ADET" design="Bold" />
+								<table:template>
+									<Text text="{MAMUL_ADET}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="MAMUL_TON" filterProperty="MAMUL_TON" filterType="sap.ui.model.type.String">
+								<Label text="MAMUL_TON" design="Bold" />
+								<table:template>
+									<Text text="{MAMUL_TON}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="MAMUL__" filterProperty="MAMUL__" filterType="sap.ui.model.type.String">
+								<Label text="MAMUL %" design="Bold" />
+								<table:template>
+									<Text text="{MAMUL__}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="KP_TON" filterProperty="KP_TON" filterType="sap.ui.model.type.String">
+								<Label text="KP_TON" design="Bold" />
+								<table:template>
+									<Text text="{KP_TON}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="KP__" filterProperty="KP__" filterType="sap.ui.model.type.String">
+								<Label text="KP %" design="Bold" />
+								<table:template>
+									<Text text="{KP__}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="HB_TON" filterProperty="HB_TON" filterType="sap.ui.model.type.String">
+								<Label text="HB_TON" design="Bold" />
+								<table:template>
+									<Text text="{HB_TON}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="HB__" filterProperty="HB__" filterType="sap.ui.model.type.String">
+								<Label text="HB %" design="Bold" />
+								<table:template>
+									<Text text="{HB__}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="UCB_TON" filterProperty="UCB_TON" filterType="sap.ui.model.type.String">
+								<Label text="UCB_TON" design="Bold" />
+								<table:template>
+									<Text text="{UCB_TON}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="UCB__" filterProperty="UCB__" filterType="sap.ui.model.type.String">
+								<Label text="UCB %" design="Bold" />
+								<table:template>
+									<Text text="{UCB__}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="KTK_EBAT" filterProperty="KTK_EBAT" filterType="sap.ui.model.type.String">
+								<Label text="KTK_EBAT" design="Bold" />
+								<table:template>
+									<Text text="{KTK_EBAT}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="KTK_BOY" filterProperty="KTK_BOY" filterType="sap.ui.model.type.String">
+								<Label text="KTK_BOY" design="Bold" />
+								<table:template>
+									<Text text="{KTK_BOY}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="KTK_KALITE" filterProperty="KTK_KALITE" filterType="sap.ui.model.type.String">
+								<Label text="KTK_KALITE" design="Bold" />
+								<table:template>
+									<Text text="{KTK_KALITE}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="VERIM__" filterProperty="VERIM__" filterType="sap.ui.model.type.String">
+								<Label text="VERIM %" design="Bold" />
+								<table:template>
+									<Text text="{VERIM__}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="TUFAL_TON" filterProperty="TUFAL_TON" filterType="sap.ui.model.type.String">
+								<Label text="TUFAL_TON" design="Bold" />
+								<table:template>
+									<Text text="{TUFAL_TON}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="TUFAL__" filterProperty="TUFAL__" filterType="sap.ui.model.type.String">
+								<Label text="TUFAL %" design="Bold" />
+								<table:template>
+									<Text text="{TUFAL__}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<!--
+							<ui:Column hAlign="Center" sortProperty="MATNR" filterProperty="MATNR" filterType="sap.ui.model.type.String">
+							<Label text="Malzeme No" design="Bold"/>
+							<ui:template>
+							<Text text="{MATNR}" wrapping="false"/>
+							</ui:template>
+							</ui:Column>
+							-->
+						</table:columns>
+					</table:Table>
+				</l:BlockLayoutCell>
+			</l:BlockLayoutRow>
+			<l:BlockLayoutRow>
+				<l:BlockLayoutCell>
+					<Label width="1000px" text="Vardiya Bazında Rapor" design="Bold">
+					</Label>
+					<table:Table id="idVardiyaBazindaTable" width="100%" rows="{/}" rowCount="5" visibleRowCount="5" alternateRowColors="true" selectionMode="Single" selectionBehavior="RowOnly">
+						<table:columns>
+							<table:Column hAlign="Center" sortProperty="UY" filterProperty="UY" filterType="sap.ui.model.type.String">
+								<Label text="UY" design="Bold" />
+								<table:template>
+									<Text text="{UY}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="VARDIYA" filterProperty="VARDIYA" filterType="sap.ui.model.type.String">
+								<Label text="VARDIYA" design="Bold" />
+								<table:template>
+									<Text text="{VARDIYA}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="IS_YERI" filterProperty="IS_YERI" filterType="sap.ui.model.type.String">
+								<Label text="IS_YERI" design="Bold" />
+								<table:template>
+									<Text text="{IS_YERI}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="FIILI_KTK_TON" filterProperty="FIILI_KTK_TON" filterType="sap.ui.model.type.String">
+								<Label text="FIILI KTK TON" design="Bold" />
+								<table:template>
+									<Text text="{FIILI_KTK_TON}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="TEO_KTK_TON" filterProperty="TEO_KTK_TON" filterType="sap.ui.model.type.String">
+								<Label text="TEO_KTK_TON" design="Bold" />
+								<table:template>
+									<Text text="{TEO_KTK_TON}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="MAMUL_TON" filterProperty="MAMUL_TON" filterType="sap.ui.model.type.String">
+								<Label text="MAMUL_TON" design="Bold" />
+								<table:template>
+									<Text text="{MAMUL_TON}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="MAMUL__" filterProperty="MAMUL__" filterType="sap.ui.model.type.String">
+								<Label text="MAMUL %" design="Bold" />
+								<table:template>
+									<Text text="{MAMUL__}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="KP_TON" filterProperty="KP_TON" filterType="sap.ui.model.type.String">
+								<Label text="KP_TON" design="Bold" />
+								<table:template>
+									<Text text="{KP_TON}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="KP__" filterProperty="KP__" filterType="sap.ui.model.type.String">
+								<Label text="KP %" design="Bold" />
+								<table:template>
+									<Text text="{KP__}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="HB_TON" filterProperty="HB_TON" filterType="sap.ui.model.type.String">
+								<Label text="HB_TON" design="Bold" />
+								<table:template>
+									<Text text="{HB_TON}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="HB__" filterProperty="HB__" filterType="sap.ui.model.type.String">
+								<Label text="HB %" design="Bold" />
+								<table:template>
+									<Text text="{HB__}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="UCB_TON" filterProperty="UCB_TON" filterType="sap.ui.model.type.String">
+								<Label text="UCB_TON" design="Bold" />
+								<table:template>
+									<Text text="{UCB_TON}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="UCB__" filterProperty="UCB__" filterType="sap.ui.model.type.String">
+								<Label text="UCB %" design="Bold" />
+								<table:template>
+									<Text text="{UCB__}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<table:Column hAlign="Center" sortProperty="VERIM__" filterProperty="VERIM__" filterType="sap.ui.model.type.String">
+								<Label text="VERIM %" design="Bold" />
+								<table:template>
+									<Text text="{VERIM__}" wrapping="false" />
+								</table:template>
+							</table:Column>
+							<!--
+							<ui:Column hAlign="Center" sortProperty="MATNR" filterProperty="MATNR" filterType="sap.ui.model.type.String">
+							<Label text="Malzeme No" design="Bold"/>
+							<ui:template>
+							<Text text="{MATNR}" wrapping="false"/>
+							</ui:template>
+							</ui:Column>
+							-->
+						</table:columns>
+					</table:Table>
+				</l:BlockLayoutCell>
+			</l:BlockLayoutRow>
+		</l:BlockLayout>
+	</l:VerticalLayout>
+</View>

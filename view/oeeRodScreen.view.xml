@@ -1,0 +1,60 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" controllerName="customActivity.controller.oeeRodScreen" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core">
+    <Page showNavButton="false" showHeader="false">
+        <content>
+
+            <Table id="tblRodMaster" mode="SingleSelectMaster"   items="{rodList>/}">
+                <columns>
+                      <Column width="2rem">
+                        <Label text="KTKID" />
+                    </Column>
+	        <Column width="2rem"  hAlign="Center">
+                        <Label text="WERKS" />
+                    </Column>
+                    <Column width="2rem"  hAlign="Center">
+                        <Label text="ITEMID" />
+                    </Column>
+                    <Column width="4rem"  hAlign="Center">
+                        <Label text="WORKCENTER_ID" />
+                    </Column>                  
+	      <Column width="2rem" hAlign="Center">
+                        <Label text="SETLENGTH" />
+                    </Column>
+	       <Column width="2rem"  hAlign="Center">
+                        <Label text="RODCOUNT" />
+                    </Column>
+	       <Column width="3rem">
+                        <Label text="INSDATE" />
+                    </Column>
+	       <Column width="2rem"  hAlign="Center">
+                        <Label text="ENTRY_WEIGHT" />
+                    </Column>
+		<Column width="4rem">
+                        <Label text="BTABLE" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+               	   <Text text="{rodList>KTKID}" />
+		  <Text text="{rodList>WERKS}" />
+                            <Text text="{rodList>ITEMID}" />                          
+                            <Text text="{rodList>WORKCENTER_ID}" />                            
+		  <Text text="{rodList>SETLENGTH}" />
+		<Text text="{rodList>RODCOUNT}" />	
+		<Text text="{rodList>INSDATE}" />	
+		<Text text="{rodList>ENTRY_WEIGHT}" />
+		<Text text="{rodList>BTABLE}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <OverflowToolbarButton press="refreshData" text="{i18n>titleBilletMonitorRefresh}" icon="sap-icon://synchronize"  visible="false"/>
+                <ToolbarSpacer />
+		<Switch id="idSwitchInternal" change="changeIntervalState"  customTextOn="Açık" customTextOff="Kapalı" state="true"/>
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

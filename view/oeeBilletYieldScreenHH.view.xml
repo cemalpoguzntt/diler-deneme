@@ -1,0 +1,150 @@
+<mvc:View xmlns:core="sap.ui.core"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:m="sap.m"
+  xmlns:l="sap.ui.layout"
+  xmlns:html="http://www.w3.org/1999/xhtml" 
+  controllerName="customActivity.controller.oeeBilletYieldScreenHH"
+  xmlns:u="sap.ui.unified"
+  xmlns:armolisContainers="customActivity.containers"
+  xmlns:c="sap.ui.commons">
+  <SplitApp id="workListSplit" initialDetail="detail" initialMaster="master">
+    <masterPages>
+      <Page id="master" icon="sap-icon://action" class="sapUiStdPage" showHeader="false" showNavButton="false">
+        <content>
+          <l:VerticalLayout width="100%">
+            <FlexBox height="60px" alignItems="Center" justifyContent="Center">
+              <items>
+                <HBox height="60px" alignItems="Center" justifyContent="Center">
+                 <ComboBox id="orderNoList" width="250px" items="{orderNoList>/}" change="getYieldList" forceSelection="false" placeholder="{i18n>OEE_LABEL_Y_ORDER_NO}">
+                  <core:Item key="{orderNoList>AUFNR}" text="{orderNoList>AUFNR}" />
+                </ComboBox>
+                <Button visible="false" text="{i18n>titleSearch}" press="getBilletYieldList" class="sapUiTinyMarginBegin" />
+              </HBox>
+            </items>
+          </FlexBox>
+        </l:VerticalLayout>
+        <List id="masterList" mode="SingleSelectLeft" includeItemInSelection="true" items="{yieldList>/}" select="getMasterDetailData">
+          <items>
+            <ObjectListItem intro="{i18n>OEE_LABEL_Y_ORDER_NO}" title="{yieldList>AUFNR}" selected="false"  number="% {yieldList>YIELD_RATE}"
+              numberState = "Error"  numberUnit="{i18n>OEE_LABEL_Y_AVG_YIELD_RATE}" type="Navigate">
+              <firstStatus>
+                <ObjectStatus class="setLeftContent" title="{i18n>OEE_LABEL_Y_MATERIAL}" text="{yieldList>MATNR}" state="Success" inverted="true" visible="true" />
+              </firstStatus>
+              <secondStatus>
+                <ObjectStatus class="setLeftContent" title="{i18n>OEE_LABEL_Y_DATE}" text="{yieldList>END_DATE}" state="Information" inverted="true" visible="true" />
+              </secondStatus>
+            </ObjectListItem>
+          </items>
+        </List>
+      </content>
+      <footer>
+        <OverflowToolbar class="sapUiMediumMarginTop">
+          <ToolbarSpacer />
+          <Button id="refreshYieldList" press="refreshYieldList" text="" icon="sap-icon://refresh" />
+        </OverflowToolbar>
+      </footer>
+    </Page>
+  </masterPages>
+  <detailPages>
+    <Page id="detail" showHeader="false" showNavButton="false" icon="sap-icon://action" class="sapUiStdPage">
+      <content>
+        <ObjectHeader id="oh1"
+          binding="{yieldData>/0}"
+          title="{yieldData>AUFNR}" 
+          fullScreenOptimized="true"
+          icon="sap-icon://add-product" 
+          number="" 
+          numberUnit="" 
+          numberState="Error" 
+          titleActive="false" 
+          backgroundDesign="Translucent" 
+          condensed="false" 
+          visible="true">
+          <attributes>
+           <ObjectAttribute
+            title="{i18n>OEE_LABEL_Y_MATERIAL}"
+            text="{yieldData>MATNR}"/>
+            <ObjectAttribute
+              title="{i18n>OEE_LABEL_CONFIRM_QUANTITY}"
+              text="{yieldData>QUANTITY} {yieldData>UOM}"/>
+              <ObjectAttribute
+                title="{i18n>OEE_LABEL_YIELD} "
+                text="" id="yieldRate"/>
+              </attributes>
+              <statuses>
+                <ObjectStatus
+                  title="{i18n>OEE_LABEL_SEND_CONFIRM_STATUS}"
+                  text="{yieldData>SUCCESS_TYPE}"
+                  state="{yieldData>SUCCESS_STATE}"/>
+                </statuses>
+                <headerContainer>
+                 <HeaderContainer scrollStep="200" id="headerContainer">
+                 </HeaderContainer>
+               </headerContainer>
+             </ObjectHeader>
+             <IconTabBar expandable="false" expanded="true" applyContentPadding="false" backgroundDesign="Solid" upperCase="false" visible="true" selectedKey="Ok">
+              <items>
+                <IconTabFilter icon="sap-icon://product" iconColor="Neutral" text="Tüketim" count="" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                  <content>
+                   <Table id="consumptionItemsTable" editable="false" items ="{consumptionItems>/}">
+                    <columns>
+                     <Column  width="15rem" >
+                       <Label text="{i18n>OEE_LABEL_MAT}" />
+                     </Column>
+                     <Column  width="10rem" >
+                      <Label text="{i18n>OEE_LABEL_BATCH_NUM}"/>
+                    </Column>
+                    <Column width="10rem" >
+                      <Label text="{i18n>OEE_LABEL_SO_CAST_NO}"/>
+                    </Column >
+                    <Column visible="false" width="10rem" >
+                      <Label text="{i18n>OEE_LABEL_PLANNED_QTY}"/>
+                    </Column>
+                    <Column width="10rem" >
+                      <Label text="{i18n>OEE_LABEL_ENTRY_QUANTITY}"/>
+                    </Column>
+                    <Column width="10rem" >
+                      <Label text="{i18n>OEE_LABEL_ENTRY_QUAN}"/>
+                    </Column>
+                    <Column width="7rem" >
+                      <Label text="{i18n>OEE_LABEL_UOM}"/>
+                    </Column>
+                    <Column width="7rem" >
+                      <Label text="{i18n>OEE_LABEL_CHANGE_LOG_BWART}"/>
+                    </Column>
+                  </columns>
+                  <items>
+                   <ColumnListItem>
+                    <cells>
+                     <Text text="{consumptionItems>MATNR}"/>
+                     <Text text="{consumptionItems>CHARG}"/>
+                     <Text text= "{consumptionItems>CASTID}"/>
+                     <Text text= "{consumptionItems>BDMNG}"/>
+                     <Text text="{consumptionItems>QUANTITY}"/>
+                     <Input value="{consumptionItems>NEW_QUANTITY}" type="Number" enabled ="{= ${consumptionItems>SOBKZ} === 'E'}"  width="7rem" />
+                     <Text text= "{consumptionItems>MEINS}"/>
+                     <Text text= "{consumptionItems>BWART}"/>
+                   </cells>
+                 </ColumnListItem>
+               </items>
+             </Table>
+           </content>
+         </IconTabFilter>
+       </items>
+       <content>
+        <Text text="Tab Bar Content goes here ..." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+      </content>
+    </IconTabBar>
+  </content>
+  <footer>
+    <OverflowToolbar class="sapUiMediumMarginTop">
+      <Button id="sendYieldConfirmation" text="{i18n>OEE_LABEL_SEND_YIELD_CONFIRMATION}" width="140px" type="Reject" press = "onPressSendYieldConfirmation" icon="sap-icon://paper-plane"/>
+      <ToolbarSpacer />
+      <Button id="saveConsumptionItems" text="{i18n>OEE_BTN_SAVE}" width="140px" type="Accept" press = "onPressSaveYield" icon="sap-icon://save" />
+    </OverflowToolbar>
+  </footer>
+</Page>
+</detailPages>
+</SplitApp>
+</mvc:View>

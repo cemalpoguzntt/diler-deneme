@@ -1,0 +1,111 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.commons" controllerName="customActivity.controller.StoneLifeReport" displayBlock="true" height="100%">
+
+    <html:style>
+
+.DataMode {
+
+    color : red !important ;
+
+}
+
+.TextDataMode {
+
+    padding-bottom: 0.5ch !important;
+    padding-left : 1ch !important ;
+
+}
+
+.ButtonMode {
+
+
+    
+}
+
+</html:style>
+
+
+    <Page>
+
+
+        <!-- <customHeader>
+			<Bar>
+				<contentLeft>
+					<SearchField width="100%" liveChange="onSearch" search="onSearch" id="orderSearch"/>
+				</contentLeft>
+			</Bar>
+		</customHeader> -->
+        <subHeader>
+            <Toolbar id="statusBar">
+
+
+                <Button text="Seçim Ekranı" id="MainPanel" type="Back" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin" press="backMainPanel" activeIcon="sap-icon://arrow-left"/>
+                <Button text="Excel Aktar" id="idExcel1" icon="sap-icon://excel-attachment" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin" press="onExport" type="Accept"/>
+                <Label width="100%" id="label5"/>
+
+                <Button text="Geri" id="MainTable" type="Back" iconFirst="true" width="auto" enabled="true" visible="false" iconDensityAware="false" class="sapUiResponsiveMargin" press="backToMainTable"/>
+                <Button text="Excel Aktar" id="idExcel2" icon="sap-icon://excel-attachment" iconFirst="true" width="auto" enabled="true" visible="false" iconDensityAware="false" class="sapUiResponsiveMargin" press="onExport2"/>
+
+
+            <content>
+
+
+                <Button xmlns="sap.m" text="TAŞ BAZLI RAPOR" id="button0" press="tasBazli" type="Emphasized" icon="sap-icon://accelerated"/>
+
+
+            </content>
+
+
+            </Toolbar>
+        </subHeader>
+        <content>
+            <FlexBox id="box1" visible="true" width="100%">
+                <Table id="idOrdersTable" inset="false" width="100%" sticky="ColumnHeaders" items="{path: '/', sorter: [{  path:  'SIRA' , ascending: true}]}" mode="SingleSelectLeft" growing="true" growingScrollToLoad="true" growingThreshold="100" contextualWidth="Auto" popinLayout="GridSmall">
+                    <columns>
+
+                        <Column width="auto" visible="true" hAlign="Center">
+                            <Label text="Kayıt Tarihi"/>
+                        </Column>
+
+
+                        <Column width="10%" visible="true" hAlign="Center">
+                            <Label text="Taş Kodu"/>
+                        </Column>
+
+                        <Column width="auto" visible="true" hAlign="Center">
+                            <Label text="Menşei"/>
+                        </Column>
+
+                        <Column width="auto" visible="true" hAlign="Center">
+                            <Label text="Model"/>
+                        </Column>
+
+
+                        <Column width="auto" visible="true" hAlign="Center">
+                            <Label text="Toplam Üretim"/>
+                        </Column>
+
+
+                    </columns>
+
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+
+                                <Text text="{INSDATE}" class="castingFont"/>
+                                <Text text="{STONE_CODE}" class="cNo castingFont"/>
+                                <Text text="{MENSEI}" visible="true"/>
+                                <Text text="{MODEL}"/>
+                                <Text text="{TOPLAMU}"/>
+
+
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </FlexBox>
+
+
+        </content>
+
+    </Page>
+</core:View>

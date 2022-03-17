@@ -1,0 +1,183 @@
+<mvc:View 
+xmlns:core="sap.ui.core"
+xmlns:mvc="sap.ui.core.mvc" 
+xmlns:c="sap.ui.commons" 
+xmlns="sap.m"
+xmlns:m="sap.m"
+xmlns:l="sap.ui.layout"
+xmlns:html="http://www.w3.org/1999/xhtml" 
+xmlns:ui="sap.ui.table" 
+xmlns:f="sap.ui.layout.form" 
+xmlns:u="sap.ui.unified" 
+xmlns:tnt="sap.tnt"
+height="100%" controllerName="customActivity.controller.oeeRefractoryGnlVeriGiris"
+   >
+    <App>
+		<pages>
+			<Page showHeader="false">
+             
+				<content>
+                    <Panel id="expandablePanel" expandable="false" expand="onExpand" width="auto" class="sapUiResponsiveMargin">
+                        <headerToolbar>
+                            <OverflowToolbar active="true" press="onOverflowToolbarPress">
+                                <Title text="Filtreleme Seçenekleri"/>
+                            </OverflowToolbar>
+                        </headerToolbar>
+                        <content>
+                            <HBox alignItems="Center" width="100%">
+                                    <l:VerticalLayout width="100%">
+                                        <FlexBox height="60px" alignItems="Center" justifyContent="Center">
+                                            <items>
+                                                <HBox height="60px" alignItems="Center" justifyContent="Center">
+                                                    <Label width="100px" text="Başlangıç Tarihi: " design="Bold"></Label>
+                                                    <DatePicker id="idDatePickerStart" width="15rem" valueFormat="yyyy-MM-dd" displayFormat="dd.MM.yyyy" change= "changeStartDatePicker" class="sapUiSmallMarginEnd"/>
+                                                </HBox>
+                                                <HBox height="60px" alignItems="Center" justifyContent="Center">
+                                                    <Label width="100px" text="Bitiş Tarihi: " design="Bold"></Label>
+                                                    <DatePicker id="idDatePickerEnd" width="15rem" valueFormat="yyyy-MM-dd" displayFormat="dd.MM.yyyy" change="changeEndDatePicker" class="sapUiSmallMarginEnd"/>
+                                                </HBox>
+                                                <HBox height="60px" alignItems="Center" justifyContent="Center">
+                                                    <Label width="100px" text="Başlangıç Dökümü" design="Bold"></Label>
+                                                    <ComboBox  showSecondaryValues="true" width="200px" id="startCast"  items="{path: 'castIds>/'}" selectionChange="changeStartCast" class="sapUiSmallMarginEnd">
+                                                        <core:ListItem key="tam" text="TÜMÜ"/>
+                                                        <core:ListItem key="{castIds>CASTID}" text="{castIds>CASTID}"/>
+                                                    </ComboBox>
+                                                </HBox>
+                                                <HBox height="60px" alignItems="Center" justifyContent="Center">
+                                                    <Label width="100px" text="Bitiş Dökümü" design="Bold"></Label>
+                                                    <ComboBox  showSecondaryValues="true" width="200px" id="endCast"  items="{path: 'castIds>/'}" selectionChange="changeEndCast" class="sapUiSmallMarginEnd">
+                                                        <core:ListItem key="tam" text="TÜMÜ"/>
+                                                        <core:ListItem key="{castIds>CASTID}" text="{castIds>CASTID}"/>
+                                                    </ComboBox>
+                                                </HBox>
+                                                <HBox height="60px" alignItems="Center" justifyContent="Center">
+                                                    <Label width="100px" text="T. Nesne Türü" design="Bold"></Label>
+                                                    <ComboBox id="idEquipmentObjType" width="190px" change="changeEquipmentObjType" items="{equipmentObjType>/}" class="sapUiSmallMarginEnd" forceSelection="true">
+                                                        <core:Item text="{equipmentObjType>EQART}" key="{equipmentObjType>EQART}"/>
+                                                    </ComboBox>
+                                                </HBox>
+                                            </items>
+                                        </FlexBox>
+                                    </l:VerticalLayout>
+                            
+                                <VBox width="100%">
+                                    <HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+                                        <Button type="Reject" width="150px" text="Temizle" icon="sap-icon://delete" press="onPressCleanFilter"></Button>
+                                    </HBox>
+                                    <HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+                                        <Button type="Accept" width="150px" text="Ara" icon="sap-icon://search" press="onPressSearchFilter"></Button>
+                                    </HBox>
+                                </VBox>
+                            </HBox>
+                        </content>
+                    </Panel>
+                                <ui:Table id="idReportTable" enableColumnReordering="false"  width="100%" rows="{/}" rowCount="50" visibleRowCount="50" alternateRowColors="true" selectionMode="Single" selectionBehavior="RowOnly" >
+                            
+                                    <ui:columns>
+                                            <ui:Column visible="true" hAlign="Center" sortProperty="URETIM_YER" filterProperty="URETIM_YER" filterType="sap.ui.model.type.String">
+                                                <Label text="Üretim Yeri" design="Bold"/>
+                                                <ui:template>
+                                                    <Text text="{URETIM_YER}" wrapping="false"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column visible="true" hAlign="Center" sortProperty="DOKUM_NO" filterProperty="DOKUM_NO" filterType="sap.ui.model.type.String">
+                                                <Label text="Döküm No" design="Bold"/>
+                                                <ui:template>
+                                                    <Text text="{DOKUM_NO}" wrapping="false"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column visible="true" hAlign="Center" sortProperty="T_NESNE" filterProperty="T_NESNE" filterType="sap.ui.model.type.String">
+                                                <Label text="TEKNİK NESNE TÜRÜ" design="Bold"/>
+                                                <ui:template>
+                                                    <Text text="{T_NESNE}" wrapping="false"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column visible="true" hAlign="Center" sortProperty="EKIPMAN_TANIM" filterProperty="EKIPMAN_TANIM" filterType="sap.ui.model.type.String">
+                                                <Label text="EKİPMAN TANIMI" design="Bold"/>
+                                                <ui:template>
+                                                    <Text text="{EKIPMAN_TANIM}" wrapping="false"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <!-- <ui:Column visible="true" hAlign="Center" sortProperty="EKIPMAN" filterProperty="EKIPMAN" filterType="sap.ui.model.type.String">
+                                                <Label text="EKİPMAN NO" design="Bold"/>
+                                                <ui:template>
+                                                    <Text text="{EKIPMAN}" wrapping="false"/>
+                                                </ui:template>
+                                            </ui:Column> -->
+                                            <ui:Column visible="true" hAlign="Center" sortProperty="MALZEME" filterProperty="MALZEME" filterType="sap.ui.model.type.String">
+                                                <Label text="MALZEME TANIMI" design="Bold"/>
+                                                <ui:template>
+                                                    <Text text="{MALZEME}" wrapping="false"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column visible="true" hAlign="Center" sortProperty="DURUM" filterProperty="DURUM" filterType="sap.ui.model.type.String">
+                                                <Label text="DURUM" design="Bold"/>
+                                                <ui:template>
+                                                    <Text text="{DURUM}" wrapping="false"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column visible="true" hAlign="Center" sortProperty="EKIPMAN_SAYAC" filterProperty="EKIPMAN_SAYAC" filterType="sap.ui.model.type.String">
+                                                <Label text="EKİPMAN SAYAÇ" design="Bold"/>
+                                                <ui:template>
+                                                    <Text text="{EKIPMAN_SAYAC}" wrapping="false"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column visible="true" hAlign="Center" sortProperty="MALZEME_SAYAC" filterProperty="MALZEME_SAYAC" filterType="sap.ui.model.type.String">
+                                                <Label text="MALZEME SAYAÇ" design="Bold"/>
+                                                <ui:template>
+                                                    <Text text="{MALZEME_SAYAC}" wrapping="false"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column visible="true" hAlign="Center" sortProperty="FIRMA" filterProperty="FIRMA" filterType="sap.ui.model.type.String">
+                                                <Label text="FİRMA" design="Bold"/>
+                                                <ui:template>
+                                                    <Text text="{FIRMA}" wrapping="false"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column visible="true" hAlign="Center" sortProperty="PERSONEL" filterProperty="PERSONEL" filterType="sap.ui.model.type.String">
+                                                <Label text="PERSONEL" design="Bold"/>
+                                                <ui:template>
+                                                    <Text text="{PERSONEL}" wrapping="false"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column visible="true" hAlign="Center" sortProperty="ACIKLAMA" filterProperty="ACIKLAMA" filterType="sap.ui.model.type.String">
+                                                <Label text="AÇIKLAMA" design="Bold"/>
+                                                <ui:template>
+                                                    <Text text="{ACIKLAMA}" wrapping="false"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column visible="true" hAlign="Center" sortProperty="KALITE" filterProperty="KALITE" filterType="sap.ui.model.type.String">
+                                                <Label text="KALİTE" design="Bold"/>
+                                                <ui:template>
+                                                    <Text text="{KALITE}" wrapping="false"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column visible="true" hAlign="Center" sortProperty="MIKTAR" filterProperty="MIKTAR" filterType="sap.ui.model.type.String">
+                                                <Label text="MIKTAR" design="Bold"/>
+                                                <ui:template>
+                                                    <Text text="{MIKTAR}" wrapping="false"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column visible="true" hAlign="Center" sortProperty="TARIH" filterProperty="TARIH" filterType="sap.ui.model.type.String">
+                                                <Label text="TARİH" design="Bold"/>
+                                                <ui:template>
+                                                    <Text text="{TARIH}" wrapping="false"/>
+                                                </ui:template>
+                                            </ui:Column>
+                                            <ui:Column visible="true" hAlign="Center">
+                                                <Label text="DÜZENLE" design="Bold"/>
+                                                <ui:template>
+                                                <Hbox>
+                                                <Button type="Reject" width="50px" text="" icon="sap-icon://delete" press="onPressDelete"></Button>
+                                                <Button type="Edit" width="50px" text="" icon="sap-icon://edit" press="onPressEdit"></Button>
+                                                </Hbox>
+                                                </ui:template>
+                                            </ui:Column>
+                                    </ui:columns>
+                                    
+                                </ui:Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

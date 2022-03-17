@@ -1,0 +1,161 @@
+<mvc:View xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m" controllerName="customActivity.controller.oeeConfirmationListDNA"
+    xmlns:html="http://www.w3.org/1999/xhtml">
+    <App>
+        <pages>
+            <Page showHeader="false" showFooter="true">
+                <content>
+                    <VBox width="100%" height="100%" alignItems="Center" direction="Column">
+                        <HBox alignItems="Center" justifyContent="SpaceAround" height="10%" width="100%">
+                            <Button type="Reject" text="{i18n>OEE_LABEL_UNSUCCESSFUL_CONFIRM}" press="onPressConf" />
+                            <FlexBox height="60px" alignItems="Center" justifyContent="End">
+                                <items>
+                                    <Input id="filterSearch" liveChange="onSearch" placeholder="Search for.." width="30rem" class="sapUiTinyMarginBeginEnd"/>
+                                    <Label text="{i18n>OEE_LABEL_WORKHOUR} : " design="Bold" class="sapUiTinyMarginBeginEnd" />
+                                    <DateRangeSelection id="idDatePicker" valueFormat="dd.MM.yyyy" delimiter="-" displayFormat="dd.MM.yyyy"/>
+                                    <Button text="Ara" press="getData" class="sapUiTinyMarginBeginEnd"/>
+                                </items>
+                            </FlexBox>
+                            <Select id="idPrinter" autoAdjustWidth="true" forceSelection="false" items="{path:'/'}">
+                                <core:Item key="{PRINTER_ID}" text="{PRINTER_ID}"/>
+                            </Select>
+                        </HBox>
+                        <VBox width="98%" alignItems="Center">
+                            <ScrollContainer height="100%" width="100%">
+                                <content>
+                                    <Table items="{confirmationList>/}" noDataText="Teyit listesi bulunamadı" id="tableConfirmed" mode="None">
+                                        <columns>
+                                            <Column hAlign="Center" vAlign="Middle">
+                                                <header>
+                                                    <Label text="{i18n>OEE_LABEL_ORDER_NUMBER_SHORT}" />
+                                                </header>
+                                            </Column>
+                                            <Column hAlign="Center" vAlign="Middle">
+                                                <header>
+                                                    <Label text="{i18n>OEE_LABEL_OPERATION}" />
+                                                </header>
+                                            </Column>
+                                            <Column hAlign="Center" vAlign="Middle">
+                                                <header>
+                                                    <Label text="{i18n>OEE_LABEL_MAT}" />
+                                                </header>
+                                            </Column>
+                                            <Column hAlign="Center" vAlign="Middle">
+                                                <header>
+                                                    <Label text="Teyit Türü" />
+                                                </header>
+                                            </Column>
+                                            <Column hAlign="Center" vAlign="Middle">
+                                                <header>
+                                                    <Label text="{i18n>OEE_LABEL_BATCH_NO}" />
+                                                </header>
+                                            </Column>
+                                            <Column hAlign="Center" vAlign="Middle">
+                                                <header>
+                                                    <Label text="{i18n>OEE_LABEL_CONFIRM_QUANTITY}" />
+                                                </header>
+                                            </Column>
+                                            <Column hAlign="Center" vAlign="Middle">
+                                                <header>
+                                                    <Label text="{i18n>OEE_LABEL_MEASURE_QUANTITY}" />
+                                                </header>
+                                            </Column>
+                                            <Column hAlign="Center" vAlign="Middle">
+                                                <header>
+                                                    <Label text="Alternatif Miktar" />
+                                                </header>
+                                            </Column>
+                                            <Column hAlign="Center" vAlign="Middle">
+                                                <header>
+                                                    <Label text="Alternatif ÖB" />
+                                                </header>
+                                            </Column>
+                                            <Column id="idColMC" hAlign="Center" vAlign="Middle" visible="false">
+                                                <header>
+                                                    <Label text="MC Sıra No"/>
+                                                </header>
+                                            </Column>
+                                            <Column hAlign="Center" vAlign="Middle">
+                                                <header>
+                                                    <Label text="{i18n>OEE_LABEL_CONF_NUMBER}" />
+                                                </header>
+                                            </Column>
+                                            <Column hAlign="Center" vAlign="Middle">
+                                                <header>
+                                                    <Label text="{i18n>OEE_LABEL_CONF_COUNTER}" />
+                                                </header>
+                                            </Column>
+                                            <Column hAlign="Center" vAlign="Middle">
+                                                <header>
+                                                    <Label text="{i18n>OEE_LABEL_DATE_TIME_SHIFT}" />
+                                                </header>
+                                            </Column>
+                                            <Column hAlign="Center" vAlign="Middle" id="idConfNo">
+                                                <header>
+                                                    <Label text="{i18n>OEE_LABEL_CONF_STATUS}" />
+                                                </header>
+                                            </Column>
+                                            <Column hAlign="Center" vAlign="Middle">
+                                                <header>
+                                                    <Label text="" />
+                                                </header>
+                                            </Column>
+                                            <Column hAlign="Center" vAlign="Middle">
+                                                <header>
+                                                    <Label text="" />
+                                                </header>
+                                            </Column>
+                                            <!--
+                                        <Column hAlign="Center" vAlign="Middle">
+                                            <header>
+                                                <Label text="" />
+                                            </header>
+                                        </Column>
+                                        -->
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem>
+                                                <customData>
+                                                    <core:CustomData key="{confirmationList>PROD_TYPE_STD}" value="confirmationList>PROD_TYPE_STD" writeToDom="true"></core:CustomData>
+                                                </customData>
+                                                <cells>
+                                                    <Text text="{confirmationList>AUFNR}" />
+                                                    <Text text="{confirmationList>ROUTING_OPER_NO}" />
+                                                    <Text text="{confirmationList>MATNR}" />
+                                                    <Text text="{= ${confirmationList>PROD_TYPE_STD}==='Y_STDDISI' ? 'STANDART DIŞI' : ${confirmationList>PROD_TYPE_STD} === 'Y_SAPMA' ?  'SAPMA' : 'STANDART'}" />
+                                                    <Button text="{confirmationList>BATCH_NO}" press = "onClickGetConsumption" tooltip = "{ENTRY_ID}"/>
+                                                    <Text text="{confirmationList>QUANTITY}" />
+                                                    <Text text="{confirmationList>UOM}" />
+                                                    <Text text="{confirmationList>ALT_QUANTITY}" />
+                                                    <Text text="{confirmationList>ALT_UOM}" />
+                                                    <Text text="{confirmationList>ROW_NUMBER}" />
+                                                    <Text text="{confirmationList>CONF_NUMBER}" />
+                                                    <Text text="{confirmationList>CONF_COUNTER}" />
+                                                    <Text text="{confirmationList>START_DATE}" />
+                                                    <Text text="{confirmationList>MESSAGE}" tooltip = "{confirmationList>MESSAGE}"/>
+                                                    <Button id="btnRetry" text="{= ${confirmationList>STATUS}==='FAILED' ? ${i18n>OEE_LABEL_RESEND_CONFIRM} : ${confirmationList>STATUS} === 'QUEUED' ?  ${i18n>OEE_LABEL_QUEUED} : ${i18n>OEE_LABEL_CANCEL_CONFIRM} }" type="{= ${confirmationList>STATUS}==='FAILED' ? 'Reject': 'Emphasized'}" icon="{=${confirmationList>STATUS}==='FAILED' ? 'sap-icon://refresh':'sap-icon://decline'}" visible = "{= ${confirmationList>STATUS} === 'QUEUED' || ${confirmationList>STATUS} === 'RETRY' ? false : true}" press="retryConfirmation"></Button>
+                                                    <Button id="idEtiket" text="Etiket Al" icon="sap-icon://settings" design="Transparent" aria-labelledby="lblCart" visible = "true" press="onPressEtiket"></Button>
+                                                    <!--
+                                            <Button id="btnCancelConsump" text="X" tooltip="Bileşenleri geri getir" type="Reject" visible = "{= ${confirmationList>STATUS} === 'FAILED' ? true:false}" press="cancelConsumption"></Button>
+                                            -->
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                </content>
+                            </ScrollContainer>
+                        </VBox>
+                    </VBox>
+                </content>
+                <footer>
+                    <Bar>
+                        <contentRight>
+                            <Button text="{i18n>OEE_LABEL_REFRESH}" press="refreshData" />
+                        </contentRight>
+                    </Bar>
+                </footer>
+            </Page>
+        </pages>
+    </App>
+</mvc:View>

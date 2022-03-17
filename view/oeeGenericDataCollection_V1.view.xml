@@ -1,0 +1,74 @@
+<core:View xmlns:core="sap.ui.core" xmlns:suite="sap.suite.ui.commons" xmlns:l="sap.ui.layout" xmlns="sap.m" controllerName="customActivity.controller.oeeGenericDataCollection">
+    <Page showHeader="false" showNavButton="false">
+        <content>
+            <l:VerticalLayout width="100%">
+                <core:Fragment fragmentName='customActivity.fragmentView.zorderCardCharacteristicFragment' type='XML' id="orderCardFragment" />
+                <FlexBox height="40px" alignItems="Center" justifyContent="Start" visible="{= ${appData>/visibleJSON/CHARGE_FLEXBOX} === 'CHARGE_FLEXBOX' ? true : false }">
+                    <Label text="{i18n>OEE_LABEL_CHARGE_NO}  : " design="Bold"></Label>
+                    <Select id="chargeList" items="{chargeListModel>/}" forceSelection="true" change="getTableData" width="100px">
+                        <core:Item key="{chargeListModel>CHARGE}" text="{chargeListModel>CHARGE}" />
+                    </Select>
+                </FlexBox>
+                <Table id="reportGenericDataCollectionTableQuantityType" editable="false" items="{path : '/genericDataCollectionDataQuantityType' , sorter: [{  path:  'DESCRIPTION' , ascending: true}]}">
+                    <columns>
+                        <Column>
+                            <Label text="{i18n>OEE_LABEL_PARAMETER}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>OEE_LABEL_QUANTITY}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>OEE_LABEL_UOM}" />
+                        </Column>
+                        <Column id="reasonCodeColumnForQuantityType" visible="false">
+                            <Label text="{i18n>OEE_BTN_REASONCODE}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>OEE_LABEL_TOTAL_QTY_FOR_ORDER}" />
+                        </Column>
+                        <Column id="commentColumnForQuantityType">
+                            <Label text="{i18n>OEE_LABEL_COMMENTS}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>OEE_LABEL_DETAILS}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>OEE_LABEL_DATE_TIME_LAST_REPORTED}" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{DESCRIPTION}"/>
+                                <Input value="{QUANTITY}" maxLength="{MAXINPUT}" type="{INPUTTYPE}" enabled="{= ${ISENABLED} === 'false'  ? false: true}"  liveChange="onChangeReportedQuantity"></Input>
+                                <Input value="{DEFAULTUOMTEXT}"  showSuggestion="true" showValueHelp="true" valueHelpOnly="true" enabled="{= ${ISENABLED} === 'false'  ? false: true}" valueHelpRequest="handleValueHelpRequest" suggestionItems="{uomModel>/uomList}">
+                                    <suggestionItems>
+                                        <core:Item text="{description}" />
+                                    </suggestionItems>
+                                    <customData>
+                                        <core:CustomData key="uom" value="{uom}" />
+                                    </customData>
+                                </Input>
+                                <Button text="{ASSIGNRCLINK}" visible="{lossType}" press="onClickReasonCode" />
+                                <Text text="{SUM_QUANTITY}" visible="{VISIBLESUM}"/>
+                                <Button text="{parts : [{path : 'i18n>OEE_BTN_ADD'},{path:'COMMENTS'}], formatter : 'sap.oee.ui.Formatter.reasonCodeButttonFormatter'}" icon="sap-icon://comment" visible="{lossType}" press="onPressAddComments" />
+                                <Button text="{i18n>OEE_LABEL_DETAILS}" icon="sap-icon://inspection" enabled="{= ${ENABLEDQUANTITY} === 0 ? false: true}" press="onPressDetails" />
+                                <Text text="{DATETIME}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </l:VerticalLayout>
+        </content>
+        <footer>
+            <Bar>
+<contentLeft>
+<Button text = "Rapor Verileri" press = "openConsuptionFragment" visible="{= ${appData>/visibleJSON/REPORTDATA_BUTTON} === 'REPORTDATA_BUTTON' ? true : false }"/>
+</contentLeft>
+                <contentRight>
+                    <Button id="genericDataSaveButton" text="{i18n>OEE_BTN_SAVE}" type="emphasized" press="reportData" enabled="true" icon="sap-icon://save" />
+                </contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</core:View>

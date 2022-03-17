@@ -1,0 +1,398 @@
+<View xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:layout="sap.ui.layout" controllerName="customActivity.controller.FosinController">
+	<App id="idAppControl">
+		<pages>
+			<Page showNavButton="false" showFooter="true" showHeader="false">
+				<content>
+					<FlexBox id="box86"  height="100%" direction="Column" justifyContent="Center">
+						<FlexBox  height="10%" id="box88" justifyContent="SpaceBetween">
+							<FlexBox id="box105" width="30%" justifyContent="Start" alignItems="Center"/>
+							<FlexBox id="box87" width="30%" justifyContent="Center" alignItems="Center">
+								<items>
+									<Label text="Sipariş No:"  id="label7" />
+									<Label text="Label"  id="label8" />
+								</items>
+							</FlexBox>
+							<FlexBox id="box104" width="30%" justifyContent="End" alignItems="Center">
+								<Button xmlns="sap.m" text="Kaydet" id="Save" type="Emphasized" press="Execute"/>
+							</FlexBox>
+						</FlexBox>
+						<FlexBox  height="95%" id="box89" justifyContent="Center">
+							<FlexBox width="23%" id="box1" direction="Column">
+								<FlexBox id="box11" justifyContent="SpaceAround">
+									<FlexBox id="box96" width="30%"/>
+									<Label text="Asit Banyoları"  id="label0" design="Bold" textAlign="Center" />
+								</FlexBox>
+								<FlexBox  id="box12" height="7%">
+									<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+										<items>
+											<Text xmlns="sap.m"  text="0.1 N NaOH Sarfiyatı (ml)" id="text1"  textAlign="End" />
+										</items>
+									</FlexBox>
+									<FlexBox width="50%" height="100%" alignItems="Start">
+										<items>
+											<Input xmlns="sap.m"  id="input1" liveChange="Cal" placeholder="0.00" textAlign="Center" />
+										</items>
+									</FlexBox>
+								</FlexBox>
+								<FlexBox  height="7%">
+									<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+										<items>
+											<Text xmlns="sap.m"  text="Numune Tartımı (g)"  textAlign="End" id="text2" />
+										</items>
+									</FlexBox>
+									<FlexBox width="50%" height="100%" alignItems="Start">
+										<items>
+											<Input xmlns="sap.m"  id="input2" liveChange="Cal" placeholder="0.00" textAlign="Center" />
+										</items>
+									</FlexBox>
+								</FlexBox>
+								<FlexBox  height="7%">
+									<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+										<items>
+											<Text xmlns="sap.m"  text="% Konsantrasyon"  textAlign="End" id="text3" />
+										</items>
+									</FlexBox>
+									<FlexBox width="50%" height="100%" alignItems="Start">
+										<items>
+											<Input xmlns="sap.m"  id="input3" placeholder="0.00" textAlign="Center" enabled="false" editable="false" />
+										</items>
+									</FlexBox>
+								</FlexBox>
+								<FlexBox  height="7%">
+									<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+										<items>
+											<Text xmlns="sap.m"  text="KMnO4 Sarfiyatı"  textAlign="End" id="text4" />
+										</items>
+									</FlexBox>
+									<FlexBox width="50%" height="100%" alignItems="Start">
+										<items>
+											<Input xmlns="sap.m"  id="input4" liveChange="Cal" placeholder="0.00" textAlign="Center" />
+										</items>
+									</FlexBox>
+								</FlexBox>
+								<FlexBox  height="7%" justifyContent="End">
+									<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+										<items>
+											<Text xmlns="sap.m"  text="Demir Miktarı (g/l)"  textAlign="End" id="text5" />
+										</items>
+									</FlexBox>
+									<FlexBox width="50%" height="100%" alignItems="Start">
+										<items>
+											<Input xmlns="sap.m"  id="input5" placeholder="0.00" textAlign="Center" enabled="false" editable="false" />
+										</items>
+									</FlexBox>
+								</FlexBox>
+								<FlexBox  height="7%">
+									<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+										<items>
+											<Text xmlns="sap.m"  text="Sıcaklık (oC)"  textAlign="End" id="text6" />
+										</items>
+									</FlexBox>
+									<FlexBox width="50%" height="100%" alignItems="Start">
+										<items>
+											<Input xmlns="sap.m"  liveChange="Warning" id="input6" placeholder="0.00" textAlign="Center" />
+										</items>
+									</FlexBox>
+								</FlexBox>
+								<FlexBox  height="7%">
+									<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+										<items>
+											<Text xmlns="sap.m"  text="Bekleme süresi (dk)"  textAlign="End" id="text7" />
+										</items>
+									</FlexBox>
+									<FlexBox width="50%" height="100%" alignItems="Start">
+										<items>
+											<Input xmlns="sap.m"  id="input7" liveChange="Warning" placeholder="0.00" textAlign="Center" />
+										</items>
+									</FlexBox>
+								</FlexBox>
+								<FlexBox  height="7%" alignItems="Center" justifyContent="SpaceAround">
+									<items>
+										<FlexBox id="box97" width="44%"/>
+										<Label xmlns="sap.m" text="Nötralizasyon Banyosu" design="Bold"  textAlign="Center" />
+									</items>
+								</FlexBox>
+								<FlexBox  height="7%">
+									<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+										<items>
+											<Text xmlns="sap.m"  text="pH"  textAlign="End" id="text8" />
+										</items>
+									</FlexBox>
+									<FlexBox width="50%" height="100%" alignItems="Start">
+										<items>
+											<Input xmlns="sap.m"  liveChange="Warning" id="input8" placeholder="0.00" textAlign="Center" />
+										</items>
+									</FlexBox>
+								</FlexBox>
+								<FlexBox  height="7%">
+									<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+										<items>
+											<Text xmlns="sap.m"  text="Sıcaklık (oC)"  textAlign="End" id="text9" />
+										</items>
+									</FlexBox>
+									<FlexBox width="50%" height="100%" alignItems="Start">
+										<items>
+											<Input xmlns="sap.m"  liveChange="Warning" id="input9" placeholder="0.00" textAlign="Center" />
+										</items>
+									</FlexBox>
+								</FlexBox>
+								<FlexBox  height="7%">
+									<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+										<items>
+											<Text xmlns="sap.m"  text="Bekleme süresi (dk)"  textAlign="End" id="text10" />
+										</items>
+									</FlexBox>
+									<FlexBox width="50%" height="100%" alignItems="Start">
+										<items>
+											<Input xmlns="sap.m"  liveChange="Warning" id="input10" placeholder="0.00" textAlign="Center" />
+										</items>
+									</FlexBox>
+								</FlexBox>
+							</FlexBox>
+							<FlexBox width="23%" id="box2" direction="Column">
+								<items>
+									<FlexBox id="box92" justifyContent="SpaceAround">
+										<FlexBox id="box98" width="20%"/>
+										<Label text="Durulama 1" design="Bold" textAlign="Center" />
+									</FlexBox>
+									<FlexBox  height="7%" >
+										<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+											<items>
+												<Text xmlns="sap.m"  text="pH"  textAlign="End" id="text11" />
+											</items>
+										</FlexBox>
+										<FlexBox width="50%" height="100%" alignItems="Start">
+											<items>
+												<Input xmlns="sap.m"  liveChange="Warning" id="input11" placeholder="0.00" textAlign="Center" />
+											</items>
+										</FlexBox>
+									</FlexBox>
+									<FlexBox xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout" xmlns="sap.m"  height="7%" id="box37">
+										<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+											<items>
+												<Text xmlns="sap.m"  text="Bekleme süresi (dk)"  textAlign="End" id="text12" />
+											</items>
+										</FlexBox>
+										<FlexBox width="50%" height="100%" alignItems="Start">
+											<items>
+												<Input xmlns="sap.m"  liveChange="Warning" id="input12" placeholder="0.00" textAlign="Center" />
+											</items>
+										</FlexBox>
+									</FlexBox>
+									<FlexBox id="box93" justifyContent="SpaceAround">
+										<FlexBox id="box99" width="20%"/>
+										<Label text="Durulama 2" design="Bold" textAlign="Center"  />
+									</FlexBox>
+									<FlexBox  height="7%" >
+										<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+											<items>
+												<Text xmlns="sap.m"  text="pH"  textAlign="End" id="text13" />
+											</items>
+										</FlexBox>
+										<FlexBox width="50%" height="100%" alignItems="Start">
+											<items>
+												<Input xmlns="sap.m"  liveChange="Warning" id="input13" placeholder="0.00" textAlign="Center" />
+											</items>
+										</FlexBox>
+									</FlexBox>
+									<FlexBox xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout" xmlns="sap.m"  height="7%">
+										<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+											<items>
+												<Text xmlns="sap.m"  text="Bekleme süresi (dk)"  textAlign="End" id="text14" />
+											</items>
+										</FlexBox>
+										<FlexBox width="50%" height="100%" alignItems="Start">
+											<items>
+												<Input xmlns="sap.m"  liveChange="Warning" id="input14" placeholder="0.00" textAlign="Center" />
+											</items>
+										</FlexBox>
+									</FlexBox>
+									<FlexBox id="box94" justifyContent="SpaceAround">
+										<FlexBox id="box100" width="40%"/>
+										<Label text="Aktivasyon Banyosu" design="Bold" textAlign="Center"  />
+									</FlexBox>
+									<FlexBox  height="7%" >
+										<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+											<items>
+												<Text xmlns="sap.m"  text="pH"  textAlign="End" id="text15" />
+											</items>
+										</FlexBox>
+										<FlexBox width="50%" height="100%" alignItems="Start">
+											<items>
+												<Input xmlns="sap.m"  liveChange="Warning" id="input15" placeholder="0.00" textAlign="Center" />
+											</items>
+										</FlexBox>
+									</FlexBox>
+									<FlexBox xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout" xmlns="sap.m"  height="7%">
+										<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+											<items>
+												<Text xmlns="sap.m"  text="Bekleme süresi (dk)"  textAlign="End" id="text16" />
+											</items>
+										</FlexBox>
+										<FlexBox width="50%" height="100%" alignItems="Start">
+											<items>
+												<Input xmlns="sap.m"  liveChange="Warning" id="input16" placeholder="0.00" textAlign="Center" />
+											</items>
+										</FlexBox>
+									</FlexBox>
+									<FlexBox id="box90" justifyContent="SpaceAround">
+										<FlexBox id="box101" width="32%"/>
+										<Label text="Fosfat Durulama" design="Bold" textAlign="Center"  />
+									</FlexBox>
+									<FlexBox  height="7%" >
+										<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+											<items>
+												<Text xmlns="sap.m"  text="pH"  textAlign="End" id="text17" />
+											</items>
+										</FlexBox>
+										<FlexBox width="50%" height="100%" alignItems="Start">
+											<items>
+												<Input xmlns="sap.m"  liveChange="Warning" id="input17" placeholder="0.00" textAlign="Center" />
+											</items>
+										</FlexBox>
+									</FlexBox>
+									<FlexBox xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout" xmlns="sap.m"  height="7%">
+										<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+											<items>
+												<Text xmlns="sap.m"  text="Bekleme süresi (dk)"  textAlign="End" id="text18" />
+											</items>
+										</FlexBox>
+										<FlexBox width="50%" height="100%" alignItems="Start">
+											<items>
+												<Input xmlns="sap.m"  liveChange="Warning" id="input18" placeholder="0.00" textAlign="Center" />
+											</items>
+										</FlexBox>
+									</FlexBox>
+								</items>
+							</FlexBox>
+							<FlexBox width="23%" id="box3" direction="Column">
+								<items>
+									<FlexBox id="box91" justifyContent="SpaceAround">
+										<FlexBox id="box102" width="32%"/>
+										<Label text="Fosfat Banyoları" design="Bold" textAlign="Center" />
+									</FlexBox>
+									<FlexBox  height="7%" >
+										<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+											<items>
+												<Text xmlns="sap.m"  text="Toplam Asit (ml)"  textAlign="End" id="text19" />
+											</items>
+										</FlexBox>
+										<FlexBox width="50%" height="100%" alignItems="Start">
+											<items>
+												<Input xmlns="sap.m"  liveChange="Warning" id="input19" placeholder="0.00" textAlign="Center" />
+											</items>
+										</FlexBox>
+									</FlexBox>
+									<FlexBox  height="7%" >
+										<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+											<items>
+												<Text xmlns="sap.m"  text="Serbest Asit (ml)"  textAlign="End" id="text20" />
+											</items>
+										</FlexBox>
+										<FlexBox width="50%" height="100%" alignItems="Start">
+											<items>
+												<Input xmlns="sap.m"  liveChange="Warning" id="input20" placeholder="0.00" textAlign="Center" />
+											</items>
+										</FlexBox>
+									</FlexBox>
+									<FlexBox  height="7%" >
+										<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+											<items>
+												<Text xmlns="sap.m"  text="Hızlandırıcı (ml)"  textAlign="End" id="text21" />
+											</items>
+										</FlexBox>
+										<FlexBox width="50%" height="100%" alignItems="Start">
+											<items>
+												<Input xmlns="sap.m"  liveChange="Warning" id="input21" placeholder="0.00" textAlign="Center" />
+											</items>
+										</FlexBox>
+									</FlexBox>
+									<FlexBox  height="7%" >
+										<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+											<items>
+												<Text xmlns="sap.m"  text="Sıcaklık (oC)"  textAlign="End" id="text22" />
+											</items>
+										</FlexBox>
+										<FlexBox width="50%" height="100%" alignItems="Start">
+											<items>
+												<Input xmlns="sap.m"  liveChange="Warning" id="input22" placeholder="0.00" textAlign="Center" />
+											</items>
+										</FlexBox>
+									</FlexBox>
+									<FlexBox  height="7%" >
+										<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+											<items>
+												<Text xmlns="sap.m"  text="Bekleme süresi (dk)"  textAlign="End" id="text23" />
+											</items>
+										</FlexBox>
+										<FlexBox width="50%" height="100%" alignItems="Start">
+											<items>
+												<Input xmlns="sap.m"  liveChange="Warning" id="input23" placeholder="0.00" textAlign="Center" />
+											</items>
+										</FlexBox>
+									</FlexBox>
+								</items>
+							</FlexBox>
+							<FlexBox width="23%" id="box4" direction="Column">
+								<items>
+									<FlexBox  id="box95" justifyContent="SpaceAround">
+										<FlexBox id="box103" width="34%"/>
+										<Label text="Sabun Banyosu" design="Bold" textAlign="Center" />
+									</FlexBox>
+									<FlexBox  height="7%" >
+										<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+											<items>
+												<Text xmlns="sap.m"  text="Toplam Asit"  textAlign="End" id="text24" />
+											</items>
+										</FlexBox>
+										<FlexBox width="50%" height="100%" alignItems="Start">
+											<items>
+												<Input xmlns="sap.m"  liveChange="Warning" id="input24" placeholder="0.00" textAlign="Center" />
+											</items>
+										</FlexBox>
+									</FlexBox>
+									<FlexBox  height="7%" >
+										<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+											<items>
+												<Text xmlns="sap.m"  text="Serbest Asit"  textAlign="End" id="text25" />
+											</items>
+										</FlexBox>
+										<FlexBox width="50%" height="100%" alignItems="Start">
+											<items>
+												<Input xmlns="sap.m"  liveChange="Warning" id="input25" placeholder="0.00" textAlign="Center" />
+											</items>
+										</FlexBox>
+									</FlexBox>
+									<FlexBox  height="7%" >
+										<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+											<items>
+												<Text xmlns="sap.m"  text="Sıcaklık (oC)"  textAlign="End" id="text26" />
+											</items>
+										</FlexBox>
+										<FlexBox width="50%" height="100%" alignItems="Start">
+											<items>
+												<Input xmlns="sap.m"  liveChange="Warning" id="input26" placeholder="0.00" textAlign="Center" />
+											</items>
+										</FlexBox>
+									</FlexBox>
+									<FlexBox  height="7%" >
+										<FlexBox width="50%" height="100%" alignItems="Center" justifyContent="Center" >
+											<items>
+												<Text xmlns="sap.m"  text="Bekleme süresi (dk)"  textAlign="End" id="text27" />
+											</items>
+										</FlexBox>
+										<FlexBox width="50%" height="100%" alignItems="Start">
+											<items>
+												<Input xmlns="sap.m"  liveChange="Warning" id="input27" placeholder="0.00" textAlign="Center" />
+											</items>
+										</FlexBox>
+									</FlexBox>
+								</items>
+							</FlexBox>
+						</FlexBox>
+					</FlexBox>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</View>

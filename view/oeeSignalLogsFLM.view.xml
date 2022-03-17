@@ -1,0 +1,181 @@
+<core:View xmlns:core="sap.ui.core"
+    xmlns:suite="sap.suite.ui.commons"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns="sap.m" controllerName="customActivity/controller/oeeSignalLogsFLM">
+    <Page showHeader="false" showNavButton="false}">
+        <VBox>
+            <Select id="selectTables" items="{/}" change="onLogTableChanged" width="250px">
+                <core:ListItem text="{DESC}" key="{TABLE}" />
+            </Select>
+            <Table id="tableLogs" items="{path: '/Rowsets/Rowset/Row'}">
+                <columns>
+                    <Column id="ID" hAlign="Center" visible="false">
+                        <Label tooltip="ID" text="ID"/>
+                    </Column>
+                    <Column id="SERME_KAFADAN_DOKULEN_KTKID_2" hAlign="Center" visible="false">
+                        <Label tooltip="SERME_KAFADAN_DOKULEN_KTKID_2" text="SERME_KAFADAN_DOKULEN_KTKID_2"/>
+                    </Column>
+                    <Column id="SERME_KAFADAN_KTKID_DOKULDU" hAlign="Center" visible="false">
+                        <Label tooltip="SERME_KAFADAN_KTKID_DOKULDU" text="SERME_KAFADAN_KTKID_DOKULDU"/>
+                    </Column>
+                    <Column id="LOCATION" hAlign="Center" visible="false">
+                        <Label tooltip="LOCATION" text="LOCATION"/>
+                    </Column>
+                    <Column id="SERME_KAFADAN_DOKULEN_KTKID" hAlign="Center" visible="false">
+                        <Label tooltip="SERME_KAFADAN_DOKULEN_KTKID" text="SERME_KAFADAN_DOKULEN_KTKID"/>
+                    </Column>
+                    <Column id="SERME_KAFA_TARTIM_BITTI" hAlign="Center" visible="false">
+                        <Label tooltip="SERME_KAFA_TARTIM_BITTI" text="SERME_KAFA_TARTIM_BITTI"/>
+                    </Column>
+                    <Column id="Y_URETIM_YONTEMI_FLM" hAlign="Center" visible="false">
+                        <Label tooltip="Y_URETIM_YONTEMI_FLM" text="Y_URETIM_YONTEMI_FLM"/>
+                    </Column>
+                    <Column id="SERME_KAFADAN_DOKULEN_KTKID_OTOMASYON" hAlign="Center" visible="false">
+                        <Label tooltip="SERME_KAFADAN_DOKULEN_KTKID_OTOMASYON" text="SERME_KAFADAN_DOKULEN_KTKID_OTOMASYON"/>
+                    </Column>
+                    <Column id="DOLU_TARTIM" hAlign="Center" visible="false">
+                        <Label tooltip="DOLU_TARTIM" text="DOLU_TARTIM"/>
+                    </Column>
+                    <Column id="RFID_READ" hAlign="Center" visible="false">
+                        <Label tooltip="RFID_READ" text="RFID_READ"/>
+                    </Column>
+                    <Column id="PLANT" hAlign="Center" visible="false">
+                        <Label tooltip="PLANT" text="PLANT"/>
+                    </Column>
+                    <Column id="WORKCENTER" hAlign="Center" visible="false">
+                        <Label tooltip="WORKCENTER" text="WORKCENTER"/>
+                    </Column>
+                    <Column id="PALET_NO" hAlign="Center" visible="false">
+                        <Label tooltip="PALET_NO" text="PALET_NO"/>
+                    </Column>
+                    <Column id="BOS_TARTIM" hAlign="Center" visible="false">
+                        <Label tooltip="BOS_TARTIM" text="BOS_TARTIM"/>
+                    </Column>
+                    <Column id="KUTUKS" hAlign="Center" visible="false">
+                        <Label tooltip="KUTUKS" text="KUTUKS"/>
+                    </Column>
+                    <Column id="SEHPA" hAlign="Center" visible="false">
+                        <Label tooltip="SEHPA" text="SEHPA"/>
+                    </Column>
+                    <Column id="FRN_GIRIS_TARTIM" hAlign="Center" visible="false">
+                        <Label tooltip="FRN_GIRIS_TARTIM" text="FRN_GIRIS_TARTIM"/>
+                    </Column>
+                    <Column id="MII_ID" hAlign="Center" visible="false">
+                        <Label tooltip="MII_ID" text="MII_ID"/>
+                    </Column>
+                    <Column id="OTOMASYON_ID" hAlign="Center" visible="false">
+                        <Label tooltip="OTOMASYON_ID" text="OTOMASYON_ID"/>
+                    </Column>
+                    <Column id="KTKID_2" hAlign="Center" visible="false">
+                        <Label tooltip="KTKID_2" text="KTKID_2"/>
+                    </Column>
+                    <Column id="HB" hAlign="Center" visible="false">
+                        <Label tooltip="HB" text="HB"/>
+                    </Column>
+                    <Column id="SHEAR_NO" hAlign="Center" visible="false">
+                        <Label tooltip="SHEAR_NO" text="SHEAR_NO"/>
+                    </Column>
+                    <Column id="BILLET_LENGTH" hAlign="Center" visible="false">
+                        <Label tooltip="BILLET_LENGTH" text="BILLET_LENGTH"/>
+                    </Column>
+                    <Column id="UCBAS" hAlign="Center" visible="false">
+                        <Label tooltip="UCBAS" text="UCBAS"/>
+                    </Column>
+                    <Column id="UCKUYRUK" hAlign="Center" visible="false">
+                        <Label tooltip="UCKUYRUK" text="UCKUYRUK"/>
+                    </Column>
+                    <Column id="KTKID" hAlign="Center" visible="false">
+                        <Label tooltip="KTKID" text="KTKID"/>
+                    </Column>
+                    <Column id="SH1_STATUS" hAlign="Center" visible="false">
+                        <Label tooltip="SH1_STATUS" text="SH1_STATUS"/>
+                    </Column>
+                    <Column id="SH2_STATUS" hAlign="Center" visible="false">
+                        <Label tooltip="SH2_STATUS" text="SH2_STATUS"/>
+                    </Column>
+                    <Column id="SH3_STATUS" hAlign="Center" visible="false">
+                        <Label tooltip="SH3_STATUS" text="SH3_STATUS"/>
+                    </Column>
+                    <Column id="SH4_STATUS" hAlign="Center" visible="false">
+                        <Label tooltip="SH4_STATUS" text="SH4_STATUS"/>
+                    </Column>
+                    <Column id="PRODUCT_STATUS" hAlign="Center" visible="false">
+                        <Label tooltip="PRODUCT_STATUS" text="PRODUCT_STATUS"/>
+                    </Column>
+                    <Column id="WEIGHT" hAlign="Center" visible="false">
+                        <Label tooltip="WEIGHT" text="WEIGHT"/>
+                    </Column>
+                    <Column id="LAST_POINTER" hAlign="Center" visible="false">
+                        <Label tooltip="LAST_POINTER" text="LAST_POINTER"/>
+                    </Column>
+                    <Column id="SHEAR_GROUP" hAlign="Center" visible="false">
+                        <Label tooltip="SHEAR_GROUP" text="SHEAR_GROUP"/>
+                    </Column>
+                    <Column id="INSDATE" hAlign="Center" visible="false">
+                        <Label tooltip="INSDATE" text="INSDATE"/>
+                    </Column>
+
+
+                    <Column id="MII_ID_M" hAlign="Center" visible="false">
+                        <Label tooltip="MII_ID_M" text="MII_ID_M"/>
+                    </Column>
+                    <Column id="OTOMASYON_ID_M" hAlign="Center" visible="false">
+                        <Label tooltip="OTOMASYON_ID_M" text="OTOMASYON_ID_M"/>
+                    </Column>
+                    <Column id="TRIGGER_M" hAlign="Center" visible="false">
+                        <Label tooltip="TRIGGER_M" text="TRIGGER_M"/>
+                    </Column>
+                    
+
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{ID}"/>
+                            <Text text="{SERME_KAFADAN_DOKULEN_KTKID_2}"/>
+                            <Text text="{SERME_KAFADAN_KTKID_DOKULDU}"/>
+                            <Text text="{LOCATION}"/>
+                            <Text text="{SERME_KAFADAN_DOKULEN_KTKID}"/>
+                            <Text text="{SERME_KAFA_TARTIM_BITTI}"/>
+                            <Text text="{Y_URETIM_YONTEMI_FLM}"/>
+                            <Text text="{SERME_KAFADAN_DOKULEN_KTKID_OTOMASYON}"/>
+                            <Text text="{DOLU_TARTIM}"/>
+                            <Text text="{RFID_READ}"/>
+                            <Text text="{PLANT}"/>
+                            <Text text="{WORKCENTER}"/>
+                            <Text text="{PALET_NO}"/>
+                            <Text text="{BOS_TARTIM}"/>
+                            <Text text="{KUTUKS}"/>
+                            <Text text="{SEHPA}"/>
+                            <Text text="{FRN_GIRIS_TARTIM}"/>
+                            <Text text="{MII_ID}"/>
+                            <Text text="{OTOMASYON_ID}"/>
+                            <Text text="{KTKID_2}"/>
+                            <Text text="{HB}"/>
+                            <Text text="{SHEAR_NO}"/>
+                            <Text text="{BILLET_LENGTH}"/>
+                            <Text text="{UCBAS}"/>
+                            <Text text="{UCKUYRUK}"/>
+                            <Text text="{KTKID}"/>
+                            <Text text="{SH1_STATUS}"/>
+                            <Text text="{SH2_STATUS}"/>
+                            <Text text="{SH3_STATUS}"/>
+                            <Text text="{SH4_STATUS}"/>
+                            <Text text="{PRODUCT_STATUS}"/>
+                            <Text text="{WEIGHT}"/>
+                            <Text text="{LAST_POINTER}"/>
+                            <Text text="{SHEAR_GROUP}"/>
+                            <Text text="{INSDATE}"/>
+
+                            <Text text="{MII_ID_M}"/>
+                            <Text text="{OTOMASYON_ID_M}"/>
+                            <Text text="{TRIGGER_M}"/>
+                            
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </VBox>
+    </Page>
+</core:View>

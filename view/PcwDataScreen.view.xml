@@ -1,0 +1,104 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="customActivity.controller.PcwDataScreen"  xmlns:ui="sap.ui.table" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+    <FlexBox id="gergiYuku" direction="Row" visible="true">
+        <FlexBox width="100%" height="90%" direction="Column">
+            <VBox width="100%" height="90%">
+                <Panel >
+                    <FlexBox>
+                        <FlexBox
+                direction ="Column"
+				height="auto"
+				width="45%"
+				alignItems="End"
+				justifyContent="Start">
+                            <!-- <Text text="Block No" design="Bold" class="sapUiSmallMarginTop sapUiTinyMarginBottom" /> -->
+                            <Text text="Gergi Yükü (kg):" class="sapUiMediumMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd"  />
+                            <Text text="Gergi yükü (kN):" class="sapUiLargeMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd"  />
+                            <Text text="Fırın Sıcaklığı (oC):" class="sapUiLargeMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" />
+                            <Text text="Makina Hızı (m/dk):" class="sapUiLargeMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" />
+                        </FlexBox>
+                        <FlexBox
+                direction ="Column" 
+				height="auto"
+                width="45%"
+				alignItems="Start"
+				justifyContent="Start">
+                            <!-- <Text text="Ölçü (mm)" design="Bold" class="sapUiSmallMargin" /> -->
+                            <Input  type="Number" id="input1"  class="sapUiSmallMargin" />
+                            <Input  type="Number" id="input2"  class="sapUiSmallMargin"  />
+                            <Input  type="Number" id="input3" class="sapUiSmallMargin" />
+                            <Input  type="Number" id="input4" class="sapUiSmallMargin" />
+                        </FlexBox>
+                    </FlexBox>
+                    <FlexBox height="8%">                            
+			            	    </FlexBox>
+                    <FlexBox alignContent="Center" alignItems="Center" justifyContent="Center">
+                        <Button visible="true" enabled="true" icon="sap-icon://cause" width="auto" iconFirst="true" text="Getir" pressed="true"  press="PCoGetir"/>
+                    </FlexBox>
+                </Panel>
+            </VBox>
+        </FlexBox>
+        <FlexBox width="0%" direction="Row" alignItems="Start"
+				justifyContent="End">
+            <Button text="Kaydet" type="Accept" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="kaydet" class="sapUiResponsiveMargin"/>
+            <Button text="Rapor Ekranı" type="Accept" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="openRaporEkranı" class="sapUiResponsiveMargin"/>
+        </FlexBox>
+    </FlexBox>
+    <FlexBox id = "raporBox" height="100%" width="100%" visible="false" direction="Column">
+        <FlexBox>
+            <FlexBox direction="Row" width="90%">
+                <DateRangeSelection   id="datePicker"  placeholder="Tarih" width="300px" displayFormat="long"  enabled="true" visible="true" class="sapUiResponsiveMargin" />
+                <Button text="" type="Accept" icon="sap-icon://search" iconFirst="true" width="70px" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin" press="searchData" />
+                <Button type="Accept" icon="sap-icon://excel-attachment"  text="Excel Export" press="onExport" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin"/>
+            </FlexBox>
+            <FlexBox direction="Row" justifyContent="End">
+                <Button type="Accept" text="Veri Giriş Ekranı" press="openHaddeSerisi" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin"/>
+            </FlexBox>
+        </FlexBox>
+        <ui:Table id="gergiYukuTable" selectionMode="None" selectionBehavior="Row" enableColumnReordering="false" visibleRowCountMode="Auto" minAutoRowCount="15" rows="{/}" class="sapUiResponsiveMargin">
+            <ui:columns>
+                <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+                    <Label text="Tarih" textAlign="Begin"  />
+                    <ui:template>
+                        <Text text="{DATE}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                    <Label text="Vardiya" width="auto"  wrapping="true" textAlign="Begin" />
+                    <ui:template>
+                        <Text text="{SHIFT}" width="auto"  wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                    <Label text="Sipariş" maxLines="2" wrapping="true" textAlign="Begin" />
+                    <ui:template>
+                        <Text text="{AUFNR}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                    <Label text="Gergi Yükü (kg)" maxLines="2" wrapping="true" textAlign="Begin"/>
+                    <ui:template>
+                        <Text text="{GERGIKG}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                    <Label text="Gergi yükü (kN)" maxLines="2" wrapping="true" textAlign="Begin" />
+                    <ui:template>
+                        <Text text="{GERGIKN}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                    <Label text="Fırın Sıcaklığı (oC)" maxLines="2" wrapping="true" textAlign="Begin" />
+                    <ui:template>
+                        <Text text="{FIRIN}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                    </ui:template>
+                </ui:Column>
+                <ui:Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                    <Label text="Makina Hızı (m/dk)" maxLines="2" wrapping="true" textAlign="Begin" />
+                    <ui:template>
+                        <Text text="{MAKINAHIZI}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                    </ui:template>
+                </ui:Column>
+            </ui:columns>
+        </ui:Table>
+    </FlexBox>
+</mvc:View>

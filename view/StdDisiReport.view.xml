@@ -1,0 +1,209 @@
+<mvc:View xmlns="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns:u="sap.ui.unified"
+    xmlns:core="sap.ui.core" controllerName="customActivity/controller/StdDisiReport" displayBlock="true">
+    <m:FlexBox direction="Column" id="selectionScreen" busy="false">
+        <m:FlexBox justifyContent="Center" direction="Row">
+            <m:items>
+                <m:VBox>
+                    <m:Button text="Rapor Ekranına Dön"  type="Accept" icon="sap-icon://forward" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="openRaporEkranı" class="sapUiResponsiveMargin"/>
+                    <m:Label text="Tarih" design="Bold" width="45%" class="sapUiTinyMargin"/>
+                    <m:DateRangeSelection id="datePicker" width="300px" displayFormat="long" enabled="true" visible="true" class="sapUiResponsiveMargin" />
+                    <m:Label text="Tesis" design="Bold" width="80%" class="sapUiTinyMargin"/>
+                    <m:Select textAlign="Center" width="90%" id="SelectBox"  visible ="true" fieldGroupIds="4" class="sapUiSmallMarginBottom">
+                        <m:items>
+                            <core:Item xmlns:core="sap.ui.core" key="FILMASIN" text="FILMASIN"/>
+                      
+                        </m:items>
+                    </m:Select>
+                    
+                    <m:Button text="Search" icon="sap-icon://search" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin" press="searchData" />
+                </m:VBox>
+            </m:items>
+        </m:FlexBox>
+    </m:FlexBox>
+
+         <m:FlexBox id="FlexKtk" width="100%" height="80%" direction="Column" visible="false">
+        <m:FlexBox alignContent="Stretch" alignItems="Stretch" backgroundDesign="Transparent" direction="Row" displayInline="false" fitContainer="false" justifyContent="Start" renderType="Div" wrap="NoWrap">
+            <m:items>
+                <m:HBox>
+                    <m:Button text="Seçim Ekranı" id="MainPanel2" type="Back" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin" press="backMainPanel" />
+                    <m:Button text="Excel Aktar" id="idExcel2" icon="sap-icon://excel-attachment" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiResponsiveMargin"  type="Accept" press="onExport2" />
+                </m:HBox>
+            </m:items>
+        </m:FlexBox>
+        <m:FlexBox width="100%" id="Kflexid1" height="100%" direction="Column" alignItems="Center">
+            <m:items>
+                <!-- <m:ScrollContainer focusable="false" height="90%" horizontal="true" vertical="false" width="auto"> -->
+                <m:Table showNoData="false" mode="SingleSelectMaster" growing="true" growingThreshold="20" growingScrollToLoad="true" id="tableReportedTieFake" items="{/Rowsets/Rowset/Row}" class="sapUiSizeCompact">
+                        <m:items>
+                            <m:ColumnListItem type="Active" id="itemFake">
+                                <!-- <m:cells>
+                                    <m:Text text="{INSDATE}" wrapping="true" />
+                                    <m:Text text="{SHIFT}" wrapping="true" />
+                                    <m:Text text="{AUFNR}" wrapping="true" />
+                                    <m:Text text="{KTKID}" wrapping="true"/>
+                                    <m:Text text="{MATNR}" wrapping="true" />
+                                    <m:Text text="{Y_KALITE_FLM}" wrapping="true" />
+                                    <m:Text text="{Y_CAP_FLM_MM}" wrapping="true" />
+                                    <m:Text text="{Y_EBAT}" wrapping="true" />
+                                    <m:Text text="{Y_BOY_KTK}" wrapping="true" />
+                                    <m:Text text="{Y_KUTUK_MENSEI}" wrapping="true" />
+                                    <m:Text text="{Y_TASLAMA}" wrapping="true" />
+                                    <m:Text text="{Y_DOKUM}" wrapping="true" />
+                                    <m:Text text="{REASON_TYPE}" wrapping="true" />
+                                    <m:Text text="{REASON}" wrapping="true" />
+                                    <m:Text text="{DESCRIPTION}" wrapping="true" />
+                                    <m:Text text="{WEIGHT}" wrapping="true" />
+                                </m:cells> -->
+                            </m:ColumnListItem>
+                        </m:items>
+                        <m:columns>
+                            <m:Column id="column1F" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Tarih" id="label1"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column id="column2F" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="Vardiya" id="label2"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column id="column3F" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="ÜRETİM SİP NO" id="label3"/>
+                                </m:header>
+                            </m:Column>
+                           
+                            <m:Column id="column4F" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="KTKID" id="label4"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column id="column5F" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="MATNR" id="label5"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column id="column6F" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="KALİTE" id="label6"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column id="column7F" hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="ÇAP" id="label7"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column  hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="EBAT"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column  hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="BOY"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column  hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="MENSEI"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column  hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="TASLAMA"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column  hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="DOKUM"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column  hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="REASON_TYPE"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column  hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="REASON"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column  hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="AÇIKLAMA"/>
+                                </m:header>
+                            </m:Column>
+                            <m:Column  hAlign="Center">
+                                <m:header>
+                                    <m:Label design="Bold" text="AĞIRLIK"/>
+                                </m:header>
+                            </m:Column>
+                        </m:columns>
+                    </m:Table>
+                <m:ScrollContainer height="120%"  vertical="true" focusable="true">
+                    <m:Table noDataText="Kayıtlı veri bulunamadı" mode="SingleSelectMaster" growing="true" growingThreshold="20" growingScrollToLoad="true" id="tableReportedTie3" items="{/Rowsets/Rowset/Row}" class="sapUiSizeCompact">
+                        <m:items>
+                            <m:ColumnListItem type="Active" id="item6">
+                                <m:cells>
+                                    <m:Text text="{INSDATE}" wrapping="true" />
+                                    <m:Text text="{SHIFT}" wrapping="true" />
+                                    <m:Text text="{AUFNR}" wrapping="true" />
+                                    <m:Text text="{KTKID}" wrapping="true"/>
+                                    <m:Text text="{MATNR}" wrapping="true" />
+                                    <m:Text text="{Y_KALITE_FLM}" wrapping="true" />
+                                    <m:Text text="{Y_CAP_FLM_MM}" wrapping="true" />
+                                    <m:Text text="{Y_EBAT}" wrapping="true" />
+                                    <m:Text text="{Y_BOY_KTK}" wrapping="true" />
+                                    <m:Text text="{Y_KUTUK_MENSEI}" wrapping="true" />
+                                    <m:Text text="{Y_TASLAMA}" wrapping="true" />
+                                    <m:Text text="{Y_DOKUM}" wrapping="true" />
+                                    <m:Text text="{REASON_TYPE}" wrapping="true" />
+                                    <m:Text text="{REASON}" wrapping="true" />
+                                    <m:Text text="{DESCRIPTION}" wrapping="true" />
+                                    <m:Text text="{WEIGHT}" wrapping="true" />
+                                </m:cells>
+                            </m:ColumnListItem>
+                        </m:items>
+                        <m:columns>
+                            <m:Column id="column1" hAlign="Center">
+                            </m:Column>
+                            <m:Column id="column2" hAlign="Center">
+                            </m:Column>
+                            <m:Column id="column3" hAlign="Center">
+                            </m:Column>
+                            <m:Column id="column4" hAlign="Center">
+                            </m:Column>
+                            <m:Column id="column5" hAlign="Center">
+                            </m:Column>
+                            <m:Column id="column6" hAlign="Center">
+                            </m:Column>
+                            <m:Column id="column7" hAlign="Center">
+                            </m:Column>
+                            <m:Column  hAlign="Center">
+                            </m:Column>
+                            <m:Column  hAlign="Center">
+                            </m:Column>
+                            <m:Column  hAlign="Center">
+                            </m:Column>
+                            <m:Column  hAlign="Center">
+                            </m:Column>
+                            <m:Column  hAlign="Center">
+                            </m:Column>
+                            <m:Column  hAlign="Center">
+                            </m:Column>
+                            <m:Column  hAlign="Center">
+                            </m:Column>
+                            <m:Column  hAlign="Center">
+                            </m:Column>
+                            <m:Column  hAlign="Center">
+                            </m:Column>
+                        </m:columns>
+                    </m:Table>
+                </m:ScrollContainer>
+            </m:items>
+        </m:FlexBox>
+    </m:FlexBox>
+</mvc:View>

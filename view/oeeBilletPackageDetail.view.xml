@@ -1,0 +1,156 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" controllerName="customActivity.controller.oeeBilletPackageDetail" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core">
+    <Page showNavButton="false" showHeader="false">
+        <content>
+
+ 
+            <OverflowToolbar>
+                <content>
+                    <Button text="{i18n>OEE_LABEL_TODAY}" press="setTodayMain" class="sapUiSmallMarginBegin" icon="sap-icon://appointment" />
+                    <DateRangeSelection visible="true" id="idDatePicker" change ="getOrderFilter" width="20rem" valueFormat="dd.MM.yyyy" delimiter="-" displayFormat="dd.MM.yyyy" class="sapUiSmallMarginEnd sapUiSmallMarginBegin" />
+            <!--        <ComboBox id="searchFieldCASTID" width="13rem" placeholder="{i18n>OEE_LABEL_CASTNO}" items="{castFilterModel>/}" class="sapUiSmallMarginEnd">
+                        <core:ListItem text="{castFilterModel>CASTID}" key="{castFilterModel>CASTID}" />
+                    </ComboBox> -->
+                    <ComboBox id="searchFieldOrder" width="13rem" placeholder="{i18n>titleOrderNo}" items="{orderFilterModel>/Row}" class="sapUiSmallMarginEnd">
+                        <core:ListItem text="{orderFilterModel>AUFNR}" key="{orderFilterModel>AUFNR}" />
+                    </ComboBox>
+                    <Button text="{i18n>titleSearch}" width="4rem" press="getPackageDetailList" />
+                </content>
+            </OverflowToolbar>
+             <FlexBox backgroundDesign="Solid" height="50px" alignItems="Center" justifyContent="Start" class="tracerFlex">
+
+                       <Label width="10px" />
+                       <Label text="Üretilen Toplam Paket Sayısı: " width="210px" design="Bold" />
+                        <Label enabled="false" text="{packageQuanDetail>/0/TOTAL_QUAN}" width="90px" design="Bold" />                    
+                         <Label text="Teyit Başarısız Paket Sayısı: " width="210px" design="Bold" />
+                        <Label enabled="false" text="{packageQuanDetail>/0/CONFIRM_ERROR}" width="90px" design="Bold" /> 
+                        <Label text="Teyit Verilmemiş Paket Sayısı: " width="220px" design="Bold" />
+                        <Label enabled="false" text="{packageQuanDetail>/0/CONFIRM_WAIT}" width="90px" design="Bold" />
+		<Label text="Toplam Planlanan Miktar Sayısı: " width="230px" design="Bold" />
+                        <Label enabled="false" text="{packageTotalPlanned>/0/CHAR_DEGER}" width="90px" design="Bold" />
+
+                    </FlexBox>
+
+      <FlexBox backgroundDesign="Solid" height="50px" alignItems="Center" justifyContent="Start" class="tracerSuccessFlex">
+
+                         <Label width="10px" />
+                         <Label text="Teyit Başarılı Paket Sayısı: " width="200px" design="Bold" />
+                        <Label enabled="false" text="{packageQuanDetail>/0/CONFIRM_OK}" width="90px" design="Bold" />
+                        <Label text="Standart Paket Sayısı: " width="170px" design="Bold" />
+                        <Label enabled="false" text="{packageQuanDetail>/0/STANDART_QTY}" width="90px" design="Bold" />
+                        <Label text="Sapma Paket Sayısı: " width="165px" design="Bold" />
+                        <Label enabled="false" text="{packageQuanDetail>/0/SAPMA_QTY}" width="90px" design="Bold" />
+                         <Label text="Standart Dışı Paket Sayısı: " width="200px" design="Bold" />
+                        <Label enabled="false" text="{packageQuanDetail>/0/STDDISI_QTY}" width="90px" design="Bold" /> 
+
+                    </FlexBox>
+            <Table id="tblPackageDetail"  growing="true" growingScrollToLoad="true" growingThreshold="200" includeItemInSelection="false" items="{
+        path: 'packageDetailList>/'
+    }" inset="false">
+                <columns>
+                    <Column width="4rem" hAlign="Center">
+                        <Label text="{i18n>OEE_PACKAGE_DETAIL_DATE}" />
+                    </Column>		
+                    <Column width="4rem" hAlign="Center" >
+                        <Label text="{i18n>OEE_PACKAGE_DETAIL_VRD}" />
+                    </Column>
+                    <Column width="5rem" hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_ROAD}" />
+                    </Column>
+                    <Column width="5rem"  hAlign="Center" vAlign="Center">
+                        <Label text="{i18n>OEE_LABEL_BAG_ID}" />
+                     </Column>
+                    <Column width="4rem" hAlign="Center">
+                        <Label text="{i18n>OEE_PACKAGE_DETAIL_WORKORDER}" />
+                    </Column>
+                    <Column width="4rem" hAlign="Center">
+                        <Label text="{i18n>OEE_PACKAGE_DETAIL_DNO}" />
+                    </Column>
+                    <Column width="4rem" hAlign="Center">
+                        <Label text="{i18n>OEE_PACKAGE_DETAIL_KTKID}" />
+                    </Column>
+                    <Column width="3rem" hAlign="Center">
+                        <Label text="{i18n>OEE_PACKAGE_DETAIL_CAP_MM}" />
+                    </Column>
+                    <Column width="4rem" hAlign="Center">
+                        <Label text="{i18n>OEE_PACKAGE_DETAIL_LENGTH}" />
+                    </Column>
+                    <Column width="4rem" hAlign="Center">
+                        <Label text="{i18n>OEE_PACKAGE_DETAIL_STANDART_CBK}" />
+                    </Column>
+                    <Column width="3rem" hAlign="Center">
+                        <Label text="{i18n>OEE_PACKAGE_DETAIL_KALITE_CBK}" />
+                    </Column>
+                    <Column width="3rem" hAlign="Center">
+                        <Label text="{i18n>OEE_PACKAGE_DETAIL_COUNT}" />
+                    </Column>
+                    <Column width="4rem" hAlign="Center">
+                        <Label text="{i18n>OEE_PACKAGE_DETAIL_STATU}" />
+                    </Column>
+                     <Column width="4rem" hAlign="Center">
+                        <Label text="Hata K." />
+                    </Column>
+                    <Column width="3rem" hAlign="Center">
+                        <Label text="{i18n>OEE_PACKAGE_DETAIL_WEIGHT}" />
+                    </Column>
+                    <Column hAlign="Center" width="5rem">
+                                <Label text="K.Ağırlığı" />
+                     </Column>
+                     <Column hAlign="Center" width="4rem">
+                                <Label text="Fark" />
+                     </Column>
+                    <Column width="5rem" hAlign="Center">
+                        <Label text="{i18n>OEE_PACKAGE_DETAIL_Y_ULKE}" />
+                    </Column>
+                    <Column width="5rem" hAlign="Center" >
+                                <Label text="{i18n>OEE_LABEL_CONF_NUMBER}" />
+                     </Column>
+                     <Column width="6rem" hAlign="Center" >
+                                <Label text="{i18n>OEE_LABEL_CONF_COUNTER}" />
+                     </Column>
+                    <Column width="5rem" hAlign="Center" >
+                                <Label text="{i18n>OEE_LABEL_CONF_STS}" />
+                     </Column>
+		<Column  visible="{= ${appData>/plant} === '3001'}" width="5rem" hAlign="Center" >
+                                <Label text="Teyit Türü" />
+                     </Column>
+                </columns>
+                <items>
+
+                    <ColumnListItem>                 
+                        <cells>
+                            <Text text="{packageDetailList>INSDATE}" />
+                            <Text text="{packageDetailList>SHIFT}" />
+                            <Text text="{packageDetailList>NAME}" />
+                            <Text text="{packageDetailList>ENTRY_ID}" />
+                            <Text text="{packageDetailList>AUFNR}" />
+                            <Text text="{packageDetailList>CASTID}" />
+                            <Text text="{packageDetailList>KTKID}" />
+                            <Text text="{=Math.round((${packageDetailList>Y_CAP_CBK_MM})*10)/10}" />
+                            <Text text="{=Math.round((${packageDetailList>Y_BOY_CBK_M})*10)/10}" />
+                             <Text text="{packageDetailList>Y_STANDART_CBK}" />
+                            <Text text="{packageDetailList>Y_KALITE_CBK}" />
+                            <Text text="{packageDetailList>PACKAGE_COUNT}" />
+                            <Text text="{packageDetailList>Y_STATU}" />
+                            <Text text="{packageDetailList>Y_HATAKODU}" />
+                            <Text text="{packageDetailList>LABEL_WEIGHT}" />
+                            <Text text="{packageDetailList>PACKAGE_NET_WEIGHT}" />
+                            <Text text="{packageDetailList>FARK}" />
+                            <Text text="{packageDetailList>Y_ULKE}" />
+                            <Text text="{packageDetailList>CONF_NUMBER}" />
+                            <Text text="{packageDetailList>CONF_COUNTER}" />
+                            <Text text="{packageDetailList>QUEUE_MESSAGE}" />
+		     <Text visible="{= ${appData>/plant} === '3001'}" text="{packageDetailList>CONF_TYPE}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <footer>
+            <OverflowToolbar class="sapUiMediumMarginTop">
+         <Button icon="sap-icon://excel-attachment" text="{i18n>OEE_LABEL_EXPORT_EXCEL}" press="onDataExport" class="sapUiSmallMarginBegin" type="Accept" />
+         <ToolbarSpacer />
+         <Button type="Emphasized" id="btnDailyData" text="Günlük Veriler" press="getPackageDailyList" />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

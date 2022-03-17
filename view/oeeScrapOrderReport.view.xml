@@ -1,0 +1,109 @@
+<core:View xmlns:core="sap.ui.core" xmlns:suite="sap.suite.ui.commons" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns="sap.m" controllerName="customActivity.controller.oeeScrapOrderReport">
+    <Page showHeader="false" showNavButton="false">
+        <FlexBox height="70px" alignItems="Center" justifyContent="Center">
+            <items>
+                <HBox height="60px" alignItems="Center" justifyContent="Center">
+                    <Text text="{i18n>OEE_LABEL_CASTNO} :" width="100px" />
+                    <VBox width="35px">
+                        <Button type="Reject" press="onChangeCastNumber" icon="sap-icon://less" />
+                    </VBox>
+                    <VBox width="135px">
+                        <ComboBox id="comboboxCastNo" selectionFinish="onSearchCastNo" change="changeCastingNumber" width="130px" items="{path: 'comboboxCastModel>/Row'}" showSecondaryValues="true">
+                            <core:ListItem key="{comboboxCastModel>CASTID}" text="{comboboxCastModel>CASTID}" additionalText="{comboboxCastModel>COPPER_RATE}" />
+                        </ComboBox>
+                    </VBox>
+                    <VBox width="45px">
+                        <Button type="Accept" press="onChangeCastNumber" icon="sap-icon://add" />
+                    </VBox>
+                    <VBox>
+                        <DateRangeSelection id="idDatePicker" valueFormat="dd.MM.yyyy" delimiter="-" displayFormat="dd.MM.yyyy" change="getCastIDList" />
+                    </VBox>
+                </HBox>
+                <HBox height="70px" alignItems="Center" justifyContent="Center">
+                    <Text width="100px" />
+                    <Text text="{i18n>OEE_LABEL_REPORT_TYPE} :" width="100px" />
+                    <ComboBox id="reportType" change="changeReportType" selectedKey="Malzeme" selectionFinish="onSearchCastNo" width="200px">
+                        <core:Item key="Malzeme" text="Malzeme" />
+                        <core:Item key="Hurda Tipi" text="Hurda Tipi" />
+                    </ComboBox>
+                </HBox>
+                <HBox height="70px" alignItems="Center"  justifyContent="Center">
+                    <Text width="100px" />
+                    <Button press="onPressScrapCharge" text="{i18n>OEE_BTN_SEARCH}" type="Emphasized" width="10rem" icon="sap-icon://search" />
+                </HBox>
+            </items>
+        </FlexBox>
+
+        <Table id="idScrapChargeTable" inset="false" width="100%" items="{tableCharges>/Row}" growing="true" growingScrollToLoad="true" growingThreshold="100" contextualWidth="Auto" popinLayout="GridSmall">
+            <columns>
+                <Column width="6rem" minScreenWidth="tablet" demandPopin="true">
+                    <Label text="{i18n>OEE_LABEL_SCRAP_TYPE}" />
+                </Column>
+                <Column width="6rem" minScreenWidth="tablet" demandPopin="true">
+                    <Label text=" {i18n>OEE_LABEL_CHARGE1}" />
+                </Column>
+                <Column width="6rem" minScreenWidth="tablet" demandPopin="true">
+                    <Label text="{i18n>OEE_LABEL_CHARGE2}" />
+                </Column>
+                <Column width="6rem" minScreenWidth="tablet" demandPopin="true">
+                    <Label text="{i18n>OEE_LABEL_CHARGE3}" />
+                </Column>
+                <Column width="6rem" minScreenWidth="tablet" demandPopin="true">
+                    <Label text="{i18n>OEE_LABEL_CHARGE4}" />
+                </Column>
+                <Column width="6rem" minScreenWidth="tablet" demandPopin="true">
+                    <Label text="{i18n>OEE_LABEL_CHARGE5}" />
+                </Column>
+                <Column width="6rem" minScreenWidth="tablet" demandPopin="true">
+                    <Label text="{i18n>OEE_LABEL_SUM}" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{tableCharges>SCRAPCODE}" tooltip="{characteristic}" />
+                        <Text text="{tableCharges>CHARGE1}" />
+                        <Text text="{tableCharges>CHARGE2}" />
+                        <Text text="{tableCharges>CHARGE3}" />
+                        <Text text="{tableCharges>CHARGE4}" />
+                        <Text text="{tableCharges>CHARGE5}" />
+                        <Text text="{tableCharges>SUMQUAN}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+        <Table id="idScrapChargeTotalTable" inset="false" width="100%" growing="true" growingScrollToLoad="true" growingThreshold="100" contextualWidth="Auto" popinLayout="GridSmall">
+            <columns>
+                <Column width="6rem" minScreenWidth="tablet" demandPopin="true">
+                    <Label text="{i18n>OEE_LABEL_TOTAL}" />
+                </Column>
+                <Column width="6rem" minScreenWidth="tablet" demandPopin="true"></Column>
+                <Column width="6rem" minScreenWidth="tablet" demandPopin="true"></Column>
+                <Column width="6rem" minScreenWidth="tablet" demandPopin="true"></Column>
+                <Column width="6rem" minScreenWidth="tablet" demandPopin="true"></Column>
+                <Column width="6rem" minScreenWidth="tablet" demandPopin="true"></Column>
+                <Column width="6rem" minScreenWidth="tablet" demandPopin="true"></Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="" />
+                        <Text id="sumCharge1" text="" />
+                        <Text id="sumCharge2" text="" />
+                        <Text id="sumCharge3" text="" />
+                        <Text id="sumCharge4" text="" />
+                        <Text id="sumCharge5" text="" />
+                        <Text id="sumCharges" text="" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+
+        <footer>
+            <OverflowToolbar>
+                <Button id="save" text="{i18n>OEE_LABEL_FORMEN_SCRAP}" icon="sap-icon://open-command-field" press="getScrapChargeQuantity"></Button>
+                <ToolbarSpacer />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</core:View>

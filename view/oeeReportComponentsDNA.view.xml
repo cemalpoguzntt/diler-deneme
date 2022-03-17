@@ -1,0 +1,198 @@
+<core:View xmlns:core="sap.ui.core"
+    xmlns:suite="sap.suite.ui.commons"
+    xmlns:l="sap.ui.layout"
+    xmlns="sap.m" controllerName="customActivity/controller/oeeReportComponentsDNA">
+    <Page id="idPage" showHeader="false" showNavButton="false">
+        <content>
+            <l:VerticalLayout width="100%">
+                <core:Fragment fragmentName='customActivity.fragmentView.zorderCardFragmentDNASCT' type='XML' id="orderCardFragment" />
+                <FlexBox width="100%" direction="Row">
+                    <FlexBox width="15%">
+                        <IconTabBar id="reportComponentsIconTabBar" expanded="true" expandable="true" select="onSelectReportComponentsIconTabBar">
+                            <items>
+                                <IconTabFilter key="RAW_QUANTITY" icon="{path : 'P', formatter : 'sap.oee.ui.Formatter.formatIconForIconTabFilterForTimeElementCategory'}" text="{i18n>OEE_LABEL_RAW_QUANTITY}" />
+                            </items>
+                        </IconTabBar>
+                    </FlexBox>
+                    <FlexBox width= "70%" direction="Row" id="idcheckDeletedBatchflexbox" visible="false">
+                        <FlexBox id="emptyFlexbox1" height="5%" />
+                        <ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
+                            <Table id="idGetProductionData" items="{path:'/'}" width="100%">
+                                <columns>
+                                    <Column hAlign="Center">
+                                        <Text text="" />
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="SCTEL1" />
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="SCTEL2" />
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="SCTEL3" />
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="SCTEL4" />
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="TOPLAM" />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem vAlign="Middle">
+                                        <cells>
+                                            <Text text="{NAME}" />
+                                            <Text text="{SCTEL1}" />
+                                            <Text text="{SCTEL2}" />
+                                            <Text text="{SCTEL3}" />
+                                            <Text text="{SCTEL4}" />
+                                            <Text text="{TOTAL}" />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </ScrollContainer>
+                        <FlexBox id="emptyFlexbox2" height="5%" width="1400%"/>
+                        <ScrollContainer height="100%" width="36%" vertical="true" focusable="true">
+                            <Table id="checkDeletedBatch" items="{path: '/'}" width="97%"  visible="true">
+                                <columns>
+                                    <Column width="auto" hAlign="Center" vAlign="Middle" >
+                                        <Label text="İlk okutulacak parti" textAlign="Center" />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem>
+                                        <cells>
+                                            <Text text="{BARCODE}" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </ScrollContainer>
+                    </FlexBox>
+                </FlexBox>
+                <Toolbar class="whiteBackGround">
+                    <CheckBox id="coProductCheckBox" text="{i18n>OEE_LABEL_CO_PRODUCT}" selected="false" select="onSelectCheckBoxFilters" />
+                    <CheckBox id="byProductCheckBox" text="{i18n>OEE_LABEL_BY_PRODUCT}" selected="false" select="onSelectCheckBoxFilters" />
+                    <CheckBox id="backflushCheckBox" text="{i18n>OEE_LABEL_BACKFLUSH}" selected="false" select="onSelectCheckBoxFilters" />
+                    <CheckBox id="nonBackflushCheckBox" text="{i18n>OEE_LABEL_NON_BACKFLUSH}" selected="false" select="onSelectCheckBoxFilters" />
+                </Toolbar>
+                <FlexBox height="40px" visible="{= ${appData>/visibleJSON/CHARGE_NO_FLEXBOX} === 'CHARGE_NO_FLEXBOX' ? true : false }">
+                    <Label text="{i18n>OEE_LABEL_CHARGE_NO}" />
+                    <Select id="chargeID" width="80px" items="{chargeModel>/}" forceSelection="true" visible="{= ${appData>/visibleJSON/CHARGE_NO_FLEXBOX} === 'CHARGE_NO_FLEXBOX' ? true : false }">
+                        <core:Item key="{chargeModel>CHARGE}" text="{chargeModel>CHARGE}" />
+                    </Select>
+                </FlexBox>
+                <!--CanOylumlu-->
+                <FlexBox id="filmasinReportProductionQR" direction="Column" alignItems="Center" visible="false">
+                    <Input xmlns="sap.m" description="QR-Parti" filterSuggests="false" liveChange="changeBarcodeInput"/>
+                </FlexBox>
+                <!--CanOylumlu-->
+                <Table id="componentsTable" editable="true" items="{/modelData/rawMaterialData}">
+                    <infoToolbar>
+                        <OverflowToolbar visible="{= ${appData>/node/workcenterID} === '10000366' || ${appData>/node/workcenterID} === '10000367' || ${appData>/node/workcenterID} === '10000368'}">
+                            <Label text="{i18n>OEE_LABEL_CYCLE_NO}" />
+                            <Text id="cycleNoText" text="{cycleNo>/Row/0/CHAR_VALUE}" class="sapUiSmallMarginEnd" />
+                            <Label text="{i18n>OEE_LABEL_ERP_GRUP_NO}" />
+                            <Text id="erpGrupNoText" text="{erpGroupNo>/Row/0/GRUP_NO}" />
+                        </OverflowToolbar>
+                    </infoToolbar>
+                    <columns>
+                        <Column>
+                            <Label text="{i18n>OEE_LABEL_MAT}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>OEE_LABEL_PLANNED_QTY}" />
+                        </Column>
+                        <Column visible="{appData>/visibleJSON/TIP}">
+                            <Label text="Tip" />
+                        </Column>
+                        <Column visible="{appData>/visibleJSON/CAP}">
+                            <Label text="Kontrol Çapı(mm)" />
+                        </Column>
+                        <Column visible="{appData>/visibleJSON/LOCATION}">
+                            <Label text="Beşik No" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>OEE_LABEL_ACTUAL_QTY}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>OEE_LABEL_UOM}" />
+                        </Column>
+                        <Column visible="{/modelData/visibilitySpecificData/batchRelevant}">
+                            <Label text=" {= ${appData>/visibleJSON/CASTING_NUMBER_COLUMN} === 'CASTING_NUMBER_COLUMN' ? 'Döküm Numarası' : 'Parti Numarası'} " />
+                        </Column>
+                        <Column visible="{/modelData/visibilitySpecificData/serialRelevant}">
+                            <Label text="{i18n>OEE_LABEL_SERIAL_NUM}" />
+                        </Column>
+                        <Column visible="{/modelData/visibilitySpecificData/reasonCodeRelevant}">
+                            <Label text="{i18n>OEE_LABEL_RC}" />
+                        </Column>
+                        <Column visible="{/modelData/visibilitySpecificData/commentsRelevant}">
+                            <Label text="{i18n>OEE_LABEL_COMMENTS}" />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>OEE_LABEL_DETAILS}" />
+                        </Column>
+                        <Column visible="{= ${appData>/visibleJSON/COLUMN_COMPONENT} === 'COLUMN_COMPONENT' ? true : false}">
+                            <Label text="{i18n>OEE_LABEL_COMPONENTS}" />
+                        </Column>
+                        <Column>
+                            <Label text=" {= ${appData>/visibleJSON/CASTING_TOTAL_COLUMN} === 'CASTING_TOTAL_COLUMN' ? 'Döküm Toplam' : 'Her vardiya için bildirilen miktar'} " />
+                        </Column>
+                        <Column>
+                            <Label text="{i18n>OEE_LABEL_DATE_TIME_LAST_REPORTED}" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{matDesc}" />
+                                <Text text="{parts : [{path:'qtyReq'}, {path:'defaultUOMTextForNonEditableFields'},{path : 'appData>/decimalPrecision'}], formatter : 'sap.oee.ui.Formatter.formatQuantityAndUOMText'}" />
+                                <RadioButtonGroup id="rbg1" columns="2" width="100%" visible="{= ${MERKEZ} === undefined ? false:true}" select="onRadioSelectChanged">
+                                    <RadioButton id="idRadioMerkez" text="MERKEZ" selected="{= ${MERKEZ} === 'X' ? true:false}" />
+                                    <RadioButton id="idRadioCevre" text="ÇEVRE" selected="{= ${CEVRE} === 'X' ? true:false}" />
+                                </RadioButtonGroup>
+                                <Input value="" />
+                                <Select xmlns="sap.m" id="select0" selectedKey="0" width="80%">
+                                    <items>
+                                        <core:Item xmlns:core="sap.ui.core" key="0" text="" id="item0"/>
+                                        <core:Item xmlns:core="sap.ui.core" key="1" text="1" id="item1"/>
+                                        <core:Item xmlns:core="sap.ui.core" key="2" text="2" id="item2"/>
+                                        <core:Item xmlns:core="sap.ui.core" key="3" text="3" id="item3"/>
+                                        <core:Item xmlns:core="sap.ui.core" key="4" text="4" id="item4"/>
+                                        <core:Item xmlns:core="sap.ui.core" key="5" text="5" id="item5"/>
+                                        <core:Item xmlns:core="sap.ui.core" key="6" text="6" id="item6"/>
+                                        <core:Item xmlns:core="sap.ui.core" key="MERKEZ" text="MERKEZ" id="item7"/>
+                                    </items>
+                                </Select>
+                                <Input value="{qtyReportedNew}" change="onChangeValidateQuantity" />
+                                <Input value="{defaultUOMText}" showSuggestion="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelpRequest" enabled="false"/>
+                                <Input id="idBatch" value="{batchNumber}" visible="{batchRelevant}" submit="changeBarcodeInput" />
+                                <Input value="{serialNumber}" visible="{serialRelevant}" />
+                                <Button text="{i18n>OEE_BTN_ASSIGN}" icon="sap-icon://value-help" visible="{/modelData/visibilitySpecificData/reasonCodeRelevant}" press="onClickOpenReasonCodeUtilityPopup" />
+                                <Button text="{parts : [{path : 'i18n>OEE_BTN_ADD'},{path:'comments'}], formatter : 'sap.oee.ui.Formatter.reasonCodeButttonFormatter'}" icon="sap-icon://comment" press="onClickAddComments" />
+                                <Button text="{i18n>OEE_LABEL_DETAILS}" icon="sap-icon://inspection" enabled="{path : 'reportedByTimeStamp', formatter : '.checkIfValueReported'}" press="onClickShowListOfProductionData" />
+                                <Button text="{i18n>OEE_LABEL_COMPONENTS}" icon="sap-icon://inspection" press="openBarcodeListFragment" />
+                                <Text text="{parts : [{path:'qtyReported'}, {path:'defaultUOMTextForNonEditableFields'},{path : 'appData>/decimalPrecision'}], formatter : 'sap.oee.ui.Formatter.formatQuantityAndUOMText'}" />
+                                <Text text="{parts : [{path:'reportedByTimeStamp'}, {path: 'appData>/plantTimezoneOffset'}, {path: 'appData>/plantTimezoneKey'}], formatter : 'sap.oee.ui.Formatter.formatTimeStampWithoutLabel'}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </l:VerticalLayout>
+        </content>
+        <footer>
+            <Bar>
+                <contentLeft>
+                    <Button id="increaseCycleNo" enabled="true" text="{i18n>OEE_BTN_INC_CYCLE_NO}" press="increaseCycleNo" type="Accept" visible="{= ${appData>/node/workcenterID} === '10000366' || ${appData>/node/workcenterID} === '10000367' || ${appData>/node/workcenterID} === '10000368'}" icon="sap-icon://tree"></Button>
+                </contentLeft>
+                <contentRight>
+                    <Button id="yieldBasedConsumptionButton" enabled="false" text="{i18n>OEE_BTN_YIELD_BASED_CONSUMPTION}" icon="sap-icon://tree" press="onClickYieldBasedConsumption" visible="false"></Button>
+                    <Button id="readBarcode" text="{i18n>OEE_LABEL_READ_BARCODE}" visible="false" icon="sap-icon://bar-code" press="onClickReadBarcode"></Button>
+                    <Button id="saveButton" enabled="false" text="{i18n>OEE_BTN_SAVE}" icon="sap-icon://save" press="onClickReportQuantity"></Button>
+                </contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</core:View>

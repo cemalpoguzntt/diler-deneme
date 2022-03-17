@@ -1,0 +1,123 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:m="sap.m" xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="customActivity.controller.oeeBilletConsumption" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.commons">
+	<Page id="detail" showHeader="false" showNavButton="false" icon="sap-icon://action" class="sapUiStdPage">
+		<content>
+			<HBox class="sapUiTinyMargin">
+				<Label text="" />
+				<Select items="{path: '/'}" forceSelection="false" change="getBilletYieldData" width="140px" id="selectWorkorder" visible="false">
+					<core:Item key="{AUFNR}" text="{AUFNR}" /> </Select>
+				<DatePicker id="idDatePicker" valueFormat="dd.MM.yyyy" delimiter="-" displayFormat="dd.MM.yyyy" width="10rem" class="sapUiTinyMarginBegin" />
+				<Button text="{i18n>OEE_LABEL_CALCULATE}" press="getBilletYieldData" type="Accept" class="sapUiTinyMarginBegin" visible="false" />
+				<HBox alignItems="Inherit" width="auto" justifyContent="Start">
+					<Label text="Vardiya" width="6rem" class="sapUiSmallMarginBegin sapUiSmallMarginTop" design="Bold" />
+					<ComboBox items="{/List}" width="140px" id="selectShift" visible="true">
+						<core:Item key="{Value}" text="{Value}" /> </ComboBox>
+					<Label text="Yol" width="3rem" class="sapUiSmallMarginBegin sapUiSmallMarginTop" design="Bold" />
+					<ComboBox items="{/List}" width="140px" id="selectARBPL" visible="true">
+						<core:Item key="{Value}" text="{Value}" /> </ComboBox>
+				</HBox>
+				<Input id="inputsipNo" placeholder="Sipariş No" class="sapUiTinyMarginBegin" />
+				<Label text=" " width="2rem" />
+				<Input id="inputDNo" placeholder="Döküm No" class="sapUiTinyMarginBegin" />
+				<Label text=" " width="2rem" />
+				<Button text="Ara" press="getTableFilter" class="sapUiTinyMarginBegin" />
+				<Select id="idSessionSelect" width="18rem" forceSelection="false" class="sapUiTinyMarginBegin" visible="false">
+					<core:ListItem text="" key="" />
+					<core:ListItem text="1. Vardiya (00:00 - 08:00)" key="00:00:00-08:00:00" />
+					<core:ListItem text="2. Vardiya (08:00 - 16:00)" key="08:00:00-16:00:00" />
+					<core:ListItem text="3. Vardiya (16:00 - 24:00)" key="16:00:00-24:00:00" /> </Select>
+				<!-- <Button  press="onPressYieldReport" class="sapUiTinyMarginBegin" icon="sap-icon://shortcut" />-->
+			</HBox>
+			<Table id="tblBilletYield" selectionChange="billetItemSelected" includeItemInSelection="false" items="{path : 'confirmBilletYield>/'}" noDataText="Veri yok">
+				<columns>
+					<Column width="2rem" hAlign="Center" vAlign="Center">
+						<Label text="{i18n>OEE_PACKAGE_DETAIL_VRD_Y}" class="billetConsumptionLabel" /> </Column>
+					<Column width="2rem" hAlign="Center" vAlign="Center">
+						<Label text="{i18n>OEE_LABEL_ROAD_Y}" class="billetConsumptionLabel" /> </Column>
+					<Column width="5rem" hAlign="Center" vAlign="Center">
+						<Label text="{i18n>titleOrderNo_Y}" class="billetConsumptionLabel" /> </Column>
+					<Column width="5rem" hAlign="Center" vAlign="Center">
+						<Label text="{i18n>OEE_LABEL_CAST_NO_Y}" class="billetConsumptionLabel" /> </Column>
+					<Column width="2rem" hAlign="Center" vAlign="Center">
+						<Label text="{i18n>OEE_LABEL_SIZE_Y}" class="billetConsumptionLabel" /> </Column>
+					<Column width="2rem" hAlign="Center" vAlign="Center">
+						<Label text="{i18n>OEE_LABEL_LENGTH_Y}" class="billetConsumptionLabel" /> </Column>
+					<Column width="4rem" hAlign="Center" vAlign="Center">
+						<Label text="{i18n>OEE_LABEL_KTKKALITE_Y}" class="billetConsumptionLabel" /> </Column>
+					<Column width="4rem" hAlign="Center" vAlign="Center">
+						<Label text="{i18n>OEE_LABEL_BILLET_NO_Y}" class="billetConsumptionLabel" /> </Column>
+					<Column width="4rem" hAlign="Center" vAlign="Center">
+						<Label text="{i18n>OEE_LABEL_BILLET_TEORIC_WEIGHT_Y}" class="billetConsumptionLabel" /> </Column>
+					<Column width="4rem" hAlign="Center" vAlign="Center">
+						<Label text="{i18n>OEE_LABEL_ROD_DIAMETER_Y}" class="billetConsumptionLabel" /> </Column>
+					<Column width="4rem" hAlign="Center" vAlign="Center">
+						<Label text="{i18n>OEE_LABEL_ROD_LENGTH_Y}" class="billetConsumptionLabel" /> </Column>
+					<Column width="4rem" hAlign="Center" vAlign="Center">
+						<Label text="{i18n>OEE_LABEL_ROD_STANDARD_Y}" class="billetConsumptionLabel" /> </Column>
+					<Column width="4rem" hAlign="Center" vAlign="Center">
+						<Label text="{i18n>OEE_LABEL_ROD_QUALITY_Y}" class="billetConsumptionLabel" /> </Column>
+					<Column width="3rem" hAlign="Center" vAlign="Center">
+						<Label text="{i18n>OEE_LABEL_UCBAS_UCKUYRUK_Y}" class="billetConsumptionLabel" /> </Column>
+					<Column width="4rem" hAlign="Center" vAlign="Center">
+						<Label text="{i18n>OEE_LABEL_HB_Y}" class="billetConsumptionLabel" /> </Column>
+					<Column width="4rem" hAlign="Center" vAlign="Center">
+						<Label text="{i18n>OEE_LABEL_SHORT_PIECE_Y}" class="billetConsumptionLabel" /> </Column>
+					<Column width="2rem" hAlign="Center" vAlign="Center" visible="false">
+						<Label text="{i18n>OEE_LABEL_DESCALE_Y}" class="billetConsumptionLabel" /> </Column>
+					<Column width="2rem" hAlign="Center" vAlign="Center">
+						<Label text="{i18n>OEE_LABEL_DESCALE_Y}" class="billetConsumptionLabel" /> </Column>
+					<Column width="2rem" hAlign="Center" vAlign="Center">
+						<Label text="{i18n>OEE_LABEL_DEFLECTION_Y}" class="billetConsumptionLabel" /> </Column>
+					<Column width="4rem" hAlign="Center" vAlign="Center" visible="false">
+						<Label text="{i18n>OEE_LABEL_CBK_CNT}" class="billetConsumptionLabel" /> </Column>
+					<Column width="5rem" hAlign="Center" vAlign="Center">
+						<Label text="{i18n>OEE_LABEL_BUNDLE_COUNT}" class="billetConsumptionLabel" /> </Column>
+					<Column width="5rem" hAlign="Center" vAlign="Center">
+						<Label text="{i18n>OEE_LABEL_PACKAGE_W}" class="billetConsumptionLabel" /> </Column>
+					<Column width="5rem" hAlign="Center" vAlign="Center">
+						<Label text="{i18n>OEE_LABEL_YIELD_Y}" class="billetConsumptionLabel" /> </Column>
+					<Column width="2rem" hAlign="Center" vAlign="Center">
+						<Label text=" " class="billetConsumptionLabel" /> </Column>
+					<Column width="2rem" hAlign="Center" vAlign="Center">
+						<Label text=" " class="billetConsumptionLabel" /> </Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{confirmBilletYield>SHIFT}" class="billetConsumptionText" />
+							<Text text="{= ${confirmBilletYield>ARBPL}.substr(${confirmBilletYield>ARBPL}.length-1, 1) }" class="billetConsumptionText" />
+							<Text text="{confirmBilletYield>AUFNR}" class="billetConsumptionText" />
+							<Text text="{confirmBilletYield>CASTID}" class="billetConsumptionText" />
+							<Text text="{= Math.round((${confirmBilletYield>Y_EBAT})*10)/10}" class="billetConsumptionText" />
+							<Text text="{= Math.round((${confirmBilletYield>Y_BOY_KTK})*10)/10}" class="billetConsumptionText" />
+							<Text text="{confirmBilletYield>Y_KALITE_KTK}" class="billetConsumptionText" />
+							<Text text="{confirmBilletYield>COUNTKTK}" class="billetConsumptionText" />
+							<Text text="{confirmBilletYield>TEO_QUAN}" class="billetConsumptionText" />
+							<Text text="{confirmBilletYield>Y_CAP_CBK_MM}" class="billetConsumptionText" />
+							<Text text="{= Math.round((${confirmBilletYield>Y_BOY_CBK_M})*10)/10}" class="billetConsumptionText" />
+							<Text text="{confirmBilletYield>Y_STANDART_CBK}" class="billetConsumptionText" />
+							<Text text="{confirmBilletYield>Y_KALITE_CBK}" class="billetConsumptionText" />
+							<Text text="{confirmBilletYield>UCKUYRUK}" class="billetConsumptionText" />
+							<Text text="{confirmBilletYield>HB}" class="billetConsumptionText" />
+							<Text text="{confirmBilletYield>SHORT_PIECE}" class="billetConsumptionText" />
+							<Text text="{confirmBilletYield>TUFAL}" class="billetConsumptionText" />
+							<Text text="{confirmBilletYield>Y_SAPMA}" class="billetConsumptionText" />
+							<Text text="{confirmBilletYield>Y_STDDISI}" class="billetConsumptionText" />
+							<Text text="{confirmBilletYield>COUNTCBK}" class="billetConsumptionText" />
+							<Text text="{confirmBilletYield>BUNDLECOUNT}" class="billetConsumptionText" />
+							<Text text="{confirmBilletYield>LABEL_WEIGHT}" class="billetConsumptionText" />
+							<Text text="{confirmBilletYield>PERS}" class="billetConsumptionText" />
+							<Button icon="sap-icon://edit" press="onClickChangeBilletFragment" />
+							<Button icon="sap-icon://list" press="onClickOpenBilletFragment" /> </cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<footer>
+			<OverflowToolbar class="sapUiMediumMarginTop">
+				<Button id="shortPiece" text="{i18n>OEE_LABEL_SHORT_PIECE}" type="Accept" press="openShortPieceFragment" />
+				<ToolbarSpacer />
+				<Button id="btnYieldReport" text="{i18n>OEE_BTN_Y_CONFIRM_YIELD_REPORT}" press="onPressYieldReport" type="Emphasized" />
+				<Button id="btnYieldConfirm" text="{i18n>OEE_BTN_YIELD_CONFIRM}" type="Accept" press="onConfirmBilletYield" /> </OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

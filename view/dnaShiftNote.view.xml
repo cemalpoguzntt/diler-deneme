@@ -1,0 +1,17 @@
+<mvc:View xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:layout="sap.ui.layout" controllerName="customActivity.controller.dnaShiftNote" >
+    <FlexBox justifyContent="SpaceAround" alignItems="Center" direction="Row" width="100%" height="10%">    
+        <Label text="Tarih:" design="Bold"/>
+        <DatePicker  id="DateTimePicker1" width="auto" change="handleChange1" valueFormat="yyyy-MM-dd" displayFormat="dd-MM-yyyy" />
+        <Label text="Vardiya:" design="Bold"/>
+        <Select id="idShift" width="auto" >
+            <core:Item key="1" text="1"/>
+            <core:Item key="2" text="2"/>
+            <core:Item key="3" text="3"/>
+        </Select>
+        <Button id="idGetir" press="onPressGetir" text="Getir" type="Accept" />
+    </FlexBox>
+    <TextArea id="idNote" showExceededText="true" maxLength="5000" height="80%" width="100%" liveChange="handleLiveChange" valueState="None" valueLiveUpdate="true"/>
+    <FlexBox justifyContent="Center" alignItems="Center" direction="Row" width="100%" height="10%">
+        <Button id="idSave" press="onPressSave" text="Kaydet" type="Accept" />
+    </FlexBox>
+</mvc:View>

@@ -1,0 +1,31 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="customActivity.controller.Gun_Sayisi">
+    <Page showHeader="true" title="Responsive Page Title" showFooter="true" showNavButton="false">
+        <content>
+        	<FlexBox width="100%" direction="Column" justifyContent="Center" height="40%">
+        		
+        		 <FlexBox width="100%" justifyContent="Center" height="50%">
+            	</FlexBox>
+            	
+            	
+        	<FlexBox justifyContent="Center">	
+        	
+        	<FlexBox width="30%" justifyContent="Center">
+        		</FlexBox>
+        		
+            <FlexBox width="70%" id="box0" direction="Column" height="50%">
+            <Label text="Başlangıç Tarihini Seçiniz" design="Bold" width="100%" required="false" textDirection="Inherit" visible="true"/>
+            <DatePicker width="auto" displayFormat="medium" id="dateRange" change="day" onChange="day" required="false" valueStateText="Invalid entry" enabled="true" visible="true" valueFormat="yyyyMMdd"/>
+            <items>
+            <Label xmlns="sap.m" design="Bold" width="100%" id="label8" required="false" textDirection="Inherit" visible="true"/>
+            </items>
+            <ToggleButton pressed="true" text="GÖNDER" press="gonder" iconFirst="true" width="auto" enabled="true" visible="true"/>
+            </FlexBox>
+            
+            </FlexBox>
+            
+           
+            
+            </FlexBox>
+        </content>
+    </Page>
+</mvc:View>

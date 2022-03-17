@@ -1,0 +1,106 @@
+<mvc:View
+xmlns:core="sap.ui.core"
+xmlns:mvc="sap.ui.core.mvc"
+xmlns:c="sap.ui.commons"
+xmlns="sap.m"
+xmlns:m="sap.m"
+xmlns:l="sap.ui.layout"
+xmlns:html="http://www.w3.org/1999/xhtml"
+xmlns:ui="sap.ui.table"
+xmlns:f="sap.ui.layout.form"
+xmlns:u="sap.ui.unified"
+xmlns:tnt="sap.tnt"
+height="100%" controllerName="customActivity.controller.reportSdmKutukKarisim">
+    <App>
+        <pages>
+            <Page showHeader="false">
+            <content>
+                <HBox justifyContent="Center" alignItems="Center" width="100%">
+                    <l:VerticalLayout width="100%">
+                        <FlexBox height="60px" alignItems="Center" justifyContent="Center">
+                            <items>
+                <HBox height="60px" alignItems="Center" justifyContent="Center">
+                    <Label width="100px" text="Tarih Aralığı: " design="Bold"></Label>
+                    <DateRangeSelection displayFormat="YYYY/MM/dd" id="idDateRangeSelection" width="17rem"  change= "getCastNoList" class="sapUiSmallMarginBottom sapUiSmallMarginEnd"/>
+                </HBox>
+                <HBox height="60px" alignItems="Center" justifyContent="Center">
+                    <Label width="100px" text="Döküm No:" design="Bold"></Label>
+                    <ComboBox  showSecondaryValues="true" width="200px" id="startCast"  items="{path: 'castIds>/'}" selectionChange="changeStartCast" class="sapUiSmallMarginEnd">
+                        <core:ListItem key="tam" text="TÜMÜ"/>
+                        <core:ListItem key="{castIds>CASTID}" text="{castIds>CASTID}"/>
+                    </ComboBox>
+                </HBox>
+                <VBox width="100%">
+                    <HBox justifyContent="Center" alignItems="Center" class="sapUiTinyMargin">
+                        <Button type="Accept" width="150px" text="Tabloyu Getir" icon="sap-icon://search" press="onPressSearchFilter"></Button>
+                    </HBox>
+                </VBox>
+            </items>
+        </FlexBox>
+    </l:VerticalLayout>
+</HBox>
+<!-- <t:Table visibleRowCount="10" id="idFragmentTable"></t:Table> -->
+<ui:Table id="idReportTable" width="100%" rows="{/}" rowCount="16" visibleRowCount="16" alternateRowColors="true" selectionMode="Single" selectionBehavior="RowOnly" >
+
+<ui:columns>
+<ui:Column hAlign="Center" sortProperty="PLANT" filterProperty="PLANT" filterType="sap.ui.model.type.String">
+<Label text="PLANT" design="Bold"/>
+<ui:template>
+<Text text="{PLANT}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="CASTNO" filterProperty="CASTNO" filterType="sap.ui.model.type.String">
+<Label text="CASTNO" design="Bold"/>
+<ui:template>
+<Text text="{CASTNO}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="KARISIM" filterProperty="KARISIM" filterType="sap.ui.model.type.String">
+<Label text="KARISIM" design="Bold"/>
+<ui:template>
+<Text text="{KARISIM}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="KALITE_BAS" filterProperty="KALITE_BAS" filterType="sap.ui.model.type.String">
+<Label text="KALITE_BAS" design="Bold"/>
+<ui:template>
+<Text text="{KALITE_BAS}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="ADET_BAS" filterProperty="ADET_BAS" filterType="sap.ui.model.type.String">
+<Label text="ADET_BAS" design="Bold"/>
+<ui:template>
+<Text text="{ADET_BAS}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="KALITE_SON" filterProperty="KALITE_SON" filterType="sap.ui.model.type.String">
+<Label text="KALITE_SON" design="Bold"/>
+<ui:template>
+<Text text="{KALITE_SON}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="ADET_SON" filterProperty="ADET_SON" filterType="sap.ui.model.type.String">
+<Label text="ADET_SON" design="Bold"/>
+<ui:template>
+<Text text="{ADET_SON}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<ui:Column hAlign="Center" sortProperty="INSDATE" filterProperty="INSDATE" filterType="sap.ui.model.type.String">
+<Label text="INSDATE" design="Bold"/>
+<ui:template>
+<Text text="{INSDATE}" wrapping="false"/>
+</ui:template>
+</ui:Column>
+<!-- <ui:Column hAlign="Center" sortProperty="MATNR" filterProperty="MATNR" filterType="sap.ui.model.type.String">
+<Label text="Malzeme No" design="Bold"/>
+<ui:template>
+<Text text="{MATNR}" wrapping="false"/>
+</ui:template>
+</ui:Column> -->
+</ui:columns>
+</ui:Table>
+</content>
+            </Page>
+        </pages>
+    </App>
+</mvc:View>

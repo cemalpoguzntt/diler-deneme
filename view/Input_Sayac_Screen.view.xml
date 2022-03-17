@@ -1,0 +1,72 @@
+<View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout" controllerName="customActivity.controller.Input_Sayac_Screen">
+	<Page showHeader="true" showFooter="true" showNavButton="false">
+		<content>
+
+					<Table width="auto" id="Table1" noDataText="No data" mode="MultiSelect" items="{path: '/'}" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin">
+						<infoToolbar>
+							<Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+								<content>
+									<Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</content>
+							</Toolbar>
+						</infoToolbar>
+						<headerToolbar/>
+						<columns>
+							<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+								<header>
+									<Text text="Olcum No" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</header>
+								<footer/>
+							</Column>
+							<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+								<header>
+									<Text text="NAME" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</header>
+								<footer/>
+							</Column>
+							<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+								<header>
+									<Text text="PLANT" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</header>
+								<footer/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem type="Active">
+								<cells>
+									
+									<FlexBox  width="10%">
+						
+									<Label text="{DEVICE_ID}" width="100%" id="label1" textAlign="End"/>
+									
+									</FlexBox>
+								
+									<FlexBox width="30%">
+									<Label xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout" text="{NAME}" width="100%" id="label1_copy"/>
+									</FlexBox>
+									<FlexBox width="30%">
+									<Label xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout" text="{PLANT}" width="100%" id="label1_copy2"/>
+									</FlexBox>
+									
+									
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+			
+				<FlexBox direction="Row"  width="100%">
+					<Button text="EXCEL'E AKTAR" type="Accept" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onExport"/>  
+					<Button text="YENI KAYIT" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="openFragment"/>
+					<Button text="KAYIT SIL" type="Reject" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="deletefunction"/>
+						<FlexBox justifyContent="End" width="100%">
+					<Button text="MANUEL GİRİŞ" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="openFragment2"/>
+						</FlexBox>
+				</FlexBox>
+		
+		</content>
+		<footer/>
+		<headerContent/>
+		<subHeader/>
+		<customHeader/>
+	</Page>
+</View>
