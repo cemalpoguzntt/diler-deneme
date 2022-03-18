@@ -64,6 +64,7 @@ customStyle,
 
                 onInit: function () {
                     that = this;
+                    console.log("wuuhuu");
                     jsonDataForPriorityChange = [];
 
                     this.appComponent = this.getView().getViewData().appComponent;
