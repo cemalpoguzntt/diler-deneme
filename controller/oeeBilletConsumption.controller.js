@@ -1031,6 +1031,9 @@ sap.ui.define(
 
         getSelectData: function () {
           var name = this.appData.node.name;
+          var plant = this.appData.plant;
+          if(plant == 2001)
+          {
           var data = {
             List: [
               {
@@ -1043,7 +1046,28 @@ sap.ui.define(
                 Value: "2",
               },
             ],
+          }
           };
+          if (plant == 3001)
+          {
+            var data = {
+              List: [
+                {
+                  Value: "",
+                },
+                {
+                  Value: "1",
+                },
+                {
+                  Value: "2",
+                },
+                {
+                  Value: "A"
+                }
+              ],
+            }
+
+          }
           var mCombo = this.getView().byId("selectARBPL");
           var oModel = new JSONModel(data);
           mCombo.setModel(oModel);

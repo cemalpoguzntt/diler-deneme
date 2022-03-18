@@ -31,7 +31,7 @@
 				<columns>
 					<Column width="2rem" hAlign="Center" vAlign="Center">
 						<Label text="{i18n>OEE_PACKAGE_DETAIL_VRD_Y}" class="billetConsumptionLabel" /> </Column>
-					<Column width="2rem" hAlign="Center" vAlign="Center">
+					<Column width="3rem" hAlign="Center" vAlign="Center">
 						<Label text="{i18n>OEE_LABEL_ROAD_Y}" class="billetConsumptionLabel" /> </Column>
 					<Column width="5rem" hAlign="Center" vAlign="Center">
 						<Label text="{i18n>titleOrderNo_Y}" class="billetConsumptionLabel" /> </Column>
@@ -84,7 +84,8 @@
 					<ColumnListItem>
 						<cells>
 							<Text text="{confirmBilletYield>SHIFT}" class="billetConsumptionText" />
-							<Text text="{= ${confirmBilletYield>ARBPL}.substr(${confirmBilletYield>ARBPL}.length-1, 1) }" class="billetConsumptionText" />
+							<Text text="{confirmBilletYield>ARBPL}" class="billetConsumptionText" />
+							<!-- <Text text="{= ${confirmBilletYield>ARBPL}.substr(${confirmBilletYield>ARBPL}.length-1, 1) }" class="billetConsumptionText" />  -->
 							<Text text="{confirmBilletYield>AUFNR}" class="billetConsumptionText" />
 							<Text text="{confirmBilletYield>CASTID}" class="billetConsumptionText" />
 							<Text text="{= Math.round((${confirmBilletYield>Y_EBAT})*10)/10}" class="billetConsumptionText" />
