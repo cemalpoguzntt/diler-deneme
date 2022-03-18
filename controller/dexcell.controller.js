@@ -18,6 +18,8 @@ sap.ui.define(
         "customActivity/scripts/customStyle",
         "customActivity/scripts/custom",
 
+
+
     ],
 
     function (
@@ -188,7 +190,7 @@ sap.ui.define(
                 var tableData = this.getView().byId("notificationTable").getModel().getData();
                 this.clearFragment();
                 this.openFragment();
-                
+
 
                 sap.ui.core.Fragment.byId("dexcell", "selectedID")?.setValue(tableData[index]?.ID);
 
@@ -207,7 +209,7 @@ sap.ui.define(
 
             },
 
-            clearFragment:function() {
+            clearFragment: function () {
 
                 sap.ui.core.Fragment.byId("dexcell", "selectedID")?.setValue("");
 
@@ -227,13 +229,13 @@ sap.ui.define(
             },
 
 
-            saveFunction:function () {
+            saveFunction: function () {
 
                 var ID = sap.ui.core.Fragment.byId("dexcell", "selectedID")?.getValue();
 
 
                 var uretimYeri = sap.ui.core.Fragment.byId("dexcell", "uretimyeri")?.getSelectedKey();
-                var ppIsyeri =sap.ui.core.Fragment.byId("dexcell", "ppIsyeri")?.getValue();
+                var ppIsyeri = sap.ui.core.Fragment.byId("dexcell", "ppIsyeri")?.getValue();
                 var TBK = sap.ui.core.Fragment.byId("dexcell", "tbk")?.getValue();
                 var TBT = sap.ui.core.Fragment.byId("dexcell", "tbt")?.getValue();
                 var DABK = sap.ui.core.Fragment.byId("dexcell", "dabk")?.getValue();
@@ -243,7 +245,7 @@ sap.ui.define(
                 var pmBildirim = sap.ui.core.Fragment.byId("dexcell", "pmBildirim")?.getSelectedKey();
                 var pmIsyeri = sap.ui.core.Fragment.byId("dexcell", "pmIsyeri")?.getValue();
 
-                if( pmBildirim == undefined || pmBildirim == "" || uretimYeri == undefined || uretimYeri == "" ){
+                if (pmBildirim == undefined || pmBildirim == "" || uretimYeri == undefined || uretimYeri == "") {
                     MessageBox.error("PM Bildirim ve Üretim Yeri alanlarının doldurulması zorunludur.")
                     return
                 }
@@ -256,18 +258,18 @@ sap.ui.define(
                     "MES/Itelli/PM_SCREEN/Datas/T_INSERT_TABLE",
                     {
                         I_URETIM_YERI: uretimYeri,
-                        I_PP_ISYERI : ppIsyeri,
+                        I_PP_ISYERI: ppIsyeri,
                         I_TBK: TBK,
                         I_TBT: TBT,
                         I_DABK: DABK,
                         I_DAB: DAB,
-                        I_DK: DK, 
+                        I_DK: DK,
                         I_DN: DN,
-                        I_PM_BILDIRIM : pmBildirim,
+                        I_PM_BILDIRIM: pmBildirim,
                         I_PM_ISYERI: pmIsyeri,
                         I_ID: ID,
-                       
-                        
+
+
                     },
                     "O_JSON",
                     this.saveFunctionCB,
@@ -277,8 +279,8 @@ sap.ui.define(
 
             },
 
-            saveFunctionCB:function(iv_data,iv_scope){
-                
+            saveFunctionCB: function (iv_data, iv_scope) {
+
                 if (iv_data[1] == "E") {
                     MessageBox.error(iv_data[0]);
                     sap.ui.core.Fragment.byId("dexcell", "dexcellFragment").setBusy(false);
@@ -293,8 +295,8 @@ sap.ui.define(
 
                 sap.ui.core.Fragment.byId("dexcell", "dexcellFragment").setBusy(false);
 
-                
-                
+
+
 
                 iv_scope.getView().byId("plant").setModel(new sap.ui.model.json.JSONModel(that.spaceArray));
                 iv_scope.getView().byId("ppIsyeri").setModel(new sap.ui.model.json.JSONModel(that.spaceArray));
